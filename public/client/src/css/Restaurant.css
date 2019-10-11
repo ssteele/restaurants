@@ -1,0 +1,12 @@
+.restaurant {
+  height: 5rem;
+  line-height: 1.7rem;
+}
+
+.name {
+  font-size: 2rem;
+}
+
+.sub-name {
+  font-size: 1rem;
+}

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './css/Restaurant.css';
 
 interface IRestaurant {
   id?: number;
@@ -61,12 +62,12 @@ class Restaurant extends React.Component<IRestaurant, IState> {
     return (
       <div>
         <div className="restaurant">
-          <div>{this.state.restaurant.name}</div>
-          <div>{this.state.restaurant.sub_name}</div>
+          <div className="name">{this.state.restaurant.name}</div>
+          <div className="sub-name">{this.state.restaurant.sub_name}</div>
         </div>
 
         <div>
-          <button onClick={this.pickRandom}>Pick Random</button>
+          <button className="button" onClick={this.pickRandom}>Pick</button>
         </div>
       </div>
     );
