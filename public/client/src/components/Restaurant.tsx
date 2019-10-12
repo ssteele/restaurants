@@ -1,5 +1,6 @@
 import * as React from 'react';
-import './css/Restaurant.css';
+
+import '../css/Restaurant.css';
 
 interface IRestaurant {
   id?: number;
