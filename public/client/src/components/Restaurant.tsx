@@ -1,22 +1,22 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import '../css/Restaurant.css';
+import '../css/Restaurant.css'
 
 interface IRestaurant {
-  id?: number;
-  name?: string;
-  sub_name?: string;
-  site?: string;
-  organic?: boolean;
-  vegetarian?: boolean;
-  vegan?: boolean;
-  keto?: boolean;
-  harvi?: [];
-  zip?: [];
-  enabled?: boolean;
-  deleted?: boolean;
-  created_at?: string;
-  updated_at?: string;
+  id?: number
+  name?: string
+  sub_name?: string
+  site?: string
+  organic?: boolean
+  vegetarian?: boolean
+  vegan?: boolean
+  keto?: boolean
+  harvi?: []
+  zip?: []
+  enabled?: boolean
+  deleted?: boolean
+  created_at?: string
+  updated_at?: string
 }
 
 interface IState {
@@ -30,17 +30,17 @@ class Restaurant extends React.Component<IRestaurant, IState> {
     restaurants: [],
     filteredRestaurants: [],
     restaurant: {},
-  };
+  }
 
   public getRandomInt(max: number) {
-    return Math.floor(Math.random() * Math.floor(max));
+    return Math.floor(Math.random() * Math.floor(max))
   }
 
   public pickRandom = () => {
     const index = this.getRandomInt(this.state.filteredRestaurants.length)
-    const restaurant = this.state.filteredRestaurants[index];
-    this.setState({ restaurant });
-  };
+    const restaurant = this.state.filteredRestaurants[index]
+    this.setState({ restaurant })
+  }
 
   public getRestaurants() {
     fetch('http://shs.restaurants.com:8888/api/')
@@ -49,14 +49,14 @@ class Restaurant extends React.Component<IRestaurant, IState> {
       this.setState({
         restaurants: data,
         filteredRestaurants: data,
-      });
+      })
       this.pickRandom()
     })
     .catch(console.log)
   }
 
   public componentDidMount() {
-    this.getRestaurants();
+    this.getRestaurants()
   }
 
   public render() {
@@ -71,8 +71,8 @@ class Restaurant extends React.Component<IRestaurant, IState> {
           <button className="button" onClick={this.pickRandom}>Pick</button>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Restaurant;
+export default Restaurant

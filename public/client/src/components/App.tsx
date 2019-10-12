@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import Restaurant from './Restaurant';
+import Restaurant from './Restaurant'
 
-import '../../node_modules/foundation-sites/dist/css/foundation.min.css';
-import '../css/App.css';
+import '../../node_modules/foundation-sites/dist/css/foundation.min.css'
+import '../css/App.css'
 
 const App: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const App: React.FC = () => {
         <Restaurant />
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
