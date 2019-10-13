@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
 
 import {
-  RESTAURANT_INIT,
+  REQUEST_RESTAURANTS,
+  RECEIVE_RESTAURANTS,
 //   SET_VISIBILITY_FILTER,
 //   VisibilityFilters,
 } from '../actions/restaurant'
@@ -18,14 +19,21 @@ import {
 
 function restaurant(state: any = [], action: any) {
   switch (action.type) {
-    case RESTAURANT_INIT:
-      return [
+    case REQUEST_RESTAURANTS:
+      return {
         ...state,
-        {
-          text: action.text,
-          completed: false
+        ...{
+          isLoading: true,
         }
-      ]
+      }
+    case RECEIVE_RESTAURANTS:
+      return {
+        ...state,
+        ...{
+          isLoading: false,
+          list: action.restaurants,
+        }
+      }
     // case TOGGLE_TODO:
     //   return state.map((todo, index) => {
     //     if (index === action.index) {
