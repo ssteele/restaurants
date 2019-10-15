@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 import {
   REQUEST_RESTAURANTS,
   RECEIVE_RESTAURANTS,
+  CHOOSE_RESTAURANT,
 //   SET_VISIBILITY_FILTER,
 //   VisibilityFilters,
 } from '../actions/restaurant'
@@ -21,6 +22,7 @@ function restaurant(
   state: any = {
     isLoading: false,
     list: [],
+    chosen: null,
   },
   action: any
 ) {
@@ -38,6 +40,13 @@ function restaurant(
         ...{
           isLoading: false,
           list: action.restaurants,
+        }
+      }
+    case CHOOSE_RESTAURANT:
+      return {
+        ...state,
+        ...{
+          chosen: action.chosen,
         }
       }
     // case TOGGLE_TODO:

@@ -5,6 +5,7 @@ import fetch from 'cross-fetch'
  */
 export const REQUEST_RESTAURANTS = 'REQUEST_RESTAURANTS'
 export const RECEIVE_RESTAURANTS = 'RECEIVE_RESTAURANTS'
+export const CHOOSE_RESTAURANT = 'CHOOSE_RESTAURANT'
 // export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 
 // /*
@@ -25,10 +26,17 @@ export function requestRestaurants() {
   }
 }
 
-function receiveRestaurants(json: any) {
+export function receiveRestaurants(json: any) {
   return {
     type: RECEIVE_RESTAURANTS,
     restaurants: json,
+  }
+}
+
+export function chooseRestaurant(restaurant: any): any {
+  return {
+    type: CHOOSE_RESTAURANT,
+    chosen: restaurant,
   }
 }
 

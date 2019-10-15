@@ -2,7 +2,10 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 
 import PropTypes from 'prop-types'
-import { fetchRestaurants } from '../store/actions/restaurant'
+import {
+  fetchRestaurants,
+  chooseRestaurant,
+} from '../store/actions/restaurant'
 
 import '../css/Restaurant.css'
 
@@ -23,18 +26,10 @@ interface IRestaurant {
   updated_at?: string
 }
 
-interface IState {
-  chosen: IRestaurant,
-}
-
-class Restaurant extends React.Component<IRestaurant, IState> {
+class Restaurant extends React.Component<IRestaurant> {
   static propTypes = {
     isLoading: PropTypes.bool.isRequired,
     list: PropTypes.array,
-  }
-
-  public state: any = {
-    chosen: {},
   }
 
   constructor(props: any) {
@@ -47,11 +42,12 @@ class Restaurant extends React.Component<IRestaurant, IState> {
   }
 
   public render() {
+    const { chosen }: any = this.props
     return (
       <div>
         <div className="restaurant">
-          <div className="name">{this.state.chosen.name}</div>
-          <div className="sub-name">{this.state.chosen.sub_name}</div>
+          <div className="name">{(chosen || {}).name}</div>
+          <div className="sub-name">{(chosen || {}).sub_name}</div>
         </div>
 
         <div>
@@ -66,20 +62,20 @@ class Restaurant extends React.Component<IRestaurant, IState> {
   }
 
   public pickRandom = () => {
-    const { filtered }: any = this.props
+    const { filtered, dispatch }: any = this.props
     const index = this.getRandomInt(filtered.length)
-    const chosen = filtered[index]
-    this.setState({ chosen })
+    dispatch(chooseRestaurant(filtered[index]))
   }
 }
 
 function mapStateToProps(state: any) {
-  const { isLoading, list: all } = state.restaurant
+  const { isLoading, list: all, chosen } = state.restaurant
   const filtered = all
   return {
     isLoading,
     all,
     filtered,
+    chosen,
   }
 }
 
