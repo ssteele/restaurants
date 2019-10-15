@@ -32,10 +32,6 @@ const store = createStore(
   )
 )
 
-store
-  .dispatch(fetchRestaurants())
-  .then(() => console.log(store.getState()))
-
 const rootElement = document.getElementById('root')
 
 render(

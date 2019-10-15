@@ -1,4 +1,8 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
+
+import PropTypes from 'prop-types'
+import { fetchRestaurants } from '../store/actions/restaurant'
 
 import '../css/Restaurant.css'
 
@@ -20,51 +24,34 @@ interface IRestaurant {
 }
 
 interface IState {
-  restaurants: IRestaurant[],
-  filteredRestaurants: IRestaurant[],
-  restaurant: IRestaurant,
+  chosen: IRestaurant,
 }
 
 class Restaurant extends React.Component<IRestaurant, IState> {
-  public state: IState = {
-    restaurants: [],
-    filteredRestaurants: [],
-    restaurant: {},
+  static propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    list: PropTypes.array,
   }
 
-  public getRandomInt(max: number) {
-    return Math.floor(Math.random() * Math.floor(max))
+  public state: any = {
+    chosen: {},
   }
 
-  public pickRandom = () => {
-    const index = this.getRandomInt(this.state.filteredRestaurants.length)
-    const restaurant = this.state.filteredRestaurants[index]
-    this.setState({ restaurant })
-  }
-
-  public getRestaurants() {
-    fetch('http://shs.restaurants.com:8888/api/')
-    .then(res => res.json())
-    .then((data) => {
-      this.setState({
-        restaurants: data,
-        filteredRestaurants: data,
-      })
-      this.pickRandom()
-    })
-    .catch(console.log)
+  constructor(props: any) {
+    super(props)
   }
 
   public componentDidMount() {
-    this.getRestaurants()
+    const { dispatch }: any = this.props
+    dispatch(fetchRestaurants())
   }
 
   public render() {
     return (
       <div>
         <div className="restaurant">
-          <div className="name">{this.state.restaurant.name}</div>
-          <div className="sub-name">{this.state.restaurant.sub_name}</div>
+          <div className="name">{this.state.chosen.name}</div>
+          <div className="sub-name">{this.state.chosen.sub_name}</div>
         </div>
 
         <div>
@@ -73,6 +60,27 @@ class Restaurant extends React.Component<IRestaurant, IState> {
       </div>
     )
   }
+
+  public getRandomInt(max: number) {
+    return Math.floor(Math.random() * Math.floor(max))
+  }
+
+  public pickRandom = () => {
+    const { filtered }: any = this.props
+    const index = this.getRandomInt(filtered.length)
+    const chosen = filtered[index]
+    this.setState({ chosen })
+  }
 }
 
-export default Restaurant
+function mapStateToProps(state: any) {
+  const { isLoading, list: all } = state.restaurant
+  const filtered = all
+  return {
+    isLoading,
+    all,
+    filtered,
+  }
+}
+
+export default connect(mapStateToProps)(Restaurant as any)

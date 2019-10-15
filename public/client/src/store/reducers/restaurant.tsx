@@ -17,7 +17,13 @@ import {
 //   }
 // }
 
-function restaurant(state: any = [], action: any) {
+function restaurant(
+  state: any = {
+    isLoading: false,
+    list: [],
+  },
+  action: any
+) {
   switch (action.type) {
     case REQUEST_RESTAURANTS:
       return {
