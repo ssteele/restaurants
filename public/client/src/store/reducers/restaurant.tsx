@@ -21,7 +21,8 @@ import {
 function restaurant(
   state: any = {
     isLoading: false,
-    list: [],
+    all: [],
+    filtered: [],
     chosen: {},
   },
   action: any
@@ -32,7 +33,8 @@ function restaurant(
         ...state,
         ...{
           isLoading: true,
-          list: state.list || [],
+          all: state.all || [],
+          filtered: state.filtered || [],
           chosen: state.chosen || {},
         }
       }
@@ -41,7 +43,8 @@ function restaurant(
         ...state,
         ...{
           isLoading: false,
-          list: action.restaurants,
+          all: action.restaurants,
+          filtered: action.restaurants,
         }
       }
     case CHOOSE_RESTAURANT:

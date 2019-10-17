@@ -66,9 +66,8 @@ class Restaurant extends React.Component<IRestaurant> {
 }
 
 function mapStateToProps(state: any) {
-  // @todo: write list functionality in store and remove it here
-  const { list: all, chosen } = state.restaurant
-  const filtered = all
+  // @todo: write `filtered` functionality in store and remove it here
+  const { filtered, chosen } = state.restaurant
   return {
     filtered,
     chosen,
