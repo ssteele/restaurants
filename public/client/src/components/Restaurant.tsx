@@ -28,8 +28,9 @@ interface IRestaurant {
 
 class Restaurant extends React.Component<IRestaurant> {
   static propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-    list: PropTypes.array,
+    filtered: PropTypes.array.isRequired,
+    chosen: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
   }
 
   public componentDidMount() {
@@ -42,8 +43,8 @@ class Restaurant extends React.Component<IRestaurant> {
     return (
       <div>
         <div className="restaurant">
-          <div className="name">{(chosen || {}).name}</div>
-          <div className="sub-name">{(chosen || {}).sub_name}</div>
+          <div className="name">{chosen.name}</div>
+          <div className="sub-name">{chosen.sub_name}</div>
         </div>
 
         <div>
@@ -65,11 +66,10 @@ class Restaurant extends React.Component<IRestaurant> {
 }
 
 function mapStateToProps(state: any) {
-  const { isLoading, list: all, chosen } = state.restaurant
+  // @todo: write list functionality in store and remove it here
+  const { list: all, chosen } = state.restaurant
   const filtered = all
   return {
-    isLoading,
-    all,
     filtered,
     chosen,
   }

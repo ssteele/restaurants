@@ -22,7 +22,7 @@ function restaurant(
   state: any = {
     isLoading: false,
     list: [],
-    chosen: null,
+    chosen: {},
   },
   action: any
 ) {
@@ -32,6 +32,8 @@ function restaurant(
         ...state,
         ...{
           isLoading: true,
+          list: state.list || [],
+          chosen: state.chosen || {},
         }
       }
     case RECEIVE_RESTAURANTS:
