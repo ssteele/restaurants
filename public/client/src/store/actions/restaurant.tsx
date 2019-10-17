@@ -1,5 +1,7 @@
 import fetch from 'cross-fetch'
 
+const API_ENDPOINT = 'http://shs.restaurants.com:8888/api/'
+
 /*
  * action types
  */
@@ -20,14 +22,14 @@ export function getRestaurants() {
 export function getRestaurantsSuccess(json: any) {
   return {
     type: GET_RESTAURANTS_SUCCESS,
-    restaurants: json,
+    all: json,
   }
 }
 
-export function getRestaurantsError(json: any) {
+export function getRestaurantsError(error: any) {
   return {
     type: GET_RESTAURANTS_ERROR,
-    restaurants: json,
+    error,
   }
 }
 
@@ -59,19 +61,21 @@ export function fetchRestaurants(): any {
     // In this case, we return a promise to wait for.
     // This is not required by thunk middleware, but it is convenient for us.
 
-    return fetch('http://shs.restaurants.com:8888/api/')
+    return fetch(API_ENDPOINT)
       .then(
         response => response.json(),
         // Do not use catch, because that will also catch
         // any errors in the dispatch and resulting render,
         // causing a loop of 'Unexpected batch number' errors.
         // https://github.com/facebook/react/issues/6895
-        error => console.log('An error occurred.', error)
+        error => dispatch(getRestaurantsError(error))
       )
-      .then(json =>
+      .then((json) => {
         // We can dispatch many times!
         // Here, we update the app state with the results of the API call.
-        dispatch(getRestaurantsSuccess(json))
-      )
+        if (!json.error) {
+          dispatch(getRestaurantsSuccess(json))
+        }
+      })
   }
 }

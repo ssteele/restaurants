@@ -30,6 +30,7 @@ class Restaurant extends React.Component<IRestaurant> {
   static propTypes = {
     filtered: PropTypes.array.isRequired,
     chosen: PropTypes.object.isRequired,
+    error: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
   }
 
@@ -39,12 +40,13 @@ class Restaurant extends React.Component<IRestaurant> {
   }
 
   public render() {
-    const { chosen }: any = this.props
+    const { chosen, error }: any = this.props
     return (
       <div>
         <div className="restaurant">
           <div className="name">{chosen.name}</div>
           <div className="sub-name">{chosen.sub_name}</div>
+          <div className="error">{error.message}</div>
         </div>
 
         <div>
@@ -67,10 +69,11 @@ class Restaurant extends React.Component<IRestaurant> {
 
 function mapStateToProps(state: any) {
   // @todo: write `filtered` functionality in store and remove it here
-  const { filtered, chosen } = state.restaurant
+  const { filtered, chosen, error } = state.restaurant
   return {
     filtered,
     chosen,
+    error,
   }
 }
 

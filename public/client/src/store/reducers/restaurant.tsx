@@ -13,6 +13,7 @@ function restaurant(
     all: [],
     filtered: [],
     chosen: {},
+    error: {},
   },
   action: any
 ) {
@@ -25,6 +26,7 @@ function restaurant(
           all: state.all || [],
           filtered: state.filtered || [],
           chosen: state.chosen || {},
+          error: {},
         }
       }
 
@@ -33,8 +35,8 @@ function restaurant(
         ...state,
         ...{
           isLoading: false,
-          all: action.restaurants || [],
-          filtered: action.restaurants || [],
+          all: action.all || [],
+          filtered: action.all || [],
         }
       }
 
@@ -45,6 +47,7 @@ function restaurant(
           isLoading: false,
           all: state.all || [],
           filtered: state.filtered || [],
+          error: action.error,
         }
       }
 
