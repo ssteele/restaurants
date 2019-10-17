@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
 import {
-  REQUEST_RESTAURANTS,
-  RECEIVE_RESTAURANTS,
-  CHOOSE_RESTAURANT,
+  GET_RESTAURANTS,
+  GET_RESTAURANTS_SUCCESS,
+  SET_CHOSEN_RESTAURANT,
 //   SET_VISIBILITY_FILTER,
 //   VisibilityFilters,
 } from '../actions/restaurant'
@@ -28,7 +28,7 @@ function restaurant(
   action: any
 ) {
   switch (action.type) {
-    case REQUEST_RESTAURANTS:
+    case GET_RESTAURANTS:
       return {
         ...state,
         ...{
@@ -38,7 +38,7 @@ function restaurant(
           chosen: state.chosen || {},
         }
       }
-    case RECEIVE_RESTAURANTS:
+    case GET_RESTAURANTS_SUCCESS:
       return {
         ...state,
         ...{
@@ -47,7 +47,7 @@ function restaurant(
           filtered: action.restaurants,
         }
       }
-    case CHOOSE_RESTAURANT:
+    case SET_CHOSEN_RESTAURANT:
       return {
         ...state,
         ...{

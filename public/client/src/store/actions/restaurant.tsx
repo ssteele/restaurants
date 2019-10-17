@@ -3,9 +3,9 @@ import fetch from 'cross-fetch'
 /*
  * action types
  */
-export const REQUEST_RESTAURANTS = 'REQUEST_RESTAURANTS'
-export const RECEIVE_RESTAURANTS = 'RECEIVE_RESTAURANTS'
-export const CHOOSE_RESTAURANT = 'CHOOSE_RESTAURANT'
+export const GET_RESTAURANTS = 'GET_RESTAURANTS'
+export const GET_RESTAURANTS_SUCCESS = 'GET_RESTAURANTS_SUCCESS'
+export const SET_CHOSEN_RESTAURANT = 'SET_CHOSEN_RESTAURANT'
 // export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 
 // /*
@@ -20,22 +20,22 @@ export const CHOOSE_RESTAURANT = 'CHOOSE_RESTAURANT'
 /*
  * action creators
  */
-export function requestRestaurants() {
+export function getRestaurants() {
   return {
-    type: REQUEST_RESTAURANTS,
+    type: GET_RESTAURANTS,
   }
 }
 
-export function receiveRestaurants(json: any) {
+export function getRestaurantsSuccess(json: any) {
   return {
-    type: RECEIVE_RESTAURANTS,
+    type: GET_RESTAURANTS_SUCCESS,
     restaurants: json,
   }
 }
 
-export function chooseRestaurant(restaurant: any): any {
+export function setChosenRestaurant(restaurant: any): any {
   return {
-    type: CHOOSE_RESTAURANT,
+    type: SET_CHOSEN_RESTAURANT,
     chosen: restaurant,
   }
 }
@@ -65,7 +65,7 @@ export function fetchRestaurants(): any {
     // First dispatch: the app state is updated to inform
     // that the API call is starting.
 
-    dispatch(requestRestaurants())
+    dispatch(getRestaurants())
 
     // The function called by the thunk middleware can return a value,
     // that is passed on as the return value of the dispatch method.
@@ -85,7 +85,7 @@ export function fetchRestaurants(): any {
       .then(json =>
         // We can dispatch many times!
         // Here, we update the app state with the results of the API call.
-        dispatch(receiveRestaurants(json))
+        dispatch(getRestaurantsSuccess(json))
       )
   }
 }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
   fetchRestaurants,
-  chooseRestaurant,
+  setChosenRestaurant,
 } from '../store/actions/restaurant'
 
 import '../css/Restaurant.css'
@@ -61,7 +61,7 @@ class Restaurant extends React.Component<IRestaurant> {
   public pickRandom = () => {
     const { filtered, dispatch }: any = this.props
     const index = this.getRandomInt(filtered.length)
-    dispatch(chooseRestaurant(filtered[index]))
+    dispatch(setChosenRestaurant(filtered[index]))
   }
 }
 
