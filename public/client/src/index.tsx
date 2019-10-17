@@ -14,7 +14,6 @@ import { createLogger } from 'redux-logger'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
-import { fetchRestaurants } from './store/actions/restaurant'
 import restaurantApp from './store/reducers/restaurant'
 
 import './css/index.css'

@@ -32,10 +32,6 @@ class Restaurant extends React.Component<IRestaurant> {
     list: PropTypes.array,
   }
 
-  constructor(props: any) {
-    super(props)
-  }
-
   public componentDidMount() {
     const { dispatch }: any = this.props
     dispatch(fetchRestaurants())
