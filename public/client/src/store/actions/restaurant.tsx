@@ -5,17 +5,8 @@ import fetch from 'cross-fetch'
  */
 export const GET_RESTAURANTS = 'GET_RESTAURANTS'
 export const GET_RESTAURANTS_SUCCESS = 'GET_RESTAURANTS_SUCCESS'
+export const GET_RESTAURANTS_ERROR = 'GET_RESTAURANTS_ERROR'
 export const SET_CHOSEN_RESTAURANT = 'SET_CHOSEN_RESTAURANT'
-// export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
-
-// /*
-//  * other constants
-//  */
-// export const VisibilityFilters = {
-//   SHOW_ALL: 'SHOW_ALL',
-//   SHOW_COMPLETED: 'SHOW_COMPLETED',
-//   SHOW_ACTIVE: 'SHOW_ACTIVE'
-// }
 
 /*
  * action creators
@@ -33,24 +24,19 @@ export function getRestaurantsSuccess(json: any) {
   }
 }
 
+export function getRestaurantsError(json: any) {
+  return {
+    type: GET_RESTAURANTS_ERROR,
+    restaurants: json,
+  }
+}
+
 export function setChosenRestaurant(restaurant: any): any {
   return {
     type: SET_CHOSEN_RESTAURANT,
     chosen: restaurant,
   }
 }
-
-// export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT'
-// export function invalidateSubreddit(subreddit) {
-//   return {
-//     type: INVALIDATE_SUBREDDIT,
-//     subreddit
-//   }
-// }
-
-// export function setVisibilityFilter(filter) {
-//   return { type: SET_VISIBILITY_FILTER, filter }
-// }
 
 // Meet our first thunk action creator!
 // Though its insides are different, you would use it just like any other action creator:
