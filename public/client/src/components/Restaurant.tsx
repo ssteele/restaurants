@@ -78,7 +78,7 @@ class Restaurant extends React.Component<IRestaurant> {
           <button
             className="button"
             onClick={this.pickRandom}
-          >Pick from {count} restaurants</button>
+          >Pick from {count}</button>
         </div>
       </div>
     )
