@@ -1,6 +1,7 @@
 .restaurant {
-  height: 5rem;
+  height: 8rem;
   line-height: 1.7rem;
+  margin: 1rem 0;
 }
 
 .name {
@@ -9,4 +10,26 @@
 
 .sub-name {
   font-size: 1rem;
+}
+
+.options {
+  justify-content: center;
+}
+
+.options input {
+  display: none;
+}
+
+.options label,
+.options label:active,
+.options label:hover {
+  background-color: #333;
+  color: #eee;
+}
+
+.options input:checked + label,
+.options input:checked + label:active,
+.options input:checked + label:hover {
+  background-color: #eee;
+  color: #333;
 }

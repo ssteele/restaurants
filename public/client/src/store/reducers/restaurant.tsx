@@ -12,6 +12,7 @@ function restaurant(
     isLoading: false,
     all: [],
     filtered: [],
+    filteredCount: 0,
     chosen: {},
     error: {},
   },
@@ -25,6 +26,7 @@ function restaurant(
           isLoading: true,
           all: state.all || [],
           filtered: state.filtered || [],
+          filteredCount: state.filtered.length,
           chosen: state.chosen || {},
           error: {},
         }
@@ -37,6 +39,7 @@ function restaurant(
           isLoading: false,
           all: action.all || [],
           filtered: action.all || [],
+          filteredCount: action.all.length,
         }
       }
 
@@ -47,6 +50,7 @@ function restaurant(
           isLoading: false,
           all: state.all || [],
           filtered: state.filtered || [],
+          filteredCount: state.filtered.length,
           error: action.error,
         }
       }

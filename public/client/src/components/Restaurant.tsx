@@ -29,6 +29,7 @@ interface IRestaurant {
 class Restaurant extends React.Component<IRestaurant> {
   static propTypes = {
     chosen: PropTypes.object.isRequired,
+    count: PropTypes.number.isRequired,
     error: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
   }
@@ -38,8 +39,13 @@ class Restaurant extends React.Component<IRestaurant> {
     dispatch(asyncFetchRestaurants())
   }
 
+  public pickRandom = () => {
+    const { dispatch }: any = this.props
+    dispatch(asyncPickRandom())
+  }
+
   public render() {
-    const { chosen, error }: any = this.props
+    const { chosen, count, error }: any = this.props
     return (
       <div>
         <div className="restaurant">
@@ -48,23 +54,27 @@ class Restaurant extends React.Component<IRestaurant> {
           <div className="error">{error.message}</div>
         </div>
 
-        <div>
-          <button className="button" onClick={this.pickRandom}>Pick</button>
+        <div className="button-group options">
+          <input id="organic" type="checkbox" />
+          <label className="button" htmlFor="organic">Organic</label>
+
+          <input id="local" type="checkbox" />
+          <label className="button" htmlFor="local">Local</label>
+        </div>
+
+        <div className="picker">
+          <button className="button" onClick={this.pickRandom}>Pick from {count} restaurants</button>
         </div>
       </div>
     )
   }
-
-  public pickRandom = () => {
-    const { dispatch }: any = this.props
-    dispatch(asyncPickRandom())
-  }
 }
 
 function mapStateToProps(state: any) {
-  const { chosen, error } = state.restaurant
+  const { chosen, filteredCount: count, error } = state.restaurant
   return {
     chosen,
+    count,
     error,
   }
 }

@@ -61,6 +61,7 @@ export function asyncFetchRestaurants(): any {
       .then((json) => {
         if (!json.error) {
           dispatch(getRestaurantsSuccess(json))
+          dispatch(asyncPickRandom())
         }
       })
   }
