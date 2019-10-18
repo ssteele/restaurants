@@ -28,7 +28,6 @@ interface IRestaurant {
 
 class Restaurant extends React.Component<IRestaurant> {
   static propTypes = {
-    filtered: PropTypes.array.isRequired,
     chosen: PropTypes.object.isRequired,
     error: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
@@ -63,10 +62,8 @@ class Restaurant extends React.Component<IRestaurant> {
 }
 
 function mapStateToProps(state: any) {
-  // @todo: write `filtered` functionality in store and remove it here
-  const { filtered, chosen, error } = state.restaurant
+  const { chosen, error } = state.restaurant
   return {
-    filtered,
     chosen,
     error,
   }
