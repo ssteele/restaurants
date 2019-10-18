@@ -55,15 +55,30 @@ class Restaurant extends React.Component<IRestaurant> {
         </div>
 
         <div className="button-group options">
-          <input id="organic" type="checkbox" />
-          <label className="button" htmlFor="organic">Organic</label>
+          <input
+            id="organic"
+            type="checkbox"
+          />
+          <label
+            className="button"
+            htmlFor="organic"
+          >Organic</label>
 
-          <input id="local" type="checkbox" />
-          <label className="button" htmlFor="local">Local</label>
+          <input
+            id="local"
+            type="checkbox"
+          />
+          <label
+            className="button"
+            htmlFor="local"
+          >Local</label>
         </div>
 
         <div className="picker">
-          <button className="button" onClick={this.pickRandom}>Pick from {count} restaurants</button>
+          <button
+            className="button"
+            onClick={this.pickRandom}
+          >Pick from {count} restaurants</button>
         </div>
       </div>
     )
