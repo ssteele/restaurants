@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 import PropTypes from 'prop-types'
 import {
-  fetchRestaurants,
-  setChosenRestaurant,
+  asyncFetchRestaurants,
+  asyncPickRandom,
 } from '../store/actions/restaurant'
 
 import '../css/Restaurant.css'
@@ -36,7 +36,7 @@ class Restaurant extends React.Component<IRestaurant> {
 
   public componentDidMount() {
     const { dispatch }: any = this.props
-    dispatch(fetchRestaurants())
+    dispatch(asyncFetchRestaurants())
   }
 
   public render() {
@@ -56,14 +56,9 @@ class Restaurant extends React.Component<IRestaurant> {
     )
   }
 
-  public getRandomInt(max: number) {
-    return Math.floor(Math.random() * Math.floor(max))
-  }
-
   public pickRandom = () => {
-    const { filtered, dispatch }: any = this.props
-    const index = this.getRandomInt(filtered.length)
-    dispatch(setChosenRestaurant(filtered[index]))
+    const { dispatch }: any = this.props
+    dispatch(asyncPickRandom())
   }
 }
 

@@ -40,7 +40,16 @@ export function setChosenRestaurant(restaurant: any): any {
   }
 }
 
-export function fetchRestaurants(): any {
+export function asyncPickRandom(): any {
+  return (dispatch: any, getState: any): any => {
+    const { filtered }: any = getState().restaurant
+    const index = Math.floor(Math.random() * Math.floor(filtered.length))
+
+    dispatch(setChosenRestaurant(filtered[index]))
+  }
+}
+
+export function asyncFetchRestaurants(): any {
   return (dispatch: any): any => {
     dispatch(getRestaurants())
 
