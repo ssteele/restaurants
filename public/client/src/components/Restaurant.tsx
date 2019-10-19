@@ -15,10 +15,13 @@ interface IRestaurant {
   name?: string
   sub_name?: string
   site?: string
+  menu?: string
   organic?: boolean
   vegetarian?: boolean
   vegan?: boolean
+  local?: boolean
   keto?: boolean
+  outdoor?: boolean
   harvi?: []
   zip?: []
   enabled?: boolean
