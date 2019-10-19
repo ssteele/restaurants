@@ -9,25 +9,26 @@ export const GET_RESTAURANTS = 'GET_RESTAURANTS'
 export const GET_RESTAURANTS_SUCCESS = 'GET_RESTAURANTS_SUCCESS'
 export const GET_RESTAURANTS_ERROR = 'GET_RESTAURANTS_ERROR'
 export const SET_OPTIONS = 'SET_OPTIONS'
+export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CHOSEN_RESTAURANT = 'SET_CHOSEN_RESTAURANT'
 
 /*
  * action creators
  */
-export function getRestaurants() {
+export function get() {
   return {
     type: GET_RESTAURANTS,
   }
 }
 
-export function getRestaurantsSuccess(json: any) {
+export function getSuccess(json: any) {
   return {
     type: GET_RESTAURANTS_SUCCESS,
     all: json,
   }
 }
 
-export function getRestaurantsError(error: any) {
+export function getError(error: any) {
   return {
     type: GET_RESTAURANTS_ERROR,
     error,
@@ -41,7 +42,14 @@ export function setOptions(options: any): any {
   }
 }
 
-export function setChosenRestaurant(restaurant: any): any {
+export function setFiltered(filtered: any): any {
+  return {
+    type: SET_FILTERED,
+    filtered,
+  }
+}
+
+export function setChosen(restaurant: any): any {
   return {
     type: SET_CHOSEN_RESTAURANT,
     chosen: restaurant,
@@ -50,14 +58,25 @@ export function setChosenRestaurant(restaurant: any): any {
 
 export function asyncToggleOption(option: any): any {
   return (dispatch: any, getState: any): any => {
-    const { options }: any = getState().restaurant
+    const { options, all }: any = getState().restaurant
     option.isChecked = !option.isChecked
 
-    dispatch(setOptions(
-      options.map((o: any) => {
-        return (o.name === option.name) ? option : o;
+    // update current options
+    const updatedOptions = options.map((o: any) => {
+      return (o.name === option.name) ? option : o;
+    })
+    dispatch(setOptions(updatedOptions))
+
+    // filter restaurants
+    const currentFilters = updatedOptions.filter((o: any) => {
+      return o.isChecked
+    })
+    const updatedFiltered = all.filter((a: any) => {
+      return currentFilters.every((o: any) => {
+        return !!a[o.name]
       })
-    ))
+    })
+    dispatch(setFiltered(updatedFiltered))
   }
 }
 
@@ -66,22 +85,22 @@ export function asyncPickRandom(): any {
     const { filtered }: any = getState().restaurant
     const index = Math.floor(Math.random() * Math.floor(filtered.length))
 
-    dispatch(setChosenRestaurant(filtered[index]))
+    dispatch(setChosen(filtered[index]))
   }
 }
 
 export function asyncFetchRestaurants(): any {
   return (dispatch: any): any => {
-    dispatch(getRestaurants())
+    dispatch(get())
 
     return fetch(API_ENDPOINT)
       .then(
         response => response.json(),
-        error => dispatch(getRestaurantsError(error))
+        error => dispatch(getError(error))
       )
       .then((json) => {
         if (!json.error) {
-          dispatch(getRestaurantsSuccess(json))
+          dispatch(getSuccess(json))
           dispatch(asyncPickRandom())
         }
       })

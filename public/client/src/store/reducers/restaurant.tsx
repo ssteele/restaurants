@@ -5,6 +5,7 @@ import {
   GET_RESTAURANTS_SUCCESS,
   GET_RESTAURANTS_ERROR,
   SET_OPTIONS,
+  SET_FILTERED,
   SET_CHOSEN_RESTAURANT,
 } from '../actions/restaurant'
 
@@ -65,6 +66,15 @@ function restaurant(
         ...state,
         ...{
           options: action.options,
+        }
+      }
+
+    case SET_FILTERED:
+      return {
+        ...state,
+        ...{
+          filtered: action.filtered || [],
+          filteredCount: action.filtered.length,
         }
       }
 
