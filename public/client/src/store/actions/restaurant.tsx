@@ -68,12 +68,12 @@ export function asyncToggleOption(option: any): any {
     dispatch(setOptions(updatedOptions))
 
     // filter restaurants
-    const currentFilters = updatedOptions.filter((o: any) => {
-      return o.isChecked
+    const currentFilters = updatedOptions.filter((option: any) => {
+      return option.isChecked
     })
-    const updatedFiltered = all.filter((a: any) => {
-      return currentFilters.every((o: any) => {
-        return !!a[o.name]
+    const updatedFiltered = all.filter((restaurant: any) => {
+      return currentFilters.every((option: any) => {
+        return !!restaurant[option.name]
       })
     })
     dispatch(setFiltered(updatedFiltered))
