@@ -8,6 +8,7 @@ const API_ENDPOINT = 'http://shs.restaurants.com:8888/api/'
 export const GET_RESTAURANTS = 'GET_RESTAURANTS'
 export const GET_RESTAURANTS_SUCCESS = 'GET_RESTAURANTS_SUCCESS'
 export const GET_RESTAURANTS_ERROR = 'GET_RESTAURANTS_ERROR'
+export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_CHOSEN_RESTAURANT = 'SET_CHOSEN_RESTAURANT'
 
 /*
@@ -33,10 +34,30 @@ export function getRestaurantsError(error: any) {
   }
 }
 
+export function setOptions(options: any): any {
+  return {
+    type: SET_OPTIONS,
+    options,
+  }
+}
+
 export function setChosenRestaurant(restaurant: any): any {
   return {
     type: SET_CHOSEN_RESTAURANT,
     chosen: restaurant,
+  }
+}
+
+export function asyncToggleOption(option: any): any {
+  return (dispatch: any, getState: any): any => {
+    const { options }: any = getState().restaurant
+    option.isChecked = !option.isChecked
+
+    dispatch(setOptions(
+      options.map((o: any) => {
+        return (o.name === option.name) ? option : o;
+      })
+    ))
   }
 }
 

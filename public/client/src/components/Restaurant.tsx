@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-
 import PropTypes from 'prop-types'
+
 import {
   asyncFetchRestaurants,
+  asyncToggleOption,
   asyncPickRandom,
 } from '../store/actions/restaurant'
 
@@ -28,8 +29,9 @@ interface IRestaurant {
 
 class Restaurant extends React.Component<IRestaurant> {
   static propTypes = {
-    chosen: PropTypes.object.isRequired,
+    options: PropTypes.array.isRequired,
     count: PropTypes.number.isRequired,
+    chosen: PropTypes.object.isRequired,
     error: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
   }
@@ -39,13 +41,22 @@ class Restaurant extends React.Component<IRestaurant> {
     dispatch(asyncFetchRestaurants())
   }
 
+  public toggleOption = (option: any, e: any) => {
+    const { dispatch }: any = this.props
+    dispatch(asyncToggleOption(option))
+  }
+
   public pickRandom = () => {
     const { dispatch }: any = this.props
     dispatch(asyncPickRandom())
   }
 
+  public capitalizeFirstLetter = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   public render() {
-    const { chosen, count, error }: any = this.props
+    const { options, count, chosen, error }: any = this.props
     return (
       <div>
         <div className="restaurant">
@@ -55,23 +66,20 @@ class Restaurant extends React.Component<IRestaurant> {
         </div>
 
         <div className="button-group options">
-          <input
-            id="organic"
-            type="checkbox"
-          />
-          <label
-            className="button"
-            htmlFor="organic"
-          >Organic</label>
-
-          <input
-            id="local"
-            type="checkbox"
-          />
-          <label
-            className="button"
-            htmlFor="local"
-          >Local</label>
+          {options.map((option: any, i: any) => {
+            return <span key={i}>
+                <input
+                  id={option.name}
+                  type="checkbox"
+                  checked={option.isChecked}
+                  onChange={(e) => this.toggleOption(option, e)}
+                />
+                <label
+                  className="button"
+                  htmlFor={option.name}
+                >{this.capitalizeFirstLetter(option.name)}</label>
+              </span>
+          })}
         </div>
 
         <div className="picker">
@@ -86,10 +94,11 @@ class Restaurant extends React.Component<IRestaurant> {
 }
 
 function mapStateToProps(state: any) {
-  const { chosen, filteredCount: count, error } = state.restaurant
+  const { options, filteredCount: count, chosen, error } = state.restaurant
   return {
-    chosen,
+    options,
     count,
+    chosen,
     error,
   }
 }
