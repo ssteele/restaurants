@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import {
   asyncFetchRestaurants,
+  asyncGetOptionsFromLocalStorage,
   asyncToggleOption,
   asyncPickRandom,
 } from '../store/actions/restaurant'
@@ -41,6 +42,7 @@ class Restaurant extends React.Component<IRestaurant> {
 
   public componentDidMount() {
     const { dispatch }: any = this.props
+    dispatch(asyncGetOptionsFromLocalStorage())
     dispatch(asyncFetchRestaurants())
   }
 

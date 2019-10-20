@@ -21,10 +21,12 @@ export function get() {
   }
 }
 
-export function getSuccess(json: any) {
+export function getSuccess(restaurants: any) {
+  const { all, filtered } = restaurants
   return {
     type: GET_RESTAURANTS_SUCCESS,
-    all: json,
+    all,
+    filtered,
   }
 }
 
@@ -56,6 +58,18 @@ export function setChosen(restaurant: any): any {
   }
 }
 
+function filter(restaurants: any, options: any) {
+  const currentFilters = options.filter((option: any) => {
+    return option.isChecked
+  })
+
+  return restaurants.filter((restaurant: any) => {
+    return currentFilters.every((option: any) => {
+      return !!restaurant[option.name]
+    })
+  })
+}
+
 export function asyncToggleOption(option: any): any {
   return (dispatch: any, getState: any): any => {
     const { options, all }: any = getState().restaurant
@@ -66,16 +80,9 @@ export function asyncToggleOption(option: any): any {
       return (o.name === option.name) ? option : o;
     })
     dispatch(setOptions(updatedOptions))
+    localStorage.setItem('options', JSON.stringify(updatedOptions))
 
-    // filter restaurants
-    const currentFilters = updatedOptions.filter((option: any) => {
-      return option.isChecked
-    })
-    const updatedFiltered = all.filter((restaurant: any) => {
-      return currentFilters.every((option: any) => {
-        return !!restaurant[option.name]
-      })
-    })
+    const updatedFiltered = filter(all, updatedOptions)
     dispatch(setFiltered(updatedFiltered))
   }
 }
@@ -90,7 +97,7 @@ export function asyncPickRandom(): any {
 }
 
 export function asyncFetchRestaurants(): any {
-  return (dispatch: any): any => {
+  return (dispatch: any, getState: any): any => {
     dispatch(get())
 
     return fetch(API_ENDPOINT)
@@ -100,9 +107,23 @@ export function asyncFetchRestaurants(): any {
       )
       .then((json) => {
         if (!json.error) {
-          dispatch(getSuccess(json))
+          const all = json
+          const { options }: any = getState().restaurant
+          const filtered = filter(all, options)
+
+          dispatch(getSuccess({all, filtered}))
           dispatch(asyncPickRandom())
         }
       })
+  }
+}
+
+export function asyncGetOptionsFromLocalStorage(): any {
+  return (dispatch: any): any => {
+    const storedOptions = localStorage.getItem('options')
+    if (!!storedOptions) {
+      const options = JSON.parse(storedOptions)
+      dispatch(setOptions(options))
+    }
   }
 }

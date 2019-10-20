@@ -44,8 +44,8 @@ function restaurant(
         ...{
           isLoading: false,
           all: action.all || [],
-          filtered: action.all || [],
-          filteredCount: action.all.length,
+          filtered: action.filtered || [],
+          filteredCount: action.filtered.length,
         }
       }
 
