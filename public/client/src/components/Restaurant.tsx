@@ -65,7 +65,13 @@ class Restaurant extends React.Component<IRestaurant> {
     return (
       <div>
         <div className="restaurant">
-          <div className="name">{chosen.name}</div>
+          <div className="name">
+            <a
+              href={chosen.menu}
+              target="_blank"
+              rel="noopener noreferrer"
+            >{chosen.name}</a>
+          </div>
           <div className="sub-name">{chosen.sub_name}</div>
           <div className="error">{error.message}</div>
         </div>
