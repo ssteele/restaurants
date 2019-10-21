@@ -1,5 +1,6 @@
 import fetch from 'cross-fetch'
 
+// const API_ENDPOINT = 'http://restaurants.steve-steele.com/api/'
 const API_ENDPOINT = 'http://shs.restaurants.com:8888/api/'
 
 /*
