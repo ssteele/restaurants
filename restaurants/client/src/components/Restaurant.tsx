@@ -35,7 +35,8 @@ class Restaurant extends React.Component<IRestaurant> {
   static propTypes = {
     options: PropTypes.array.isRequired,
     count: PropTypes.number.isRequired,
-    chosen: PropTypes.object.isRequired,
+    restaurants: PropTypes.object,
+    chosen: PropTypes.number,
     error: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
   }
@@ -57,22 +58,25 @@ class Restaurant extends React.Component<IRestaurant> {
   }
 
   public capitalizeFirstLetter = (string: string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
   public render() {
-    const { options, count, chosen, error }: any = this.props
+    const { options, restaurants, count, chosen, error }: any = this.props
+    if (!chosen) {
+      return null;
+    }
     return (
       <div>
         <div className="restaurant">
           <div className="name">
             <a
-              href={chosen.menu}
+              href={restaurants[chosen].menu}
               target="_blank"
               rel="noopener noreferrer"
-            >{chosen.name}</a>
+            >{restaurants[chosen].name}</a>
           </div>
-          <div className="sub-name">{chosen.sub_name}</div>
+          <div className="sub-name">{restaurants[chosen].sub_name}</div>
           <div className="error">{error.message}</div>
         </div>
 
@@ -106,9 +110,10 @@ class Restaurant extends React.Component<IRestaurant> {
 }
 
 function mapStateToProps(state: any) {
-  const { options, filteredCount: count, chosen, error } = state.restaurant
+  const { options, restaurants, filteredCount: count, chosen, error } = state.restaurant
   return {
     options,
+    restaurants,
     count,
     chosen,
     error,

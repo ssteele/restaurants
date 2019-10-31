@@ -1,4 +1,8 @@
 import fetch from 'cross-fetch'
+import {
+  normalize,
+  schema,
+} from 'normalizr'
 
 // const API_ENDPOINT = 'http://restaurants.steve-steele.com/api/'
 const API_ENDPOINT = 'http://shs.restaurants.com:8888/api/'
@@ -22,12 +26,15 @@ export function get() {
   }
 }
 
-export function getSuccess(restaurants: any) {
-  const { all, filtered } = restaurants
+export function getSuccess(json: any) {
+  const { restaurants, restaurantIds, categories, zips, filteredIds } = json
   return {
     type: GET_RESTAURANTS_SUCCESS,
-    all,
-    filtered,
+    restaurants,
+    restaurantIds,
+    categories,
+    zips,
+    filteredIds,
   }
 }
 
@@ -45,55 +52,55 @@ export function setOptions(options: any): any {
   }
 }
 
-export function setFiltered(filtered: any): any {
+export function setFiltered(filteredIds: any): any {
   return {
     type: SET_FILTERED,
-    filtered,
+    filteredIds,
   }
 }
 
-export function setChosen(restaurant: any): any {
+export function setChosen(restaurantId: number): any {
   return {
     type: SET_CHOSEN_RESTAURANT,
-    chosen: restaurant,
+    chosen: restaurantId,
   }
 }
 
-function filter(restaurants: any, options: any) {
+function filter(restaurants: any, restaurantIds: any, options: any) {
   const currentFilters = options.filter((option: any) => {
     return option.isChecked
   })
 
-  return restaurants.filter((restaurant: any) => {
+  return restaurantIds.filter((id: number) => {
     return currentFilters.every((option: any) => {
-      return !!restaurant[option.name]
+      return !!restaurants[id][option.name]
     })
   })
 }
 
 export function asyncToggleOption(option: any): any {
   return (dispatch: any, getState: any): any => {
-    const { options, all }: any = getState().restaurant
+    const { options, restaurants, restaurantIds }: any = getState().restaurant
     option.isChecked = !option.isChecked
 
     // update current options
     const updatedOptions = options.map((o: any) => {
-      return (o.name === option.name) ? option : o;
+      return (o.name === option.name) ? option : o
     })
     dispatch(setOptions(updatedOptions))
     localStorage.setItem('options', JSON.stringify(updatedOptions))
 
-    const updatedFiltered = filter(all, updatedOptions)
+    const updatedFiltered = filter(restaurants, restaurantIds, updatedOptions)
     dispatch(setFiltered(updatedFiltered))
   }
 }
 
 export function asyncPickRandom(): any {
   return (dispatch: any, getState: any): any => {
-    const { filtered }: any = getState().restaurant
-    const index = Math.floor(Math.random() * Math.floor(filtered.length))
+    const { filteredIds }: any = getState().restaurant
+    const index = Math.floor(Math.random() * Math.floor(filteredIds.length))
 
-    dispatch(setChosen(filtered[index]))
+    dispatch(setChosen(filteredIds[index]))
   }
 }
 
@@ -108,11 +115,49 @@ export function asyncFetchRestaurants(): any {
       )
       .then((json) => {
         if (!json.error) {
-          const all = json
-          const { options }: any = getState().restaurant
-          const filtered = filter(all, options)
+          // define normalizr schemas
+          const categorySchema = new schema.Entity('categories', {})
+          const zipSchema = new schema.Entity('zips', {})
+          const restaurantSchema = new schema.Entity('restaurants', {
+            categories: [categorySchema],
+            zips: [zipSchema],
+          })
 
-          dispatch(getSuccess({all, filtered}))
+          // transform the payload for normalizr
+          const jsonWithNestedIds = json.map((restaurant: any) => {
+            let { categories, zips } = restaurant
+
+            categories = categories.map((category: string) => {
+              const id = category.toLowerCase().replace(/[\W]/g, '')
+              return {id, name: category}
+            })
+
+            zips = zips.map((zip: number) => {
+              return {id: zip, name: zip}
+            })
+
+            return {...restaurant, categories, zips}
+          })
+
+          // normalize
+          const normalized = normalize(
+            {restaurants: jsonWithNestedIds},
+            {restaurants: [restaurantSchema]}
+          )
+
+          const { restaurants, categories, zips } = normalized.entities
+          const { restaurants: restaurantIds } = normalized.result
+
+          const { options }: any = getState().restaurant
+          const filteredIds = filter(restaurants, restaurantIds, options)
+
+          dispatch(getSuccess({
+            restaurants,
+            restaurantIds,
+            categories,
+            zips,
+            filteredIds,
+          }))
           dispatch(asyncPickRandom())
         }
       })

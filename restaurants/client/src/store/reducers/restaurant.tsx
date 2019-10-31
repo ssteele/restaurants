@@ -12,14 +12,17 @@ import {
 function restaurant(
   state: any = {
     isLoading: false,
-    all: [],
     options: [
       {name: 'organic', isChecked: false},
       {name: 'local', isChecked: false},
     ],
-    filtered: [],
+    restaurants: {},
+    restaurantIds: [],
+    categories: [],
+    zips: [],
+    filteredIds: [],
     filteredCount: 0,
-    chosen: {},
+    chosen: null,
     error: {},
   },
   action: any
@@ -30,10 +33,11 @@ function restaurant(
         ...state,
         ...{
           isLoading: true,
-          all: state.all || [],
-          filtered: state.filtered || [],
-          filteredCount: state.filtered.length,
-          chosen: state.chosen || {},
+          restaurants: state.restaurants || {},
+          restaurantIds: state.restaurantIds || [],
+          filteredIds: state.filteredIds || [],
+          filteredCount: state.filteredIds.length,
+          chosen: state.chosen || null,
           error: {},
         }
       }
@@ -43,9 +47,12 @@ function restaurant(
         ...state,
         ...{
           isLoading: false,
-          all: action.all || [],
-          filtered: action.filtered || [],
-          filteredCount: action.filtered.length,
+          restaurants: action.restaurants || {},
+          restaurantIds: action.restaurantIds || [],
+          categories: action.categories || [],
+          zips: action.zips || [],
+          filteredIds: action.filteredIds || [],
+          filteredCount: action.filteredIds.length,
         }
       }
 
@@ -54,9 +61,10 @@ function restaurant(
         ...state,
         ...{
           isLoading: false,
-          all: state.all || [],
-          filtered: state.filtered || [],
-          filteredCount: state.filtered.length,
+          restaurants: state.restaurants || {},
+          restaurantIds: state.restaurantIds || [],
+          filteredIds: state.filteredIds || [],
+          filteredCount: state.filteredIds.length,
           error: action.error,
         }
       }
@@ -73,8 +81,8 @@ function restaurant(
       return {
         ...state,
         ...{
-          filtered: action.filtered || [],
-          filteredCount: action.filtered.length,
+          filteredIds: action.filteredIds || [],
+          filteredCount: action.filteredIds.length,
         }
       }
 
@@ -82,7 +90,7 @@ function restaurant(
       return {
         ...state,
         ...{
-          chosen: action.chosen || {},
+          chosen: action.chosen || null,
         }
       }
 

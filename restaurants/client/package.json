@@ -12,6 +12,7 @@
     "babel-polyfill": "^6.26.0",
     "cross-fetch": "^3.0.4",
     "foundation-sites": "^6.5.3",
+    "normalizr": "^3.4.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-redux": "^7.1.1",
