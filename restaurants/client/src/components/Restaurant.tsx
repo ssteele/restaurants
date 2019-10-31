@@ -63,49 +63,50 @@ class Restaurant extends React.Component<IRestaurant> {
 
   public render() {
     const { options, restaurants, count, chosen, error }: any = this.props
-    if (!chosen) {
-      return null;
-    }
-    return (
-      <div>
-        <div className="restaurant">
-          <div className="name">
-            <a
-              href={restaurants[chosen].menu}
-              target="_blank"
-              rel="noopener noreferrer"
-            >{restaurants[chosen].name}</a>
+    if (!!chosen) {
+      return (
+        <div>
+          <div className="restaurant">
+            <div className="name">
+              <a
+                href={restaurants[chosen].menu}
+                target="_blank"
+                rel="noopener noreferrer"
+              >{restaurants[chosen].name}</a>
+            </div>
+            <div className="sub-name">{restaurants[chosen].sub_name}</div>
+            <div className="error">{error.message}</div>
           </div>
-          <div className="sub-name">{restaurants[chosen].sub_name}</div>
-          <div className="error">{error.message}</div>
-        </div>
 
-        <div className="button-group options">
-          {options.map((option: any, i: any) => {
-            return <span key={i}>
-                <input
-                  id={option.name}
-                  type="checkbox"
-                  checked={option.isChecked}
-                  onChange={(e) => this.toggleOption(option, e)}
-                />
-                <label
-                  className="button"
-                  htmlFor={option.name}
-                >{this.capitalizeFirstLetter(option.name)}</label>
-              </span>
-          })}
-        </div>
+          <div className="button-group options">
+            {options.map((option: any, i: any) => {
+              return <span key={i}>
+                  <input
+                    id={option.name}
+                    type="checkbox"
+                    checked={option.isChecked}
+                    onChange={(e) => this.toggleOption(option, e)}
+                  />
+                  <label
+                    className="button"
+                    htmlFor={option.name}
+                  >{this.capitalizeFirstLetter(option.name)}</label>
+                </span>
+            })}
+          </div>
 
-        <div className="picker">
-          <button
-            className="button"
-            onClick={this.pickRandom}
-            disabled={!count}
-          >Pick from {count}</button>
+          <div className="picker">
+            <button
+              className="button"
+              onClick={this.pickRandom}
+              disabled={!count}
+            >Pick from {count}</button>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
+
+    return null
   }
 }
 
