@@ -66,6 +66,12 @@ class Restaurant extends React.Component<IRestaurant> {
     if (!!chosen) {
       return (
         <div>
+          <a href="">
+            <div className="options-menu">
+              <i className="fa fa-bars fa-lg"></i>
+            </div>
+          </a>
+
           <div className="restaurant">
             <div className="name">
               <a
