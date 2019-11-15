@@ -79,14 +79,59 @@ class Restaurant extends React.Component<IRestaurant> {
           <Modal 
            isOpen={modalIsOpen}
            contentLabel="Minimal Modal Example"
+           className="options-modal"
+           overlayClassName="options-modal-overlay"
           >
-          <button onClick={this.toggleModal}>
-            <i className="fa fa-times fa-lg"></i>
-          </button>
+            <button onClick={this.toggleModal}>
+              <i className="fa fa-times fa-lg close-modal"></i>
+            </button>
+
+            <div className="options-modal-content">
+              {/* <div className="grid-x">
+                <div className="cell small-10">
+                  hello
+                </div>
+
+                <div className="cell auto option-toggle">
+                  <div className="switch">
+                    <input className="switch-input" id="defaultSwitch" type="checkbox" name="defaultSwitch"></input>
+                    <label className="switch-paddle" htmlFor="defaultSwitch">
+                      <span className="show-for-sr">Default Switch</span>
+                    </label>
+                  </div>
+                </div>
+              </div> */}
+
+              {options.map((option: any, i: any) => {
+                return <div className="grid-x" key={i}>
+                  <div className="cell small-10">
+                    {this.capitalizeFirstLetter(option.name)}
+                  </div>
+
+                  <div className="cell auto option-toggle">
+                    <div className="switch">
+                      <input
+                        className="switch-input"
+                        id={option.name}
+                        type="checkbox"
+                        name={option.name}
+                        checked={option.isChecked}
+                        onChange={(e) => this.toggleOption(option, e)}
+                      />
+                      <label className="switch-paddle" htmlFor={option.name}>
+                        <span className="show-for-sr">
+                          {this.capitalizeFirstLetter(option.name)}
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              })}
+            </div>
           </Modal>
 
           <div
-            className="options-menu"
+            className="options-button"
             onClick={this.toggleModal}
           >
             <i className="fa fa-bars fa-lg"></i>
@@ -102,23 +147,6 @@ class Restaurant extends React.Component<IRestaurant> {
             </div>
             <div className="sub-name">{restaurants[chosen].sub_name}</div>
             <div className="error">{error.message}</div>
-          </div>
-
-          <div className="button-group options">
-            {options.map((option: any, i: any) => {
-              return <span key={i}>
-                  <input
-                    id={option.name}
-                    type="checkbox"
-                    checked={option.isChecked}
-                    onChange={(e) => this.toggleOption(option, e)}
-                  />
-                  <label
-                    className="button"
-                    htmlFor={option.name}
-                  >{this.capitalizeFirstLetter(option.name)}</label>
-                </span>
-            })}
           </div>
 
           <div className="picker">

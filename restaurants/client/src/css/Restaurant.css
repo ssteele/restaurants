@@ -1,11 +1,49 @@
-@import '../../node_modules/font-awesome/css/font-awesome.min.css';
-
-.options-menu {
+.options-button {
   bottom: 1rem;
   padding: 0.5rem 1rem;
   position: absolute;
   right: 1rem;
   text-shadow: -2px 2px 3px #ff2d95;
+}
+
+.options-modal {
+  background: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  bottom: 40px;
+  color: #ccc;
+  left: 40px;
+  overflow: auto;
+  outline: none;
+  padding: 20px;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+}
+
+.options-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  bottom: 0px;
+  left: 0px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+}
+
+.options-modal-content {
+  margin: 4rem 0 0;
+  font-size: 1.5rem;
+}
+
+.option-toggle {
+  text-align: right;
+}
+
+.close-modal {
+  color: #ccc;
+  position: absolute;
+  right: 1rem;
+  top: 1.5rem;
 }
 
 .restaurant {
@@ -20,26 +58,4 @@
 
 .sub-name {
   font-size: 1rem;
-}
-
-.options {
-  justify-content: center;
-}
-
-.options input {
-  display: none;
-}
-
-.options label,
-.options label:active,
-.options label:hover {
-  background-color: #333;
-  color: #eee;
-}
-
-.options input:checked + label,
-.options input:checked + label:active,
-.options input:checked + label:hover {
-  background-color: #eee;
-  color: #333;
 }
