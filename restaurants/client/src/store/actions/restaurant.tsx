@@ -13,6 +13,7 @@ const API_ENDPOINT = 'http://shs.restaurants.com:8888/api/'
 export const GET_RESTAURANTS = 'GET_RESTAURANTS'
 export const GET_RESTAURANTS_SUCCESS = 'GET_RESTAURANTS_SUCCESS'
 export const GET_RESTAURANTS_ERROR = 'GET_RESTAURANTS_ERROR'
+export const SET_MODAL = 'SET_MODAL'
 export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CHOSEN_RESTAURANT = 'SET_CHOSEN_RESTAURANT'
@@ -42,6 +43,13 @@ export function getError(error: any) {
   return {
     type: GET_RESTAURANTS_ERROR,
     error,
+  }
+}
+
+export function setModal(isOpen: boolean): any {
+  return {
+    type: SET_MODAL,
+    isOpen,
   }
 }
 
@@ -76,6 +84,13 @@ function filter(restaurants: any, restaurantIds: any, options: any) {
       return !!restaurants[id][option.name]
     })
   })
+}
+
+export function asyncToggleModal(): any {
+  return (dispatch: any, getState: any): any => {
+    const { modalIsOpen }: any = getState().restaurant
+    dispatch(setModal(!modalIsOpen))
+  }
 }
 
 export function asyncToggleOption(option: any): any {

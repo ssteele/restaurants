@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import Modal from 'react-modal'
 import PropTypes from 'prop-types'
 
 import {
   asyncFetchRestaurants,
   asyncGetOptionsFromLocalStorage,
+  asyncToggleModal,
   asyncToggleOption,
   asyncPickRandom,
 } from '../store/actions/restaurant'
@@ -31,12 +33,15 @@ interface IRestaurant {
   updated_at?: string
 }
 
+Modal.setAppElement('#root')
+
 class Restaurant extends React.Component<IRestaurant> {
   static propTypes = {
     options: PropTypes.array.isRequired,
     count: PropTypes.number.isRequired,
     restaurants: PropTypes.object,
     chosen: PropTypes.number,
+    modalIsOpen: PropTypes.bool,
     error: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
   }
@@ -45,6 +50,11 @@ class Restaurant extends React.Component<IRestaurant> {
     const { dispatch }: any = this.props
     dispatch(asyncGetOptionsFromLocalStorage())
     dispatch(asyncFetchRestaurants())
+  }
+
+  public toggleModal = (e: any) => {
+    const { dispatch }: any = this.props
+    dispatch(asyncToggleModal())
   }
 
   public toggleOption = (option: any, e: any) => {
@@ -62,15 +72,25 @@ class Restaurant extends React.Component<IRestaurant> {
   }
 
   public render() {
-    const { options, restaurants, count, chosen, error }: any = this.props
+    const { options, restaurants, count, chosen, modalIsOpen, error }: any = this.props
     if (!!chosen) {
       return (
         <div>
-          <a href="">
-            <div className="options-menu">
-              <i className="fa fa-bars fa-lg"></i>
-            </div>
-          </a>
+          <Modal 
+           isOpen={modalIsOpen}
+           contentLabel="Minimal Modal Example"
+          >
+          <button onClick={this.toggleModal}>
+            <i className="fa fa-times fa-lg"></i>
+          </button>
+          </Modal>
+
+          <div
+            className="options-menu"
+            onClick={this.toggleModal}
+          >
+            <i className="fa fa-bars fa-lg"></i>
+          </div>
 
           <div className="restaurant">
             <div className="name">
@@ -117,12 +137,13 @@ class Restaurant extends React.Component<IRestaurant> {
 }
 
 function mapStateToProps(state: any) {
-  const { options, restaurants, filteredCount: count, chosen, error } = state.restaurant
+  const { options, restaurants, filteredCount: count, chosen, modalIsOpen, error } = state.restaurant
   return {
     options,
     restaurants,
     count,
     chosen,
+    modalIsOpen,
     error,
   }
 }

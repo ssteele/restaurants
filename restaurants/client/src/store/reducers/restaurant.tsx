@@ -4,6 +4,7 @@ import {
   GET_RESTAURANTS,
   GET_RESTAURANTS_SUCCESS,
   GET_RESTAURANTS_ERROR,
+  SET_MODAL,
   SET_OPTIONS,
   SET_FILTERED,
   SET_CHOSEN_RESTAURANT,
@@ -23,6 +24,7 @@ function restaurant(
     filteredIds: [],
     filteredCount: 0,
     chosen: null,
+    modalIsOpen: false,
     error: {},
   },
   action: any
@@ -66,6 +68,14 @@ function restaurant(
           filteredIds: state.filteredIds || [],
           filteredCount: state.filteredIds.length,
           error: action.error,
+        }
+      }
+
+    case SET_MODAL:
+      return {
+        ...state,
+        ...{
+          modalIsOpen: action.isOpen,
         }
       }
 
