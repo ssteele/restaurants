@@ -1,17 +1,10 @@
-.options-button {
-  bottom: 1rem;
-  padding: 0.5rem 1rem;
-  position: absolute;
-  right: 1rem;
-  text-shadow: -2px 2px 3px #ff2d95;
-}
-
 .options-modal {
   background: #333;
   border: 1px solid #ccc;
   border-radius: 4px;
   bottom: 40px;
   color: #ccc;
+  font-size: 1.25rem;
   left: 40px;
   overflow: auto;
   outline: none;
@@ -30,20 +23,31 @@
   top: 0px;
 }
 
+.options-modal-bar {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 2rem;
+}
+
 .options-modal-content {
-  margin: 4rem 0 0;
-  font-size: 1.5rem;
+  margin: 3rem 0;
 }
 
-.option-toggle {
-  text-align: right;
+.options-modal-open {
+  bottom: 1rem;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  right: 1rem;
 }
 
-.close-modal {
+.options-modal-close {
   color: #ccc;
   position: absolute;
   right: 1rem;
   top: 1.5rem;
+}
+
+.option-toggle {
+  text-align: right;
 }
 
 .restaurant {
@@ -52,10 +56,15 @@
   margin: 1rem 0;
 }
 
-.name {
+.restaurant-name {
   font-size: 2rem;
+  margin: 1rem;
 }
 
-.sub-name {
+.restaurant-sub-name {
   font-size: 1rem;
+}
+
+.splash {
+  text-shadow: -2px 2px 3px #ff2d95;
 }

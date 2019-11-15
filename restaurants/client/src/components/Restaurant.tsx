@@ -67,10 +67,6 @@ class Restaurant extends React.Component<IRestaurant> {
     dispatch(asyncPickRandom())
   }
 
-  public capitalizeFirstLetter = (string: string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1)
-  }
-
   public render() {
     const { options, restaurants, count, chosen, modalIsOpen, error }: any = this.props
     if (!!chosen) {
@@ -82,30 +78,19 @@ class Restaurant extends React.Component<IRestaurant> {
            className="options-modal"
            overlayClassName="options-modal-overlay"
           >
-            <button onClick={this.toggleModal}>
-              <i className="fa fa-times fa-lg close-modal"></i>
-            </button>
+            <div className="options-modal-bar">
+              <span>{count} total options</span>
+
+              <button onClick={this.toggleModal}>
+                <i className="fa fa-times fa-lg options-modal-close splash"></i>
+              </button>
+            </div>
 
             <div className="options-modal-content">
-              {/* <div className="grid-x">
-                <div className="cell small-10">
-                  hello
-                </div>
-
-                <div className="cell auto option-toggle">
-                  <div className="switch">
-                    <input className="switch-input" id="defaultSwitch" type="checkbox" name="defaultSwitch"></input>
-                    <label className="switch-paddle" htmlFor="defaultSwitch">
-                      <span className="show-for-sr">Default Switch</span>
-                    </label>
-                  </div>
-                </div>
-              </div> */}
-
               {options.map((option: any, i: any) => {
                 return <div className="grid-x" key={i}>
                   <div className="cell small-10">
-                    {this.capitalizeFirstLetter(option.name)}
+                    {option.description}
                   </div>
 
                   <div className="cell auto option-toggle">
@@ -120,7 +105,7 @@ class Restaurant extends React.Component<IRestaurant> {
                       />
                       <label className="switch-paddle" htmlFor={option.name}>
                         <span className="show-for-sr">
-                          {this.capitalizeFirstLetter(option.name)}
+                          {option.name}
                         </span>
                       </label>
                     </div>
@@ -131,21 +116,32 @@ class Restaurant extends React.Component<IRestaurant> {
           </Modal>
 
           <div
-            className="options-button"
+            className="options-modal-open splash"
             onClick={this.toggleModal}
           >
             <i className="fa fa-bars fa-lg"></i>
           </div>
 
           <div className="restaurant">
-            <div className="name">
+            <div className="restaurant-name">
               <a
                 href={restaurants[chosen].menu}
                 target="_blank"
                 rel="noopener noreferrer"
               >{restaurants[chosen].name}</a>
             </div>
+
             <div className="sub-name">{restaurants[chosen].sub_name}</div>
+
+            {restaurants[chosen].kids.length > 0 &&
+              <div className="restaurant-kids">
+                <span className="kids-item">
+                  <i className="fa fa-child fa-fw"></i>
+                  {restaurants[chosen].kids.join(', ')}
+                </span>
+              </div>
+            }
+
             <div className="error">{error.message}</div>
           </div>
 
@@ -154,7 +150,7 @@ class Restaurant extends React.Component<IRestaurant> {
               className="button"
               onClick={this.pickRandom}
               disabled={!count}
-            >Pick from {count}</button>
+            >Pick random</button>
           </div>
         </div>
       )

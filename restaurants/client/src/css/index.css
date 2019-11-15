@@ -7,11 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  color: #fff;
-}
-
-a:hover {
+a,
+a:hover,
+a:focus {
   color: #fff;
 }
 
