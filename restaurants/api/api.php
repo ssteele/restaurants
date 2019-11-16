@@ -4,13 +4,13 @@
 // ...pretty REST endpoints spoofed via simple .htaccess mod_rewrite
 // ...for development testing purposes only
 
-// @todo: remove me
-// ignore CORS
-if (isset($_SERVER['HTTP_ORIGIN'])) {
-    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    header('Access-Control-Allow-Credentials: true');
-    header('Access-Control-Max-Age: 86400');
-}
+// // @todo: remove me
+// // ignore CORS
+// if (isset($_SERVER['HTTP_ORIGIN'])) {
+//     header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+//     header('Access-Control-Allow-Credentials: true');
+//     header('Access-Control-Max-Age: 86400');
+// }
 
 $city = $_GET['city'] ?: 'austin';
 $jsonpCallback = $_GET['callback'];

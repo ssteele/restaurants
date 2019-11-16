@@ -4,8 +4,8 @@ import {
   schema,
 } from 'normalizr'
 
-// const API_ENDPOINT = 'http://restaurants.steve-steele.com/api/'
-const API_ENDPOINT = 'http://shs.restaurants.com:8888/api/'
+// const API_ENDPOINT = 'http://shs.restaurants.com:8888/api/'
+const API_ENDPOINT = 'http://restaurants.steve-steele.com/api/'
 
 /*
  * action types
