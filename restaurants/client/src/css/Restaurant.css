@@ -52,6 +52,7 @@
 
 .restaurant {
   height: 8rem;
+  font-size: 1rem;
   line-height: 1.7rem;
   margin: 1rem 0;
 }
@@ -59,10 +60,6 @@
 .restaurant-name {
   font-size: 2rem;
   margin: 1rem;
-}
-
-.restaurant-sub-name {
-  font-size: 1rem;
 }
 
 .splash {
