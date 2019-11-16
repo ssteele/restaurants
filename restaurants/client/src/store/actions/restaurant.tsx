@@ -86,6 +86,10 @@ function filter(restaurants: any, restaurantIds: any, options: any) {
   })
 }
 
+function getRandomPositiveInt(max: number): number {
+  return Math.floor(Math.random() * Math.floor(max))
+}
+
 export function asyncToggleModal(): any {
   return (dispatch: any, getState: any): any => {
     const { modalIsOpen }: any = getState().restaurant
@@ -112,8 +116,14 @@ export function asyncToggleOption(option: any): any {
 
 export function asyncPickRandom(): any {
   return (dispatch: any, getState: any): any => {
-    const { filteredIds }: any = getState().restaurant
-    const index = Math.floor(Math.random() * Math.floor(filteredIds.length))
+    const { filteredIds, chosen }: any = getState().restaurant
+
+    let index = 0
+    if (filteredIds.length > 1) {
+      do {
+        index = getRandomPositiveInt(filteredIds.length)
+      } while (filteredIds[index] === chosen)
+    }
 
     dispatch(setChosen(filteredIds[index]))
   }
