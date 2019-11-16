@@ -93,6 +93,9 @@ function getRandomPositiveInt(max: number): number {
 export function asyncToggleModal(): any {
   return (dispatch: any, getState: any): any => {
     const { modalIsOpen }: any = getState().restaurant
+    if (modalIsOpen) {
+      dispatch(asyncPickRandom())
+    }
     dispatch(setModal(!modalIsOpen))
   }
 }
