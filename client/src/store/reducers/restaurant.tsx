@@ -7,7 +7,7 @@ import {
   SET_MODAL,
   SET_OPTIONS,
   SET_FILTERED,
-  SET_CHOSEN_RESTAURANT,
+  SET_CURRENT_RESTAURANT,
   SET_VIEWED_RESTAURANTS,
 } from '../actions/restaurant'
 
@@ -26,8 +26,9 @@ function restaurant(
     zips: [],
     filteredIds: [],
     filteredCount: 0,
-    chosen: null,
+    current: null,
     viewed: [],
+    viewIndex: null,
     modalIsOpen: false,
     error: {},
   },
@@ -43,7 +44,7 @@ function restaurant(
           restaurantIds: state.restaurantIds || [],
           filteredIds: state.filteredIds || [],
           filteredCount: state.filteredIds.length,
-          chosen: state.chosen || null,
+          current: state.current || null,
           viewed: state.viewed || [],
           error: {},
         }
@@ -101,11 +102,11 @@ function restaurant(
         }
       }
 
-    case SET_CHOSEN_RESTAURANT:
+    case SET_CURRENT_RESTAURANT:
       return {
         ...state,
         ...{
-          chosen: action.chosen || null,
+          current: action.current || null,
         }
       }
 
@@ -114,6 +115,7 @@ function restaurant(
         ...state,
         ...{
           viewed: [...state.viewed, action.viewed],
+          viewIndex: action.viewIndex,
         }
       }
 

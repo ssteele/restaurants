@@ -16,8 +16,8 @@ export const GET_RESTAURANTS_ERROR = 'GET_RESTAURANTS_ERROR'
 export const SET_MODAL = 'SET_MODAL'
 export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_FILTERED = 'SET_FILTERED'
-export const SET_CHOSEN_RESTAURANT = 'SET_CHOSEN_RESTAURANT'
-export const SET_VIEWED_RESTAURANT = 'SET_VIEWED_RESTAURANT'
+export const SET_CURRENT_RESTAURANT = 'SET_CURRENT_RESTAURANT'
+export const SET_VIEWED_RESTAURANTS = 'SET_VIEWED_RESTAURANTS'
 
 /*
  * action creators
@@ -68,17 +68,18 @@ export function setFiltered(filteredIds: any): any {
   }
 }
 
-export function setChosen(restaurantId: number): any {
+export function setCurrent(restaurantId: number): any {
   return {
-    type: SET_CHOSEN_RESTAURANT,
-    chosen: restaurantId,
+    type: SET_CURRENT_RESTAURANT,
+    current: restaurantId,
   }
 }
 
-export function setViewed(restaurantId: number): any {
+export function setViewed(restaurantId: number, viewIndex: number): any {
   return {
-    type: SET_VIEWED_RESTAURANT,
+    type: SET_VIEWED_RESTAURANTS,
     viewed: restaurantId,
+    viewIndex,
   }
 }
 
@@ -102,7 +103,7 @@ export function asyncToggleModal(): any {
   return (dispatch: any, getState: any): any => {
     const { modalIsOpen }: any = getState().restaurant
     if (modalIsOpen) {
-      dispatch(asyncPickRandom())
+      dispatch(asyncNextRestaurant())
     }
     dispatch(setModal(!modalIsOpen))
   }
@@ -125,24 +126,30 @@ export function asyncToggleOption(option: any): any {
   }
 }
 
-export function asyncPickRandom(): any {
+export function asyncNextRestaurant(): any {
   return (dispatch: any, getState: any): any => {
-    const { filteredIds, chosen }: any = getState().restaurant
+    const { current, filteredIds, viewed }: any = getState().restaurant
 
     let index = 0
     if (filteredIds.length > 1) {
       do {
         index = getRandomPositiveInt(filteredIds.length)
-      } while (filteredIds[index] === chosen)
+      } while (filteredIds[index] === current)
     }
 
-    dispatch(setChosen(filteredIds[index]))
-    dispatch(setViewed(filteredIds[index]))
+    dispatch(setCurrent(filteredIds[index]))
+    dispatch(setViewed(filteredIds[index], viewed.length))
   }
 }
 
-export function asyncPickRewind(): any {
+export function asyncBackRestaurant(): any {
+  return (dispatch: any, getState: any): any => {
+    const { viewed, viewIndex }: any = getState().restaurant
+    dispatch(setCurrent(viewed[viewIndex - 1]))
+    // dispatch(unsetViewed(viewed.length - 1))
+  }
 }
+
 export function asyncFetchRestaurants(): any {
   return (dispatch: any, getState: any): any => {
     dispatch(get())
@@ -197,7 +204,7 @@ export function asyncFetchRestaurants(): any {
             zips,
             filteredIds,
           }))
-          dispatch(asyncPickRandom())
+          dispatch(asyncNextRestaurant())
         }
       })
   }

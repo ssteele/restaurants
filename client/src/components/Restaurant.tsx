@@ -8,8 +8,8 @@ import {
   asyncGetOptionsFromLocalStorage,
   asyncToggleModal,
   asyncToggleOption,
-  asyncPickRandom,
-  asyncPickRewind,
+  asyncNextRestaurant,
+  asyncBackRestaurant,
 } from '../store/actions/restaurant'
 
 import '../css/Restaurant.css'
@@ -41,7 +41,7 @@ class Restaurant extends React.Component<IRestaurant> {
     options: PropTypes.array.isRequired,
     count: PropTypes.number.isRequired,
     restaurants: PropTypes.object,
-    chosen: PropTypes.number,
+    current: PropTypes.number,
     modalIsOpen: PropTypes.bool,
     error: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
@@ -63,19 +63,19 @@ class Restaurant extends React.Component<IRestaurant> {
     dispatch(asyncToggleOption(option))
   }
 
-  public pickRandom = () => {
+  public next = () => {
     const { dispatch }: any = this.props
-    dispatch(asyncPickRandom())
+    dispatch(asyncNextRestaurant())
   }
 
-  public pickRewind = () => {
+  public back = () => {
     const { dispatch }: any = this.props
-    dispatch(asyncPickRewind())
+    dispatch(asyncBackRestaurant())
   }
 
   public render() {
-    const { options, restaurants, count, chosen, modalIsOpen, error }: any = this.props
-    if (!!chosen) {
+    const { options, restaurants, count, current, modalIsOpen, error }: any = this.props
+    if (!!current) {
       return (
         <div>
           <Modal 
@@ -131,19 +131,19 @@ class Restaurant extends React.Component<IRestaurant> {
           <div className="restaurant">
             <div className="restaurant-name">
               <a
-                href={restaurants[chosen].menu}
+                href={restaurants[current].menu}
                 target="_blank"
                 rel="noopener noreferrer"
-              >{restaurants[chosen].name}</a>
+              >{restaurants[current].name}</a>
             </div>
 
-            <div className="sub-name">{restaurants[chosen].sub_name}</div>
+            <div className="sub-name">{restaurants[current].sub_name}</div>
 
-            {restaurants[chosen].kids.length > 0 &&
+            {restaurants[current].kids.length > 0 &&
               <div className="restaurant-kids">
                 <span className="kids-item">
                   <i className="fa fa-child fa-fw"></i>
-                  {restaurants[chosen].kids.join(', ')}
+                  {restaurants[current].kids.join(', ')}
                 </span>
               </div>
             }
@@ -155,7 +155,7 @@ class Restaurant extends React.Component<IRestaurant> {
             <div className="back">
               <button
                 className="button secondary"
-                onClick={this.pickRewind}
+                onClick={this.back}
                 disabled={!count}
               >Back</button>
             </div>
@@ -163,7 +163,7 @@ class Restaurant extends React.Component<IRestaurant> {
             <div className="next">
               <button
                 className="button"
-                onClick={this.pickRandom}
+                onClick={this.next}
                 disabled={!count}
               >Next</button>
             </div>
@@ -177,12 +177,12 @@ class Restaurant extends React.Component<IRestaurant> {
 }
 
 function mapStateToProps(state: any) {
-  const { options, restaurants, filteredCount: count, chosen, modalIsOpen, error } = state.restaurant
+  const { options, restaurants, filteredCount: count, current, modalIsOpen, error } = state.restaurant
   return {
     options,
     restaurants,
     count,
-    chosen,
+    current,
     modalIsOpen,
     error,
   }
