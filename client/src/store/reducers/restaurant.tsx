@@ -114,7 +114,7 @@ function restaurant(
       return {
         ...state,
         ...{
-          viewed: [...state.viewed, action.viewed],
+          viewed: !!action.viewed ? [...state.viewed, action.viewed] : state.viewed,
           viewIndex: action.viewIndex,
         }
       }
