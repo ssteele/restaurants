@@ -132,17 +132,17 @@ export function asyncNextRestaurant(): any {
 
     let index = 0
     const viewedLength = viewed.length;
-    if (viewIndex < (viewedLength - 1)) {
-      const newViewIndex = viewIndex + 1;
+    const newViewIndex = viewIndex + 1;
+    if (newViewIndex < viewedLength) {
       dispatch(setCurrent(viewed[newViewIndex]))
       dispatch(setViewed(null, newViewIndex))
       return;
     }
 
-    if (filteredIds.length > 1) {
-      do {
-        index = getRandomPositiveInt(filteredIds.length)
-      } while (filteredIds[index] === current)
+    if (filteredIds.length > 1 && filteredIds.length > viewedLength) {
+      const remainingRestaurantIds = filteredIds.filter((r: number) => !viewed.includes(r));
+      const randomIndex = getRandomPositiveInt(remainingRestaurantIds.length);
+      index = remainingRestaurantIds[randomIndex] - 1;
     }
 
     dispatch(setCurrent(filteredIds[index]))
