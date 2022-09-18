@@ -8,6 +8,7 @@ import {
   SET_OPTIONS,
   SET_FILTERED,
   SET_CHOSEN_RESTAURANT,
+  SET_VIEWED_RESTAURANT,
 } from '../actions/restaurant'
 
 function restaurant(
@@ -26,6 +27,7 @@ function restaurant(
     filteredIds: [],
     filteredCount: 0,
     chosen: null,
+    viewed: [],
     modalIsOpen: false,
     error: {},
   },
@@ -42,6 +44,7 @@ function restaurant(
           filteredIds: state.filteredIds || [],
           filteredCount: state.filteredIds.length,
           chosen: state.chosen || null,
+          viewed: state.viewed || [],
           error: {},
         }
       }
@@ -103,6 +106,14 @@ function restaurant(
         ...state,
         ...{
           chosen: action.chosen || null,
+        }
+      }
+
+    case SET_VIEWED_RESTAURANT:
+      return {
+        ...state,
+        ...{
+          viewed: [...state.viewed, action.viewed],
         }
       }
 

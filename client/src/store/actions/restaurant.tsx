@@ -17,6 +17,7 @@ export const SET_MODAL = 'SET_MODAL'
 export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CHOSEN_RESTAURANT = 'SET_CHOSEN_RESTAURANT'
+export const SET_VIEWED_RESTAURANT = 'SET_VIEWED_RESTAURANT'
 
 /*
  * action creators
@@ -71,6 +72,13 @@ export function setChosen(restaurantId: number): any {
   return {
     type: SET_CHOSEN_RESTAURANT,
     chosen: restaurantId,
+  }
+}
+
+export function setViewed(restaurantId: number): any {
+  return {
+    type: SET_VIEWED_RESTAURANT,
+    viewed: restaurantId,
   }
 }
 
@@ -129,6 +137,7 @@ export function asyncPickRandom(): any {
     }
 
     dispatch(setChosen(filteredIds[index]))
+    dispatch(setViewed(filteredIds[index]))
   }
 }
 
