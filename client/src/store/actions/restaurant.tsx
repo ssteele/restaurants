@@ -141,6 +141,8 @@ export function asyncPickRandom(): any {
   }
 }
 
+export function asyncPickRewind(): any {
+}
 export function asyncFetchRestaurants(): any {
   return (dispatch: any, getState: any): any => {
     dispatch(get())

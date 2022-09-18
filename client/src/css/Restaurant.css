@@ -1,3 +1,8 @@
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
 .options-modal {
   background: #333;
   border: 1px solid #ccc;

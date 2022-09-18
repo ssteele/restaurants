@@ -9,6 +9,7 @@ import {
   asyncToggleModal,
   asyncToggleOption,
   asyncPickRandom,
+  asyncPickRewind,
 } from '../store/actions/restaurant'
 
 import '../css/Restaurant.css'
@@ -65,6 +66,11 @@ class Restaurant extends React.Component<IRestaurant> {
   public pickRandom = () => {
     const { dispatch }: any = this.props
     dispatch(asyncPickRandom())
+  }
+
+  public pickRewind = () => {
+    const { dispatch }: any = this.props
+    dispatch(asyncPickRewind())
   }
 
   public render() {
@@ -145,12 +151,22 @@ class Restaurant extends React.Component<IRestaurant> {
             <div className="error">{error.message}</div>
           </div>
 
-          <div className="picker">
-            <button
-              className="button"
-              onClick={this.pickRandom}
-              disabled={!count}
-            >Pick random</button>
+          <div className="actions">
+            <div className="back">
+              <button
+                className="button secondary"
+                onClick={this.pickRewind}
+                disabled={!count}
+              >Back</button>
+            </div>
+
+            <div className="next">
+              <button
+                className="button"
+                onClick={this.pickRandom}
+                disabled={!count}
+              >Next</button>
+            </div>
           </div>
         </div>
       )
