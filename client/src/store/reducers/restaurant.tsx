@@ -8,7 +8,7 @@ import {
   SET_OPTIONS,
   SET_FILTERED,
   SET_CHOSEN_RESTAURANT,
-  SET_VIEWED_RESTAURANT,
+  SET_VIEWED_RESTAURANTS,
 } from '../actions/restaurant'
 
 function restaurant(
@@ -109,7 +109,7 @@ function restaurant(
         }
       }
 
-    case SET_VIEWED_RESTAURANT:
+    case SET_VIEWED_RESTAURANTS:
       return {
         ...state,
         ...{
