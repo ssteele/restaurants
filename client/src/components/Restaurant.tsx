@@ -85,7 +85,7 @@ class Restaurant extends React.Component<IRestaurant> {
            overlayClassName="options-modal-overlay"
           >
             <div className="options-modal-bar">
-              <span>{count} total options</span>
+              <span>{count} total restaurants</span>
 
               <button onClick={this.toggleModal}>
                 <i className="fa fa-times fa-lg options-modal-close splash"></i>
