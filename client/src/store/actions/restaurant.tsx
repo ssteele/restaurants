@@ -16,6 +16,7 @@ export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CURRENT_RESTAURANT = 'SET_CURRENT_RESTAURANT'
 export const SET_VIEWED_RESTAURANTS = 'SET_VIEWED_RESTAURANTS'
+export const RESET_VIEWED_RESTAURANTS = 'RESET_VIEWED_RESTAURANTS'
 
 /*
  * action creators
@@ -81,6 +82,12 @@ export function setViewed(restaurantId: number | null, viewIndex: number): any {
   }
 }
 
+export function resetViewed(): any {
+  return {
+    type: RESET_VIEWED_RESTAURANTS,
+  }
+}
+
 function filter(restaurants: any, restaurantIds: any, options: any) {
   const currentFilters = options.filter((option: any) => {
     return option.isChecked
@@ -121,6 +128,8 @@ export function asyncToggleOption(option: any): any {
 
     const updatedFiltered = filter(restaurants, restaurantIds, updatedOptions)
     dispatch(setFiltered(updatedFiltered))
+
+    dispatch(resetViewed())
   }
 }
 

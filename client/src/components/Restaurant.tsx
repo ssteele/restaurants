@@ -75,59 +75,60 @@ class Restaurant extends React.Component<IRestaurant> {
 
   public render() {
     const { options, restaurants, count, current, modalIsOpen, error }: any = this.props
-    if (!!current) {
-      return (
-        <div>
-          <Modal 
-           isOpen={modalIsOpen}
-           contentLabel="Options"
-           className="options-modal"
-           overlayClassName="options-modal-overlay"
-          >
-            <div className="options-modal-bar">
-              <span>{count} total restaurants</span>
 
-              <button onClick={this.toggleModal}>
-                <i className="fa fa-times fa-lg options-modal-close splash"></i>
-              </button>
-            </div>
+    return (
+      <div>
+        <Modal 
+          isOpen={modalIsOpen}
+          contentLabel="Options"
+          className="options-modal"
+          overlayClassName="options-modal-overlay"
+        >
+          <div className="options-modal-bar">
+            <span>{count} total restaurants</span>
 
-            <div className="options-modal-content">
-              {options.map((option: any, i: any) => {
-                return <div className="grid-x" key={i}>
-                  <div className="cell small-10">
-                    {option.description}
-                  </div>
-
-                  <div className="cell auto option-toggle">
-                    <div className="switch">
-                      <input
-                        className="switch-input"
-                        id={option.name}
-                        type="checkbox"
-                        name={option.name}
-                        checked={option.isChecked}
-                        onChange={(e) => this.toggleOption(option, e)}
-                      />
-                      <label className="switch-paddle" htmlFor={option.name}>
-                        <span className="show-for-sr">
-                          {option.name}
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              })}
-            </div>
-          </Modal>
-
-          <div
-            className="options-modal-open splash"
-            onClick={this.toggleModal}
-          >
-            <i className="fa fa-bars fa-lg"></i>
+            <button onClick={this.toggleModal}>
+              <i className="fa fa-times fa-lg options-modal-close splash"></i>
+            </button>
           </div>
 
+          <div className="options-modal-content">
+            {options.map((option: any, i: any) => {
+              return <div className="grid-x" key={i}>
+                <div className="cell small-10">
+                  {option.description}
+                </div>
+
+                <div className="cell auto option-toggle">
+                  <div className="switch">
+                    <input
+                      className="switch-input"
+                      id={option.name}
+                      type="checkbox"
+                      name={option.name}
+                      checked={option.isChecked}
+                      onChange={(e) => this.toggleOption(option, e)}
+                    />
+                    <label className="switch-paddle" htmlFor={option.name}>
+                      <span className="show-for-sr">
+                        {option.name}
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            })}
+          </div>
+        </Modal>
+
+        <div
+          className="options-modal-open splash"
+          onClick={this.toggleModal}
+        >
+          <i className="fa fa-bars fa-lg"></i>
+        </div>
+
+        {current && (
           <div className="restaurant">
             <div className="restaurant-name">
               <a
@@ -150,29 +151,35 @@ class Restaurant extends React.Component<IRestaurant> {
 
             <div className="error">{error.message}</div>
           </div>
+        )}
 
-          <div className="actions">
-            <div className="back">
-              <button
-                className="button secondary"
-                onClick={this.back}
-                disabled={count < 2}
-              >Back</button>
-            </div>
-
-            <div className="next">
-              <button
-                className="button"
-                onClick={this.next}
-                disabled={count < 2}
-              >Next</button>
+        {!current && (
+          <div className="restaurant">
+            <div className="restaurant-name subtle">
+              Filterd :(
             </div>
           </div>
-        </div>
-      )
-    }
+        )}
 
-    return null
+        <div className="actions">
+          <div className="back">
+            <button
+              className="button secondary"
+              onClick={this.back}
+              disabled={count < 2}
+            >Back</button>
+          </div>
+
+          <div className="next">
+            <button
+              className="button"
+              onClick={this.next}
+              disabled={count < 2}
+            >Next</button>
+          </div>
+        </div>
+      </div>
+    )
   }
 }
 

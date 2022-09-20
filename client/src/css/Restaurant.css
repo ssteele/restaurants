@@ -58,6 +58,10 @@
   text-align: right;
 }
 
+.subtle {
+  color: #777;
+}
+
 .restaurant {
   height: 8rem;
   font-size: 1rem;

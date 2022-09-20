@@ -9,6 +9,7 @@ import {
   SET_FILTERED,
   SET_CURRENT_RESTAURANT,
   SET_VIEWED_RESTAURANTS,
+  RESET_VIEWED_RESTAURANTS,
 } from '../actions/restaurant'
 
 function restaurant(
@@ -116,6 +117,15 @@ function restaurant(
         ...{
           viewed: !!action.viewed ? [...state.viewed, action.viewed] : state.viewed,
           viewIndex: action.viewIndex,
+        }
+      }
+
+    case RESET_VIEWED_RESTAURANTS:
+      return {
+        ...state,
+        ...{
+          viewed: [],
+          viewIndex: null,
         }
       }
 
