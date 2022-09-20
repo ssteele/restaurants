@@ -80,7 +80,7 @@ class Restaurant extends React.Component<IRestaurant> {
         <div>
           <Modal 
            isOpen={modalIsOpen}
-           contentLabel="Minimal Modal Example"
+           contentLabel="Options"
            className="options-modal"
            overlayClassName="options-modal-overlay"
           >
