@@ -156,7 +156,7 @@ class Restaurant extends React.Component<IRestaurant> {
               <button
                 className="button secondary"
                 onClick={this.back}
-                disabled={!count}
+                disabled={count < 2}
               >Back</button>
             </div>
 
@@ -164,7 +164,7 @@ class Restaurant extends React.Component<IRestaurant> {
               <button
                 className="button"
                 onClick={this.next}
-                disabled={!count}
+                disabled={count < 2}
               >Next</button>
             </div>
           </div>

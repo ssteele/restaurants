@@ -137,7 +137,7 @@ export function asyncNextRestaurant(): any {
       return
     }
 
-    if (!(filteredIds.length > 1 && filteredIds.length > viewedLength)) {
+    if (!(filteredIds.length > viewedLength)) {
       // cycle back to start of viewed restaurant list
       dispatch(setCurrent(viewed[0]))
       dispatch(setViewed(null, 0))
