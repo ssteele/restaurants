@@ -1,3 +1,6 @@
-export const API_ENDPOINT = 'http://shs.restaurants.com:8888/api/?city=test'
-// const API_ENDPOINT = 'http://shs.restaurants.com:8888/api/'
-// const API_ENDPOINT = 'http://restaurants.steve-steele.com/api/'
+const apiEndpoints = {
+    local: 'http://shs.restaurants.com:8888/api/',
+    localTest: 'http://shs.restaurants.com:8888/api/?city=test',
+    prod: 'http://restaurants.steve-steele.com/api/',
+}
+export const API_ENDPOINT = apiEndpoints.local;
