@@ -190,20 +190,22 @@ export function asyncFetchRestaurants(): any {
           })
 
           // transform the payload for normalizr
-          const jsonWithNestedIds = json.map((restaurant: any) => {
-            let { categories, zips } = restaurant
+          const jsonWithNestedIds = json
+            .filter((restaurant: any) => !!restaurant.enabled)
+            .map((restaurant: any) => {
+              let { categories, zips } = restaurant
 
-            categories = categories.map((category: string) => {
-              const id = category.toLowerCase().replace(/[\W]/g, '')
-              return {id, name: category}
+              categories = categories.map((category: string) => {
+                const id = category.toLowerCase().replace(/[\W]/g, '')
+                return {id, name: category}
+              })
+
+              zips = zips.map((zip: number) => {
+                return {id: zip, name: zip}
+              })
+
+              return {...restaurant, categories, zips}
             })
-
-            zips = zips.map((zip: number) => {
-              return {id: zip, name: zip}
-            })
-
-            return {...restaurant, categories, zips}
-          })
 
           // normalize
           const normalized = normalize(
