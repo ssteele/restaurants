@@ -3,9 +3,7 @@ import {
   normalize,
   schema,
 } from 'normalizr'
-
-// const API_ENDPOINT = 'http://shs.restaurants.com:8888/api/'
-const API_ENDPOINT = 'http://restaurants.steve-steele.com/api/'
+import { API_ENDPOINT } from '../../constants'
 
 /*
  * action types
