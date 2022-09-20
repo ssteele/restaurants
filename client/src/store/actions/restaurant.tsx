@@ -126,8 +126,7 @@ export function asyncToggleOption(option: any): any {
 
 export function asyncNextRestaurant(): any {
   return (dispatch: any, getState: any): any => {
-    const { current, filteredIds, viewed, viewIndex }: any = getState().restaurant
-
+    const { filteredIds, viewed, viewIndex }: any = getState().restaurant
     let index = 0
     const viewedLength = viewed.length
     const newViewIndex = viewIndex + 1
@@ -138,20 +137,21 @@ export function asyncNextRestaurant(): any {
       return
     }
 
-    if (filteredIds.length > 1 && filteredIds.length > viewedLength) {
-      // go to next restaurant
-      const remainingRestaurantIds = filteredIds.filter((r: number) => !viewed.includes(r))
-      const randomIndex = getRandomPositiveInt(remainingRestaurantIds.length)
-      index = remainingRestaurantIds[randomIndex] - 1
-    } else {
+    if (!(filteredIds.length > 1 && filteredIds.length > viewedLength)) {
       // cycle back to start of viewed restaurant list
       dispatch(setCurrent(viewed[0]))
       dispatch(setViewed(null, 0))
       return
+    } else {
+      // go to next restaurant
+      const remainingRestaurantIds = filteredIds.filter((r: number) => !viewed.includes(r))
+      const randomIndex = getRandomPositiveInt(remainingRestaurantIds.length)
+      const randomRestaurantId = remainingRestaurantIds[randomIndex]
+      index = filteredIds.indexOf(randomRestaurantId)
+      dispatch(setCurrent(filteredIds[index]))
+      dispatch(setViewed(filteredIds[index], viewedLength))
+      return
     }
-
-    dispatch(setCurrent(filteredIds[index]))
-    dispatch(setViewed(filteredIds[index], viewedLength))
   }
 }
 
