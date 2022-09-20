@@ -129,25 +129,25 @@ export function asyncNextRestaurant(): any {
     const { current, filteredIds, viewed, viewIndex }: any = getState().restaurant
 
     let index = 0
-    const viewedLength = viewed.length;
-    const newViewIndex = viewIndex + 1;
+    const viewedLength = viewed.length
+    const newViewIndex = viewIndex + 1
     if (newViewIndex < viewedLength) {
       // navigate through viewed restaurant history
       dispatch(setCurrent(viewed[newViewIndex]))
       dispatch(setViewed(null, newViewIndex))
-      return;
+      return
     }
 
     if (filteredIds.length > 1 && filteredIds.length > viewedLength) {
       // go to next restaurant
-      const remainingRestaurantIds = filteredIds.filter((r: number) => !viewed.includes(r));
-      const randomIndex = getRandomPositiveInt(remainingRestaurantIds.length);
-      index = remainingRestaurantIds[randomIndex] - 1;
+      const remainingRestaurantIds = filteredIds.filter((r: number) => !viewed.includes(r))
+      const randomIndex = getRandomPositiveInt(remainingRestaurantIds.length)
+      index = remainingRestaurantIds[randomIndex] - 1
     } else {
       // cycle back to start of viewed restaurant list
       dispatch(setCurrent(viewed[0]))
       dispatch(setViewed(null, 0))
-      return;
+      return
     }
 
     dispatch(setCurrent(filteredIds[index]))
@@ -158,12 +158,12 @@ export function asyncNextRestaurant(): any {
 export function asyncBackRestaurant(): any {
   return (dispatch: any, getState: any): any => {
     const { viewed, viewIndex }: any = getState().restaurant
-    let newViewIndex = viewIndex - 1;
+    let newViewIndex = viewIndex - 1
     if (newViewIndex >= 0) {
       dispatch(setCurrent(viewed[newViewIndex]))
       dispatch(setViewed(null, newViewIndex))
     } else {
-      newViewIndex = viewed.length - 1;
+      newViewIndex = viewed.length - 1
       dispatch(setCurrent(viewed[newViewIndex]))
       dispatch(setViewed(null, newViewIndex))
     }
@@ -208,7 +208,7 @@ export function asyncFetchRestaurants(): any {
           // normalize
           const normalized = normalize(
             {restaurants: jsonWithNestedIds},
-            {restaurants: [restaurantSchema]}
+            {restaurants: [restaurantSchema]},
           )
 
           const { restaurants, categories, zips } = normalized.entities
