@@ -15,23 +15,21 @@ import {
 import '../css/Restaurant.css'
 
 interface IRestaurant {
-  id?: number
-  name?: string
+  id: number
+  name: string
   sub_name?: string
-  site?: string
-  menu?: string
-  organic?: boolean
-  vegetarian?: boolean
-  vegan?: boolean
-  local?: boolean
-  keto?: boolean
-  outdoor?: boolean
-  harvi?: []
-  zip?: []
-  enabled?: boolean
-  deleted?: boolean
-  created_at?: string
-  updated_at?: string
+  site: string
+  menu: string
+  organic: boolean
+  vegetarian: boolean
+  vegan: boolean
+  local: boolean
+  keto: boolean
+  outdoor: boolean
+  kids: []
+  zip: []
+  enabled: boolean
+  deleted: boolean
 }
 
 Modal.setAppElement('#root')

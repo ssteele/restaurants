@@ -10,15 +10,13 @@
         "local": true,
         "vegetarian": true,
         "vegan": true,
-        "keto": null,
+        "keto": false,
         "outdoor": true,
         "price": 2,
-        "zips": [78704, 78704],
+        "zips": [78704],
         "kids": ["kid's plate"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 2,
@@ -37,9 +35,7 @@
         "zips": [78702],
         "kids": ["roasted sweets and beets", "peanut butter apple sandwich"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 3,
@@ -58,9 +54,7 @@
         "zips": [78756],
         "kids": ["eggs", "tomales"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 4,
@@ -79,9 +73,7 @@
         "zips": [78758, 78757, 78756, 78701, 78746],
         "kids": ["double-corn taco: eggs, avocado, whole black beans, mushrooms"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 5,
@@ -100,9 +92,7 @@
         "zips": [78758, 78701],
         "kids": ["kid's chicken plate"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 6,
@@ -121,9 +111,7 @@
         "zips": [78704],
         "kids": ["eggs"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 7,
@@ -142,9 +130,7 @@
         "zips": [78759, 78701, 78746],
         "kids": ["kid's chicken plate", "soup"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 8,
@@ -163,9 +149,7 @@
         "zips": [78759],
         "kids": ["build: chicken, quinoa, beets, apples, apple cider"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 9,
@@ -184,9 +168,7 @@
         "zips": [78702],
         "kids": [],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 10,
@@ -205,9 +187,7 @@
         "zips": [78704],
         "kids": [],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 11,
@@ -226,9 +206,7 @@
         "zips": [78751],
         "kids": [],
         "enabled": 0,
-        "deleted": 1,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 1
     },
     {
         "id": 12,
@@ -247,9 +225,7 @@
         "zips": [78702, 78723],
         "kids": ["scrambled eggs, avocado"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 13,
@@ -268,9 +244,7 @@
         "zips": [78722],
         "kids": ["roasted organic beets", "taco"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 14,
@@ -289,9 +263,7 @@
         "zips": [78704],
         "kids": [],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 15,
@@ -310,9 +282,7 @@
         "zips": [78702],
         "kids": ["egg sandwich"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 16,
@@ -331,9 +301,7 @@
         "zips": [78704],
         "kids": [],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 17,
@@ -352,9 +320,7 @@
         "zips": [78702],
         "kids": [],
         "enabled": 0,
-        "deleted": 1,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 1
     },
     {
         "id": 18,
@@ -373,9 +339,7 @@
         "zips": [78722],
         "kids": [],
         "enabled": 0,
-        "deleted": 1,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 1
     },
     {
         "id": 19,
@@ -394,9 +358,7 @@
         "zips": [78664],
         "kids": ["burger"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 20,
@@ -415,9 +377,7 @@
         "zips": [78756],
         "kids": [],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 21,
@@ -436,9 +396,7 @@
         "zips": [78704, 78745, 78756],
         "kids": [],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 22,
@@ -457,9 +415,7 @@
         "zips": [78723],
         "kids": ["burger"],
         "enabled": 0,
-        "deleted": 1,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 1
     },
     {
         "id": 23,
@@ -478,9 +434,7 @@
         "zips": [78702],
         "kids": [],
         "enabled": 0,
-        "deleted": 1,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 1
     },
     {
         "id": 24,
@@ -499,9 +453,7 @@
         "zips": [78703, 78704, 78738, 78746, 78748, 78751, 78753],
         "kids": ["scrambled eggs", "black beans", "avocado", "tortillas"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 25,
@@ -520,9 +472,7 @@
         "zips": [78703, 78704],
         "kids": [],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 26,
@@ -541,9 +491,7 @@
         "zips": [78664, 78704, 78705, 78723, 78731, 78746, 78749, 78750],
         "kids": [],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 27,
@@ -562,9 +510,7 @@
         "zips": [78731],
         "kids": ["soup", "beet salad", "grilled avocado", "avocado toast"],
         "enabled": 0,
-        "deleted": 1,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 1
     },
     {
         "id": 28,
@@ -583,8 +529,6 @@
         "zips": [78702],
         "kids": [],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     }
 ]

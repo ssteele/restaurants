@@ -16,9 +16,7 @@
         "zips": [78704, 78704],
         "kids": ["kid's plate"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     },
     {
         "id": 2,
@@ -37,8 +35,6 @@
         "zips": [78702],
         "kids": ["roasted sweets and beets", "peanut butter apple sandwich"],
         "enabled": 1,
-        "deleted": 0,
-        "created_at": null,
-        "updated_at": null
+        "deleted": 0
     }
 ]
