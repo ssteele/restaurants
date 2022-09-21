@@ -25,6 +25,7 @@ interface IRestaurant {
   vegan: boolean
   local: boolean
   keto: boolean
+  indoor: boolean
   outdoor: boolean
   kids: []
   zip: []
