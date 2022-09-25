@@ -100,6 +100,9 @@ function filter(restaurants: any, restaurantIds: any, options: any) {
         case 'kids':
           res = !!restaurants[id][option.name].length
           break
+        case 'meat':
+          res = !restaurants[id]['vegan'] && !restaurants[id]['vegetarian']
+          break
         default: 
           res = !!restaurants[id][option.name]
           break
