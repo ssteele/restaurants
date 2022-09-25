@@ -94,8 +94,17 @@ function filter(restaurants: any, restaurantIds: any, options: any) {
   })
 
   return restaurantIds.filter((id: number) => {
+    let res = false;
     return currentFilters.every((option: any) => {
-      return !!restaurants[id][option.name]
+      switch (option.name) {
+        case 'kids':
+          res = !!restaurants[id][option.name].length
+          break
+        default: 
+          res = !!restaurants[id][option.name]
+          break
+      }
+      return res;
     })
   })
 }

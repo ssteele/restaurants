@@ -16,6 +16,7 @@ function restaurant(
   state: any = {
     isLoading: false,
     options: [
+      {name: 'kids', description: 'Only kid-friendly', isChecked: false},
       {name: 'organic', description: 'Only organic', isChecked: false},
       {name: 'local', description: 'Only locally sourced', isChecked: false},
       {name: 'vegetarian', description: 'Only vegetarian', isChecked: false},
