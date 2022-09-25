@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name": "Casa de Luz",
-        "sub_name": "",
+        "sub_name": "South Austin",
         "categories": ["Vegan", "Salad", "Soup"],
         "site": "https://www.casadeluz.org/",
         "menu": "https://www.casadeluz.org/eat-drink",
@@ -102,7 +102,7 @@
     {
         "id": 6,
         "name": "Bouldin Creek Cafe",
-        "sub_name": "",
+        "sub_name": "South Austin",
         "categories": ["Vegetarian", "Cafes", "Vegan"],
         "site": "https://bouldincreekcafe.com/",
         "menu": "https://bouldincreekcafe.com/",
@@ -162,7 +162,7 @@
     {
         "id": 9,
         "name": "Ranch Hand",
-        "sub_name": "at Native Hostel",
+        "sub_name": "South Austin",
         "categories": ["Food Trucks", "American (New)"],
         "site": "https://www.weareranchhand.com/",
         "menu": "https://www.weareranchhand.com/",
@@ -177,12 +177,12 @@
         "zips": [78702],
         "kids": [],
         "enabled": 0,
-        "deleted": 1
+        "deleted": 0
     },
     {
         "id": 10,
         "name": "Vinaigrette",
-        "sub_name": "",
+        "sub_name": "South Austin",
         "categories": ["Salad", "Soup", "Sandwiches"],
         "site": "https://www.vinaigretteonline.com/",
         "menu": "https://www.vinaigretteonline.com/menus",
@@ -202,7 +202,7 @@
     {
         "id": 11,
         "name": "Sala and Betty",
-        "sub_name": "",
+        "sub_name": "Closed",
         "categories": ["American (New)", "Diners", "Sandwiches"],
         "site": "http://www.salaandbettyatx.com/",
         "menu": "http://www.salaandbettyatx.com/menus/",
@@ -262,7 +262,7 @@
     {
         "id": 14,
         "name": "Odd Duck",
-        "sub_name": "",
+        "sub_name": "South Austin",
         "categories": ["American (Traditional)", "Bars"],
         "site": "https://oddduckaustin.com/",
         "menu": "https://oddduckaustin.com/",
@@ -302,7 +302,7 @@
     {
         "id": 16,
         "name": "Thai Fresh",
-        "sub_name": "",
+        "sub_name": "South Austin",
         "categories": ["Thai", "Coffee & Tea", "Desserts"],
         "site": "https://www.thai-fresh.com/",
         "menu": "https://www.thai-fresh.com/menu-hours",
@@ -322,7 +322,7 @@
     {
         "id": 17,
         "name": "Takoba",
-        "sub_name": "",
+        "sub_name": "Closed",
         "categories": ["Mexican", "Sports Bars", "Cocktail Bars"],
         "site": "http://takobarestaurant.com/",
         "menu": "https://www.zomato.com/austin/takoba-east-cesar-chavez/menu",
@@ -342,7 +342,7 @@
     {
         "id": 18,
         "name": "Eastside Cafe",
-        "sub_name": "closed",
+        "sub_name": "Closed",
         "categories": ["American (Traditional)", "Bars"],
         "site": "https://eastsidecafeaustin.com/",
         "menu": "http://eastsidecafeaustin.com/menu/",
@@ -422,7 +422,7 @@
     {
         "id": 22,
         "name": "Contigo",
-        "sub_name": "",
+        "sub_name": "Closed",
         "categories": ["Bars", "American (Traditional)"],
         "site": "https://www.contigotexas.com/",
         "menu": "https://contigotexas.com/restaurant/menus/",
@@ -522,7 +522,7 @@
     {
         "id": 27,
         "name": "Austin Terrier",
-        "sub_name": "",
+        "sub_name": "Closed",
         "categories": ["Pizza", "Breakfast & Brunch", "Burgers"],
         "site": "https://www.austinterrier.com/",
         "menu": "https://www.austinterrier.com/menu",
@@ -802,7 +802,7 @@
     {
         "id": 41,
         "name": "Foxhole Culinary Tavern",
-        "sub_name": "at Cedar Park",
+        "sub_name": "Cedar Park",
         "categories": ["American (New)"],
         "site": "https://foxholeaustin.com/",
         "menu": "https://foxholeaustin.com/austin-foxhole-culinary-tavern-food-menu",
@@ -842,7 +842,7 @@
     {
         "id": 43,
         "name": "H Mart",
-        "sub_name": "at Cedar Park",
+        "sub_name": "Cedar Park",
         "categories": ["Food Court", "Korean", "International Grocery"],
         "site": "https://www.hmart.com/",
         "menu": "",
