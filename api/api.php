@@ -1,5 +1,7 @@
 <?php
 
+define('DEFAULT_CITY', 'austin');
+
 $isLocal = false !== strpos($_SERVER['HTTP_HOST'], 'shs');
 if ($isLocal) {
     // ignore CORS
@@ -10,9 +12,7 @@ if ($isLocal) {
     }
 }
 
-$city = $_GET['city'] ?: 'austin';
-$jsonpCallback = $_GET['callback'];
-
+$city = $_GET['city'] ?: $DEFAULT_CITY;
 if ($city) {
     $file = 'resources/' . $city . '.json';
     if (!file_exists($file)) {
