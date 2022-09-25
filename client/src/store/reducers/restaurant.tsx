@@ -20,6 +20,7 @@ function restaurant(
       {name: 'organic', description: 'Only organic', isChecked: false},
       {name: 'local', description: 'Only locally sourced', isChecked: false},
       {name: 'vegetarian', description: 'Only vegetarian', isChecked: false},
+      {name: 'keto', description: 'Only keto-friendly', isChecked: false},
       {name: 'outdoor', description: 'Only outdoor seating', isChecked: false},
     ],
     restaurants: {},
