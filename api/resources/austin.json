@@ -195,7 +195,7 @@
         "outdoor": true,
         "price": 2,
         "zips": [78704],
-        "kids": [],
+        "kids": ["soup", "roasted veggie sammie", "salmon"],
         "enabled": 1,
         "deleted": 0
     },
