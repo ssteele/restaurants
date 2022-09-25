@@ -71,7 +71,10 @@
 
 .restaurant-name {
   font-size: 2rem;
-  margin: 1rem;
+}
+
+.restaurant-kids {
+  margin-top: 1rem;
 }
 
 .splash {
