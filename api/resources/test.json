@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name": "Casa de Luz",
-        "sub_name": "",
+        "sub_name": "South Austin",
         "categories": ["Vegan", "Salad", "Soup"],
         "site": "https://www.casadeluz.org/",
         "menu": "https://www.casadeluz.org/eat-drink",
@@ -42,7 +42,7 @@
     {
         "id": 6,
         "name": "Bouldin Creek Cafe",
-        "sub_name": "",
+        "sub_name": "South Austin",
         "categories": ["Vegetarian", "Cafes", "Vegan"],
         "site": "https://bouldincreekcafe.com/",
         "menu": "https://bouldincreekcafe.com/",
@@ -62,7 +62,7 @@
     {
         "id": 11,
         "name": "Sala and Betty",
-        "sub_name": "",
+        "sub_name": "Closed",
         "categories": ["American (New)", "Diners", "Sandwiches"],
         "site": "http://www.salaandbettyatx.com/",
         "menu": "http://www.salaandbettyatx.com/menus/",
@@ -122,7 +122,7 @@
     {
         "id": 43,
         "name": "H Mart",
-        "sub_name": "at Cedar Park",
+        "sub_name": "Cedar Park",
         "categories": ["Food Court", "Korean", "International Grocery"],
         "site": "https://www.hmart.com/",
         "menu": "",
