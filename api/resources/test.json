@@ -100,6 +100,26 @@
         "deleted": 0
     },
     {
+        "id": 37,
+        "name": "Pizza Day",
+        "sub_name": "",
+        "categories": ["Pizza", "Salad", "Sandwiches"],
+        "site": "https://pizzadaytx.com",
+        "menu": "https://pizzadaytx.com/shop",
+        "organic": true,
+        "local": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": false,
+        "indoor": false,
+        "outdoor": false,
+        "price": 2,
+        "zips": [78759],
+        "kids": ["mushroom pizza"],
+        "enabled": 1,
+        "deleted": 0
+    },
+    {
         "id": 43,
         "name": "H Mart",
         "sub_name": "at Cedar Park",
