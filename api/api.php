@@ -12,7 +12,7 @@ if ($isLocal) {
     }
 }
 
-$city = $_GET['city'] ?: $DEFAULT_CITY;
+$city = $_GET['city'] ?: DEFAULT_CITY;
 if ($city) {
     $file = 'resources/' . $city . '.json';
     if (!file_exists($file)) {
