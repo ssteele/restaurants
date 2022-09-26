@@ -22,7 +22,7 @@
     {
         "id": 2,
         "name": "Counter Culture",
-        "sub_name": "",
+        "sub_name": "East Austin",
         "categories": ["Vegan", "Vegetarian", "Live/Raw"],
         "site": "http://countercultureaustin.com/",
         "menu": "https://countercultureaustin.com/",
@@ -42,7 +42,7 @@
     {
         "id": 3,
         "name": "Pacha",
-        "sub_name": "",
+        "sub_name": "Central Austin",
         "categories": ["Coffee & Tea", "Breakfast & Brunch"],
         "site": "http://www.pachacafe.com/",
         "menu": "https://pachacafe.com/wpdir/menu/",
@@ -154,7 +154,7 @@
         "indoor": true,
         "outdoor": true,
         "price": 2,
-        "zips": [78756, 78759],
+        "zips": [78759, 78756],
         "kids": ["build: quinoa, beets, mushrooms, sweet potatoes, avocado, pumpkin seeds, lemon garlic"],
         "enabled": 1,
         "deleted": 0
@@ -162,7 +162,7 @@
     {
         "id": 9,
         "name": "Ranch Hand",
-        "sub_name": "South Austin",
+        "sub_name": "Slaughter (at Armadillo Den)",
         "categories": ["Food Trucks", "American (New)"],
         "site": "https://www.weareranchhand.com/",
         "menu": "https://www.weareranchhand.com/",
@@ -174,7 +174,7 @@
         "indoor": false,
         "outdoor": false,
         "price": 2,
-        "zips": [78702],
+        "zips": [78748],
         "kids": [],
         "enabled": 0,
         "deleted": 0
@@ -234,7 +234,7 @@
         "indoor": true,
         "outdoor": true,
         "price": 2,
-        "zips": [78702, 78723],
+        "zips": [78723, 78702],
         "kids": ["scrambled eggs", "avocado", "tortillas"],
         "enabled": 1,
         "deleted": 0
@@ -242,7 +242,7 @@
     {
         "id": 13,
         "name": "Salty Sow",
-        "sub_name": "",
+        "sub_name": "East Austin",
         "categories": ["American (Traditional)", "Gastropubs"],
         "site": "http://www.saltysow.com/",
         "menu": "http://www.saltysow.com/#/locations",
@@ -282,7 +282,7 @@
     {
         "id": 15,
         "name": "Sour Duck Market",
-        "sub_name": "",
+        "sub_name": "East Austin",
         "categories": ["Bakeries", "Beer", "Wine & Spirits", "Smokehouse"],
         "site": "https://www.sourduckmarket.com/",
         "menu": "https://www.sourduckmarket.com/",
@@ -382,7 +382,7 @@
     {
         "id": 20,
         "name": "Citizen Eatery",
-        "sub_name": "",
+        "sub_name": "Burnet",
         "categories": ["Vegetarian", "Vegan", "Breakfast & Brunch"],
         "site": "https://www.citizeneatery.com/",
         "menu": "https://www.citizeneatery.com/menu/",
@@ -402,7 +402,7 @@
     {
         "id": 21,
         "name": "Picnik",
-        "sub_name": "",
+        "sub_name": "Burnet",
         "categories": ["American (New)", "Gluten-Free", "Breakfast & Brunch"],
         "site": "https://www.picnikaustin.com/",
         "menu": "https://www.picnikaustin.com/",
@@ -414,7 +414,7 @@
         "indoor": true,
         "outdoor": false,
         "price": 2,
-        "zips": [78704, 78756],
+        "zips": [78756, 78704],
         "kids": ["breakfast tacos"],
         "enabled": 1,
         "deleted": 0
@@ -482,7 +482,7 @@
     {
         "id": 25,
         "name": "Fresa's",
-        "sub_name": "",
+        "sub_name": "Central Austin",
         "categories": ["Mexican"],
         "site": "https://www.fresaschicken.com/",
         "menu": "https://www.fresaschicken.com/#lunch-dinner",
@@ -502,7 +502,7 @@
     {
         "id": 26,
         "name": "Kerbey Lane Cafe",
-        "sub_name": "",
+        "sub_name": "Mueller",
         "categories": ["American (Traditional)", "Breakfast & Brunch", "Tex-Mex"],
         "site": "https://kerbeylanecafe.com/",
         "menu": "https://kerbeylanecafe.com/menu",
@@ -514,7 +514,7 @@
         "indoor": true,
         "outdoor": true,
         "price": 2,
-        "zips": [78664, 78704, 78705, 78723, 78731, 78746, 78749, 78750],
+        "zips": [78723, 78731, 78705, 78746, 78750, 78704, 78749, 78664],
         "kids": ["breakfast tacos w/ extra tortillas"],
         "enabled": 1,
         "deleted": 0
@@ -542,7 +542,7 @@
     {
         "id": 28,
         "name": "Austin Daily Press",
-        "sub_name": "",
+        "sub_name": "East Austin",
         "categories": ["Delis", "Sandwiches", "Comfort Food"],
         "site": "https://www.austindailypress.com/",
         "menu": "https://www.austindailypress.com/order-online-2",
@@ -602,7 +602,7 @@
     {
         "id": 31,
         "name": "Central Market Cafe",
-        "sub_name": "",
+        "sub_name": "Central Austin",
         "categories": ["American (Traditional)", "Breakfast & Brunch"],
         "site": "https://www.centralmarket.com/locations/austin-north-lamar",
         "menu": "http://places.singleplatform.com/central-market-cafe/menu",
@@ -662,7 +662,7 @@
     {
         "id": 34,
         "name": "Pinthouse Pizza",
-        "sub_name": "",
+        "sub_name": "Burnet",
         "categories": ["Pizza", "Brewpubs"],
         "site": "https://pinthouse.com/burnet",
         "menu": "https://pinthouse.com/burnet/food/menu",
@@ -682,7 +682,7 @@
     {
         "id": 35,
         "name": "Via 313",
-        "sub_name": "",
+        "sub_name": "Central Austin",
         "categories": ["Pizza"],
         "site": "https://locations.via313.com/locations/3016-guadalupe-st-/#100/",
         "menu": "https://www.via313.com/menu/",
@@ -762,7 +762,7 @@
     {
         "id": 39,
         "name": "Galaxy Cafe",
-        "sub_name": "",
+        "sub_name": "Northwest Austin",
         "categories": ["American (Traditional)", "American (New)", "Breakfast & Brunch"],
         "site": "https://www.galaxycafeaustin.com/northwest",
         "menu": "https://www.galaxycafeaustin.com/menus",
@@ -822,7 +822,7 @@
     {
         "id": 42,
         "name": "Conscious Cravings",
-        "sub_name": "",
+        "sub_name": "Mueller",
         "categories": ["Vegetarian", "Vegan", "Gluten-Free"],
         "site": "https://www.consciouscravingsaustin.com/",
         "menu": "https://www.consciouscravingsaustin.com/menu",
@@ -894,7 +894,7 @@
         "indoor": true,
         "outdoor": true,
         "price": 2,
-        "zips": [78757, 78758, 78759, 78731, 78751, 78723, 78705, 78702, 78701, 78704, 78703],
+        "zips": [78758, 78759, 78757, 78731, 78751, 78723, 78705, 78702, 78701, 78704, 78703],
         "kids": ["peachy green", "raspberry hooray"],
         "enabled": 1,
         "deleted": 0
@@ -902,7 +902,7 @@
     {
         "id": 46,
         "name": "Varacruz All Natural",
-        "sub_name": "",
+        "sub_name": "Mueller",
         "categories": ["Tacos", "Mexican", "Food Trucks"],
         "site": "https://veracruzallnatural.com",
         "menu": "https://veracruzallnatural.com/menu",
