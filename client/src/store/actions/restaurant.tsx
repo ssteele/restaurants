@@ -94,7 +94,7 @@ function filter(restaurants: any, restaurantIds: any, options: any) {
   })
 
   return restaurantIds.filter((id: number) => {
-    let res = false;
+    let res = false
     return currentFilters.every((option: any) => {
       switch (option.name) {
         case 'kids':
@@ -107,7 +107,7 @@ function filter(restaurants: any, restaurantIds: any, options: any) {
           res = !!restaurants[id][option.name]
           break
       }
-      return res;
+      return res
     })
   })
 }
