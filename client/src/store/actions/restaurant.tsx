@@ -88,6 +88,8 @@ export function resetViewed(): any {
   }
 }
 
+const zipsNearHome = [78753, 78758, 78727, 78759, 78752, 78757, 78751, 78756, 78723]
+
 function filter(restaurants: any, restaurantIds: any, options: any) {
   const currentFilters = options.filter((option: any) => {
     return option.isChecked
@@ -99,6 +101,12 @@ function filter(restaurants: any, restaurantIds: any, options: any) {
       switch (option.name) {
         case 'kids':
           res = !!restaurants[id][option.name].length
+          break
+        case 'near':
+          res = restaurants[id]['zips'].filter((x: number) => zipsNearHome.includes(x)).length
+          break
+        case 'far':
+          res = !restaurants[id]['zips'].filter((x: number) => zipsNearHome.includes(x)).length
           break
         case 'meat':
           res = !restaurants[id]['vegan'] && !restaurants[id]['vegetarian']

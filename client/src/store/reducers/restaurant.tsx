@@ -17,6 +17,8 @@ function restaurant(
     isLoading: false,
     options: [
       {name: 'kids', description: 'Only kid-friendly', isChecked: false},
+      {name: 'near', description: 'Only close to home', isChecked: false},
+      {name: 'far', description: 'Only far from home', isChecked: false},
       {name: 'organic', description: 'Only organic', isChecked: false},
       {name: 'local', description: 'Only locally sourced', isChecked: false},
       {name: 'vegetarian', description: 'Only vegetarian', isChecked: false},
