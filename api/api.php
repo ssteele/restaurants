@@ -12,13 +12,13 @@ if ($isLocal) {
     }
 }
 
-$city = $_GET['city'] ?: DEFAULT_CITY;
+$city = isset($_GET['city']) ? $_GET['city'] : DEFAULT_CITY;
 if ($city) {
     $file = 'resources/' . $city . '.json';
     if (!file_exists($file)) {
         $file = null;
     }
-    $json = file_get_contents($file);
+    $json = @file_get_contents($file);
 }
 
 header('Content-Type: application/json');
