@@ -37,6 +37,6 @@ export class OptionCheckbox extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
