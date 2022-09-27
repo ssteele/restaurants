@@ -5,16 +5,15 @@ import '../../css/OptionCheckbox.css'
 
 export class OptionCheckbox extends React.Component {
   static propTypes = {
-    idx: PropTypes.number.isRequired,
     option: PropTypes.object.isRequired,
     toggleOption: PropTypes.func.isRequired,
   }
 
   public render() {
-    const { idx, option, toggleOption }: any = this.props
+    const { option, toggleOption }: any = this.props
 
     return (
-      <div className="grid-x" key={idx}>
+      <div className="grid-x">
         <div className="cell small-10">
           {option.description}
         </div>

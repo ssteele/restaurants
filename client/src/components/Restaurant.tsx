@@ -95,11 +95,12 @@ class Restaurant extends React.Component<IRestaurant> {
           <div className="options-modal-content">
             {options.map((option: any, i: number) => {
               return (
-                <OptionCheckbox
-                  idx={i}
-                  option={option}
-                  toggleOption={this.toggleOption}
-                />
+                <section key={i}>
+                  <OptionCheckbox
+                    option={option}
+                    toggleOption={this.toggleOption}
+                  />
+                </section>
               )
             })}
           </div>
