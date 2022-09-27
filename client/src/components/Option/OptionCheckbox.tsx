@@ -25,7 +25,7 @@ export class OptionCheckbox extends React.Component {
               id={option.name}
               type="checkbox"
               name={option.name}
-              checked={option.isChecked}
+              checked={option.value}
               onChange={(e) => toggleOption(option, e)}
             />
             <label className="switch-paddle" htmlFor={option.name}>

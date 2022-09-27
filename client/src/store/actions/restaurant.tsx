@@ -92,7 +92,7 @@ const zipsNearHome = [78753, 78758, 78727, 78759, 78752, 78757, 78751, 78756, 78
 
 function filter(restaurants: any, restaurantIds: any, options: any) {
   const currentFilters = options.filter((option: any) => {
-    return option.isChecked
+    return option.value
   })
 
   return restaurantIds.filter((id: number) => {
@@ -137,7 +137,7 @@ export function asyncToggleModal(): any {
 export function asyncToggleOption(option: any): any {
   return (dispatch: any, getState: any): any => {
     const { options, restaurants, restaurantIds }: any = getState().restaurant
-    option.isChecked = !option.isChecked
+    option.value = !option.value
 
     // update current options
     const updatedOptions = options.map((o: any) => {

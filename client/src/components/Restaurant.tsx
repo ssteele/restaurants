@@ -12,27 +12,10 @@ import {
   asyncBackRestaurant,
 } from '../store/actions/restaurant'
 
+import { IRestaurant } from '../models/Restaurant'
+import { IOption } from '../models/Option'
 import { OptionCheckbox } from './option/OptionCheckbox'
 import '../css/Restaurant.css'
-
-interface IRestaurant {
-  id: number
-  name: string
-  sub_name?: string
-  site: string
-  menu: string
-  organic: boolean
-  vegetarian: boolean
-  vegan: boolean
-  local: boolean
-  keto: boolean
-  indoor: boolean
-  outdoor: boolean
-  kids: []
-  zip: []
-  enabled: boolean
-  deleted: boolean
-}
 
 Modal.setAppElement('#root')
 
@@ -58,7 +41,7 @@ class Restaurant extends React.Component<IRestaurant> {
     dispatch(asyncToggleModal())
   }
 
-  public toggleOption = (option: any, e: any) => {
+  public toggleOption = (option: IOption, e: any) => {
     const { dispatch }: any = this.props
     dispatch(asyncToggleOption(option))
   }
@@ -93,8 +76,8 @@ class Restaurant extends React.Component<IRestaurant> {
           </div>
 
           <div className="options-modal-content">
-            {options.map((option: any, i: number) => {
-              return (
+            {options.map((option: IOption, i: number) => {
+              return option && (
                 <section key={i}>
                   <OptionCheckbox
                     option={option}
