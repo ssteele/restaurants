@@ -12,7 +12,7 @@ import {
   asyncBackRestaurant,
 } from '../store/actions/restaurant'
 
-import { OptionCheckbox } from './Option/OptionCheckbox'
+import { OptionCheckbox } from './option/OptionCheckbox'
 import '../css/Restaurant.css'
 
 interface IRestaurant {
