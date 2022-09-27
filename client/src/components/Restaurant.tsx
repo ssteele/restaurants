@@ -12,6 +12,7 @@ import {
   asyncBackRestaurant,
 } from '../store/actions/restaurant'
 
+import { OptionCheckbox } from './Option/OptionCheckbox'
 import '../css/Restaurant.css'
 
 interface IRestaurant {
@@ -92,30 +93,14 @@ class Restaurant extends React.Component<IRestaurant> {
           </div>
 
           <div className="options-modal-content">
-            {options.map((option: any, i: any) => {
-              return <div className="grid-x" key={i}>
-                <div className="cell small-10">
-                  {option.description}
-                </div>
-
-                <div className="cell auto option-toggle">
-                  <div className="switch">
-                    <input
-                      className="switch-input"
-                      id={option.name}
-                      type="checkbox"
-                      name={option.name}
-                      checked={option.isChecked}
-                      onChange={(e) => this.toggleOption(option, e)}
-                    />
-                    <label className="switch-paddle" htmlFor={option.name}>
-                      <span className="show-for-sr">
-                        {option.name}
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </div>
+            {options.map((option: any, i: number) => {
+              return (
+                <OptionCheckbox
+                  idx={i}
+                  option={option}
+                  toggleOption={this.toggleOption}
+                />
+              )
             })}
           </div>
         </Modal>
