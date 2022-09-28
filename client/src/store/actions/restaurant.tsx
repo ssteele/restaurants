@@ -212,6 +212,10 @@ export function prevRestaurant(): any {
   }
 }
 
+const zipNameMap: any = {
+  78613: "Cedar Park",
+}
+
 export function fetchRestaurants(): any {
   return (dispatch: any, getState: any): any => {
     dispatch(get())
@@ -243,7 +247,13 @@ export function fetchRestaurants(): any {
               })
 
               zips = zips.map((zip: number) => {
-                return {id: zip, name: zip}
+                const res: any = {id: zip}
+                if (zipNameMap[zip]) {
+                  res.name = zipNameMap[zip]
+                } else {
+                  res.name = null
+                  console.warn(`Need name for zip: ${zip}`)
+                }
               })
 
               return {...restaurant, categories, zips}
