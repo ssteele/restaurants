@@ -99,6 +99,9 @@ function filter(restaurants: any, restaurantIds: any, options: any) {
     let res = false
     return currentFilters.every((option: any) => {
       switch (option.name) {
+        case 'location':
+          res = true
+          break
         case 'kids':
           res = !!restaurants[id][option.name].length
           break

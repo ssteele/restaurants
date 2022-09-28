@@ -15,19 +15,21 @@ import {
 import { IRestaurant } from '../models/Restaurant'
 import { IOption } from '../models/Option'
 import { OptionCheckbox } from './option/OptionCheckbox'
+import { OptionSelect } from './option/OptionSelect'
 import '../css/Restaurant.css'
 
 Modal.setAppElement('#root')
 
 class Restaurant extends React.Component<IRestaurant> {
   static propTypes = {
-    options: PropTypes.array.isRequired,
     count: PropTypes.number.isRequired,
-    restaurants: PropTypes.object,
     current: PropTypes.number,
-    modalIsOpen: PropTypes.bool,
-    error: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
+    error: PropTypes.object,
+    // locations: PropTypes.array,
+    modalIsOpen: PropTypes.bool,
+    options: PropTypes.array.isRequired,
+    restaurants: PropTypes.object,
   }
 
   public componentDidMount() {
@@ -46,6 +48,13 @@ class Restaurant extends React.Component<IRestaurant> {
     dispatch(asyncToggleOption(option))
   }
 
+  public selectOption = (option: IOption, e: any) => {
+    // const { dispatch }: any = this.props
+    console.log('e:', e);
+    console.log('select option:', option);
+    // dispatch(asyncToggleOption(option))
+  }
+
   public next = () => {
     const { dispatch }: any = this.props
     dispatch(asyncNextRestaurant())
@@ -57,7 +66,15 @@ class Restaurant extends React.Component<IRestaurant> {
   }
 
   public render() {
-    const { options, restaurants, count, current, modalIsOpen, error }: any = this.props
+    const {
+      count,
+      current,
+      error,
+      // locations,
+      modalIsOpen,
+      options,
+      restaurants,
+    }: any = this.props
 
     return (
       <div>
@@ -79,10 +96,18 @@ class Restaurant extends React.Component<IRestaurant> {
             {options.map((option: IOption, i: number) => {
               return option && (
                 <section key={i}>
-                  <OptionCheckbox
-                    option={option}
-                    toggleOption={this.toggleOption}
-                  />
+                  {'checkbox' === option.type && (
+                    <OptionCheckbox
+                      option={option}
+                      toggleOption={this.toggleOption}
+                    />
+                  )}
+                  {'select' === option.type && (
+                    <OptionSelect
+                      option={option}
+                      selectOption={this.selectOption}
+                    />
+                  )}
                 </section>
               )
             })}
@@ -152,14 +177,24 @@ class Restaurant extends React.Component<IRestaurant> {
 }
 
 function mapStateToProps(state: any) {
-  const { options, restaurants, filteredCount: count, current, modalIsOpen, error } = state.restaurant
-  return {
+  const {
+    filteredCount: count,
+    current,
+    error,
+    // locations,
+    modalIsOpen,
     options,
     restaurants,
+  } = state.restaurant
+
+  return {
     count,
     current,
-    modalIsOpen,
     error,
+    // locations,
+    modalIsOpen,
+    options,
+    restaurants,
   }
 }
 

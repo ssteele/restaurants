@@ -3,4 +3,5 @@ export interface IOption {
   description: string
   type: string,
   value: any,
+  values?: string[],
 }

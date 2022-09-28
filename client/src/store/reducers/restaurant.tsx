@@ -16,6 +16,19 @@ function restaurant(
   state: any = {
     isLoading: false,
     options: [
+      {
+        name: 'location',
+        description: 'Location',
+        type: 'select',
+        value: 'All',
+        values: [
+          'All',
+          'North Austin',
+          'Central Austin',
+          'East Austin',
+          'South Austin',
+        ],
+      },
       {name: 'kids', description: 'Only kid-friendly', type: 'checkbox', value: false},
       {name: 'near', description: 'Only close to home', type: 'checkbox', value: false},
       {name: 'far', description: 'Only far from home', type: 'checkbox', value: false},
