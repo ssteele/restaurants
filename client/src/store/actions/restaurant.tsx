@@ -197,7 +197,7 @@ export function nextRestaurant(): any {
   }
 }
 
-export function backRestaurant(): any {
+export function prevRestaurant(): any {
   return (dispatch: any, getState: any): any => {
     const { viewed, viewIndex }: any = getState().restaurant
     let newViewIndex = viewIndex - 1

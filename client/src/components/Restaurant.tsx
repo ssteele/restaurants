@@ -10,7 +10,7 @@ import {
   toggleModal,
   toggleOption,
   nextRestaurant,
-  backRestaurant,
+  prevRestaurant,
 } from '../store/actions/restaurant'
 
 import { IRestaurant } from '../models/Restaurant'
@@ -61,7 +61,7 @@ class Restaurant extends React.Component<IRestaurant> {
 
   public back = () => {
     const { dispatch }: any = this.props
-    dispatch(backRestaurant())
+    dispatch(prevRestaurant())
   }
 
   public render() {
