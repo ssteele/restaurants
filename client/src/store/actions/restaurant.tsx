@@ -127,17 +127,17 @@ function getRandomPositiveInt(max: number): number {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
-export function asyncToggleModal(): any {
+export function toggleModal(): any {
   return (dispatch: any, getState: any): any => {
     const { modalIsOpen }: any = getState().restaurant
     if (modalIsOpen) {
-      dispatch(asyncNextRestaurant())
+      dispatch(nextRestaurant())
     }
     dispatch(setModal(!modalIsOpen))
   }
 }
 
-function asyncHandleFilterUpdate(option: any): any {
+function handleFilterUpdate(option: any): any {
   return (dispatch: any, getState: any): any => {
     const { options, restaurants, restaurantIds }: any = getState().restaurant
 
@@ -156,17 +156,17 @@ function asyncHandleFilterUpdate(option: any): any {
   }
 }
 
-export function asyncSelectOption(option: any, value: any): any {
+export function selectOption(option: any, value: any): any {
   option.value = value
-  return asyncHandleFilterUpdate(option)
+  return handleFilterUpdate(option)
 }
 
-export function asyncToggleOption(option: any): any {
+export function toggleOption(option: any): any {
   option.value = !option.value
-  return asyncHandleFilterUpdate(option)
+  return handleFilterUpdate(option)
 }
 
-export function asyncNextRestaurant(): any {
+export function nextRestaurant(): any {
   return (dispatch: any, getState: any): any => {
     const { filteredIds, viewed, viewIndex }: any = getState().restaurant
     let index = 0
@@ -197,7 +197,7 @@ export function asyncNextRestaurant(): any {
   }
 }
 
-export function asyncBackRestaurant(): any {
+export function backRestaurant(): any {
   return (dispatch: any, getState: any): any => {
     const { viewed, viewIndex }: any = getState().restaurant
     let newViewIndex = viewIndex - 1
@@ -212,7 +212,7 @@ export function asyncBackRestaurant(): any {
   }
 }
 
-export function asyncFetchRestaurants(): any {
+export function fetchRestaurants(): any {
   return (dispatch: any, getState: any): any => {
     dispatch(get())
 
@@ -268,13 +268,13 @@ export function asyncFetchRestaurants(): any {
             zips,
             filteredIds,
           }))
-          dispatch(asyncNextRestaurant())
+          dispatch(nextRestaurant())
         }
       })
   }
 }
 
-export function asyncGetOptionsFromLocalStorage(): any {
+export function getOptionsFromLocalStorage(): any {
   return (dispatch: any): any => {
     const storedOptions = localStorage.getItem('options')
     if (!!storedOptions) {

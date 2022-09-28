@@ -4,13 +4,13 @@ import Modal from 'react-modal'
 import PropTypes from 'prop-types'
 
 import {
-  asyncFetchRestaurants,
-  asyncGetOptionsFromLocalStorage,
-  asyncSelectOption,
-  asyncToggleModal,
-  asyncToggleOption,
-  asyncNextRestaurant,
-  asyncBackRestaurant,
+  fetchRestaurants,
+  getOptionsFromLocalStorage,
+  selectOption,
+  toggleModal,
+  toggleOption,
+  nextRestaurant,
+  backRestaurant,
 } from '../store/actions/restaurant'
 
 import { IRestaurant } from '../models/Restaurant'
@@ -35,33 +35,33 @@ class Restaurant extends React.Component<IRestaurant> {
 
   public componentDidMount() {
     const { dispatch }: any = this.props
-    dispatch(asyncGetOptionsFromLocalStorage())
-    dispatch(asyncFetchRestaurants())
+    dispatch(getOptionsFromLocalStorage())
+    dispatch(fetchRestaurants())
   }
 
   public toggleModal = (e: any) => {
     const { dispatch }: any = this.props
-    dispatch(asyncToggleModal())
+    dispatch(toggleModal())
   }
 
   public toggleOption = (option: IOption, e: any) => {
     const { dispatch }: any = this.props
-    dispatch(asyncToggleOption(option))
+    dispatch(toggleOption(option))
   }
 
   public selectOption = (option: IOption, e: any) => {
     const { dispatch }: any = this.props
-    dispatch(asyncSelectOption(option, e.target.value))
+    dispatch(selectOption(option, e.target.value))
   }
 
   public next = () => {
     const { dispatch }: any = this.props
-    dispatch(asyncNextRestaurant())
+    dispatch(nextRestaurant())
   }
 
   public back = () => {
     const { dispatch }: any = this.props
-    dispatch(asyncBackRestaurant())
+    dispatch(backRestaurant())
   }
 
   public render() {
