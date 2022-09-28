@@ -137,10 +137,9 @@ export function asyncToggleModal(): any {
   }
 }
 
-export function asyncSelectOption(option: any, value: any): any {
+function asyncHandleFilterUpdate(option: any): any {
   return (dispatch: any, getState: any): any => {
     const { options, restaurants, restaurantIds }: any = getState().restaurant
-    option.value = value
 
     // update current options
     const updatedOptions = options.map((o: any) => {
@@ -149,6 +148,7 @@ export function asyncSelectOption(option: any, value: any): any {
     dispatch(setOptions(updatedOptions))
     localStorage.setItem('options', JSON.stringify(updatedOptions))
 
+    // update filtered restaurants
     const updatedFiltered = filter(restaurants, restaurantIds, updatedOptions)
     dispatch(setFiltered(updatedFiltered))
 
@@ -156,23 +156,14 @@ export function asyncSelectOption(option: any, value: any): any {
   }
 }
 
+export function asyncSelectOption(option: any, value: any): any {
+  option.value = value
+  return asyncHandleFilterUpdate(option)
+}
+
 export function asyncToggleOption(option: any): any {
-  return (dispatch: any, getState: any): any => {
-    const { options, restaurants, restaurantIds }: any = getState().restaurant
-    option.value = !option.value
-
-    // update current options
-    const updatedOptions = options.map((o: any) => {
-      return (o.name === option.name) ? option : o
-    })
-    dispatch(setOptions(updatedOptions))
-    localStorage.setItem('options', JSON.stringify(updatedOptions))
-
-    const updatedFiltered = filter(restaurants, restaurantIds, updatedOptions)
-    dispatch(setFiltered(updatedFiltered))
-
-    dispatch(resetViewed())
-  }
+  option.value = !option.value
+  return asyncHandleFilterUpdate(option)
 }
 
 export function asyncNextRestaurant(): any {
