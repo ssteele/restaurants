@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import {
   asyncFetchRestaurants,
   asyncGetOptionsFromLocalStorage,
+  asyncSelectOption,
   asyncToggleModal,
   asyncToggleOption,
   asyncNextRestaurant,
@@ -49,10 +50,8 @@ class Restaurant extends React.Component<IRestaurant> {
   }
 
   public selectOption = (option: IOption, e: any) => {
-    // const { dispatch }: any = this.props
-    console.log('e:', e);
-    console.log('select option:', option);
-    // dispatch(asyncToggleOption(option))
+    const { dispatch }: any = this.props
+    dispatch(asyncSelectOption(option, e.target.value))
   }
 
   public next = () => {

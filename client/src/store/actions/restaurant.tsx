@@ -137,6 +137,25 @@ export function asyncToggleModal(): any {
   }
 }
 
+export function asyncSelectOption(option: any, value: any): any {
+  return (dispatch: any, getState: any): any => {
+    const { options, restaurants, restaurantIds }: any = getState().restaurant
+    option.value = value
+
+    // update current options
+    const updatedOptions = options.map((o: any) => {
+      return (o.name === option.name) ? option : o
+    })
+    dispatch(setOptions(updatedOptions))
+    localStorage.setItem('options', JSON.stringify(updatedOptions))
+
+    const updatedFiltered = filter(restaurants, restaurantIds, updatedOptions)
+    dispatch(setFiltered(updatedFiltered))
+
+    dispatch(resetViewed())
+  }
+}
+
 export function asyncToggleOption(option: any): any {
   return (dispatch: any, getState: any): any => {
     const { options, restaurants, restaurantIds }: any = getState().restaurant
