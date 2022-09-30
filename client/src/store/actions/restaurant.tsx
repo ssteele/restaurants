@@ -108,7 +108,8 @@ function filter(restaurants: any, restaurantIds: any, options: any) {
     return currentFilters.every((option: any) => {
       switch (option.name) {
         case 'location':
-          res = true
+          const { value: zip } = option;
+          res = restaurants[id]['zips'].includes(parseInt(zip))
           break
         case 'kids':
           res = !!restaurants[id][option.name].length
