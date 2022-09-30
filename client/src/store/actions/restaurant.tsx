@@ -331,12 +331,12 @@ export function getZipFromLatLon({lat, lon}: any) {
         .then((json) => {
           if (!json.error) {
             const addressComponents = json.results[0].address_components
-            const zip: any = addressComponents.find((ac: any) => ac.types.includes('postal_code'))
+            const zip: any = addressComponents.find((ac: any) => ac.types.includes('postal_code')).short_name
             console.log('SHS zip:', zip);
             dispatch(setGeolocation({
               lat,
               lon,
-              zip,
+              zip: parseInt(zip),
             }))
           }
         })
