@@ -3,7 +3,7 @@ import {
   normalize,
   schema,
 } from 'normalizr'
-import { API_ENDPOINT, ZIP_NAME_MAP } from '../../constants'
+import { API_ENDPOINT, ZIP_NAME_MAP, zipsNearHome } from '../../constants'
 
 /*
  * action types
@@ -95,8 +95,6 @@ export function resetViewed(): any {
     type: RESET_VIEWED_RESTAURANTS,
   }
 }
-
-const zipsNearHome = [78753, 78758, 78727, 78759, 78752, 78757, 78751, 78756, 78723]
 
 function filter(restaurants: any, restaurantIds: any, options: any) {
   const currentFilters = options.filter((option: any) => {

@@ -8,6 +8,10 @@ if ('development' === process.env.NODE_ENV) {
     apiEnv = 'loc'
 }
 export const API_ENDPOINT = apiEndpoints[apiEnv]
+
+// @todo: move to api endpoint
+export const zipsNearHome = [78753, 78758, 78727, 78759, 78752, 78757, 78751, 78756, 78723]
+
 export const ZIP_NAME_MAP: any = {
   78613: 'Cedar Park',
   78664: 'Round Rock',
