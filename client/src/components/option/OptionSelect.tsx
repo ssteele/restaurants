@@ -12,7 +12,7 @@ export class OptionSelect extends React.Component {
   public render() {
     const { option, selectOption }: any = this.props
 
-    return (
+    return !!option && (
       <div className="grid-x">
         <div className="cell small-10">
           {option.description}
@@ -24,9 +24,9 @@ export class OptionSelect extends React.Component {
             value={option.value}
             onChange={(e) => selectOption(option, e)}
           >
-            {option.values.map((value: string, i: number) => {
+            {!!option.values && option.values.map(({id: zip, name}: any, i: number) => {
               return (
-                <option value={value} key={i}>{value}</option>
+                <option value={zip} key={i}>{zip} - {name}</option>
               )
             })}
           </select>

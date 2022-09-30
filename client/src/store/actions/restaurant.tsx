@@ -3,7 +3,7 @@ import {
   normalize,
   schema,
 } from 'normalizr'
-import { API_ENDPOINT } from '../../constants'
+import { API_ENDPOINT, ZIP_NAME_MAP } from '../../constants'
 
 /*
  * action types
@@ -13,6 +13,7 @@ export const GET_RESTAURANTS_SUCCESS = 'GET_RESTAURANTS_SUCCESS'
 export const GET_RESTAURANTS_ERROR = 'GET_RESTAURANTS_ERROR'
 export const SET_MODAL = 'SET_MODAL'
 export const SET_OPTIONS = 'SET_OPTIONS'
+export const SET_OPTION_LOCATIONS = 'SET_OPTION_LOCATIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CURRENT_RESTAURANT = 'SET_CURRENT_RESTAURANT'
 export const SET_VIEWED_RESTAURANTS = 'SET_VIEWED_RESTAURANTS'
@@ -43,6 +44,13 @@ export function getError(error: any) {
   return {
     type: GET_RESTAURANTS_ERROR,
     error,
+  }
+}
+
+export function setOptionLocations(locations: any): any {
+  return {
+    type: SET_OPTION_LOCATIONS,
+    locations,
   }
 }
 
@@ -212,10 +220,6 @@ export function prevRestaurant(): any {
   }
 }
 
-const zipNameMap: any = {
-  78613: "Cedar Park",
-}
-
 export function fetchRestaurants(): any {
   return (dispatch: any, getState: any): any => {
     dispatch(get())
@@ -248,12 +252,13 @@ export function fetchRestaurants(): any {
 
               zips = zips.map((zip: number) => {
                 const res: any = {id: zip}
-                if (zipNameMap[zip]) {
-                  res.name = zipNameMap[zip]
+                if (ZIP_NAME_MAP[zip]) {
+                  res.name = ZIP_NAME_MAP[zip]
                 } else {
                   res.name = null
                   console.warn(`Need name for zip: ${zip}`)
                 }
+                return res
               })
 
               return {...restaurant, categories, zips}
@@ -275,9 +280,11 @@ export function fetchRestaurants(): any {
             restaurants,
             restaurantIds,
             categories,
-            zips,
+            // zips, // @todo: remove me
             filteredIds,
           }))
+          const zipsArray = Object.values(zips as any)
+          dispatch(setOptionLocations(zipsArray))
           dispatch(nextRestaurant())
         }
       })

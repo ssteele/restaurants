@@ -6,6 +6,7 @@ import {
   GET_RESTAURANTS_ERROR,
   SET_MODAL,
   SET_OPTIONS,
+  SET_OPTION_LOCATIONS,
   SET_FILTERED,
   SET_CURRENT_RESTAURANT,
   SET_VIEWED_RESTAURANTS,
@@ -79,7 +80,7 @@ function restaurant(
           restaurantIds: action.restaurantIds || [],
           categories: action.categories || [],
           // @todo: zips store node not used currently - can change this to be locations if desired
-          zips: action.zips || [],
+          // zips: action.zips || [],
           filteredIds: action.filteredIds || [],
           filteredCount: action.filteredIds.length,
         }
@@ -95,6 +96,19 @@ function restaurant(
           filteredIds: state.filteredIds || [],
           filteredCount: state.filteredIds.length,
           error: action.error,
+        }
+      }
+
+    case SET_OPTION_LOCATIONS:
+      return {
+        ...state,
+        ...{
+          options: state.options.map((o: any) => {
+              if ('location' === o.name) {
+                o.values = action.locations
+              }
+              return o
+          }),
         }
       }
 
