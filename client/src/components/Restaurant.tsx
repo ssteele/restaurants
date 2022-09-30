@@ -17,6 +17,7 @@ import { IRestaurant } from '../models/Restaurant'
 import { IOption } from '../models/Option'
 import { OptionCheckbox } from './option/OptionCheckbox'
 import { OptionSelect } from './option/OptionSelect'
+import { LocationsSelect } from './option/LocationsSelect'
 import '../css/Restaurant.css'
 
 Modal.setAppElement('#root')
@@ -52,6 +53,12 @@ class Restaurant extends React.Component<IRestaurant> {
   public selectOption = (option: IOption, e: any) => {
     const { dispatch }: any = this.props
     dispatch(selectOption(option, e.target.value))
+  }
+
+  public selectMultiOptions = (option: IOption, e: any) => {
+    const { dispatch }: any = this.props
+    const valueArray = Array.from(e.target.selectedOptions, (option: any) => option.value)
+    dispatch(selectOption(option, valueArray))
   }
 
   public next = () => {
@@ -105,6 +112,12 @@ class Restaurant extends React.Component<IRestaurant> {
                     <OptionSelect
                       option={option}
                       selectOption={this.selectOption}
+                    />
+                  )}
+                  {'locationSelect' === option.type && (
+                    <LocationsSelect
+                      option={option}
+                      selectOption={this.selectMultiOptions}
                     />
                   )}
                 </section>
