@@ -6,11 +6,12 @@ import PropTypes from 'prop-types'
 import {
   fetchRestaurants,
   getOptionsFromLocalStorage,
+  getZipFromLatLon,
+  nextRestaurant,
+  prevRestaurant,
   selectOption,
   toggleModal,
   toggleOption,
-  nextRestaurant,
-  prevRestaurant,
 } from '../store/actions/restaurant'
 
 import { IRestaurant } from '../models/Restaurant'
@@ -34,7 +35,27 @@ class Restaurant extends React.Component<IRestaurant> {
     restaurants: PropTypes.object,
   }
 
+  private async getCoordinates() {
+    return new Promise(function(resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject)
+    });
+  }
+
+  public async getGeolocation() {
+    if (!('geolocation' in navigator)) {
+      console.warn('Location services are unavailable')
+    } else {
+      const { dispatch }: any = this.props
+      const position: any = await this.getCoordinates()
+      dispatch(getZipFromLatLon({
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+      }))
+    }
+  }
+
   public componentDidMount() {
+    this.getGeolocation()
     const { dispatch }: any = this.props
     dispatch(getOptionsFromLocalStorage())
     dispatch(fetchRestaurants())

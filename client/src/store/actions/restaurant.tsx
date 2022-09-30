@@ -3,7 +3,15 @@ import {
   normalize,
   schema,
 } from 'normalizr'
-import { API_ENDPOINT, ZIP_NAME_MAP, zipsNearHome } from '../../constants'
+import {
+  API_ENDPOINT,
+  DEFAULT_ZIP,
+  GOOGLE_MAPS_API_ENDPOINT,
+  GOOGLE_MAPS_API_KEY,
+  IS_GOOGLE_MAPS_ENABLED,
+  ZIP_NAME_MAP,
+  zipsNearHome,
+} from '../../constants'
 
 /*
  * action types
@@ -13,6 +21,7 @@ export const GET_RESTAURANTS_SUCCESS = 'GET_RESTAURANTS_SUCCESS'
 export const GET_RESTAURANTS_ERROR = 'GET_RESTAURANTS_ERROR'
 export const SET_MODAL = 'SET_MODAL'
 export const SET_OPTIONS = 'SET_OPTIONS'
+export const SET_GEOLOCATION = 'SET_GEOLOCATION'
 export const SET_OPTION_LOCATIONS = 'SET_OPTION_LOCATIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CURRENT_RESTAURANT = 'SET_CURRENT_RESTAURANT'
@@ -44,6 +53,13 @@ export function getError(error: any) {
   return {
     type: GET_RESTAURANTS_ERROR,
     error,
+  }
+}
+
+export function setGeolocation(location: any): any {
+  return {
+    type: SET_GEOLOCATION,
+    location,
   }
 }
 
@@ -96,7 +112,7 @@ export function resetViewed(): any {
   }
 }
 
-function filter(restaurants: any, restaurantIds: any, options: any) {
+function filter(restaurants: any, restaurantIds: any, options: any, geolocation: any) {
   const currentFilters = options.filter((option: any) => {
     return option.value
   })
@@ -105,6 +121,18 @@ function filter(restaurants: any, restaurantIds: any, options: any) {
     let res = false
     return currentFilters.every((option: any) => {
       switch (option.name) {
+        case 'geolocation':
+          if ('geolocation' in navigator) {
+            const { zip } = geolocation
+            if (zip) {
+              console.log('SHS zip:', zip);
+              // @todo: filter on location
+            }
+          } else {
+            console.warn('Location services are unavailable')
+          }
+          res = true
+          break
         case 'location':
           const { value: zips } = option;
           res = zips.filter((z: string) => restaurants[id]['zips'].includes(parseInt(z))).length
@@ -146,7 +174,7 @@ export function toggleModal(): any {
 
 function handleFilterUpdate(option: any): any {
   return (dispatch: any, getState: any): any => {
-    const { options, restaurants, restaurantIds }: any = getState().restaurant
+    const { geolocation, options, restaurants, restaurantIds }: any = getState().restaurant
 
     // update current options
     const updatedOptions = options.map((o: any) => {
@@ -156,7 +184,7 @@ function handleFilterUpdate(option: any): any {
     localStorage.setItem('options', JSON.stringify(updatedOptions))
 
     // update filtered restaurants
-    const updatedFiltered = filter(restaurants, restaurantIds, updatedOptions)
+    const updatedFiltered = filter(restaurants, restaurantIds, updatedOptions, geolocation)
     dispatch(setFiltered(updatedFiltered))
 
     dispatch(resetViewed())
@@ -272,8 +300,8 @@ export function fetchRestaurants(): any {
           const { restaurants, categories, zips } = normalized.entities
           const { restaurants: restaurantIds } = normalized.result
 
-          const { options }: any = getState().restaurant
-          const filteredIds = filter(restaurants, restaurantIds, options)
+          const { geolocation, options }: any = getState().restaurant
+          const filteredIds = filter(restaurants, restaurantIds, options, geolocation)
 
           dispatch(getSuccess({
             restaurants,
@@ -282,11 +310,43 @@ export function fetchRestaurants(): any {
             // zips, // @todo: remove me
             filteredIds,
           }))
+
           const zipsArray = Object.values(zips as any)
           dispatch(setOptionLocations(zipsArray))
           dispatch(nextRestaurant())
         }
       })
+  }
+}
+
+export function getZipFromLatLon({lat, lon}: any) {
+  return (dispatch: any): any => {
+    if (IS_GOOGLE_MAPS_ENABLED) {
+      const googleMapsEndpoint = `${GOOGLE_MAPS_API_ENDPOINT}?latlng=${lat},${lon}&key=${GOOGLE_MAPS_API_KEY}`
+      return fetch(googleMapsEndpoint)
+        .then(
+          response => response.json(),
+          error => dispatch(getError(error))
+        )
+        .then((json) => {
+          if (!json.error) {
+            const addressComponents = json.results[0].address_components
+            const zip: any = addressComponents.find((ac: any) => ac.types.includes('postal_code'))
+            console.log('SHS zip:', zip);
+            dispatch(setGeolocation({
+              lat,
+              lon,
+              zip,
+            }))
+          }
+        })
+    } else {
+      dispatch(setGeolocation({
+        lat,
+        lon,
+        zip: DEFAULT_ZIP,
+      }))
+    }
   }
 }
 

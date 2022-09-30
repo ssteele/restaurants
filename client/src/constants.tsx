@@ -9,10 +9,15 @@ if ('development' === process.env.NODE_ENV) {
 }
 export const API_ENDPOINT = apiEndpoints[apiEnv]
 
+export const IS_GOOGLE_MAPS_ENABLED = false
+export const GOOGLE_MAPS_API_ENDPOINT = 'https://maps.googleapis.com/maps/api/geocode/json'
+
+export const DEFAULT_ZIP = 78753
 // @todo: move to api endpoint
-export const zipsNearHome = [78753, 78758, 78727, 78759, 78752, 78757, 78751, 78756, 78723]
+export const zipsNearHome = [78753, 78758, 78754, 78710, 78727, 78752, 78757, 78728, 78759, 78660, 78751, 78723, 78756]
 
 export const ZIP_NAME_MAP: any = {
+  78753: 'Tech Ridge',
   78613: 'Cedar Park',
   78664: 'Round Rock',
   78701: 'Downtown Austin',
@@ -33,7 +38,6 @@ export const ZIP_NAME_MAP: any = {
   78750: 'Anderson Mill',
   78751: 'Hyde Park',
   78752: 'St. Johns',
-  78753: 'Tech Ridge',
   78756: 'Brentwood/Rosedale',
   78757: 'Anderson Ln',
   78758: 'North Austin',

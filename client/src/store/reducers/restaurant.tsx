@@ -6,6 +6,7 @@ import {
   GET_RESTAURANTS_ERROR,
   SET_MODAL,
   SET_OPTIONS,
+  SET_GEOLOCATION,
   SET_OPTION_LOCATIONS,
   SET_FILTERED,
   SET_CURRENT_RESTAURANT,
@@ -24,6 +25,7 @@ function restaurant(
         value: [],
         values: [],
       },
+      {name: 'geolocation', description: 'Only near me', type: 'checkbox', value: false},
       {name: 'kids', description: 'Only kid-friendly', type: 'checkbox', value: false},
       {name: 'near', description: 'Only close to home', type: 'checkbox', value: false},
       {name: 'far', description: 'Only far from home', type: 'checkbox', value: false},
@@ -38,6 +40,7 @@ function restaurant(
     restaurants: {},
     restaurantIds: [],
     categories: [],
+    geolocation: {},
     zips: [],
     filteredIds: [],
     filteredCount: 0,
@@ -90,6 +93,14 @@ function restaurant(
           filteredIds: state.filteredIds || [],
           filteredCount: state.filteredIds.length,
           error: action.error,
+        }
+      }
+
+    case SET_GEOLOCATION:
+      return {
+        ...state,
+        ...{
+          geolocation: action.location,
         }
       }
 
