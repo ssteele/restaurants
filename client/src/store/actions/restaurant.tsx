@@ -126,7 +126,7 @@ function filter(restaurants: any, restaurantIds: any, options: any, geolocation:
             const { zip } = geolocation
             if (zip) {
               console.log('SHS zip:', zip);
-              // @todo: filter on location
+              // @todo: create new JSON api endpoint, filter on location, add all endpoints
             }
           } else {
             console.warn('Location services are unavailable')
