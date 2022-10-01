@@ -35,13 +35,19 @@ class Restaurant extends React.Component<IRestaurant> {
     restaurants: PropTypes.object,
   }
 
-  private async getCoordinates() {
+  public componentDidMount() {
+    const { dispatch }: any = this.props
+    dispatch(getOptionsFromLocalStorage())
+    dispatch(fetchRestaurants())
+  }
+
+  public getCoordinates = async () => {
     return new Promise(function(resolve, reject) {
       navigator.geolocation.getCurrentPosition(resolve, reject)
     });
   }
 
-  public async getGeolocation() {
+  public getGeolocation = async () => {
     if (!('geolocation' in navigator)) {
       console.warn('Location services are unavailable')
     } else {
@@ -52,13 +58,6 @@ class Restaurant extends React.Component<IRestaurant> {
         lon: position.coords.longitude,
       }))
     }
-  }
-
-  public componentDidMount() {
-    this.getGeolocation()
-    const { dispatch }: any = this.props
-    dispatch(getOptionsFromLocalStorage())
-    dispatch(fetchRestaurants())
   }
 
   public toggleModal = (e: any) => {
@@ -146,6 +145,13 @@ class Restaurant extends React.Component<IRestaurant> {
             })}
           </div>
         </Modal>
+
+        <div
+          className="geolocation-fetch splash"
+          onClick={this.getGeolocation}
+        >
+          <i className="fa fa-compass fa-lg"></i>
+        </div>
 
         <div
           className="options-modal-open splash"
