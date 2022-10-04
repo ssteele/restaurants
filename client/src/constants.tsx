@@ -9,8 +9,9 @@ if ('development' === process.env.NODE_ENV) {
 }
 export const API_ENDPOINT = apiEndpoints[apiEnv]
 export const IS_GOOGLE_MAPS_ENABLED = 'true' === process.env.REACT_APP_IS_GOOGLE_MAPS_ENABLED
-export const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+export const GOOGLE_MAPS_COOL_OFF_SECONDS = 300
 export const GOOGLE_MAPS_API_ENDPOINT = 'https://maps.googleapis.com/maps/api/geocode/json'
+export const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 export const DEFAULT_ZIP = 78753
 // @todo: move to api endpoint
 export const zipsNearHome = [78753, 78758, 78754, 78710, 78727, 78752, 78757, 78728, 78759, 78660, 78751, 78723, 78756]

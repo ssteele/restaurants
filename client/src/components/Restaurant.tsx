@@ -4,6 +4,10 @@ import Modal from 'react-modal'
 import PropTypes from 'prop-types'
 
 import {
+  GOOGLE_MAPS_COOL_OFF_SECONDS,
+} from '../constants'
+
+import {
   fetchRestaurants,
   getGeolocation,
   getGeolocationFromLocalStorage,
@@ -52,7 +56,18 @@ class Restaurant extends React.Component<IRestaurant> {
   }
 
   public getGeolocation = async (geolocation: any) => {
+    let isCoolOffPeriod = false
+    if (geolocation.timestamp) {
+      const secondsSinceLastFetch = Math.floor((Date.now() - geolocation.timestamp) / 1000)
+      if (secondsSinceLastFetch < GOOGLE_MAPS_COOL_OFF_SECONDS) {
+        isCoolOffPeriod = true
+      }
+    }
     if (geolocation.isGeolocating) {
+      console.warn('Geolocating now - please wait');
+      return
+    } else if (isCoolOffPeriod) {
+      console.warn('Geolocation cool down - too soon since the last request');
       return
     } else if (!('geolocation' in navigator)) {
       console.warn('Location services are unavailable')

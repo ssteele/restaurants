@@ -350,6 +350,7 @@ export function getZipFromLatLon({lat, lon}: any) {
             geolocation = {
               lat,
               lon,
+              timestamp: Date.now(),
               zip: parseInt(zip),
             }
             dispatch(setGeolocation(geolocation))
@@ -360,6 +361,7 @@ export function getZipFromLatLon({lat, lon}: any) {
       geolocation = {
         lat,
         lon,
+        timestamp: Date.now(),
         zip: DEFAULT_ZIP,
       }
       dispatch(setGeolocation(geolocation))
