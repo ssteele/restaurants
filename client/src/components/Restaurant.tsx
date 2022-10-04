@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 import {
   fetchRestaurants,
+  getGeolocation,
   getGeolocationFromLocalStorage,
   getOptionsFromLocalStorage,
   getZipFromLatLon,
@@ -31,6 +32,7 @@ class Restaurant extends React.Component<IRestaurant> {
     error: PropTypes.object,
     filteredCount: PropTypes.number.isRequired,
     geolocation: PropTypes.object,
+    isGeolocating: PropTypes.bool,
     // locations: PropTypes.array,
     modalIsOpen: PropTypes.bool,
     options: PropTypes.array.isRequired,
@@ -50,12 +52,16 @@ class Restaurant extends React.Component<IRestaurant> {
     });
   }
 
-  public getGeolocation = async () => {
-    if (!('geolocation' in navigator)) {
+  public getGeolocation = async (isGeolocating: boolean) => {
+    if (isGeolocating) {
+      return
+    } else if (!('geolocation' in navigator)) {
       console.warn('Location services are unavailable')
     } else {
       const { dispatch }: any = this.props
+      dispatch(getGeolocation())
       const position: any = await this.getCoordinates()
+      console.log('SHS position:', position);
       dispatch(getZipFromLatLon({
         lat: position.coords.latitude,
         lon: position.coords.longitude,
@@ -100,6 +106,7 @@ class Restaurant extends React.Component<IRestaurant> {
       error,
       filteredCount,
       geolocation,
+      isGeolocating,
       // locations,
       modalIsOpen,
       options,
@@ -150,12 +157,18 @@ class Restaurant extends React.Component<IRestaurant> {
           </div>
         </Modal>
 
-        <div className={`geolocation-trigger ${geolocation.zip ? 'inset' : ''}`}>
+        <div
+          className={`
+            geolocation-trigger
+            ${geolocation.zip ? 'inset' : ''}
+            ${geolocation.zip && !isGeolocating ? 'flash' : ''}
+          `}
+          onClick={() => this.getGeolocation(isGeolocating)}
+        >
           <span
             className="splash"
-            onClick={this.getGeolocation}
           >
-            <i className="fa fa-compass fa-lg"></i>
+            <i className={`fa fa-compass fa-lg ${isGeolocating ? 'fa-spin' : ''}`}></i>
           </span>
 
           {geolocation.zip && (
@@ -231,6 +244,7 @@ function mapStateToProps(state: any) {
     error,
     filteredCount,
     geolocation,
+    isGeolocating,
     // locations,
     modalIsOpen,
     options,
@@ -242,6 +256,7 @@ function mapStateToProps(state: any) {
     error,
     filteredCount,
     geolocation,
+    isGeolocating,
     // locations,
     modalIsOpen,
     options,

@@ -19,6 +19,7 @@ import {
 export const GET_RESTAURANTS = 'GET_RESTAURANTS'
 export const GET_RESTAURANTS_SUCCESS = 'GET_RESTAURANTS_SUCCESS'
 export const GET_RESTAURANTS_ERROR = 'GET_RESTAURANTS_ERROR'
+export const GET_GEOLOCATION = 'GET_GEOLOCATION'
 export const SET_MODAL = 'SET_MODAL'
 export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_GEOLOCATION = 'SET_GEOLOCATION'
@@ -53,6 +54,12 @@ export function getRestaurantsError(error: any) {
   return {
     type: GET_RESTAURANTS_ERROR,
     error,
+  }
+}
+
+export function getGeolocation() {
+  return {
+    type: GET_GEOLOCATION,
   }
 }
 

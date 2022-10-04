@@ -6,6 +6,7 @@ import {
   GET_RESTAURANTS_ERROR,
   SET_MODAL,
   SET_OPTIONS,
+  GET_GEOLOCATION,
   SET_GEOLOCATION,
   SET_OPTION_LOCATIONS,
   SET_FILTERED,
@@ -17,6 +18,7 @@ import {
 function restaurant(
   state: any = {
     isLoading: false,
+    isGeolocating: false,
     options: [
       // {
       //   name: 'location',
@@ -96,11 +98,20 @@ function restaurant(
         }
       }
 
+    case GET_GEOLOCATION:
+      return {
+        ...state,
+        ...{
+          isGeolocating: true,
+        }
+      }
+
     case SET_GEOLOCATION:
       return {
         ...state,
         ...{
           geolocation: action.location,
+          isGeolocating: false,
         }
       }
 
