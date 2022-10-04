@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 import {
   fetchRestaurants,
+  getGeolocationFromLocalStorage,
   getOptionsFromLocalStorage,
   getZipFromLatLon,
   nextRestaurant,
@@ -38,6 +39,7 @@ class Restaurant extends React.Component<IRestaurant> {
 
   public componentDidMount() {
     const { dispatch }: any = this.props
+    dispatch(getGeolocationFromLocalStorage())
     dispatch(getOptionsFromLocalStorage())
     dispatch(fetchRestaurants())
   }

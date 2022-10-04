@@ -31,13 +31,13 @@ export const RESET_VIEWED_RESTAURANTS = 'RESET_VIEWED_RESTAURANTS'
 /*
  * action creators
  */
-export function get() {
+export function getRestaurants() {
   return {
     type: GET_RESTAURANTS,
   }
 }
 
-export function getSuccess(json: any) {
+export function getRestaurantsSuccess(json: any) {
   const { restaurants, restaurantIds, categories, zips, filteredIds } = json
   return {
     type: GET_RESTAURANTS_SUCCESS,
@@ -49,7 +49,7 @@ export function getSuccess(json: any) {
   }
 }
 
-export function getError(error: any) {
+export function getRestaurantsError(error: any) {
   return {
     type: GET_RESTAURANTS_ERROR,
     error,
@@ -249,12 +249,12 @@ export function prevRestaurant(): any {
 
 export function fetchRestaurants(): any {
   return (dispatch: any, getState: any): any => {
-    dispatch(get())
+    dispatch(getRestaurants())
 
     return fetch(API_ENDPOINT)
       .then(
         response => response.json(),
-        error => dispatch(getError(error))
+        error => dispatch(getRestaurantsError(error))
       )
       .then((json) => {
         if (!json.error) {
@@ -303,7 +303,7 @@ export function fetchRestaurants(): any {
           const { geolocation, options }: any = getState().restaurant
           const filteredIds = filter(restaurants, restaurantIds, options, geolocation)
 
-          dispatch(getSuccess({
+          dispatch(getRestaurantsSuccess({
             restaurants,
             restaurantIds,
             categories,
@@ -321,30 +321,45 @@ export function fetchRestaurants(): any {
 
 export function getZipFromLatLon({lat, lon}: any) {
   return (dispatch: any): any => {
+    let geolocation
     if (IS_GOOGLE_MAPS_ENABLED) {
       const googleMapsEndpoint = `${GOOGLE_MAPS_API_ENDPOINT}?latlng=${lat},${lon}&key=${GOOGLE_MAPS_API_KEY}`
       return fetch(googleMapsEndpoint)
         .then(
           response => response.json(),
-          error => dispatch(getError(error))
+          error => dispatch(getRestaurantsError(error))
         )
         .then((json) => {
           if (!json.error) {
             const addressComponents = json.results[0].address_components
             const zip: any = addressComponents.find((ac: any) => ac.types.includes('postal_code')).short_name
-            dispatch(setGeolocation({
+            geolocation = {
               lat,
               lon,
               zip: parseInt(zip),
-            }))
+            }
+            dispatch(setGeolocation(geolocation))
+            localStorage.setItem('geolocation', JSON.stringify(geolocation))
           }
         })
     } else {
-      dispatch(setGeolocation({
+      geolocation = {
         lat,
         lon,
         zip: DEFAULT_ZIP,
-      }))
+      }
+      dispatch(setGeolocation(geolocation))
+      localStorage.setItem('geolocation', JSON.stringify(geolocation))
+    }
+  }
+}
+
+export function getGeolocationFromLocalStorage(): any {
+  return (dispatch: any): any => {
+    const storedGeolocation = localStorage.getItem('geolocation')
+    if (!!storedGeolocation) {
+      const geolocation = JSON.parse(storedGeolocation)
+      dispatch(setGeolocation(geolocation))
     }
   }
 }
