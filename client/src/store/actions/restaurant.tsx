@@ -311,6 +311,12 @@ export function fetchRestaurants(): any {
             filteredIds,
           }))
 
+          // order options by ZIP_NAME_MAP
+          // zips = Object.entries(ZIP_NAME_MAP).map(([zip, name]: any) => {
+          //   return {id: parseInt(zip), name}
+          // })
+          // console.log('SHS zips:', zips);
+
           const zipsArray = Object.values(zips as any)
           dispatch(setOptionLocations(zipsArray))
           dispatch(nextRestaurant())
