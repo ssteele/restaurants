@@ -329,6 +329,7 @@ export function getZipFromLatLon({lat, lon}: any) {
   return (dispatch: any): any => {
     let geolocation
     if (IS_GOOGLE_MAPS_ENABLED) {
+      console.warn('Google Maps API lookup is enabled');
       const googleMapsEndpoint = `${GOOGLE_MAPS_API_ENDPOINT}?latlng=${lat},${lon}&key=${GOOGLE_MAPS_API_KEY}`
       return fetch(googleMapsEndpoint)
         .then(
