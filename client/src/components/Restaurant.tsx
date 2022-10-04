@@ -25,10 +25,11 @@ Modal.setAppElement('#root')
 
 class Restaurant extends React.Component<IRestaurant> {
   static propTypes = {
-    count: PropTypes.number.isRequired,
     current: PropTypes.number,
     dispatch: PropTypes.func.isRequired,
     error: PropTypes.object,
+    filteredCount: PropTypes.number.isRequired,
+    geolocation: PropTypes.object,
     // locations: PropTypes.array,
     modalIsOpen: PropTypes.bool,
     options: PropTypes.array.isRequired,
@@ -93,9 +94,10 @@ class Restaurant extends React.Component<IRestaurant> {
 
   public render() {
     const {
-      count,
       current,
       error,
+      filteredCount,
+      geolocation,
       // locations,
       modalIsOpen,
       options,
@@ -111,7 +113,7 @@ class Restaurant extends React.Component<IRestaurant> {
           overlayClassName="options-modal-overlay"
         >
           <div className="options-modal-bar">
-            <span>{count} total restaurants</span>
+            <span>{filteredCount} total restaurants</span>
 
             <button onClick={this.toggleModal}>
               <i className="fa fa-times fa-lg options-modal-close splash"></i>
@@ -146,11 +148,17 @@ class Restaurant extends React.Component<IRestaurant> {
           </div>
         </Modal>
 
-        <div
-          className="geolocation-fetch splash"
-          onClick={this.getGeolocation}
-        >
-          <i className="fa fa-compass fa-lg"></i>
+        <div className={`geolocation-trigger ${geolocation.zip ? 'inset' : ''}`}>
+          <span
+            className="splash"
+            onClick={this.getGeolocation}
+          >
+            <i className="fa fa-compass fa-lg"></i>
+          </span>
+
+          {geolocation.zip && (
+            <span className="subtle geolocation-zip">{geolocation.zip}</span>
+          )}
         </div>
 
         <div
@@ -198,7 +206,7 @@ class Restaurant extends React.Component<IRestaurant> {
             <button
               className="button secondary"
               onClick={this.back}
-              disabled={count < 2}
+              disabled={filteredCount < 2}
             >Back</button>
           </div>
 
@@ -206,7 +214,7 @@ class Restaurant extends React.Component<IRestaurant> {
             <button
               className="button"
               onClick={this.next}
-              disabled={count < 2}
+              disabled={filteredCount < 2}
             >Next</button>
           </div>
         </div>
@@ -217,9 +225,10 @@ class Restaurant extends React.Component<IRestaurant> {
 
 function mapStateToProps(state: any) {
   const {
-    filteredCount: count,
     current,
     error,
+    filteredCount,
+    geolocation,
     // locations,
     modalIsOpen,
     options,
@@ -227,9 +236,10 @@ function mapStateToProps(state: any) {
   } = state.restaurant
 
   return {
-    count,
     current,
     error,
+    filteredCount,
+    geolocation,
     // locations,
     modalIsOpen,
     options,
