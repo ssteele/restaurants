@@ -32,7 +32,6 @@ class Restaurant extends React.Component<IRestaurant> {
     error: PropTypes.object,
     filteredCount: PropTypes.number.isRequired,
     geolocation: PropTypes.object,
-    isGeolocating: PropTypes.bool,
     // locations: PropTypes.array,
     modalIsOpen: PropTypes.bool,
     options: PropTypes.array.isRequired,
@@ -52,8 +51,8 @@ class Restaurant extends React.Component<IRestaurant> {
     });
   }
 
-  public getGeolocation = async (isGeolocating: boolean) => {
-    if (isGeolocating) {
+  public getGeolocation = async (geolocation: any) => {
+    if (geolocation.isGeolocating) {
       return
     } else if (!('geolocation' in navigator)) {
       console.warn('Location services are unavailable')
@@ -106,7 +105,6 @@ class Restaurant extends React.Component<IRestaurant> {
       error,
       filteredCount,
       geolocation,
-      isGeolocating,
       // locations,
       modalIsOpen,
       options,
@@ -161,14 +159,14 @@ class Restaurant extends React.Component<IRestaurant> {
           className={`
             geolocation-trigger
             ${geolocation.zip ? 'inset' : ''}
-            ${geolocation.zip && !isGeolocating ? 'flash' : ''}
+            ${geolocation.zip && !geolocation.isGeolocating ? 'flash' : ''}
           `}
-          onClick={() => this.getGeolocation(isGeolocating)}
+          onClick={() => this.getGeolocation(geolocation)}
         >
           <span
             className="splash"
           >
-            <i className={`fa fa-compass fa-lg ${isGeolocating ? 'fa-spin' : ''}`}></i>
+            <i className={`fa fa-compass fa-lg ${geolocation.isGeolocating ? 'fa-spin' : ''}`}></i>
           </span>
 
           {geolocation.zip && (
@@ -244,7 +242,6 @@ function mapStateToProps(state: any) {
     error,
     filteredCount,
     geolocation,
-    isGeolocating,
     // locations,
     modalIsOpen,
     options,
@@ -256,7 +253,6 @@ function mapStateToProps(state: any) {
     error,
     filteredCount,
     geolocation,
-    isGeolocating,
     // locations,
     modalIsOpen,
     options,

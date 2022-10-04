@@ -18,7 +18,6 @@ import {
 function restaurant(
   state: any = {
     isLoading: false,
-    isGeolocating: false,
     options: [
       // {
       //   name: 'location',
@@ -42,7 +41,9 @@ function restaurant(
     restaurants: {},
     restaurantIds: [],
     categories: [],
-    geolocation: {},
+    geolocation: {
+      isGeolocating: false,
+    },
     zips: [],
     filteredIds: [],
     filteredCount: 0,
@@ -102,7 +103,12 @@ function restaurant(
       return {
         ...state,
         ...{
-          isGeolocating: true,
+          geolocation: {
+            ...state.geolocation,
+            ...{
+              isGeolocating: true,
+            }
+          }
         }
       }
 
@@ -110,8 +116,12 @@ function restaurant(
       return {
         ...state,
         ...{
-          geolocation: action.location,
-          isGeolocating: false,
+          geolocation: {
+            ...action.location,
+            ...{
+              isGeolocating: false,
+            }
+          }
         }
       }
 
