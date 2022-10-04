@@ -18,13 +18,13 @@ function restaurant(
   state: any = {
     isLoading: false,
     options: [
-      {
-        name: 'location',
-        description: 'Location',
-        type: 'locationSelect',
-        value: [],
-        values: [],
-      },
+      // {
+      //   name: 'location',
+      //   description: 'Location',
+      //   type: 'locationSelect',
+      //   value: [],
+      //   values: [],
+      // },
       {name: 'geolocation', description: 'Only near me', type: 'checkbox', value: false},
       {name: 'kids', description: 'Only kid-friendly', type: 'checkbox', value: false},
       {name: 'near', description: 'Only close to home', type: 'checkbox', value: false},
