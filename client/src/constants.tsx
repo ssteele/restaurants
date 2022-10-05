@@ -1,13 +1,13 @@
-const apiEndpoints: any = {
-    loc: 'http://shs.restaurants.com:8888/api/',
-    tst: 'http://shs.restaurants.com:8888/api/?city=test',
-    prd: 'https://restaurants.steve-steele.com/api/',
+const apiBaseUrls: any = {
+    loc: 'http://shs.restaurants.com:8888/api',
+    // tst: 'http://shs.restaurants.com:8888/api/city/?city=test',
+    prd: 'https://restaurants.steve-steele.com/api',
 }
 let apiEnv: string = 'prd'
 if ('development' === process.env.NODE_ENV) {
     apiEnv = 'loc'
 }
-export const API_ENDPOINT = apiEndpoints[apiEnv]
+export const API_BASE_URL = apiBaseUrls[apiEnv]
 export const IS_GOOGLE_MAPS_ENABLED = 'true' === process.env.REACT_APP_IS_GOOGLE_MAPS_ENABLED
 export const GOOGLE_MAPS_COOL_OFF_SECONDS = 300
 export const GOOGLE_MAPS_API_ENDPOINT = 'https://maps.googleapis.com/maps/api/geocode/json'

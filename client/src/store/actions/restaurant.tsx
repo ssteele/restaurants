@@ -4,7 +4,7 @@ import {
   schema,
 } from 'normalizr'
 import {
-  API_ENDPOINT,
+  API_BASE_URL,
   DEFAULT_ZIP,
   GOOGLE_MAPS_API_ENDPOINT,
   GOOGLE_MAPS_API_KEY,
@@ -258,7 +258,8 @@ export function fetchRestaurants(): any {
   return (dispatch: any, getState: any): any => {
     dispatch(getRestaurants())
 
-    return fetch(API_ENDPOINT)
+    const endpoint = `${API_BASE_URL}/city/`
+    return fetch(endpoint)
       .then(
         response => response.json(),
         error => dispatch(getRestaurantsError(error))
