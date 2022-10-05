@@ -1,5 +1,7 @@
 <?php
 
+define('DEFAULT_CITY', 'austin');
+
 $isLocal = false !== strpos($_SERVER['HTTP_HOST'], 'shs');
 if ($isLocal) {
     // ignore CORS
