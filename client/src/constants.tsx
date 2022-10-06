@@ -14,8 +14,6 @@ export const GOOGLE_MAPS_API_ENDPOINT = 'https://maps.googleapis.com/maps/api/ge
 export const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 export const DEFAULT_ZIP = 78753
 export const MAX_NEARBY_ZIP_KM_DISTANCE = 8
-// @todo: move to api endpoint
-export const zipsNearHome = [78753, 78758, 78754, 78710, 78727, 78752, 78757, 78728, 78759, 78660, 78751, 78723, 78756]
 export const ZIP_NAME_MAP: any = {
   78753: 'Tech Ridge',
   78613: 'Cedar Park',

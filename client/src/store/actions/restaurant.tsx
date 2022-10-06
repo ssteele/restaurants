@@ -11,7 +11,6 @@ import {
   IS_GOOGLE_MAPS_ENABLED,
   MAX_NEARBY_ZIP_KM_DISTANCE,
   ZIP_NAME_MAP,
-  zipsNearHome,
 } from '../../constants'
 
 /*
@@ -136,7 +135,12 @@ export function setError(error: any) {
   }
 }
 
-function filter(restaurants: any, restaurantIds: any, options: any, geolocation: any) {
+function filterRestaurants({
+  restaurants,
+  restaurantIds,
+  options,
+  zipsNearby,
+}: any) {
   const currentFilters = options.filter((option: any) => {
     return option.value
   })
@@ -147,15 +151,15 @@ function filter(restaurants: any, restaurantIds: any, options: any, geolocation:
       switch (option.name) {
         case 'geolocation':
           if ('geolocation' in navigator) {
-            const { zip } = geolocation
-            if (zip) {
-              console.log('SHS zip:', zip);
+            console.log('SHS zipsNearby:', zipsNearby);
+            if (zipsNearby.length) {
               // @todo: create new JSON api endpoint, filter on location, add all endpoints
+              res = restaurants[id]['zips'].filter((x: number) => zipsNearby.includes(x)).length
             }
           } else {
             console.warn('Location services are unavailable')
+            res = true
           }
-          res = true
           break
         case 'location':
           const { value: zips } = option;
@@ -198,7 +202,7 @@ export function toggleModal(): any {
 
 function handleFilterUpdate(option: any): any {
   return (dispatch: any, getState: any): any => {
-    const { geolocation, options, restaurants, restaurantIds }: any = getState().restaurant
+    const { options, restaurants, restaurantIds, zipsNearby }: any = getState().restaurant
 
     // update current options
     const updatedOptions = options.map((o: any) => {
@@ -208,7 +212,12 @@ function handleFilterUpdate(option: any): any {
     localStorage.setItem('options', JSON.stringify(updatedOptions))
 
     // update filtered restaurants
-    const updatedFiltered = filter(restaurants, restaurantIds, updatedOptions, geolocation)
+    const updatedFiltered = filterRestaurants({
+      options: updatedOptions,
+      restaurants,
+      restaurantIds,
+      zipsNearby,
+    })
     dispatch(setFiltered(updatedFiltered))
 
     dispatch(resetViewed())
@@ -325,8 +334,13 @@ export function fetchRestaurants(): any {
           const { restaurants, categories, zips } = normalized.entities
           const { restaurants: restaurantIds } = normalized.result
 
-          const { geolocation, options }: any = getState().restaurant
-          const filteredIds = filter(restaurants, restaurantIds, options, geolocation)
+          const { options, zipsNearby }: any = getState().restaurant
+          const filteredIds = filterRestaurants({
+            options,
+            restaurants,
+            restaurantIds,
+            zipsNearby,
+          })
 
           dispatch(getRestaurantsSuccess({
             restaurants,
@@ -363,7 +377,7 @@ export function getZipsNear(zip: number) {
           const { postalCodes } = json
           const zips = postalCodes
             .filter(({ distance }: any) => parseFloat(distance) <= MAX_NEARBY_ZIP_KM_DISTANCE)
-            .map(({ postalCode }: any) => postalCode)
+            .map(({ postalCode }: any) => parseInt(postalCode))
           dispatch(setZipsNearby(zips))
         }
       })
