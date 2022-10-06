@@ -8,11 +8,13 @@ import {
   SET_OPTIONS,
   GET_GEOLOCATION,
   SET_GEOLOCATION,
+  SET_ZIPS_NEARBY,
   SET_OPTION_LOCATIONS,
   SET_FILTERED,
   SET_CURRENT_RESTAURANT,
   SET_VIEWED_RESTAURANTS,
   RESET_VIEWED_RESTAURANTS,
+  SET_ERROR,
 } from '../actions/restaurant'
 
 function restaurant(
@@ -45,6 +47,7 @@ function restaurant(
       isGeolocating: false,
     },
     zips: [],
+    zipsNearby: [],
     filteredIds: [],
     filteredCount: 0,
     current: null,
@@ -125,6 +128,14 @@ function restaurant(
         }
       }
 
+    case SET_ZIPS_NEARBY:
+      return {
+        ...state,
+        ...{
+          zipsNearby: action.zips,
+        }
+      }
+
     case SET_OPTION_LOCATIONS:
       return {
         ...state,
@@ -186,6 +197,14 @@ function restaurant(
         ...{
           viewed: [],
           viewIndex: null,
+        }
+      }
+
+    case SET_ERROR:
+      return {
+        ...state,
+        ...{
+          error: action.error,
         }
       }
 

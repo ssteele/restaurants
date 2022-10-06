@@ -9,6 +9,7 @@ import {
   GOOGLE_MAPS_API_ENDPOINT,
   GOOGLE_MAPS_API_KEY,
   IS_GOOGLE_MAPS_ENABLED,
+  MAX_NEARBY_ZIP_KM_DISTANCE,
   ZIP_NAME_MAP,
   zipsNearHome,
 } from '../../constants'
@@ -23,11 +24,13 @@ export const GET_GEOLOCATION = 'GET_GEOLOCATION'
 export const SET_MODAL = 'SET_MODAL'
 export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_GEOLOCATION = 'SET_GEOLOCATION'
+export const SET_ZIPS_NEARBY = 'SET_ZIPS_NEARBY'
 export const SET_OPTION_LOCATIONS = 'SET_OPTION_LOCATIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CURRENT_RESTAURANT = 'SET_CURRENT_RESTAURANT'
 export const SET_VIEWED_RESTAURANTS = 'SET_VIEWED_RESTAURANTS'
 export const RESET_VIEWED_RESTAURANTS = 'RESET_VIEWED_RESTAURANTS'
+export const SET_ERROR = 'SET_ERROR'
 
 /*
  * action creators
@@ -67,6 +70,13 @@ export function setGeolocation(location: any): any {
   return {
     type: SET_GEOLOCATION,
     location,
+  }
+}
+
+export function setZipsNearby(zips: any[]): any {
+  return {
+    type: SET_ZIPS_NEARBY,
+    zips,
   }
 }
 
@@ -116,6 +126,13 @@ export function setViewed(restaurantId: number | null, viewIndex: number): any {
 export function resetViewed(): any {
   return {
     type: RESET_VIEWED_RESTAURANTS,
+  }
+}
+
+export function setError(error: any) {
+  return {
+    type: SET_ERROR,
+    error,
   }
 }
 
@@ -333,6 +350,26 @@ export function fetchRestaurants(): any {
   }
 }
 
+export function getZipsNear(zip: number) {
+  return (dispatch: any): any => {
+    const endpoint = `${API_BASE_URL}/zip/?zip=${zip}`
+    return fetch(endpoint)
+      .then(
+        response => response.json(),
+        error => dispatch(setError(error))
+      )
+      .then((json) => {
+        if (!json.error) {
+          const { postalCodes } = json
+          const zips = postalCodes
+            .filter(({ distance }: any) => parseFloat(distance) <= MAX_NEARBY_ZIP_KM_DISTANCE)
+            .map(({ postalCode }: any) => postalCode)
+          dispatch(setZipsNearby(zips))
+        }
+      })
+  }
+}
+
 export function getZipFromLatLon({lat, lon}: any) {
   return (dispatch: any): any => {
     let geolocation
@@ -342,7 +379,7 @@ export function getZipFromLatLon({lat, lon}: any) {
       return fetch(googleMapsEndpoint)
         .then(
           response => response.json(),
-          error => dispatch(getRestaurantsError(error))
+          error => dispatch(setError(error))
         )
         .then((json) => {
           if (!json.error) {
@@ -367,6 +404,10 @@ export function getZipFromLatLon({lat, lon}: any) {
       }
       dispatch(setGeolocation(geolocation))
       localStorage.setItem('geolocation', JSON.stringify(geolocation))
+    }
+
+    if (geolocation.zip) {
+      dispatch(getZipsNear(geolocation.zip))
     }
   }
 }
