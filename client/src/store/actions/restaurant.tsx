@@ -149,9 +149,8 @@ function filterRestaurants({
     let res = false
     return currentFilters.every((option: any) => {
       switch (option.name) {
-        case 'geolocation':
+        case 'nearby':
           if ('geolocation' in navigator) {
-            console.log('SHS zipsNearby:', zipsNearby);
             if (zipsNearby.length) {
               // @todo: create new JSON api endpoint, filter on location, add all endpoints
               res = restaurants[id]['zips'].filter((x: number) => zipsNearby.includes(x)).length
@@ -167,12 +166,6 @@ function filterRestaurants({
           break
         case 'kids':
           res = !!restaurants[id][option.name].length
-          break
-        case 'near':
-          res = restaurants[id]['zips'].filter((x: number) => zipsNearHome.includes(x)).length
-          break
-        case 'far':
-          res = !restaurants[id]['zips'].filter((x: number) => zipsNearHome.includes(x)).length
           break
         case 'meat':
           res = !restaurants[id]['vegan'] && !restaurants[id]['vegetarian']
