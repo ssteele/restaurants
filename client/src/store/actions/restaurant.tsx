@@ -420,6 +420,19 @@ export function getZipFromLatLon({lat, lon}: any) {
   }
 }
 
+export function setReduxFromLocalStore(items: any): any {
+  return (dispatch: any): any => {
+    for (let item of items) {
+      const { name, setter } = item;
+      const storedItemValue = localStorage.getItem(name)
+      if (!!storedItemValue) {
+        const value = JSON.parse(storedItemValue)
+        dispatch(setter(value))
+      }
+    }
+  }
+}
+
 export function getGeolocationFromLocalStorage(): any {
   return (dispatch: any): any => {
     const storedGeolocation = localStorage.getItem('geolocation')
