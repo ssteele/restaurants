@@ -372,6 +372,7 @@ export function getZipsNear(zip: number) {
             .filter(({ distance }: any) => parseFloat(distance) <= MAX_NEARBY_ZIP_KM_DISTANCE)
             .map(({ postalCode }: any) => parseInt(postalCode))
           dispatch(setZipsNearby(zips))
+          localStorage.setItem('zipsNearby', JSON.stringify(zips))
         }
       })
   }
@@ -425,6 +426,16 @@ export function getGeolocationFromLocalStorage(): any {
     if (!!storedGeolocation) {
       const geolocation = JSON.parse(storedGeolocation)
       dispatch(setGeolocation(geolocation))
+    }
+  }
+}
+
+export function getZipsNearbyFromLocalStorage(): any {
+  return (dispatch: any): any => {
+    const storedZips = localStorage.getItem('zipsNearby')
+    if (!!storedZips) {
+      const zips = JSON.parse(storedZips)
+      dispatch(setZipsNearby(zips))
     }
   }
 }
