@@ -75,7 +75,6 @@ class Restaurant extends React.Component<IRestaurant> {
       const { dispatch }: any = this.props
       dispatch(getGeolocation())
       const position: any = await this.getCoordinates()
-      console.log('SHS position:', position);
       dispatch(getZipFromLatLon({
         lat: position.coords.latitude,
         lon: position.coords.longitude,
