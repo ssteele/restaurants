@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name": "Casa de Luz",
-        "sub_name": "South Austin",
+        "sub_name": "off South Lamar",
         "categories": ["Vegan", "Salad", "Soup"],
         "site": "https://www.casadeluz.org/",
         "menu": "https://www.casadeluz.org/eat-drink",
@@ -22,7 +22,7 @@
     {
         "id": 2,
         "name": "Counter Culture",
-        "sub_name": "East Austin",
+        "sub_name": "East Cesar Chavez",
         "categories": ["Vegan", "Vegetarian", "Live/Raw"],
         "site": "http://countercultureaustin.com/",
         "menu": "https://countercultureaustin.com/",
@@ -42,7 +42,7 @@
     {
         "id": 3,
         "name": "Pacha",
-        "sub_name": "Central Austin",
+        "sub_name": "Guadalupe",
         "categories": ["Coffee & Tea", "Breakfast & Brunch"],
         "site": "http://www.pachacafe.com/",
         "menu": "https://pachacafe.com/wpdir/menu/",
@@ -62,7 +62,7 @@
     {
         "id": 4,
         "name": "Tacodeli",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Tacos", "Breakfast & Brunch", "Seafood"],
         "site": "https://www.tacodeli.com/",
         "menu": "https://www.tacodeli.com/menu/",
@@ -82,7 +82,7 @@
     {
         "id": 5,
         "name": "Flower Child",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Salad", "American (New)", "Vegetarian"],
         "site": "https://www.iamaflowerchild.com/locations/austin-tx-domain/",
         "menu": "https://www.iamaflowerchild.com/locations/austin-tx-domain/menus/main-menu/",
@@ -102,7 +102,7 @@
     {
         "id": 6,
         "name": "Bouldin Creek Cafe",
-        "sub_name": "South Austin",
+        "sub_name": "South First",
         "categories": ["Vegetarian", "Cafes", "Vegan"],
         "site": "https://bouldincreekcafe.com/",
         "menu": "https://bouldincreekcafe.com/",
@@ -122,7 +122,7 @@
     {
         "id": 7,
         "name": "Modern Market",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Salad", "Sandwiches"],
         "site": "https://modernmarket.com/",
         "menu": "https://modernmarket.com/",
@@ -142,7 +142,7 @@
     {
         "id": 8,
         "name": "Honest Mary's",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["American (New)"],
         "site": "https://www.honestmarys.com/",
         "menu": "https://www.honestmarys.com/menus",
@@ -162,7 +162,7 @@
     {
         "id": 9,
         "name": "Ranch Hand",
-        "sub_name": "Slaughter (at Armadillo Den)",
+        "sub_name": "Menchaca (at Armadillo Den)",
         "categories": ["Food Trucks", "American (New)"],
         "site": "https://www.weareranchhand.com/",
         "menu": "https://www.weareranchhand.com/",
@@ -182,7 +182,7 @@
     {
         "id": 10,
         "name": "Vinaigrette",
-        "sub_name": "South Austin",
+        "sub_name": "off South Congress",
         "categories": ["Salad", "Soup", "Sandwiches"],
         "site": "https://www.vinaigretteonline.com/",
         "menu": "https://www.vinaigretteonline.com/menus",
@@ -222,7 +222,7 @@
     {
         "id": 12,
         "name": "Cenote",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Coffee & Tea", "Tacos", "American (New)"],
         "site": "http://cenoteaustin.com",
         "menu": "http://cenoteaustin.com/food/windsor-park/weekday/",
@@ -242,7 +242,7 @@
     {
         "id": 13,
         "name": "Salty Sow",
-        "sub_name": "East Austin",
+        "sub_name": "Manor",
         "categories": ["American (Traditional)", "Gastropubs"],
         "site": "http://www.saltysow.com/",
         "menu": "http://www.saltysow.com/#/locations",
@@ -262,7 +262,7 @@
     {
         "id": 14,
         "name": "Odd Duck",
-        "sub_name": "South Austin",
+        "sub_name": "South Lamar",
         "categories": ["American (Traditional)", "Bars"],
         "site": "https://oddduckaustin.com/",
         "menu": "https://oddduckaustin.com/",
@@ -282,7 +282,7 @@
     {
         "id": 15,
         "name": "Sour Duck Market",
-        "sub_name": "East Austin",
+        "sub_name": "East Martin Luther King Jr",
         "categories": ["Bakeries", "Beer", "Wine & Spirits", "Smokehouse"],
         "site": "https://www.sourduckmarket.com/",
         "menu": "https://www.sourduckmarket.com/",
@@ -302,7 +302,7 @@
     {
         "id": 16,
         "name": "Thai Fresh",
-        "sub_name": "South Austin",
+        "sub_name": "West Mary",
         "categories": ["Thai", "Coffee & Tea", "Desserts"],
         "site": "https://www.thai-fresh.com/",
         "menu": "https://www.thai-fresh.com/menu-hours",
@@ -402,7 +402,7 @@
     {
         "id": 21,
         "name": "Picnik",
-        "sub_name": "Burnet",
+        "sub_name": "Multiple Locations",
         "categories": ["American (New)", "Gluten-Free", "Breakfast & Brunch"],
         "site": "https://www.picnikaustin.com/",
         "menu": "https://www.picnikaustin.com/",
@@ -442,7 +442,7 @@
     {
         "id": 23,
         "name": "Austin Rotisserie",
-        "sub_name": "Downtown",
+        "sub_name": "Congress",
         "categories": ["Comfort Food", "French", "Sandwiches"],
         "site": "https://austinrotisserie.com/",
         "menu": "https://austinrotisserie.com/",
@@ -462,7 +462,7 @@
     {
         "id": 24,
         "name": "Maudie's Tex-Mex",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Tex-Mex", "Diners", "Tacos", "Mexican"],
         "site": "https://www.maudies.com",
         "menu": "https://www.maudies.com/menu/appetizers/",
@@ -482,7 +482,7 @@
     {
         "id": 25,
         "name": "Fresa's",
-        "sub_name": "Central Austin",
+        "sub_name": "Multiple Locations",
         "categories": ["Mexican"],
         "site": "https://www.fresaschicken.com/",
         "menu": "https://www.fresaschicken.com/#lunch-dinner",
@@ -502,7 +502,7 @@
     {
         "id": 26,
         "name": "Kerbey Lane Cafe",
-        "sub_name": "Mueller",
+        "sub_name": "Multiple Locations",
         "categories": ["American (Traditional)", "Breakfast & Brunch", "Tex-Mex"],
         "site": "https://kerbeylanecafe.com/",
         "menu": "https://kerbeylanecafe.com/menu",
@@ -542,7 +542,7 @@
     {
         "id": 28,
         "name": "Austin Daily Press",
-        "sub_name": "East Austin",
+        "sub_name": "East Martin Luther King Jr",
         "categories": ["Delis", "Sandwiches", "Comfort Food"],
         "site": "https://www.austindailypress.com/",
         "menu": "https://www.austindailypress.com/order-online-2",
@@ -562,7 +562,7 @@
     {
         "id": 29,
         "name": "True Food Kitchen",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["American (New)", "Vegetarian", "Vegan"],
         "site": "https://www.truefoodkitchen.com",
         "menu": "https://order.truefoodkitchen.com/menu/austin-domain",
@@ -582,7 +582,7 @@
     {
         "id": 30,
         "name": "Easy Tiger",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Bakeries", "Beer Gardens"],
         "site": "https://www.easytigerusa.com/location/linc",
         "menu": "https://www.easytigerusa.com/menu",
@@ -602,7 +602,7 @@
     {
         "id": 31,
         "name": "Central Market Cafe",
-        "sub_name": "Central Austin",
+        "sub_name": "North Lamar",
         "categories": ["American (Traditional)", "Breakfast & Brunch"],
         "site": "https://www.centralmarket.com/locations/austin-north-lamar",
         "menu": "http://places.singleplatform.com/central-market-cafe/menu",
@@ -622,7 +622,7 @@
     {
         "id": 32,
         "name": "Whole Foods Market",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Sandwiches", "Pizza", "Salad Bar"],
         "site": "https://www.wholefoodsmarket.com/stores/domain",
         "menu": "https://www.wholefoodsmarket.com/stores/domain#store-eateries-and-bars",
@@ -642,7 +642,7 @@
     {
         "id": 33,
         "name": "Culinary Dropout",
-        "sub_name": "",
+        "sub_name": "The Domain",
         "categories": ["American (New)"],
         "site": "https://www.culinarydropout.com/locations/austin-tx/",
         "menu": "https://www.culinarydropout.com/locations/austin-tx/menus/main-menu/",
@@ -662,7 +662,7 @@
     {
         "id": 34,
         "name": "Pinthouse Pizza",
-        "sub_name": "Burnet",
+        "sub_name": "Multiple Locations",
         "categories": ["Pizza", "Brewpubs"],
         "site": "https://pinthouse.com/burnet",
         "menu": "https://pinthouse.com/burnet/food/menu",
@@ -682,7 +682,7 @@
     {
         "id": 35,
         "name": "Via 313",
-        "sub_name": "Central Austin",
+        "sub_name": "Multiple Locations",
         "categories": ["Pizza"],
         "site": "https://locations.via313.com/locations/3016-guadalupe-st-/#100/",
         "menu": "https://www.via313.com/menu/",
@@ -702,7 +702,7 @@
     {
         "id": 36,
         "name": "Aviator Pizza & Drafthouse",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Pizza"],
         "site": "https://aviatorpizza.com",
         "menu": "https://aviatorpizza.com/#Our-Locations",
@@ -722,7 +722,7 @@
     {
         "id": 37,
         "name": "Pizza Day",
-        "sub_name": "",
+        "sub_name": "Great Hills Trail",
         "categories": ["Pizza", "Salad", "Sandwiches"],
         "site": "https://pizzadaytx.com",
         "menu": "https://pizzadaytx.com/shop",
@@ -742,7 +742,7 @@
     {
         "id": 38,
         "name": "P. Terrys",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Burgers", "Fast Food"],
         "site": "https://pterrys.com/",
         "menu": "https://pterrys.com/menu",
@@ -762,7 +762,7 @@
     {
         "id": 39,
         "name": "Galaxy Cafe",
-        "sub_name": "Northwest Austin",
+        "sub_name": "Multiple Locations",
         "categories": ["American (Traditional)", "American (New)", "Breakfast & Brunch"],
         "site": "https://www.galaxycafeaustin.com/northwest",
         "menu": "https://www.galaxycafeaustin.com/menus",
@@ -782,7 +782,7 @@
     {
         "id": 40,
         "name": "Hat Creek",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Burgers", "Fast Food", "American (Traditional)"],
         "site": "https://hatcreekburgers.com/",
         "menu": "https://hatcreekburgers.com/full-menu",
@@ -822,7 +822,7 @@
     {
         "id": 42,
         "name": "Conscious Cravings",
-        "sub_name": "Mueller",
+        "sub_name": "Multiple Locations",
         "categories": ["Vegetarian", "Vegan", "Gluten-Free"],
         "site": "https://www.consciouscravingsaustin.com/",
         "menu": "https://www.consciouscravingsaustin.com/menu",
@@ -862,7 +862,7 @@
     {
         "id": 44,
         "name": "Tarka",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Indian", "Vegetarian", "Vegan"],
         "site": "https://tarkaindiankitchen.com/#orderonline",
         "menu": "https://tarkaindiankitchen.com/#menu",
@@ -882,7 +882,7 @@
     {
         "id": 45,
         "name": "JuiceLand",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["Juice Bars & Smoothies"],
         "site": "https://www.juiceland.com/locations/north-burnet",
         "menu": "https://www.juiceland.com/full-menu/",
@@ -902,7 +902,7 @@
     {
         "id": 46,
         "name": "Varacruz All Natural",
-        "sub_name": "Mueller",
+        "sub_name": "Multiple Locations",
         "categories": ["Tacos", "Mexican", "Food Trucks"],
         "site": "https://veracruzallnatural.com",
         "menu": "https://veracruzallnatural.com/menu",
@@ -922,7 +922,7 @@
     {
         "id": 47,
         "name": "Hanks",
-        "sub_name": "",
+        "sub_name": "Berkman",
         "categories": ["American (Traditional)", "Breakfast & Brunch"],
         "site": "https://www.hanksaustin.com",
         "menu": "https://www.hanksaustin.com/menus",
@@ -942,7 +942,7 @@
     {
         "id": 48,
         "name": "Roaring Fork",
-        "sub_name": "",
+        "sub_name": "Multiple Locations",
         "categories": ["American (New)", "American (Traditional)", "Steakhouses"],
         "site": "http://www.roaringfork.com",
         "menu": "http://www.roaringfork.com/#/locations",
