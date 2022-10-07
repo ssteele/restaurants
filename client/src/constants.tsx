@@ -13,8 +13,6 @@ export const GOOGLE_MAPS_COOL_OFF_SECONDS = 300
 export const GOOGLE_MAPS_API_ENDPOINT = 'https://maps.googleapis.com/maps/api/geocode/json'
 export const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 export const DEFAULT_ZIP = 78753
-export const MAX_NEARBY_ZIP_KM_DISTANCE = 8
-// export const MAX_NEARBY_ZIP_KM_DISTANCE = 0
 export const DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE = 5
 export const MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS = [
   {id: 0, name: 'In current zip'},

@@ -23,7 +23,6 @@ export const SET_MODAL = 'SET_MODAL'
 export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_GEOLOCATION = 'SET_GEOLOCATION'
 export const SET_CURRENT_ZIP_META = 'SET_CURRENT_ZIP_META'
-export const SET_ZIPS_NEARBY = 'SET_ZIPS_NEARBY'
 export const SET_OPTION_LOCATIONS = 'SET_OPTION_LOCATIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CURRENT_RESTAURANT = 'SET_CURRENT_RESTAURANT'
@@ -78,13 +77,6 @@ export function setCurrentZipMeta(currentZipMeta: any[]): any {
     currentZipMeta,
   }
 }
-
-// export function setZipsNearby(zipsNearby: any[]): any {
-//   return {
-//     type: SET_ZIPS_NEARBY,
-//     zipsNearby,
-//   }
-// }
 
 export function setOptionLocations(locations: any): any {
   return {
@@ -147,7 +139,6 @@ function filterRestaurants({
   options,
   restaurants,
   restaurantIds,
-  // zipsNearby,
 }: any) {
   const currentFilters = options.filter((option: any) => {
     return option.value
@@ -461,10 +452,6 @@ export function setReduxFromLocalStore(): any {
         name: 'currentZipMeta',
         setter: setCurrentZipMeta,
       },
-      // {
-      //   name: 'zipsNearby',
-      //   setter: setZipsNearby,
-      // },
       {
         name: 'options',
         setter: setOptions,

@@ -9,7 +9,6 @@ import {
   GET_GEOLOCATION,
   SET_GEOLOCATION,
   SET_CURRENT_ZIP_META,
-  // SET_ZIPS_NEARBY,
   SET_OPTION_LOCATIONS,
   SET_FILTERED,
   SET_CURRENT_RESTAURANT,
@@ -36,7 +35,7 @@ function restaurant(
       {name: 'nearby', description: 'Only near me', type: 'checkbox', value: false, rendered: true, disabled: true},
       {
         name: 'nearbyMaxMiles',
-        description: '^^ how close?',
+        description: '... how close?',
         type: 'select',
         value: DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE,
         values: MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS,
@@ -59,7 +58,6 @@ function restaurant(
       isGeolocating: false,
     },
     zips: [],
-    // zipsNearby: [],
     currentZipMeta: [],
     filteredIds: [],
     filteredCount: 0,
@@ -148,14 +146,6 @@ function restaurant(
           currentZipMeta: action.currentZipMeta,
         }
       }
-
-    // case SET_ZIPS_NEARBY:
-    //   return {
-    //     ...state,
-    //     ...{
-    //       zipsNearby: action.zipsNearby,
-    //     }
-    //   }
 
     case SET_OPTION_LOCATIONS:
       return {
