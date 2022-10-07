@@ -8,7 +8,8 @@ import {
   SET_OPTIONS,
   GET_GEOLOCATION,
   SET_GEOLOCATION,
-  SET_ZIPS_NEARBY,
+  SET_CURRENT_ZIP_META,
+  // SET_ZIPS_NEARBY,
   SET_OPTION_LOCATIONS,
   SET_FILTERED,
   SET_CURRENT_RESTAURANT,
@@ -16,6 +17,10 @@ import {
   RESET_VIEWED_RESTAURANTS,
   SET_ERROR,
 } from '../actions/restaurant'
+import {
+  DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE,
+  MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS,
+} from '../../constants'
 
 function restaurant(
   state: any = {
@@ -28,15 +33,24 @@ function restaurant(
       //   value: [],
       //   values: [],
       // },
-      {name: 'nearby', description: 'Only near me', type: 'checkbox', value: false, disabled: true},
-      {name: 'kids', description: 'Only kid-friendly', type: 'checkbox', value: false, disabled: false},
-      {name: 'organic', description: 'Only organic', type: 'checkbox', value: false, disabled: false},
-      {name: 'local', description: 'Only locally sourced', type: 'checkbox', value: false, disabled: false},
-      {name: 'vegetarian', description: 'Only vegetarian', type: 'checkbox', value: false, disabled: false},
-      {name: 'keto', description: 'Only keto-friendly', type: 'checkbox', value: false, disabled: false},
-      {name: 'meat', description: 'Only meat-friendly', type: 'checkbox', value: false, disabled: false},
-      {name: 'indoor', description: 'Only indoor seating', type: 'checkbox', value: false, disabled: false},
-      {name: 'outdoor', description: 'Only outdoor seating', type: 'checkbox', value: false, disabled: false},
+      {name: 'nearby', description: 'Only near me', type: 'checkbox', value: false, rendered: true, disabled: true},
+      {
+        name: 'nearbyMaxMiles',
+        description: '^^ how close?',
+        type: 'select',
+        value: DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE,
+        values: MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS,
+        rendered: false,
+        disabled: true,
+      },
+      {name: 'kids', description: 'Only kid-friendly', type: 'checkbox', value: false, rendered: true, disabled: false},
+      {name: 'organic', description: 'Only organic', type: 'checkbox', value: false, rendered: true, disabled: false},
+      {name: 'local', description: 'Only locally sourced', type: 'checkbox', value: false, rendered: true, disabled: false},
+      {name: 'vegetarian', description: 'Only vegetarian', type: 'checkbox', value: false, rendered: true, disabled: false},
+      {name: 'keto', description: 'Only keto-friendly', type: 'checkbox', value: false, rendered: true, disabled: false},
+      {name: 'meat', description: 'Only meat-friendly', type: 'checkbox', value: false, rendered: true, disabled: false},
+      {name: 'indoor', description: 'Only indoor seating', type: 'checkbox', value: false, rendered: true, disabled: false},
+      {name: 'outdoor', description: 'Only outdoor seating', type: 'checkbox', value: false, rendered: true, disabled: false},
     ],
     restaurants: {},
     restaurantIds: [],
@@ -45,7 +59,8 @@ function restaurant(
       isGeolocating: false,
     },
     zips: [],
-    zipsNearby: [],
+    // zipsNearby: [],
+    currentZipMeta: [],
     filteredIds: [],
     filteredCount: 0,
     current: null,
@@ -118,7 +133,7 @@ function restaurant(
         ...state,
         ...{
           geolocation: {
-            ...action.location,
+            ...action.geolocation,
             ...{
               isGeolocating: false,
             }
@@ -126,13 +141,21 @@ function restaurant(
         }
       }
 
-    case SET_ZIPS_NEARBY:
+    case SET_CURRENT_ZIP_META:
       return {
         ...state,
         ...{
-          zipsNearby: action.zips,
+          currentZipMeta: action.currentZipMeta,
         }
       }
+
+    // case SET_ZIPS_NEARBY:
+    //   return {
+    //     ...state,
+    //     ...{
+    //       zipsNearby: action.zipsNearby,
+    //     }
+    //   }
 
     case SET_OPTION_LOCATIONS:
       return {

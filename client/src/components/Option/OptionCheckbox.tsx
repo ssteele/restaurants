@@ -12,7 +12,7 @@ export class OptionCheckbox extends React.Component {
   public render() {
     const { option, toggleOption }: any = this.props
 
-    return (
+    return !!option && option.rendered && (
       <div className="grid-x">
         <div className="cell small-10">
           {option.description}

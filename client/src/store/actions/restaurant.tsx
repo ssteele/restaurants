@@ -9,7 +9,6 @@ import {
   GOOGLE_MAPS_API_ENDPOINT,
   GOOGLE_MAPS_API_KEY,
   IS_GOOGLE_MAPS_ENABLED,
-  MAX_NEARBY_ZIP_KM_DISTANCE,
   ZIP_NAME_MAP,
 } from '../../constants'
 
@@ -23,6 +22,7 @@ export const GET_GEOLOCATION = 'GET_GEOLOCATION'
 export const SET_MODAL = 'SET_MODAL'
 export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_GEOLOCATION = 'SET_GEOLOCATION'
+export const SET_CURRENT_ZIP_META = 'SET_CURRENT_ZIP_META'
 export const SET_ZIPS_NEARBY = 'SET_ZIPS_NEARBY'
 export const SET_OPTION_LOCATIONS = 'SET_OPTION_LOCATIONS'
 export const SET_FILTERED = 'SET_FILTERED'
@@ -65,19 +65,26 @@ export function getGeolocation() {
   }
 }
 
-export function setGeolocation(location: any): any {
+export function setGeolocation(geolocation: any): any {
   return {
     type: SET_GEOLOCATION,
-    location,
+    geolocation,
   }
 }
 
-export function setZipsNearby(zips: any[]): any {
+export function setCurrentZipMeta(currentZipMeta: any[]): any {
   return {
-    type: SET_ZIPS_NEARBY,
-    zips,
+    type: SET_CURRENT_ZIP_META,
+    currentZipMeta,
   }
 }
+
+// export function setZipsNearby(zipsNearby: any[]): any {
+//   return {
+//     type: SET_ZIPS_NEARBY,
+//     zipsNearby,
+//   }
+// }
 
 export function setOptionLocations(locations: any): any {
   return {
@@ -136,10 +143,11 @@ export function setError(error: any) {
 }
 
 function filterRestaurants({
+  currentZipMeta,
+  options,
   restaurants,
   restaurantIds,
-  options,
-  zipsNearby,
+  // zipsNearby,
 }: any) {
   const currentFilters = options.filter((option: any) => {
     return option.value
@@ -150,10 +158,22 @@ function filterRestaurants({
     return currentFilters.every((option: any) => {
       switch (option.name) {
         case 'nearby':
+        case 'nearbyMaxMiles':
           if ('geolocation' in navigator) {
-            if (zipsNearby.length) {
-              // @todo: create new JSON api endpoint, filter on location, add all endpoints
-              res = restaurants[id]['zips'].filter((x: number) => zipsNearby.includes(x)).length
+            const nearbyOption = options.find((o: any) => 'nearby' === o.name)
+            if (!currentZipMeta.length || !nearbyOption.value) {
+              res = true
+            } else {
+              // calculate nearby zips
+              const nearbyMaxMilesOption = options.find((o: any) => 'nearbyMaxMiles' === o.name)
+              const nearbyMaxKm = 1.609344 * nearbyMaxMilesOption.value
+              const zipsNearby = currentZipMeta
+                .filter(({ distance }: any) => parseFloat(distance) <= nearbyMaxKm)
+                .map(({ postalCode }: any) => parseInt(postalCode))
+
+              if (zipsNearby.length) {
+                res = restaurants[id]['zips'].filter((x: number) => zipsNearby.includes(x)).length
+              }
             }
           } else {
             console.warn('Location services are unavailable')
@@ -192,7 +212,7 @@ export function toggleModal(): any {
 
 function handleFilterUpdate(option: any): any {
   return (dispatch: any, getState: any): any => {
-    const { options, restaurants, restaurantIds, zipsNearby }: any = getState().restaurant
+    const { currentZipMeta, options, restaurants, restaurantIds }: any = getState().restaurant
 
     // update current options
     const updatedOptions = options.map((o: any) => {
@@ -203,10 +223,10 @@ function handleFilterUpdate(option: any): any {
 
     // update filtered restaurants
     const updatedFiltered = filterRestaurants({
+      currentZipMeta,
       options: updatedOptions,
       restaurants,
       restaurantIds,
-      zipsNearby,
     })
     dispatch(setFiltered(updatedFiltered))
 
@@ -325,12 +345,12 @@ export function fetchRestaurants(): any {
           const { restaurants, categories, zips } = normalized.entities
           const { restaurants: restaurantIds } = normalized.result
 
-          const { options, zipsNearby }: any = getState().restaurant
+          const { currentZipMeta, options }: any = getState().restaurant
           const filteredIds = filterRestaurants({
+            currentZipMeta,
             options,
             restaurants,
             restaurantIds,
-            zipsNearby,
           })
 
           dispatch(getRestaurantsSuccess({
@@ -365,21 +385,24 @@ export function getZipsNear(zip: number) {
       )
       .then((json) => {
         if (!json.error) {
+          // save current zip proximities
           const { postalCodes } = json
-          const zips = postalCodes
-            .filter(({ distance }: any) => parseFloat(distance) <= MAX_NEARBY_ZIP_KM_DISTANCE)
-            .map(({ postalCode }: any) => parseInt(postalCode))
-          dispatch(setZipsNearby(zips))
-          localStorage.setItem('zipsNearby', JSON.stringify(zips))
+          dispatch(setCurrentZipMeta(postalCodes))
+          localStorage.setItem('currentZipMeta', JSON.stringify(postalCodes))
 
-          // set geolocation filter to true
+          // update geolocation filter options
           const { options }: any = getState().restaurant
           const nearbyOption = options.find((o: any) => 'nearby' === o.name)
-          nearbyOption.value = true;
-          nearbyOption.disabled = false;
+          nearbyOption.value = true
+          nearbyOption.disabled = false
 
-          // and filter restaurants
+          const nearbyMaxMilesOption = options.find((o: any) => 'nearbyMaxMiles' === o.name)
+          nearbyMaxMilesOption.rendered = true
+          nearbyMaxMilesOption.disabled = false
+
+          // ...and filter restaurants
           dispatch(handleFilterUpdate(nearbyOption))
+          dispatch(handleFilterUpdate(nearbyMaxMilesOption))  // @todo: allow method to handle array?
         }
       })
   }
@@ -435,9 +458,13 @@ export function setReduxFromLocalStore(): any {
         setter: setGeolocation,
       },
       {
-        name: 'zipsNearby',
-        setter: setZipsNearby,
+        name: 'currentZipMeta',
+        setter: setCurrentZipMeta,
       },
+      // {
+      //   name: 'zipsNearby',
+      //   setter: setZipsNearby,
+      // },
       {
         name: 'options',
         setter: setOptions,

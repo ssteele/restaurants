@@ -14,6 +14,17 @@ export const GOOGLE_MAPS_API_ENDPOINT = 'https://maps.googleapis.com/maps/api/ge
 export const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 export const DEFAULT_ZIP = 78753
 export const MAX_NEARBY_ZIP_KM_DISTANCE = 8
+// export const MAX_NEARBY_ZIP_KM_DISTANCE = 0
+export const DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE = 5
+export const MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS = [
+  {id: 0, name: 'In current zip'},
+  {id: 1, name: '1 mile'},
+  {id: 2, name: '2 miles'},
+  {id: 3, name: '3 miles'},
+  {id: 5, name: '5 miles'},
+  {id: 8, name: '8 miles'},
+  {id: 15, name: '15 miles'},
+]
 export const ZIP_NAME_MAP: any = {
   78753: 'Tech Ridge',
   78613: 'Cedar Park',

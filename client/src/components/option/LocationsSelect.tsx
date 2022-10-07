@@ -12,7 +12,7 @@ export class LocationsSelect extends React.Component {
   public render() {
     const { option, selectOption }: any = this.props
 
-    return !!option && (
+    return !!option && option.rendered && (
       <div className="grid-x">
         <div className="cell auto option-multiselect">
           <select
