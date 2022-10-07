@@ -376,6 +376,7 @@ export function getZipsNear(zip: number) {
           const { options }: any = getState().restaurant
           const nearbyOption = options.find((o: any) => 'nearby' === o.name)
           nearbyOption.value = true;
+          nearbyOption.disabled = false;
 
           // and filter restaurants
           dispatch(handleFilterUpdate(nearbyOption))
