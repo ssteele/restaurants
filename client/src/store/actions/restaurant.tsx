@@ -172,7 +172,7 @@ function filterRestaurants({
           }
           break
         case 'location':
-          const { value: zips } = option;
+          const { value: zips } = option
           res = zips.filter((z: string) => restaurants[id]['zips'].includes(parseInt(z))).length
           break
         case 'kids':
@@ -356,7 +356,7 @@ export function fetchRestaurants(): any {
           // zips = Object.entries(ZIP_NAME_MAP).map(([zip, name]: any) => {
           //   return {id: parseInt(zip), name}
           // })
-          // console.log('SHS zips:', zips);
+          // console.log('SHS zips:', zips)
 
           const zipsArray = Object.values(zips as any)
           dispatch(setOptionLocations(zipsArray))
@@ -403,7 +403,7 @@ export function getZipFromLatLon({lat, lon}: any) {
   return (dispatch: any): any => {
     let geolocation
     if (IS_GOOGLE_MAPS_ENABLED) {
-      console.warn('Google Maps API lookup is enabled');
+      console.warn('Google Maps API lookup is enabled')
       const googleMapsEndpoint = `${GOOGLE_MAPS_API_ENDPOINT}?latlng=${lat},${lon}&key=${GOOGLE_MAPS_API_KEY}`
       return fetch(googleMapsEndpoint)
         .then(
@@ -459,7 +459,7 @@ export function setReduxFromLocalStore(): any {
     ]
 
     for (let item of localStoreItems) {
-      const { name, setter } = item;
+      const { name, setter } = item
       const storedItemValue = localStorage.getItem(name)
       if (!!storedItemValue) {
         const value = JSON.parse(storedItemValue)

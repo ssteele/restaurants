@@ -50,7 +50,7 @@ class Restaurant extends React.Component<IRestaurant> {
   public getCoordinates = async () => {
     return new Promise(function(resolve, reject) {
       navigator.geolocation.getCurrentPosition(resolve, reject)
-    });
+    })
   }
 
   public getGeolocation = async (geolocation: any) => {
@@ -62,10 +62,10 @@ class Restaurant extends React.Component<IRestaurant> {
       }
     }
     if (geolocation.isGeolocating) {
-      console.warn('Geolocating now - please wait');
+      console.warn('Geolocating now - please wait')
       return
     } else if (isCoolOffPeriod) {
-      console.warn('Geolocation cool down - too soon since the last request');
+      console.warn('Geolocation cool down - too soon since the last request')
       return
     } else if (!('geolocation' in navigator)) {
       console.warn('Location services are unavailable')
