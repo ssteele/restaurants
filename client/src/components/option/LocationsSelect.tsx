@@ -16,6 +16,7 @@ export class LocationsSelect extends React.Component {
       <div className="grid-x">
         <div className="cell auto option-multiselect">
           <select
+            disabled={option.disabled}
             id={option.name}
             value={option.value}
             onChange={(e) => selectOption(option, e)}

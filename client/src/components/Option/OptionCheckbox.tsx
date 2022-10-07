@@ -22,6 +22,7 @@ export class OptionCheckbox extends React.Component {
           <div className="switch">
             <input
               className="switch-input"
+              disabled={option.disabled}
               id={option.name}
               type="checkbox"
               name={option.name}

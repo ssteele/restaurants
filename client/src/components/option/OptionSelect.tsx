@@ -20,6 +20,7 @@ export class OptionSelect extends React.Component {
 
         <div className="cell auto option-select">
           <select
+            disabled={option.disabled}
             id={option.name}
             value={option.value}
             onChange={(e) => selectOption(option, e)}
