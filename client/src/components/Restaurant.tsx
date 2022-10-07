@@ -10,13 +10,10 @@ import {
 import {
   fetchRestaurants,
   getGeolocation,
-  getOptionsFromLocalStorage,
-  getZipsNearbyFromLocalStorage,
   getZipFromLatLon,
   nextRestaurant,
   prevRestaurant,
   selectOption,
-  setGeolocation,
   setReduxFromLocalStore,
   toggleModal,
   toggleOption,
@@ -46,15 +43,7 @@ class Restaurant extends React.Component<IRestaurant> {
 
   public componentDidMount() {
     const { dispatch }: any = this.props
-    const items = [
-      {
-        name: 'geolocation',
-        setter: setGeolocation,
-      },
-    ]
-    dispatch(setReduxFromLocalStore(items))
-    dispatch(getZipsNearbyFromLocalStorage())
-    dispatch(getOptionsFromLocalStorage())
+    dispatch(setReduxFromLocalStore())
     dispatch(fetchRestaurants())
   }
 

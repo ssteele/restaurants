@@ -420,9 +420,24 @@ export function getZipFromLatLon({lat, lon}: any) {
   }
 }
 
-export function setReduxFromLocalStore(items: any): any {
+export function setReduxFromLocalStore(): any {
   return (dispatch: any): any => {
-    for (let item of items) {
+    const localStoreItems = [
+      {
+        name: 'geolocation',
+        setter: setGeolocation,
+      },
+      {
+        name: 'zipsNearby',
+        setter: setZipsNearby,
+      },
+      {
+        name: 'options',
+        setter: setOptions,
+      },
+    ]
+
+    for (let item of localStoreItems) {
       const { name, setter } = item;
       const storedItemValue = localStorage.getItem(name)
       if (!!storedItemValue) {
@@ -439,26 +454,6 @@ export function getGeolocationFromLocalStorage(): any {
     if (!!storedGeolocation) {
       const geolocation = JSON.parse(storedGeolocation)
       dispatch(setGeolocation(geolocation))
-    }
-  }
-}
-
-export function getZipsNearbyFromLocalStorage(): any {
-  return (dispatch: any): any => {
-    const storedZips = localStorage.getItem('zipsNearby')
-    if (!!storedZips) {
-      const zips = JSON.parse(storedZips)
-      dispatch(setZipsNearby(zips))
-    }
-  }
-}
-
-export function getOptionsFromLocalStorage(): any {
-  return (dispatch: any): any => {
-    const storedOptions = localStorage.getItem('options')
-    if (!!storedOptions) {
-      const options = JSON.parse(storedOptions)
-      dispatch(setOptions(options))
     }
   }
 }
