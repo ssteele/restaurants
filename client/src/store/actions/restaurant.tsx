@@ -411,7 +411,7 @@ export function getZipFromLatLon({lat, lon}: any) {
           error => dispatch(setError(error))
         )
         .then((json) => {
-          if (!json.error) {
+          if (!json.error_message && json.results.length) {
             const addressComponents = json.results[0].address_components
             const zip: any = addressComponents.find((ac: any) => ac.types.includes('postal_code')).short_name
             geolocation = {
@@ -422,6 +422,10 @@ export function getZipFromLatLon({lat, lon}: any) {
             }
             dispatch(setGeolocation(geolocation))
             localStorage.setItem('geolocation', JSON.stringify(geolocation))
+          } else {
+            console.error(json.error_message)
+            geolocation = {isGeolocating: false}
+            dispatch(setGeolocation(geolocation))
           }
         })
     } else {
