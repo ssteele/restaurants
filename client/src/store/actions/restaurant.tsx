@@ -374,13 +374,13 @@ export function getZipsNear(zip: number) {
           dispatch(setZipsNearby(zips))
           localStorage.setItem('zipsNearby', JSON.stringify(zips))
 
+          // set geolocation filter to true
           const { options }: any = getState().restaurant
-          console.log('SHS options:', options);
-          const updatedOptions = options.map((o: any) => {
-            return ('nearby' === o.name) ? {...o, ...{value: true}} : o
-          })
-          console.log('SHS updatedOptions:', updatedOptions);
-          dispatch(setOptions(updatedOptions))
+          const nearbyOption = options.find((o: any) => 'nearby' === o.name)
+          nearbyOption.value = true;
+
+          // and filter restaurants
+          dispatch(handleFilterUpdate(nearbyOption))
         }
       })
   }
