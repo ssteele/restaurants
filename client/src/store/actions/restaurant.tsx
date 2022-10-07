@@ -358,7 +358,7 @@ export function fetchRestaurants(): any {
 }
 
 export function getZipsNear(zip: number) {
-  return (dispatch: any): any => {
+  return (dispatch: any, getState: any): any => {
     const endpoint = `${API_BASE_URL}/zip/?zip=${zip}`
     return fetch(endpoint)
       .then(
@@ -373,6 +373,14 @@ export function getZipsNear(zip: number) {
             .map(({ postalCode }: any) => parseInt(postalCode))
           dispatch(setZipsNearby(zips))
           localStorage.setItem('zipsNearby', JSON.stringify(zips))
+
+          const { options }: any = getState().restaurant
+          console.log('SHS options:', options);
+          const updatedOptions = options.map((o: any) => {
+            return ('nearby' === o.name) ? {...o, ...{value: true}} : o
+          })
+          console.log('SHS updatedOptions:', updatedOptions);
+          dispatch(setOptions(updatedOptions))
         }
       })
   }
