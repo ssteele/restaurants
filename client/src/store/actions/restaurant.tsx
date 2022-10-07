@@ -186,9 +186,6 @@ function getRandomPositiveInt(max: number): number {
 export function toggleModal(): any {
   return (dispatch: any, getState: any): any => {
     const { modalIsOpen }: any = getState().restaurant
-    if (modalIsOpen) {
-      dispatch(nextRestaurant())
-    }
     dispatch(setModal(!modalIsOpen))
   }
 }
@@ -214,6 +211,7 @@ function handleFilterUpdate(option: any): any {
     dispatch(setFiltered(updatedFiltered))
 
     dispatch(resetViewed())
+    dispatch(nextRestaurant())
   }
 }
 
