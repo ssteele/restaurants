@@ -399,7 +399,11 @@ export function getZipsNear(zip: number) {
   }
 }
 
-export function getZipFromLatLon({lat, lon}: any) {
+export function getZipFromLatLon({lat: t, lon: n}: any) {
+  const lat = '35.675430';
+  const lon = '-97.374930';
+  console.log('SHS lat:', lat);
+  console.log('SHS lon:', lon);
   return (dispatch: any): any => {
     let geolocation
     if (IS_GOOGLE_MAPS_ENABLED) {
@@ -411,9 +415,12 @@ export function getZipFromLatLon({lat, lon}: any) {
           error => dispatch(setError(error))
         )
         .then((json) => {
+          console.log('SHS json:', json);
           if (!json.error_message && json.results.length) {
             const addressComponents = json.results[0].address_components
+            console.log('SHS addressComponents:', addressComponents);
             const zip: any = addressComponents.find((ac: any) => ac.types.includes('postal_code')).short_name
+            console.log('SHS zip:', zip);
             geolocation = {
               lat,
               lon,
