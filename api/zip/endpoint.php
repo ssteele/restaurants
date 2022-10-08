@@ -8,4 +8,4 @@ if ($zip) {
     $json = readJsonFile($path);
 }
 
-echo $json;
+returnJsonResponse($json);

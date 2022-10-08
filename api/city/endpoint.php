@@ -8,4 +8,4 @@ if ($city) {
     $json = readJsonFile($path);
 }
 
-echo $json;
+returnJsonResponse($json);

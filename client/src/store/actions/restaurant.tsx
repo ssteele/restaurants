@@ -371,11 +371,11 @@ export function getZipsNear(zip: number) {
     const endpoint = `${API_BASE_URL}/zip/?zip=${zip}`
     return fetch(endpoint)
       .then(
-        response => response.json(),
+        response => response.ok && response.json(),
         error => dispatch(setError(error))
       )
       .then((json) => {
-        if (!json.error) {
+        if (json) {
           // save current zip proximities
           const { postalCodes } = json
           dispatch(setCurrentZipMeta(postalCodes))
@@ -394,6 +394,11 @@ export function getZipsNear(zip: number) {
           // ...and filter restaurants
           dispatch(handleFilterUpdate(nearbyOption))
           dispatch(handleFilterUpdate(nearbyMaxMilesOption))  // @todo: allow method to handle array?
+        } else {
+          console.error('Error retreiving nearby zips')
+          const geolocation = {isGeolocating: false}
+          dispatch(setGeolocation(geolocation))
+          localStorage.setItem('geolocation', JSON.stringify(geolocation))
         }
       })
   }
@@ -426,6 +431,7 @@ export function getZipFromLatLon({lat, lon}: any) {
             console.error(json.error_message)
             geolocation = {isGeolocating: false}
             dispatch(setGeolocation(geolocation))
+            localStorage.setItem('geolocation', JSON.stringify(geolocation))
           }
         })
     } else {

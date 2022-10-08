@@ -22,3 +22,11 @@ function readJsonFile($path) {
         return @file_get_contents($path);
     }
 }
+
+function returnJsonResponse($json) {
+    if ($json) {
+        echo $json;
+    } else {
+        http_response_code(500);
+    }
+}
