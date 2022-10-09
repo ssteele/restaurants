@@ -1,5 +1,3 @@
-console.log('SHS process.env:', process.env);
-
 const apiBaseUrls: any = {
     loc: 'http://shs.restaurants.com:8888/api',
     // tst: 'http://shs.restaurants.com:8888/api/city/?city=test',
