@@ -2,17 +2,17 @@ import { combineReducers } from 'redux'
 
 import {
   GET_RESTAURANTS,
-  GET_RESTAURANTS_SUCCESS,
-  SET_MODAL,
-  SET_OPTIONS,
+  SET_RESTAURANTS,
   GET_GEOLOCATION,
   SET_GEOLOCATION,
   SET_CURRENT_ZIP_META,
   SET_OPTION_LOCATIONS,
+  SET_OPTIONS,
   SET_FILTERED,
   SET_CURRENT_RESTAURANT,
   SET_VIEWED_RESTAURANTS,
   RESET_VIEWED_RESTAURANTS,
+  SET_MODAL,
   SET_ERROR,
 } from '../actions/restaurant'
 import {
@@ -84,7 +84,7 @@ function restaurant(
         }
       }
 
-    case GET_RESTAURANTS_SUCCESS:
+    case SET_RESTAURANTS:
       return {
         ...state,
         ...{
@@ -146,14 +146,6 @@ function restaurant(
         }
       }
 
-    case SET_MODAL:
-      return {
-        ...state,
-        ...{
-          modalIsOpen: action.isOpen,
-        }
-      }
-
     case SET_OPTIONS:
       return {
         ...state,
@@ -194,6 +186,14 @@ function restaurant(
         ...{
           viewed: [],
           viewIndex: null,
+        }
+      }
+
+    case SET_MODAL:
+      return {
+        ...state,
+        ...{
+          modalIsOpen: action.isOpen,
         }
       }
 

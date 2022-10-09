@@ -16,17 +16,17 @@ import {
  * action types
  */
 export const GET_RESTAURANTS = 'GET_RESTAURANTS'
-export const GET_RESTAURANTS_SUCCESS = 'GET_RESTAURANTS_SUCCESS' // @todo: rename SET_RESTAURANTS
+export const SET_RESTAURANTS = 'SET_RESTAURANTS'
 export const GET_GEOLOCATION = 'GET_GEOLOCATION'
-export const SET_MODAL = 'SET_MODAL'
-export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_GEOLOCATION = 'SET_GEOLOCATION'
 export const SET_CURRENT_ZIP_META = 'SET_CURRENT_ZIP_META'
 export const SET_OPTION_LOCATIONS = 'SET_OPTION_LOCATIONS'
+export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CURRENT_RESTAURANT = 'SET_CURRENT_RESTAURANT'
 export const SET_VIEWED_RESTAURANTS = 'SET_VIEWED_RESTAURANTS'
 export const RESET_VIEWED_RESTAURANTS = 'RESET_VIEWED_RESTAURANTS'
+export const SET_MODAL = 'SET_MODAL'
 export const SET_ERROR = 'SET_ERROR'
 
 /*
@@ -38,10 +38,10 @@ export function getRestaurants() {
   }
 }
 
-export function getRestaurantsSuccess(json: any) {
+export function setRestaurants(json: any) {
   const { restaurants, restaurantIds, categories, zips, filteredIds } = json
   return {
-    type: GET_RESTAURANTS_SUCCESS,
+    type: SET_RESTAURANTS,
     restaurants,
     restaurantIds,
     categories,
@@ -77,13 +77,6 @@ export function setOptionLocations(locations: any): any {
   }
 }
 
-export function setModal(isOpen: boolean): any {
-  return {
-    type: SET_MODAL,
-    isOpen,
-  }
-}
-
 export function setOptions(options: any): any {
   return {
     type: SET_OPTIONS,
@@ -98,14 +91,14 @@ export function setFiltered(filteredIds: any): any {
   }
 }
 
-export function setCurrent(restaurantId: number): any {
+export function setCurrentRestaurant(restaurantId: number): any {
   return {
     type: SET_CURRENT_RESTAURANT,
     current: restaurantId,
   }
 }
 
-export function setViewed(restaurantId: number | null, viewIndex: number): any {
+export function setViewedRestaurants(restaurantId: number | null, viewIndex: number): any {
   return {
     type: SET_VIEWED_RESTAURANTS,
     viewed: restaurantId,
@@ -113,9 +106,16 @@ export function setViewed(restaurantId: number | null, viewIndex: number): any {
   }
 }
 
-export function resetViewed(): any {
+export function resetViewedRestaurants(): any {
   return {
     type: RESET_VIEWED_RESTAURANTS,
+  }
+}
+
+export function setModal(isOpen: boolean): any {
+  return {
+    type: SET_MODAL,
+    isOpen,
   }
 }
 
@@ -212,7 +212,7 @@ function handleFilterUpdate(option: any): any {
       restaurantIds,
     })
     dispatch(setFiltered(updatedFiltered))
-    dispatch(resetViewed())
+    dispatch(resetViewedRestaurants())
     dispatch(nextRestaurant())
   }
 }
@@ -235,15 +235,15 @@ export function nextRestaurant(): any {
     const newViewIndex = viewIndex + 1
     if (newViewIndex < viewedLength) {
       // navigate through viewed restaurant history
-      dispatch(setCurrent(viewed[newViewIndex]))
-      dispatch(setViewed(null, newViewIndex))
+      dispatch(setCurrentRestaurant(viewed[newViewIndex]))
+      dispatch(setViewedRestaurants(null, newViewIndex))
       return
     }
 
     if (!(filteredIds.length > viewedLength)) {
       // cycle back to start of viewed restaurant list
-      dispatch(setCurrent(viewed[0]))
-      dispatch(setViewed(null, 0))
+      dispatch(setCurrentRestaurant(viewed[0]))
+      dispatch(setViewedRestaurants(null, 0))
       return
     } else {
       // go to next restaurant
@@ -251,8 +251,8 @@ export function nextRestaurant(): any {
       const randomIndex = getRandomPositiveInt(remainingRestaurantIds.length)
       const randomRestaurantId = remainingRestaurantIds[randomIndex]
       index = filteredIds.indexOf(randomRestaurantId)
-      dispatch(setCurrent(filteredIds[index]))
-      dispatch(setViewed(filteredIds[index], viewedLength))
+      dispatch(setCurrentRestaurant(filteredIds[index]))
+      dispatch(setViewedRestaurants(filteredIds[index], viewedLength))
       return
     }
   }
@@ -263,12 +263,12 @@ export function prevRestaurant(): any {
     const { viewed, viewIndex }: any = getState().restaurant
     let newViewIndex = viewIndex - 1
     if (newViewIndex >= 0) {
-      dispatch(setCurrent(viewed[newViewIndex]))
-      dispatch(setViewed(null, newViewIndex))
+      dispatch(setCurrentRestaurant(viewed[newViewIndex]))
+      dispatch(setViewedRestaurants(null, newViewIndex))
     } else {
       newViewIndex = viewed.length - 1
-      dispatch(setCurrent(viewed[newViewIndex]))
-      dispatch(setViewed(null, newViewIndex))
+      dispatch(setCurrentRestaurant(viewed[newViewIndex]))
+      dispatch(setViewedRestaurants(null, newViewIndex))
     }
   }
 }
@@ -343,7 +343,7 @@ export function fetchRestaurants(): any {
             restaurantIds,
           })
 
-          dispatch(getRestaurantsSuccess({
+          dispatch(setRestaurants({
             restaurants,
             restaurantIds,
             categories,
