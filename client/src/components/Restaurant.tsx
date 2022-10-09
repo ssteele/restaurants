@@ -221,7 +221,7 @@ class Restaurant extends React.Component<IRestaurant> {
         {!current && (
           <div className="restaurant">
             <div className="restaurant-name subtle">
-              Filterd :(
+              Nope :(
             </div>
           </div>
         )}
