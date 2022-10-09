@@ -3,7 +3,6 @@ import { combineReducers } from 'redux'
 import {
   GET_RESTAURANTS,
   GET_RESTAURANTS_SUCCESS,
-  GET_RESTAURANTS_ERROR,
   SET_MODAL,
   SET_OPTIONS,
   GET_GEOLOCATION,
@@ -97,19 +96,6 @@ function restaurant(
           // zips: action.zips || [],
           filteredIds: action.filteredIds || [],
           filteredCount: action.filteredIds.length,
-        }
-      }
-
-    case GET_RESTAURANTS_ERROR:
-      return {
-        ...state,
-        ...{
-          isLoading: false,
-          restaurants: state.restaurants || {},
-          restaurantIds: state.restaurantIds || [],
-          filteredIds: state.filteredIds || [],
-          filteredCount: state.filteredIds.length,
-          error: action.error,
         }
       }
 

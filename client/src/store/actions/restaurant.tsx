@@ -16,8 +16,7 @@ import {
  * action types
  */
 export const GET_RESTAURANTS = 'GET_RESTAURANTS'
-export const GET_RESTAURANTS_SUCCESS = 'GET_RESTAURANTS_SUCCESS'
-export const GET_RESTAURANTS_ERROR = 'GET_RESTAURANTS_ERROR'
+export const GET_RESTAURANTS_SUCCESS = 'GET_RESTAURANTS_SUCCESS' // @todo: rename SET_RESTAURANTS
 export const GET_GEOLOCATION = 'GET_GEOLOCATION'
 export const SET_MODAL = 'SET_MODAL'
 export const SET_OPTIONS = 'SET_OPTIONS'
@@ -48,13 +47,6 @@ export function getRestaurantsSuccess(json: any) {
     categories,
     zips,
     filteredIds,
-  }
-}
-
-export function getRestaurantsError(error: any) {
-  return {
-    type: GET_RESTAURANTS_ERROR,
-    error,
   }
 }
 
