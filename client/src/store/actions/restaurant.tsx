@@ -220,7 +220,6 @@ function handleFilterUpdate(option: any): any {
       restaurantIds,
     })
     dispatch(setFiltered(updatedFiltered))
-
     dispatch(resetViewed())
     dispatch(nextRestaurant())
   }
@@ -289,11 +288,19 @@ export function fetchRestaurants(): any {
     const endpoint = `${API_BASE_URL}/city/`
     return fetch(endpoint)
       .then(
-        response => response.json(),
-        error => dispatch(getRestaurantsError(error))
+        response => {
+          if (response.ok) {
+            return response.json()
+          }
+          throw new Error('Error retrieving restaurants')
+        },
+        error => {
+          dispatch(setError(error))
+          throw new Error(error)
+        },
       )
       .then((json) => {
-        if (!json.error) {
+        if (json) {
           // define normalizr schemas
           const categorySchema = new schema.Entity('categories', {})
           const zipSchema = new schema.Entity('zips', {})
@@ -361,8 +368,11 @@ export function fetchRestaurants(): any {
           const zipsArray = Object.values(zips as any)
           dispatch(setOptionLocations(zipsArray))
           dispatch(nextRestaurant())
+        } else {
+          throw new Error('Error retrieving restaurants')
         }
       })
+      .catch(error => console.error(error))
   }
 }
 
@@ -371,8 +381,16 @@ export function getZipsNear(zip: number) {
     const endpoint = `${API_BASE_URL}/zip/?zip=${zip}`
     return fetch(endpoint)
       .then(
-        response => response.ok && response.json(),
-        error => dispatch(setError(error))
+        response => {
+          if (response.ok) {
+            return response.json()
+          }
+          throw new Error('Error retrieving nearby zips')
+        },
+        error => {
+          dispatch(setError(error))
+          throw new Error(error)
+        },
       )
       .then((json) => {
         if (json) {
@@ -395,11 +413,14 @@ export function getZipsNear(zip: number) {
           dispatch(handleFilterUpdate(nearbyOption))
           dispatch(handleFilterUpdate(nearbyMaxMilesOption))  // @todo: allow method to handle array?
         } else {
-          console.error('Error retreiving nearby zips')
-          const geolocation = {isGeolocating: false}
-          dispatch(setGeolocation(geolocation))
-          localStorage.setItem('geolocation', JSON.stringify(geolocation))
+          throw new Error('Error retrieving nearby zips')
         }
+      })
+      .catch(error => {
+        console.error(error)
+        const geolocation = {isGeolocating: false}
+        dispatch(setGeolocation(geolocation))
+        localStorage.setItem('geolocation', JSON.stringify(geolocation))
       })
   }
 }
@@ -412,8 +433,16 @@ export function getZipFromLatLon({lat, lon}: any) {
       const googleMapsEndpoint = `${GOOGLE_MAPS_API_ENDPOINT}?latlng=${lat},${lon}&key=${GOOGLE_MAPS_API_KEY}`
       return fetch(googleMapsEndpoint)
         .then(
-          response => response.json(),
-          error => dispatch(setError(error))
+          response => {
+            if (response.ok) {
+              return response.json()
+            }
+            throw new Error('Google API - Error getting zip from lat/lon')
+          },
+          error => {
+            dispatch(setError(error))
+            throw new Error(error)
+          },
         )
         .then((json) => {
           if (!json.error_message && json.results.length) {
@@ -428,11 +457,14 @@ export function getZipFromLatLon({lat, lon}: any) {
             dispatch(setGeolocation(geolocation))
             localStorage.setItem('geolocation', JSON.stringify(geolocation))
           } else {
-            console.error(json.error_message)
-            geolocation = {isGeolocating: false}
-            dispatch(setGeolocation(geolocation))
-            localStorage.setItem('geolocation', JSON.stringify(geolocation))
+            throw new Error(`Google API - Error getting zip from lat/lon: ${json.error_message}`)
           }
+        })
+        .catch(error => {
+          console.error(error)
+          geolocation = {isGeolocating: false}
+          dispatch(setGeolocation(geolocation))
+          localStorage.setItem('geolocation', JSON.stringify(geolocation))
         })
     } else {
       geolocation = {
