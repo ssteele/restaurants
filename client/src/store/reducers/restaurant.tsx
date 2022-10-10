@@ -50,7 +50,6 @@ function restaurant(
     geolocation: {
       isGeolocating: false,
     },
-    zips: [],
     currentZipMeta: [],
     filteredIds: [],
     filteredCount: 0,
@@ -86,8 +85,6 @@ function restaurant(
           restaurants: action.restaurants || {},
           restaurantIds: action.restaurantIds || [],
           categories: action.categories || [],
-          // @todo: zips store node not used currently - can change this to be locations if desired
-          // zips: action.zips || [],
           filteredIds: action.filteredIds || [],
           filteredCount: action.filteredIds.length,
         }
