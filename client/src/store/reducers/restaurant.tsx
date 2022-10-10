@@ -47,9 +47,7 @@ function restaurant(
     restaurants: {},
     restaurantIds: [],
     categories: [],
-    geolocation: {
-      isGeolocating: false,
-    },
+    geolocation: { isGeolocating: false },
     currentZipMeta: [],
     filteredIds: [],
     filteredCount: 0,
