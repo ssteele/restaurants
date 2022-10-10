@@ -8,8 +8,8 @@ import {
 } from '../constants'
 
 import {
+  fetchGeolocation,
   fetchRestaurants,
-  getGeolocation,
   getZipFromLatLon,
   nextRestaurant,
   prevRestaurant,
@@ -17,7 +17,7 @@ import {
   setReduxFromLocalStore,
   toggleModal,
   toggleOption,
-} from '../store/actions/restaurant'
+} from '../store/thunks/restaurant'
 
 import { IRestaurant } from '../models/Restaurant'
 import { IOption } from '../models/Option'
@@ -69,7 +69,7 @@ class Restaurant extends React.Component<IRestaurant> {
       console.warn('Location services are unavailable')
     } else {
       const { dispatch }: any = this.props
-      dispatch(getGeolocation())
+      dispatch(fetchGeolocation())
       const position: any = await this.getCoordinates()
       dispatch(getZipFromLatLon({
         lat: position.coords.latitude,
