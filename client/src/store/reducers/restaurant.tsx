@@ -49,6 +49,8 @@ function restaurant(
       {name: 'meat', description: 'Only meat-friendly', type: 'checkbox', value: false, rendered: true, disabled: false},
       {name: 'indoor', description: 'Only indoor seating', type: 'checkbox', value: false, rendered: true, disabled: false},
       {name: 'outdoor', description: 'Only outdoor seating', type: 'checkbox', value: false, rendered: true, disabled: false},
+      {name: 'playground', description: 'Only with playground', type: 'checkbox', value: false, rendered: true, disabled: false},
+      {name: 'playarea', description: 'Only with play area', type: 'checkbox', value: false, rendered: true, disabled: false},
     ],
     restaurants: {},
     restaurantIds: [],

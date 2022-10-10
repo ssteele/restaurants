@@ -16,6 +16,8 @@
         "price": 2,
         "zips": [78704],
         "kids": ["kid's plate"],
+        "playground": true,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -36,6 +38,8 @@
         "price": 2,
         "zips": [78702],
         "kids": ["roasted sweets and beets", "peanut butter apple sandwich"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -56,6 +60,8 @@
         "price": 1,
         "zips": [78705],
         "kids": ["eggs", "tomales"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -76,6 +82,8 @@
         "price": 1,
         "zips": [78758, 78757, 78756, 78701, 78746],
         "kids": ["double-corn taco: eggs, avocado, whole black beans, mushrooms"],
+        "playground": false,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -96,6 +104,8 @@
         "price": 2,
         "zips": [78758, 78701],
         "kids": ["kid's chicken plate", "salmon", "corn/quinoa", "flying avocado wrap"],
+        "playground": true,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -116,6 +126,8 @@
         "price": 2,
         "zips": [78704],
         "kids": ["breakfast tacos w/ extra tortillas", "eggs", "avocado rolls"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -136,6 +148,8 @@
         "price": 2,
         "zips": [78759, 78701, 78746],
         "kids": ["kid's chicken plate", "salmon", "soup"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -156,6 +170,8 @@
         "price": 2,
         "zips": [78759, 78756],
         "kids": ["build: quinoa, beets, mushrooms, sweet potatoes, avocado, pumpkin seeds, lemon garlic"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -176,6 +192,8 @@
         "price": 2,
         "zips": [78748],
         "kids": [],
+        "playground": false,
+        "playarea": false,
         "enabled": 0,
         "deleted": 0
     },
@@ -196,6 +214,8 @@
         "price": 2,
         "zips": [78704],
         "kids": ["soup", "roasted veggie sammie", "salmon"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -216,6 +236,8 @@
         "price": 2,
         "zips": [78751],
         "kids": [],
+        "playground": false,
+        "playarea": false,
         "enabled": 0,
         "deleted": 1
     },
@@ -236,6 +258,8 @@
         "price": 2,
         "zips": [78723, 78702],
         "kids": ["scrambled eggs", "avocado", "tortillas"],
+        "playground": false,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -256,6 +280,8 @@
         "price": 2,
         "zips": [78722],
         "kids": ["roasted organic beets", "tacos"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -276,6 +302,8 @@
         "price": 3,
         "zips": [78704],
         "kids": [],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -296,6 +324,8 @@
         "price": 2,
         "zips": [78702],
         "kids": ["breakfast tacos", "egg sandwich"],
+        "playground": false,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -316,6 +346,8 @@
         "price": 2,
         "zips": [78704],
         "kids": [],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -336,6 +368,8 @@
         "price": 2,
         "zips": [78702],
         "kids": [],
+        "playground": false,
+        "playarea": false,
         "enabled": 0,
         "deleted": 1
     },
@@ -356,6 +390,8 @@
         "price": 2,
         "zips": [78722],
         "kids": [],
+        "playground": false,
+        "playarea": false,
         "enabled": 0,
         "deleted": 1
     },
@@ -376,6 +412,8 @@
         "price": 2,
         "zips": [78664],
         "kids": ["burger"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -396,6 +434,8 @@
         "price": 2,
         "zips": [78756],
         "kids": ["pesto zucchini noodles w/ black beans"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -416,6 +456,8 @@
         "price": 2,
         "zips": [78756, 78704],
         "kids": ["breakfast tacos"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -436,6 +478,8 @@
         "price": 2,
         "zips": [78723],
         "kids": ["burger"],
+        "playground": false,
+        "playarea": false,
         "enabled": 0,
         "deleted": 1
     },
@@ -456,6 +500,8 @@
         "price": 1,
         "zips": [78701],
         "kids": ["tacos", "roasted chicken"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -476,6 +522,8 @@
         "price": 2,
         "zips": [78753, 78703, 78704, 78746, 78748],
         "kids": ["scrambled eggs", "black beans", "avocado", "tortillas"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -496,6 +544,8 @@
         "price": 2,
         "zips": [78703, 78704],
         "kids": ["taco", "bol"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -516,6 +566,8 @@
         "price": 2,
         "zips": [78723, 78731, 78705, 78746, 78750, 78704, 78749, 78664],
         "kids": ["breakfast tacos w/ extra tortillas"],
+        "playground": true,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -536,6 +588,8 @@
         "price": 2,
         "zips": [78731],
         "kids": ["soup", "beet salad", "grilled avocado", "avocado toast"],
+        "playground": false,
+        "playarea": false,
         "enabled": 0,
         "deleted": 1
     },
@@ -556,6 +610,8 @@
         "price": 2,
         "zips": [78702],
         "kids": [],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -576,6 +632,8 @@
         "price": 2,
         "zips": [78758, 78701],
         "kids": ["chicken teriyaki", "burger", "pizza"],
+        "playground": true,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -596,6 +654,8 @@
         "price": 2,
         "zips": [78752, 78701, 78704],
         "kids": ["burger", "egg sandwich"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -616,6 +676,8 @@
         "price": 2,
         "zips": [78756],
         "kids": ["burger", "pizza", "grocery items"],
+        "playground": true,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -636,6 +698,8 @@
         "price": 2,
         "zips": [78758, 78703],
         "kids": ["tacos", "pizza", "salad bar items", "grocery items"],
+        "playground": true,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -656,6 +720,8 @@
         "price": 2,
         "zips": [78758],
         "kids": ["burger"],
+        "playground": true,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -676,6 +742,8 @@
         "price": 2,
         "zips": [78756, 78704],
         "kids": ["mushroom pizza"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -696,6 +764,8 @@
         "price": 2,
         "zips": [78705, 78702, 78701],
         "kids": ["pizza"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -716,6 +786,8 @@
         "price": 2,
         "zips": [78727, 78745],
         "kids": ["mushroom pizza"],
+        "playground": true,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -736,6 +808,8 @@
         "price": 2,
         "zips": [78759],
         "kids": ["mushroom pizza"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -756,6 +830,8 @@
         "price": 1,
         "zips": [78753, 78704, 78705, 78749, 78746, 78758, 78759, 78757, 78752, 78723, 78741, 78701, 78750, 78748],
         "kids": ["burger"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -776,6 +852,8 @@
         "price": 2,
         "zips": [78759, 78703, 78748],
         "kids": ["breakfast taco", "burger"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -796,6 +874,8 @@
         "price": 2,
         "zips": [78758, 78756, 78746],
         "kids": ["tiny hat"],
+        "playground": true,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -816,6 +896,8 @@
         "price": 2,
         "zips": [78717],
         "kids": ["burger", "flatbread"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -836,6 +918,8 @@
         "price": 1,
         "zips": [78722, 78704],
         "kids": ["avocado wrap"],
+        "playground": true,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -856,6 +940,8 @@
         "price": 2,
         "zips": [78717],
         "kids": ["sushi", "grocery items", "spaghetti"],
+        "playground": false,
+        "playarea": true,
         "enabled": 1,
         "deleted": 0
     },
@@ -876,6 +962,8 @@
         "price": 2,
         "zips": [78757, 78613, 78745],
         "kids": ["biryani rice bowl", "tikka masala bowl"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -896,6 +984,8 @@
         "price": 2,
         "zips": [78758, 78759, 78757, 78731, 78751, 78723, 78705, 78702, 78701, 78704, 78703],
         "kids": ["peachy green", "raspberry hooray"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -916,6 +1006,8 @@
         "price": 1,
         "zips": [78722, 78702, 78703, 78701],
         "kids": ["el breakfast taco"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -936,6 +1028,8 @@
         "price": 2,
         "zips": [78723],
         "kids": ["burger", "taco"],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     },
@@ -956,6 +1050,8 @@
         "price": 3,
         "zips": [78759, 78701],
         "kids": [],
+        "playground": false,
+        "playarea": false,
         "enabled": 1,
         "deleted": 0
     }
