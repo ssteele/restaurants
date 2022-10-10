@@ -23,7 +23,6 @@ import { IRestaurant } from '../models/Restaurant'
 import { IOption } from '../models/Option'
 import { OptionCheckbox } from './option/OptionCheckbox'
 import { OptionSelect } from './option/OptionSelect'
-import { LocationsSelect } from './option/LocationsSelect'
 import '../css/Restaurant.css'
 
 Modal.setAppElement('#root')
@@ -35,7 +34,6 @@ class Restaurant extends React.Component<IRestaurant> {
     error: PropTypes.object,
     filteredCount: PropTypes.number.isRequired,
     geolocation: PropTypes.object,
-    // locations: PropTypes.array,
     modalIsOpen: PropTypes.bool,
     options: PropTypes.array.isRequired,
     restaurants: PropTypes.object,
@@ -117,7 +115,6 @@ class Restaurant extends React.Component<IRestaurant> {
       error,
       filteredCount,
       geolocation,
-      // locations,
       modalIsOpen,
       options,
       restaurants,
@@ -153,12 +150,6 @@ class Restaurant extends React.Component<IRestaurant> {
                     <OptionSelect
                       option={option}
                       selectOption={this.selectOption}
-                    />
-                  )}
-                  {'locationSelect' === option.type && (
-                    <LocationsSelect
-                      option={option}
-                      selectOption={this.selectMultiOptions}
                     />
                   )}
                 </section>
@@ -254,7 +245,6 @@ function mapStateToProps(state: any) {
     error,
     filteredCount,
     geolocation,
-    // locations,
     modalIsOpen,
     options,
     restaurants,
@@ -265,7 +255,6 @@ function mapStateToProps(state: any) {
     error,
     filteredCount,
     geolocation,
-    // locations,
     modalIsOpen,
     options,
     restaurants,

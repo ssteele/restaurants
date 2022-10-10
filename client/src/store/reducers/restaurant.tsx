@@ -6,7 +6,6 @@ import {
   GET_GEOLOCATION,
   SET_GEOLOCATION,
   SET_CURRENT_ZIP_META,
-  SET_OPTION_LOCATIONS,
   SET_OPTIONS,
   SET_FILTERED,
   SET_CURRENT_RESTAURANT,
@@ -24,13 +23,6 @@ function restaurant(
   state: any = {
     isLoading: false,
     options: [
-      // {
-      //   name: 'location',
-      //   description: 'Location',
-      //   type: 'locationSelect',
-      //   value: [],
-      //   values: [],
-      // },
       {name: 'nearby', description: 'Only near me', type: 'checkbox', value: false, rendered: true, disabled: true},
       {
         name: 'nearbyMaxMiles',
@@ -132,19 +124,6 @@ function restaurant(
         ...state,
         ...{
           currentZipMeta: action.currentZipMeta,
-        }
-      }
-
-    case SET_OPTION_LOCATIONS:
-      return {
-        ...state,
-        ...{
-          options: state.options.map((o: any) => {
-              if ('location' === o.name) {
-                o.values = action.locations
-              }
-              return o
-          }),
         }
       }
 

@@ -9,7 +9,6 @@ import {
   GOOGLE_MAPS_API_ENDPOINT,
   GOOGLE_MAPS_API_KEY,
   IS_GOOGLE_MAPS_ENABLED,
-  ZIP_NAME_MAP,
 } from '../../constants'
 
 /*
@@ -20,7 +19,6 @@ export const SET_RESTAURANTS = 'SET_RESTAURANTS'
 export const GET_GEOLOCATION = 'GET_GEOLOCATION'
 export const SET_GEOLOCATION = 'SET_GEOLOCATION'
 export const SET_CURRENT_ZIP_META = 'SET_CURRENT_ZIP_META'
-export const SET_OPTION_LOCATIONS = 'SET_OPTION_LOCATIONS'
 export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CURRENT_RESTAURANT = 'SET_CURRENT_RESTAURANT'
@@ -67,13 +65,6 @@ export function setCurrentZipMeta(currentZipMeta: any[]): any {
   return {
     type: SET_CURRENT_ZIP_META,
     currentZipMeta,
-  }
-}
-
-export function setOptionLocations(locations: any): any {
-  return {
-    type: SET_OPTION_LOCATIONS,
-    locations,
   }
 }
 
@@ -305,25 +296,17 @@ export function fetchRestaurants(): any {
           const jsonWithNestedIds = json
             .filter((restaurant: any) => !!restaurant.enabled)
             .map((restaurant: any) => {
-              let { categories, zips } = restaurant
+              const { categories } = restaurant
 
-              categories = categories.map((category: string) => {
+              const normalizedCategories = categories.map((category: string) => {
                 const id = category.toLowerCase().replace(/[\W]/g, '')
                 return {id, name: category}
               })
 
-              zips = zips.map((zip: number) => {
-                const res: any = {id: zip}
-                if (ZIP_NAME_MAP[zip]) {
-                  res.name = ZIP_NAME_MAP[zip]
-                } else {
-                  res.name = null
-                  console.warn(`Need name for zip: ${zip}`)
-                }
-                return res
-              })
-
-              return {...restaurant, categories, zips}
+              return {
+                ...restaurant,
+                categories: normalizedCategories,
+              }
             })
 
           // normalize
@@ -332,7 +315,7 @@ export function fetchRestaurants(): any {
             {restaurants: [restaurantSchema]},
           )
 
-          const { restaurants, categories, zips } = normalized.entities
+          const { restaurants, categories } = normalized.entities
           const { restaurants: restaurantIds } = normalized.result
 
           const { currentZipMeta, options }: any = getState().restaurant
@@ -347,18 +330,9 @@ export function fetchRestaurants(): any {
             restaurants,
             restaurantIds,
             categories,
-            // zips, // @todo: remove me
             filteredIds,
           }))
 
-          // order options by ZIP_NAME_MAP
-          // zips = Object.entries(ZIP_NAME_MAP).map(([zip, name]: any) => {
-          //   return {id: parseInt(zip), name}
-          // })
-          // console.log('SHS zips:', zips)
-
-          const zipsArray = Object.values(zips as any)
-          dispatch(setOptionLocations(zipsArray))
           dispatch(nextRestaurant())
         } else {
           throw new Error('Error retrieving restaurants')
@@ -503,16 +477,6 @@ export function setReduxFromLocalStore(): any {
         const value = JSON.parse(storedItemValue)
         dispatch(setter(value))
       }
-    }
-  }
-}
-
-export function getGeolocationFromLocalStorage(): any {
-  return (dispatch: any): any => {
-    const storedGeolocation = localStorage.getItem('geolocation')
-    if (!!storedGeolocation) {
-      const geolocation = JSON.parse(storedGeolocation)
-      dispatch(setGeolocation(geolocation))
     }
   }
 }
