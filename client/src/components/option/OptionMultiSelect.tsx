@@ -1,9 +1,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-// import '../../css/LocationsSelect.css'
-
-export class LocationsSelect extends React.Component {
+export class OptionMultiSelect extends React.Component {
   static propTypes = {
     option: PropTypes.object.isRequired,
     selectOption: PropTypes.func.isRequired,
@@ -14,6 +12,10 @@ export class LocationsSelect extends React.Component {
 
     return !!option && option.rendered && (
       <div className="grid-x">
+        <div className="cell small-8">
+          {option.description}
+        </div>
+
         <div className="cell auto option-multiselect">
           <select
             disabled={option.disabled}
@@ -22,9 +24,9 @@ export class LocationsSelect extends React.Component {
             onChange={(e) => selectOption(option, e)}
             multiple
           >
-            {!!option.values && option.values.map(({id: zip, name}: any, i: number) => {
+            {!!option.values && option.values.map(({id, name}: any, i: number) => {
               return (
-                <option value={zip} key={i}>{zip} - {name}</option>
+                <option value={id} key={i}>{name}</option>
               )
             })}
           </select>
