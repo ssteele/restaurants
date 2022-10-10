@@ -419,11 +419,11 @@ export function getZipsNear(zip: number) {
 
 export function getZipFromLatLon({lat, lon}: any) {
   return (dispatch: any): any => {
-    let geolocation
+    let geolocation: any = {}
     if (IS_GOOGLE_MAPS_ENABLED) {
       console.warn('Google Maps API lookup is enabled')
       const googleMapsEndpoint = `${GOOGLE_MAPS_API_ENDPOINT}?latlng=${lat},${lon}&key=${GOOGLE_MAPS_API_KEY}`
-      return fetch(googleMapsEndpoint)
+      fetch(googleMapsEndpoint)
         .then(
           response => {
             if (response.ok) {
@@ -448,6 +448,10 @@ export function getZipFromLatLon({lat, lon}: any) {
             }
             dispatch(setGeolocation(geolocation))
             localStorage.setItem('geolocation', JSON.stringify(geolocation))
+
+            if (geolocation.zip) {
+              dispatch(getZipsNear(geolocation.zip))
+            }
           } else {
             throw new Error(`Google API - Error getting zip from lat/lon: ${json.error_message}`)
           }
@@ -467,10 +471,10 @@ export function getZipFromLatLon({lat, lon}: any) {
       }
       dispatch(setGeolocation(geolocation))
       localStorage.setItem('geolocation', JSON.stringify(geolocation))
-    }
 
-    if (geolocation.zip) {
-      dispatch(getZipsNear(geolocation.zip))
+      if (geolocation.zip) {
+        dispatch(getZipsNear(geolocation.zip))
+      }
     }
   }
 }
