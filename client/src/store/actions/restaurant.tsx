@@ -1,6 +1,3 @@
-/*
- * action types
- */
 export const GET_RESTAURANTS = 'GET_RESTAURANTS'
 export const SET_RESTAURANTS = 'SET_RESTAURANTS'
 export const GET_GEOLOCATION = 'GET_GEOLOCATION'
@@ -14,9 +11,6 @@ export const RESET_VIEWED_RESTAURANTS = 'RESET_VIEWED_RESTAURANTS'
 export const SET_MODAL = 'SET_MODAL'
 export const SET_ERROR = 'SET_ERROR'
 
-/*
- * action creators
- */
 export function getRestaurants() {
   return {
     type: GET_RESTAURANTS,
