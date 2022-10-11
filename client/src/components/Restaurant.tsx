@@ -34,6 +34,7 @@ class Restaurant extends React.Component<IRestaurant> {
     error: PropTypes.object,
     filteredCount: PropTypes.number.isRequired,
     geolocation: PropTypes.object,
+    isLoading: PropTypes.bool,
     modalIsOpen: PropTypes.bool,
     options: PropTypes.array.isRequired,
     restaurants: PropTypes.object,
@@ -115,6 +116,7 @@ class Restaurant extends React.Component<IRestaurant> {
       error,
       filteredCount,
       geolocation,
+      isLoading,
       modalIsOpen,
       options,
       restaurants,
@@ -212,7 +214,7 @@ class Restaurant extends React.Component<IRestaurant> {
         {!current && (
           <div className="restaurant">
             <div className="restaurant-name subtle">
-              Nope :(
+              {isLoading ? 'Loading...' : 'Nope :('}
             </div>
           </div>
         )}
@@ -245,6 +247,7 @@ function mapStateToProps(state: any) {
     error,
     filteredCount,
     geolocation,
+    isLoading,
     modalIsOpen,
     options,
     restaurants,
@@ -255,6 +258,7 @@ function mapStateToProps(state: any) {
     error,
     filteredCount,
     geolocation,
+    isLoading,
     modalIsOpen,
     options,
     restaurants,
