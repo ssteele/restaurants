@@ -78,12 +78,12 @@ class Restaurant extends React.Component<IRestaurant> {
     }
   }
 
-  public toggleModal = (e: any) => {
+  public toggleModal = () => {
     const { dispatch }: any = this.props
     dispatch(toggleModal())
   }
 
-  public toggleOption = (option: IOption, e: any) => {
+  public toggleOption = (option: IOption) => {
     const { dispatch }: any = this.props
     dispatch(toggleOption(option))
   }

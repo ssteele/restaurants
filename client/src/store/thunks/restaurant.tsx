@@ -92,9 +92,9 @@ export function toggleModal(): any {
   }
 }
 
-function handleFilterUpdate(option: any): any {
+function handleOptionUpdate(option: any): any {
   return (dispatch: any, getState: any): any => {
-    const { currentZipMeta, options, restaurants, restaurantIds }: any = getState().restaurant
+    const { options }: any = getState().restaurant
 
     // update current options
     const updatedOptions = options.map((o: any) => {
@@ -102,11 +102,15 @@ function handleFilterUpdate(option: any): any {
     })
     dispatch(setOptions(updatedOptions))
     localStorage.setItem('options', JSON.stringify(updatedOptions))
+  }
+}
 
-    // update filtered restaurants
+function handleFilterUpdate(): any {
+  return (dispatch: any, getState: any): any => {
+    const { currentZipMeta, options, restaurants, restaurantIds }: any = getState().restaurant
     const updatedFiltered = filterRestaurants({
       currentZipMeta,
-      options: updatedOptions,
+      options,
       restaurants,
       restaurantIds,
     })
@@ -117,13 +121,19 @@ function handleFilterUpdate(option: any): any {
 }
 
 export function selectOption(option: any, value: any): any {
-  option.value = value
-  return handleFilterUpdate(option)
+  return (dispatch: any): any => {
+    option.value = value
+    dispatch(handleOptionUpdate(option))
+    dispatch(handleFilterUpdate())
+  }
 }
 
 export function toggleOption(option: any): any {
-  option.value = !option.value
-  return handleFilterUpdate(option)
+  return (dispatch: any): any => {
+    option.value = !option.value
+    dispatch(handleOptionUpdate(option))
+    dispatch(handleFilterUpdate())
+  }
 }
 
 export function nextRestaurant(): any {
@@ -290,8 +300,9 @@ export function getZipsNear(zip: number) {
           nearbyMaxMilesOption.disabled = false
 
           // ...and filter restaurants
-          dispatch(handleFilterUpdate(nearbyOption))
-          dispatch(handleFilterUpdate(nearbyMaxMilesOption))  // @todo: allow method to handle array?
+          dispatch(handleOptionUpdate(nearbyOption))
+          dispatch(handleOptionUpdate(nearbyMaxMilesOption))
+          dispatch(handleFilterUpdate())
         } else {
           throw new Error('Error retrieving nearby zips')
         }
