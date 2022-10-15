@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-
 import {
   fetchRestaurants,
   nextRestaurant,
@@ -9,7 +8,6 @@ import {
   setReduxFromLocalStore,
   toggleModal,
 } from '../store/thunks/restaurant'
-
 import { GeolocationButton } from './GeolocationButton'
 import { OptionsButton } from './OptionsButton'
 import { OptionsModal } from './OptionsModal'
@@ -175,4 +173,5 @@ function mapStateToProps(state: any) {
   }
 }
 
+// @todo: address export default
 export default connect(mapStateToProps)(App as any)

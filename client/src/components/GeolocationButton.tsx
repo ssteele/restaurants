@@ -1,15 +1,12 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-
 import {
   GOOGLE_MAPS_COOL_OFF_SECONDS,
 } from '../constants'
-
 import {
   fetchGeolocation,
   getZipFromLatLon,
 } from '../store/thunks/restaurant'
-
 import '../css/GeolocationButton.css'
 
 export class GeolocationButton extends React.Component {

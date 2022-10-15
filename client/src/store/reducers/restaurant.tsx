@@ -186,8 +186,6 @@ function restaurant(
   }
 }
 
-const restaurantApp = combineReducers({
+export const restaurantApp = combineReducers({
   restaurant,
 })
-
-export default restaurantApp

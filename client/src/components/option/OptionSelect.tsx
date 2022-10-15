@@ -1,8 +1,6 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-// import '../../css/OptionSelect.css'
-
 export class OptionSelect extends React.Component {
   static propTypes = {
     option: PropTypes.object.isRequired,
