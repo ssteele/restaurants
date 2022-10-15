@@ -101,7 +101,7 @@ class Restaurant extends React.Component<IRestaurant> {
     }: any = this.props
 
     return (
-      <div>
+      <section>
         <OptionsModal
           dispatch={dispatch}
           filteredCount={filteredCount}
@@ -109,7 +109,7 @@ class Restaurant extends React.Component<IRestaurant> {
           options={options}
         ></OptionsModal>
 
-        <div
+        <section
           className={`
             geolocation-trigger
             ${geolocation.zip ? 'inset' : ''}
@@ -126,66 +126,74 @@ class Restaurant extends React.Component<IRestaurant> {
           {geolocation.zip && (
             <span className="subtle geolocation-zip">{geolocation.zip}</span>
           )}
-        </div>
+        </section>
 
-        <div
+        <section
           className="options-modal-open splash"
           onClick={this.toggleModal}
         >
           <i className="fa fa-bars fa-lg"></i>
-        </div>
+        </section>
 
         {current && (
-          <div className="restaurant">
-            <div className="restaurant-name">
-              <a
-                href={restaurants[current].menu}
-                target="_blank"
-                rel="noopener noreferrer"
-              >{restaurants[current].name}</a>
-            </div>
-
-            <div className="sub-name">{restaurants[current].sub_name}</div>
-
-            {restaurants[current].kids.length > 0 &&
-              <div className="restaurant-kids">
-                <span className="kids-item">
-                  <i className="fa fa-child fa-fw"></i>
-                  {restaurants[current].kids.join(', ')}
-                </span>
-              </div>
+          <section className="restaurant">
+            {restaurants[current].name &&
+              <section className="restaurant-name">
+                <a
+                  href={restaurants[current].menu}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >{restaurants[current].name}</a>
+              </section>
             }
 
-            <div className="error">{error.message}</div>
-          </div>
+            {restaurants[current].sub_name &&
+              <section>
+                <span className="sub-name">{restaurants[current].sub_name}</span>
+              </section>
+            }
+
+            {restaurants[current].kids.length > 0 &&
+              <section className="restaurant-kids">
+                <i className="fa fa-child fa-fw"></i>
+                {restaurants[current].kids.join(', ')}
+              </section>
+            }
+
+            {error.message &&
+              <section>
+                <span className="error">{error.message}</span>
+              </section>
+            }
+          </section>
         )}
 
         {!current && (
-          <div className="restaurant">
-            <div className="restaurant-name subtle">
+          <section className="restaurant">
+            <span className="restaurant-name subtle">
               {isLoading ? 'Loading...' : 'Nope :('}
-            </div>
-          </div>
+            </span>
+          </section>
         )}
 
-        <div className="actions">
-          <div className="back">
+        <section className="actions">
+          <span className="back">
             <button
               className="button secondary"
               onClick={this.back}
               disabled={filteredCount < 2}
             >Back</button>
-          </div>
+          </span>
 
-          <div className="next">
+          <span className="next">
             <button
               className="button"
               onClick={this.next}
               disabled={filteredCount < 2}
             >Next</button>
-          </div>
-        </div>
-      </div>
+          </span>
+        </section>
+      </section>
     )
   }
 }

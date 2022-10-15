@@ -13,12 +13,12 @@ export class OptionSelect extends React.Component {
     const { option, selectOption }: any = this.props
 
     return !!option && option.rendered && (
-      <div className="grid-x">
-        <div className="cell small-8">
+      <section className="grid-x">
+        <section className="cell small-8">
           {option.description}
-        </div>
+        </section>
 
-        <div className="cell auto option-select">
+        <section className="cell auto option-select">
           <select
             disabled={option.disabled}
             id={option.name}
@@ -31,8 +31,8 @@ export class OptionSelect extends React.Component {
               )
             })}
           </select>
-        </div>
-      </div>
+        </section>
+      </section>
     )
   }
 }

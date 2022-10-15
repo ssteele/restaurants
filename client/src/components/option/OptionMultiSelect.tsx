@@ -11,12 +11,12 @@ export class OptionMultiSelect extends React.Component {
     const { option, selectOption }: any = this.props
 
     return !!option && option.rendered && (
-      <div className="grid-x">
-        <div className="cell small-8">
+      <section className="grid-x">
+        <section className="cell small-8">
           {option.description}
-        </div>
+        </section>
 
-        <div className="cell auto option-multiselect">
+        <section className="cell auto option-multiselect">
           <select
             disabled={option.disabled}
             id={option.name}
@@ -30,8 +30,8 @@ export class OptionMultiSelect extends React.Component {
               )
             })}
           </select>
-        </div>
-      </div>
+        </section>
+      </section>
     )
   }
 }

@@ -52,22 +52,22 @@ export class OptionsModal extends React.Component {
     }: any = this.props
 
     return (
-      <div>
+      <aside>
         <Modal 
           isOpen={modalIsOpen}
           contentLabel="Options"
           className="options-modal"
           overlayClassName="options-modal-overlay"
         >
-          <div className="options-modal-bar">
+          <section className="options-modal-bar">
             <span>{filteredCount} total restaurants</span>
 
             <button onClick={this.toggleModal}>
               <i className="fa fa-times fa-lg options-modal-close splash"></i>
             </button>
-          </div>
+          </section>
 
-          <div className="options-modal-content">
+          <section className="options-modal-content">
             {options.map((option: IOption, i: number) => {
               return option && (
                 <section key={i}>
@@ -86,9 +86,9 @@ export class OptionsModal extends React.Component {
                 </section>
               )
             })}
-          </div>
+          </section>
         </Modal>
-      </div>
+      </aside>
     )
   }
 }

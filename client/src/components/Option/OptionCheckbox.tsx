@@ -13,13 +13,13 @@ export class OptionCheckbox extends React.Component {
     const { option, toggleOption }: any = this.props
 
     return !!option && option.rendered && (
-      <div className="grid-x">
-        <div className="cell small-10">
+      <section className="grid-x">
+        <section className="cell small-10">
           {option.description}
-        </div>
+        </section>
 
-        <div className="cell auto option-toggle">
-          <div className="switch">
+        <section className="cell auto option-toggle">
+          <section className="switch">
             <input
               className="switch-input"
               disabled={option.disabled}
@@ -34,9 +34,9 @@ export class OptionCheckbox extends React.Component {
                 {option.name}
               </span>
             </label>
-          </div>
-        </div>
-      </div>
+          </section>
+        </section>
+      </section>
     )
   }
 }

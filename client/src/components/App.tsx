@@ -9,9 +9,9 @@ import '../css/App.css'
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <main className="App">
       <Restaurant />
-    </div>
+    </main>
   )
 }
 
