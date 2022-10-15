@@ -1,0 +1,7 @@
+.options-modal-open {
+  bottom: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  right: 1rem;
+}

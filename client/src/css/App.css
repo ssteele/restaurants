@@ -11,14 +11,6 @@
   border-radius: 1rem;
 }
 
-.options-modal-open {
-  bottom: 1rem;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  position: absolute;
-  right: 1rem;
-}
-
 .restaurant {
   height: 8rem;
   font-size: 1rem;

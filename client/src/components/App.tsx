@@ -11,6 +11,7 @@ import {
 } from '../store/thunks/restaurant'
 
 import { GeolocationButton } from './GeolocationButton'
+import { OptionsButton } from './OptionsButton'
 import { OptionsModal } from './OptionsModal'
 import { IRestaurant } from '../models/Restaurant'
 import '../css/App.css'
@@ -75,6 +76,10 @@ class App extends React.Component<IRestaurant> {
           dispatch={dispatch}
           geolocation={geolocation}
         ></GeolocationButton>
+
+        <OptionsButton
+          dispatch={dispatch}
+        ></OptionsButton>
 
         <section
           className="options-modal-open splash"
