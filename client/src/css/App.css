@@ -13,3 +13,24 @@
 .button:focus {
   outline: none;
 }
+
+.subtle {
+  color: #777;
+}
+
+.splash {
+  text-shadow: -2px 2px 3px #ff2d95;
+}
+
+.flash {
+  animation-name: flash;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes flash {
+  0% { background-color: unset; } 
+  50% { background-color: #fff; } 
+  100% { background-color: unset; } 
+}

@@ -6,40 +6,6 @@
   width: 250px;
 }
 
-.options-modal {
-  background: #333;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  bottom: 40px;
-  color: #ccc;
-  font-size: 1.25rem;
-  left: 40px;
-  overflow: auto;
-  outline: none;
-  padding: 20px;
-  position: absolute;
-  right: 40px;
-  top: 40px;
-}
-
-.options-modal-overlay {
-  background-color: rgba(0, 0, 0, 0.75);
-  bottom: 0px;
-  left: 0px;
-  position: fixed;
-  right: 0px;
-  top: 0px;
-}
-
-.options-modal-bar {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 2rem;
-}
-
-.options-modal-content {
-  margin: 3rem 0;
-}
-
 .inset {
   background: #000;
   border-radius: 1rem;
@@ -66,17 +32,6 @@
   right: 1rem;
 }
 
-.options-modal-close {
-  color: #ccc;
-  position: absolute;
-  right: 1rem;
-  top: 1.5rem;
-}
-
-.subtle {
-  color: #777;
-}
-
 .restaurant {
   height: 8rem;
   font-size: 1rem;
@@ -90,21 +45,4 @@
 
 .restaurant-kids {
   margin-top: 1rem;
-}
-
-.splash {
-  text-shadow: -2px 2px 3px #ff2d95;
-}
-
-.flash {
-  animation-name: flash;
-  animation-timing-function: ease-in-out;
-  animation-duration: 0.5s;
-  animation-iteration-count: 1;
-}
-
-@keyframes flash {
-  0% { background-color: unset; } 
-  50% { background-color: #fff; } 
-  100% { background-color: unset; } 
 }

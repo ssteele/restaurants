@@ -1,0 +1,40 @@
+.options-modal {
+  background: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  bottom: 40px;
+  color: #ccc;
+  font-size: 1.25rem;
+  left: 40px;
+  overflow: auto;
+  outline: none;
+  padding: 20px;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+}
+
+.options-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  bottom: 0px;
+  left: 0px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+}
+
+.options-modal-bar {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 2rem;
+}
+
+.options-modal-content {
+  margin: 3rem 0;
+}
+
+.options-modal-close {
+  color: #ccc;
+  position: absolute;
+  right: 1rem;
+  top: 1.5rem;
+}
