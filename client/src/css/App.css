@@ -5,23 +5,3 @@
   margin-right: auto;
   width: 250px;
 }
-
-.inset {
-  background: #000;
-  border-radius: 1rem;
-}
-
-.restaurant {
-  height: 8rem;
-  font-size: 1rem;
-  line-height: 1.7rem;
-  margin: 1rem 0;
-}
-
-.restaurant-name {
-  font-size: 2rem;
-}
-
-.restaurant-kids {
-  margin-top: 1rem;
-}

@@ -6,11 +6,11 @@ import {
   nextRestaurant,
   prevRestaurant,
   setReduxFromLocalStore,
-  toggleModal,
 } from '../store/thunks/restaurant'
 import { GeolocationButton } from './GeolocationButton'
 import { OptionsButton } from './OptionsButton'
 import { OptionsModal } from './OptionsModal'
+import { Restaurant } from './Restaurant'
 import { IRestaurant } from '../models/Restaurant'
 import '../css/App.css'
 
@@ -57,11 +57,6 @@ class App extends React.Component<IRestaurant> {
     dispatch(fetchRestaurants())
   }
 
-  public toggleModal = () => {
-    const { dispatch }: any = this.props
-    dispatch(toggleModal())
-  }
-
   public next = () => {
     const { dispatch }: any = this.props
     dispatch(nextRestaurant())
@@ -103,46 +98,12 @@ class App extends React.Component<IRestaurant> {
           dispatch={dispatch}
         ></OptionsButton>
 
-        {current && (
-          <section className="restaurant">
-            {restaurants[current].name &&
-              <section className="restaurant-name">
-                <a
-                  href={restaurants[current].menu}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >{restaurants[current].name}</a>
-              </section>
-            }
-
-            {restaurants[current].sub_name &&
-              <section>
-                <span className="sub-name">{restaurants[current].sub_name}</span>
-              </section>
-            }
-
-            {restaurants[current].kids.length > 0 &&
-              <section className="restaurant-kids">
-                <i className="fa fa-child fa-fw"></i>
-                {restaurants[current].kids.join(', ')}
-              </section>
-            }
-
-            {error.message &&
-              <section>
-                <span className="error">{error.message}</span>
-              </section>
-            }
-          </section>
-        )}
-
-        {!current && (
-          <section className="restaurant">
-            <span className="restaurant-name subtle">
-              {isLoading ? 'Loading...' : 'Nope :('}
-            </span>
-          </section>
-        )}
+        <Restaurant
+          current={current}
+          error={error}
+          isLoading={isLoading}
+          restaurants={restaurants}
+        ></Restaurant>
 
         <section className="actions">
           <span className="back">
