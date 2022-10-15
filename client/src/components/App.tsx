@@ -1,20 +1,23 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {
-  fetchRestaurants,
-  nextRestaurant,
-  prevRestaurant,
-  setReduxFromLocalStore,
-} from '../store/thunks/restaurant'
 import { GeolocationButton } from './GeolocationButton'
 import { Navigation } from './Navigation'
 import { OptionsButton } from './OptionsButton'
 import { OptionsModal } from './OptionsModal'
 import { Restaurant } from './Restaurant'
 import { IRestaurant } from '../models/Restaurant'
+import { IRestaurantStore } from '../models/RestaurantStore'
+import {
+  fetchRestaurants,
+  nextRestaurant,
+  prevRestaurant,
+  setReduxFromLocalStore,
+} from '../store/thunks/restaurant'
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (
+  { restaurant }: { restaurant: IRestaurantStore },
+) => {
   const {
     current,
     error,
@@ -24,7 +27,7 @@ const mapStateToProps = (state: any) => {
     modalIsOpen,
     options,
     restaurants,
-  } = state.restaurant
+  } = restaurant
 
   return {
     current,
@@ -52,7 +55,7 @@ class App extends React.Component<IRestaurant> {
   }
 
   public componentDidMount() {
-    const { dispatch }: any = this.props
+    const { dispatch }: any = this.props                            // @todo: type me
     dispatch(setReduxFromLocalStore())
     dispatch(fetchRestaurants())
   }
