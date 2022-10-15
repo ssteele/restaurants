@@ -1,9 +1,9 @@
 export interface IRestaurantOption {
-  name: string
   description: string
+  disabled: boolean,
+  name: string
+  rendered: boolean,
   type: string
   value: any,                         // @todo?
   values?: any[],                     // @todo?
-  rendered: boolean,
-  disabled: boolean,
 }

@@ -1,18 +1,18 @@
 export interface IRestaurant {
-  id: number
-  name: string
-  sub_name?: string
-  site: string
-  menu: string
-  organic: boolean
-  vegetarian: boolean
-  vegan: boolean
-  local: boolean
-  keto: boolean
-  indoor: boolean
-  outdoor: boolean
-  kids: []
-  zip: []
-  enabled: boolean
   deleted: boolean
+  enabled: boolean
+  id: number
+  indoor: boolean
+  keto: boolean
+  kids: []
+  local: boolean
+  menu: string
+  name: string
+  organic: boolean
+  outdoor: boolean
+  site: string
+  sub_name?: string
+  vegan: boolean
+  vegetarian: boolean
+  zip: []
 }
