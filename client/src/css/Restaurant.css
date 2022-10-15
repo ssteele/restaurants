@@ -11,19 +11,6 @@
   border-radius: 1rem;
 }
 
-.geolocation-trigger {
-  bottom: 1rem;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem 0.5rem;
-  position: absolute;
-  left: 1rem;
-}
-
-.geolocation-zip {
-  font-size: 1rem;
-  padding: 0.5rem;
-}
-
 .options-modal-open {
   bottom: 1rem;
   cursor: pointer;

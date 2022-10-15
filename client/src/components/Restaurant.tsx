@@ -3,19 +3,14 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import {
-  GOOGLE_MAPS_COOL_OFF_SECONDS,
-} from '../constants'
-
-import {
-  fetchGeolocation,
   fetchRestaurants,
-  getZipFromLatLon,
   nextRestaurant,
   prevRestaurant,
   setReduxFromLocalStore,
   toggleModal,
 } from '../store/thunks/restaurant'
 
+import { GeolocationButton } from './GeolocationButton'
 import { OptionsModal } from './OptionsModal'
 import { IRestaurant } from '../models/Restaurant'
 import '../css/Restaurant.css'
@@ -37,39 +32,6 @@ class Restaurant extends React.Component<IRestaurant> {
     const { dispatch }: any = this.props
     dispatch(setReduxFromLocalStore())
     dispatch(fetchRestaurants())
-  }
-
-  public getCoordinates = async () => {
-    return new Promise(function(resolve, reject) {
-      navigator.geolocation.getCurrentPosition(resolve, reject)
-    })
-  }
-
-  public getGeolocation = async (geolocation: any) => {
-    let isCoolOffPeriod = false
-    if (geolocation.timestamp) {
-      const secondsSinceLastFetch = Math.floor((Date.now() - geolocation.timestamp) / 1000)
-      if (secondsSinceLastFetch < GOOGLE_MAPS_COOL_OFF_SECONDS) {
-        isCoolOffPeriod = true
-      }
-    }
-    if (geolocation.isGeolocating) {
-      console.warn('Geolocating now - please wait')
-      return
-    } else if (isCoolOffPeriod) {
-      console.warn('Geolocation cool down - too soon since the last request')
-      return
-    } else if (!('geolocation' in navigator)) {
-      console.warn('Location services are unavailable')
-    } else {
-      const { dispatch }: any = this.props
-      dispatch(fetchGeolocation())
-      const position: any = await this.getCoordinates()
-      dispatch(getZipFromLatLon({
-        lat: position.coords.latitude,
-        lon: position.coords.longitude,
-      }))
-    }
   }
 
   public toggleModal = () => {
@@ -109,24 +71,10 @@ class Restaurant extends React.Component<IRestaurant> {
           options={options}
         ></OptionsModal>
 
-        <section
-          className={`
-            geolocation-trigger
-            ${geolocation.zip ? 'inset' : ''}
-            ${geolocation.zip && !geolocation.isGeolocating ? 'flash' : ''}
-          `}
-          onClick={() => this.getGeolocation(geolocation)}
-        >
-          <span
-            className="splash"
-          >
-            <i className={`fa fa-compass fa-lg ${geolocation.isGeolocating ? 'fa-spin' : ''}`}></i>
-          </span>
-
-          {geolocation.zip && (
-            <span className="subtle geolocation-zip">{geolocation.zip}</span>
-          )}
-        </section>
+        <GeolocationButton
+          dispatch={dispatch}
+          geolocation={geolocation}
+        ></GeolocationButton>
 
         <section
           className="options-modal-open splash"
