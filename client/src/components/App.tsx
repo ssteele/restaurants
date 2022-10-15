@@ -14,6 +14,30 @@ import { OptionsModal } from './OptionsModal'
 import { IRestaurant } from '../models/Restaurant'
 import '../css/App.css'
 
+const mapStateToProps = (state: any) => {
+  const {
+    current,
+    error,
+    filteredCount,
+    geolocation,
+    isLoading,
+    modalIsOpen,
+    options,
+    restaurants,
+  } = state.restaurant
+
+  return {
+    current,
+    error,
+    filteredCount,
+    geolocation,
+    isLoading,
+    modalIsOpen,
+    options,
+    restaurants,
+  }
+}
+
 class App extends React.Component<IRestaurant> {
   static propTypes = {
     current: PropTypes.number,
@@ -149,29 +173,4 @@ class App extends React.Component<IRestaurant> {
   }
 }
 
-function mapStateToProps(state: any) {
-  const {
-    current,
-    error,
-    filteredCount,
-    geolocation,
-    isLoading,
-    modalIsOpen,
-    options,
-    restaurants,
-  } = state.restaurant
-
-  return {
-    current,
-    error,
-    filteredCount,
-    geolocation,
-    isLoading,
-    modalIsOpen,
-    options,
-    restaurants,
-  }
-}
-
-// @todo: address export default
 export default connect(mapStateToProps)(App as any)
