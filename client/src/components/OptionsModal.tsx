@@ -6,7 +6,7 @@ import {
   toggleModal,
   toggleOption,
 } from '../store/thunks/restaurant'
-import { IOption } from '../models/Option'
+import { IRestaurantOption } from '../models/RestaurantOption'
 import { OptionCheckbox } from './option/OptionCheckbox'
 import { OptionSelect } from './option/OptionSelect'
 import '../css/OptionsModal.css'
@@ -26,17 +26,17 @@ export class OptionsModal extends React.Component {
     dispatch(toggleModal())
   }
 
-  public toggleOption = (option: IOption) => {
+  public toggleOption = (option: IRestaurantOption) => {
     const { dispatch }: any = this.props
     dispatch(toggleOption(option))
   }
 
-  public selectOption = (option: IOption, e: any) => {
+  public selectOption = (option: IRestaurantOption, e: any) => {
     const { dispatch }: any = this.props
     dispatch(selectOption(option, e.target.value))
   }
 
-  public selectMultiOptions = (option: IOption, e: any) => {
+  public selectMultiOptions = (option: IRestaurantOption, e: any) => {
     const { dispatch }: any = this.props
     const valueArray = Array.from(e.target.selectedOptions, (option: any) => option.value)
     dispatch(selectOption(option, valueArray))
@@ -66,7 +66,7 @@ export class OptionsModal extends React.Component {
           </section>
 
           <section className="options-modal-content">
-            {options.map((option: IOption, i: number) => {
+            {options.map((option: IRestaurantOption, i: number) => {
               return option && (
                 <section key={i}>
                   {'checkbox' === option.type && (

@@ -18,9 +18,10 @@ import {
   DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE,
   MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS,
 } from '../../constants'
+import { IRestaurantStore } from '../../models/RestaurantStore'
 
 function restaurant(
-  state: any = {
+  state: IRestaurantStore = {
     isLoading: false,
     options: [
       {name: 'nearby', description: 'Only near me', type: 'checkbox', value: false, rendered: true, disabled: true},
@@ -44,7 +45,7 @@ function restaurant(
       {name: 'playarea', description: 'Only with play area', type: 'checkbox', value: false, rendered: true, disabled: false},
       {name: 'playground', description: 'Only with playground', type: 'checkbox', value: false, rendered: true, disabled: false},
     ],
-    restaurants: {},
+    restaurants: null,
     restaurantIds: [],
     categories: [],
     geolocation: { isGeolocating: false },
