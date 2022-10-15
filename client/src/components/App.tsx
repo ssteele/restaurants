@@ -103,13 +103,6 @@ class App extends React.Component<IRestaurant> {
           dispatch={dispatch}
         ></OptionsButton>
 
-        <section
-          className="options-modal-open splash"
-          onClick={this.toggleModal}
-        >
-          <i className="fa fa-bars fa-lg"></i>
-        </section>
-
         {current && (
           <section className="restaurant">
             {restaurants[current].name &&
