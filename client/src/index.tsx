@@ -11,7 +11,7 @@ import {
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
-import App from './components/App'
+import Base from './components/Base'
 import * as serviceWorker from './serviceWorker'
 
 import restaurantApp from './store/reducers/restaurant'
@@ -35,7 +35,7 @@ const rootElement = document.getElementById('root')
 
 render(
   <Provider store={store}>
-    <App />
+    <Base />
   </Provider>,
   rootElement
 )

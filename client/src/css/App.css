@@ -1,36 +1,35 @@
-main {
-  align-items: center;
-  background-color: #282c34;
-  color: white;
+.actions {
   display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
 }
 
-.button:focus {
-  outline: none;
+.inset {
+  background: #000;
+  border-radius: 1rem;
 }
 
-.subtle {
-  color: #777;
+.options-modal-open {
+  bottom: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  right: 1rem;
 }
 
-.splash {
-  text-shadow: -2px 2px 3px #ff2d95;
+.restaurant {
+  height: 8rem;
+  font-size: 1rem;
+  line-height: 1.7rem;
+  margin: 1rem 0;
 }
 
-.flash {
-  animation-name: flash;
-  animation-timing-function: ease-in-out;
-  animation-duration: 0.5s;
-  animation-iteration-count: 1;
+.restaurant-name {
+  font-size: 2rem;
 }
 
-@keyframes flash {
-  0% { background-color: unset; } 
-  50% { background-color: #fff; } 
-  100% { background-color: unset; } 
+.restaurant-kids {
+  margin-top: 1rem;
 }
