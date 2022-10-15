@@ -8,11 +8,11 @@ import {
   setReduxFromLocalStore,
 } from '../store/thunks/restaurant'
 import { GeolocationButton } from './GeolocationButton'
+import { Navigation } from './Navigation'
 import { OptionsButton } from './OptionsButton'
 import { OptionsModal } from './OptionsModal'
 import { Restaurant } from './Restaurant'
 import { IRestaurant } from '../models/Restaurant'
-import '../css/App.css'
 
 const mapStateToProps = (state: any) => {
   const {
@@ -105,23 +105,10 @@ class App extends React.Component<IRestaurant> {
           restaurants={restaurants}
         ></Restaurant>
 
-        <section className="actions">
-          <span className="back">
-            <button
-              className="button secondary"
-              onClick={this.back}
-              disabled={filteredCount < 2}
-            >Back</button>
-          </span>
-
-          <span className="next">
-            <button
-              className="button"
-              onClick={this.next}
-              disabled={filteredCount < 2}
-            >Next</button>
-          </span>
-        </section>
+        <Navigation
+          dispatch={dispatch}
+          filteredCount={filteredCount}
+        ></Navigation>
       </section>
     )
   }
