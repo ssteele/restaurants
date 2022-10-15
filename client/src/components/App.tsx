@@ -7,7 +7,7 @@ import '../css/App.css'
 
 const App: React.FC = () => {
   return (
-    <main className="App">
+    <main>
       <Restaurant />
     </main>
   )
