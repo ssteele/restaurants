@@ -1,51 +1,29 @@
 {
-  "homepage": "http://restaurants.steve-steele.com",
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@types/jest": "24.0.18",
-    "@types/node": "12.7.12",
-    "@types/react": "16.9.5",
-    "@types/react-dom": "16.9.1",
-    "@types/react-modal": "^3.10.0",
-    "@types/react-redux": "^7.1.4",
-    "@types/redux-logger": "^3.0.7",
-    "babel-polyfill": "^6.26.0",
-    "cross-fetch": "^3.0.4",
-    "font-awesome": "^4.7.0",
-    "foundation-sites": "^6.5.3",
-    "normalizr": "^3.4.1",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "react-modal": "^3.11.1",
-    "react-redux": "^7.1.1",
-    "react-scripts": "^5.0.1",
-    "redux": "^4.0.4",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "typescript": "3.6.4"
-  },
+  "name": "shs-restaurant-selector",
+  "version": "1.0.0",
+  "description": "Filter local restaurants and choose as they randomly render",
+  "main": "src/index.tsx",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "build:production": "sh -ac '. ./.env; react-scripts build'",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "keywords": [
+    "restaurant",
+    "picker",
+    "filter",
+    "random",
+    "geolocation"
+  ],
+  "author": "steven.harville.steele@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "cross-fetch": "^3.1.5",
+    "font-awesome": "^4.7.0",
+    "foundation-sites": "^6.7.5",
+    "normalizr": "^3.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-model": "^4.2.1",
+    "react-redux": "^8.0.4"
   }
 }
