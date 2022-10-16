@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-
 import {
   GET_RESTAURANTS,
   SET_RESTAURANTS,
@@ -58,7 +57,7 @@ function restaurant(
     modalIsOpen: false,
     error: {},
   },
-  action: any
+  action: any                                                       // @todo: type me
 ) {
   switch (action.type) {
     case GET_RESTAURANTS:
