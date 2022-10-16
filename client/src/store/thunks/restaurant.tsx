@@ -24,34 +24,36 @@ import {
   GOOGLE_MAPS_API_KEY,
   IS_GOOGLE_MAPS_ENABLED,
 } from '../../constants'
+import { IRestaurantOption } from '../../models/RestaurantOption'
+import { IRestaurant } from '../../models/Restaurant'
 
 function filterRestaurants({
   currentZipMeta,
   options,
-  restaurants,
   restaurantIds,
+  restaurants,
 }: any) {
-  const currentFilters = options.filter((option: any) => {
+  const currentFilters = options.filter((option: IRestaurantOption) => {
     return option.value
   })
 
   return restaurantIds.filter((id: number) => {
     let res = false
-    return currentFilters.every((option: any) => {
+    return currentFilters.every((option: IRestaurantOption) => {
       switch (option.name) {
         case 'nearby':
         case 'nearbyMaxMiles':
           if ('geolocation' in navigator) {
-            const nearbyOption = options.find((o: any) => 'nearby' === o.name)
+            const nearbyOption = options.find((o: IRestaurantOption) => 'nearby' === o.name)
             if (!currentZipMeta.length || !nearbyOption.value) {
               res = true
             } else {
               // calculate nearby zips
-              const nearbyMaxMilesOption = options.find((o: any) => 'nearbyMaxMiles' === o.name)
+              const nearbyMaxMilesOption = options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)
               const nearbyMaxKm = 1.609344 * nearbyMaxMilesOption.value
               const zipsNearby = currentZipMeta
-                .filter(({ distance }: any) => parseFloat(distance) <= nearbyMaxKm)
-                .map(({ postalCode }: any) => parseInt(postalCode))
+                .filter(({ distance }: { distance: string }) => parseFloat(distance) <= nearbyMaxKm)
+                .map(({ postalCode }: { postalCode: string }) => parseInt(postalCode))
 
               if (zipsNearby.length) {
                 res = restaurants[id]['zips'].filter((x: number) => zipsNearby.includes(x)).length
@@ -85,15 +87,15 @@ function getRandomPositiveInt(max: number): number {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
-export function toggleModal(): any {
-  return (dispatch: any, getState: any): any => {
+export function toggleModal(): Function {
+  return (dispatch: Function, getState: Function): void => {
     const { modalIsOpen }: any = getState().restaurant
     dispatch(setModal(!modalIsOpen))
   }
 }
 
-function handleOptionUpdate(option: any): any {
-  return (dispatch: any, getState: any): any => {
+function handleOptionUpdate(option: IRestaurantOption): Function {
+  return (dispatch: Function, getState: Function): void => {
     const { options }: any = getState().restaurant
 
     // update current options
@@ -105,8 +107,8 @@ function handleOptionUpdate(option: any): any {
   }
 }
 
-function handleFilterUpdate(): any {
-  return (dispatch: any, getState: any): any => {
+function handleFilterUpdate(): Function {
+  return (dispatch: Function, getState: Function): void => {
     const { currentZipMeta, options, restaurants, restaurantIds }: any = getState().restaurant
     const updatedFiltered = filterRestaurants({
       currentZipMeta,
@@ -120,24 +122,24 @@ function handleFilterUpdate(): any {
   }
 }
 
-export function selectOption(option: any, value: any): any {
-  return (dispatch: any): any => {
+export function selectOption(option: IRestaurantOption, value: any): Function {
+  return (dispatch: Function): void => {
     option.value = value
     dispatch(handleOptionUpdate(option))
     dispatch(handleFilterUpdate())
   }
 }
 
-export function toggleOption(option: any): any {
-  return (dispatch: any): any => {
+export function toggleOption(option: IRestaurantOption): Function {
+  return (dispatch: Function): void => {
     option.value = !option.value
     dispatch(handleOptionUpdate(option))
     dispatch(handleFilterUpdate())
   }
 }
 
-export function nextRestaurant(): any {
-  return (dispatch: any, getState: any): any => {
+export function nextRestaurant(): Function {
+  return (dispatch: Function, getState: Function): void => {
     const { filteredIds, viewed, viewIndex }: any = getState().restaurant
     let index = 0
     const viewedLength = viewed.length
@@ -167,8 +169,8 @@ export function nextRestaurant(): any {
   }
 }
 
-export function prevRestaurant(): any {
-  return (dispatch: any, getState: any): any => {
+export function prevRestaurant(): Function {
+  return (dispatch: Function, getState: Function): void => {
     const { viewed, viewIndex }: any = getState().restaurant
     let newViewIndex = viewIndex - 1
     if (newViewIndex >= 0) {
@@ -182,12 +184,12 @@ export function prevRestaurant(): any {
   }
 }
 
-export function fetchRestaurants(): any {
-  return (dispatch: any, getState: any): any => {
+export function fetchRestaurants(): Function {
+  return (dispatch: Function, getState: Function): void => {
     dispatch(getRestaurants())
 
     const endpoint = `${API_BASE_URL}/city/`
-    return fetch(endpoint)
+    fetch(endpoint)
       .then(
         response => {
           if (response.ok) {
@@ -212,8 +214,8 @@ export function fetchRestaurants(): any {
 
           // transform the payload for normalizr
           const jsonWithNestedIds = json
-            .filter((restaurant: any) => !!restaurant.enabled)
-            .map((restaurant: any) => {
+            .filter((restaurant: IRestaurant) => !!restaurant.enabled)
+            .map((restaurant: IRestaurant) => {
               const { categories } = restaurant
 
               const normalizedCategories = categories.map((category: string) => {
@@ -261,15 +263,15 @@ export function fetchRestaurants(): any {
 }
 
 export function fetchGeolocation() {
-  return (dispatch: any): any => {
+  return (dispatch: Function): void => {
     dispatch(getGeolocation())
   }
 }
 
 export function getZipsNear(zip: number) {
-  return (dispatch: any, getState: any): any => {
+  return (dispatch: Function, getState: Function): void => {
     const endpoint = `${API_BASE_URL}/zip/?zip=${zip}`
-    return fetch(endpoint)
+    fetch(endpoint)
       .then(
         response => {
           if (response.ok) {
@@ -291,11 +293,11 @@ export function getZipsNear(zip: number) {
 
           // update geolocation filter options
           const { options }: any = getState().restaurant
-          const nearbyOption = options.find((o: any) => 'nearby' === o.name)
+          const nearbyOption = options.find((o: IRestaurantOption) => 'nearby' === o.name)
           nearbyOption.value = true
           nearbyOption.disabled = false
 
-          const nearbyMaxMilesOption = options.find((o: any) => 'nearbyMaxMiles' === o.name)
+          const nearbyMaxMilesOption = options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)
           nearbyMaxMilesOption.rendered = true
           nearbyMaxMilesOption.disabled = false
 
@@ -316,8 +318,8 @@ export function getZipsNear(zip: number) {
   }
 }
 
-export function getZipFromLatLon({lat, lon}: any) {
-  return (dispatch: any): any => {
+export function getZipFromLatLon({ lat, lon }: { lat: number, lon: number}): Function {
+  return (dispatch: Function): void => {
     let geolocation: any = {}
     if (IS_GOOGLE_MAPS_ENABLED) {
       console.warn('Google Maps API lookup is enabled')
@@ -338,7 +340,7 @@ export function getZipFromLatLon({lat, lon}: any) {
         .then((json) => {
           if (!json.error_message && json.results.length) {
             const addressComponents = json.results[0].address_components
-            const zip: any = addressComponents.find((ac: any) => ac.types.includes('postal_code')).short_name
+            const zip: string = addressComponents.find((ac: any) => ac.types.includes('postal_code')).short_name
             geolocation = {
               lat,
               lon,
@@ -378,8 +380,8 @@ export function getZipFromLatLon({lat, lon}: any) {
   }
 }
 
-export function setReduxFromLocalStore(): any {
-  return (dispatch: any): any => {
+export function setReduxFromLocalStore(): Function {
+  return (dispatch: Function): void => {
     const localStoreItems = [
       {
         name: 'geolocation',

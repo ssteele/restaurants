@@ -1,4 +1,5 @@
 export interface IRestaurant {
+  categories: string[]
   deleted: boolean
   enabled: boolean
   id: number
