@@ -1,3 +1,6 @@
+import { IGeolocation } from "../../models/Geolocation"
+import { IRestaurantOption } from "../../models/RestaurantOption"
+
 export const GET_RESTAURANTS = 'GET_RESTAURANTS'
 export const SET_RESTAURANTS = 'SET_RESTAURANTS'
 export const GET_GEOLOCATION = 'GET_GEOLOCATION'
@@ -17,46 +20,45 @@ export function getRestaurants() {
   }
 }
 
-export function setRestaurants(json: any) {
-  const { restaurants, restaurantIds, categories, zips, filteredIds } = json
+export function setRestaurants(restaurant: any) {
+  const { restaurants, restaurantIds, categories, filteredIds } = restaurant
   return {
     type: SET_RESTAURANTS,
     restaurants,
     restaurantIds,
     categories,
-    zips,
     filteredIds,
   }
 }
 
-export function getGeolocation() {
+export function getGeolocation(): any {
   return {
     type: GET_GEOLOCATION,
   }
 }
 
-export function setGeolocation(geolocation: any): any {
+export function setGeolocation(geolocation: IGeolocation): any {
   return {
     type: SET_GEOLOCATION,
     geolocation,
   }
 }
 
-export function setCurrentZipMeta(currentZipMeta: any[]): any {
+export function setCurrentZipMeta(currentZipMeta: any[]): any {     // @todo: type me
   return {
     type: SET_CURRENT_ZIP_META,
     currentZipMeta,
   }
 }
 
-export function setOptions(options: any): any {
+export function setOptions(options: IRestaurantOption[]): any {
   return {
     type: SET_OPTIONS,
     options,
   }
 }
 
-export function setFiltered(filteredIds: any): any {
+export function setFiltered(filteredIds: number[]): any {
   return {
     type: SET_FILTERED,
     filteredIds,
@@ -91,7 +93,7 @@ export function setModal(isOpen: boolean): any {
   }
 }
 
-export function setError(error: any) {
+export function setError(error: any): any {
   return {
     type: SET_ERROR,
     error,

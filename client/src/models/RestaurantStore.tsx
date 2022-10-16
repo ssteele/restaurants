@@ -3,10 +3,10 @@ import { IRestaurant } from './Restaurant'
 import { IRestaurantOption } from './RestaurantOption'
 
 export interface IRestaurantStore {
-  categories: any[]                   // @todo?
-  current: number|null
-  currentZipMeta: any[]               // @todo?
-  error: any                          // @todo?
+  categories: any                     // @todo
+  current: number | null
+  currentZipMeta: any[]
+  error: any
   filteredCount: number
   filteredIds: number[]
   geolocation: IGeolocation,
@@ -14,7 +14,7 @@ export interface IRestaurantStore {
   modalIsOpen: boolean
   options: IRestaurantOption[]
   restaurantIds: number[]
-  restaurants: IRestaurant|null
+  restaurants: IRestaurant | null
   viewed: number[]
-  viewIndex: number|null
+  viewIndex: number | null
 }

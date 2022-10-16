@@ -15,5 +15,5 @@ export interface IRestaurant {
   sub_name?: string
   vegan: boolean
   vegetarian: boolean
-  zip: []
+  zips: number[]
 }
