@@ -26,6 +26,9 @@ import {
 } from '../../constants'
 import { IRestaurantOption } from '../../models/RestaurantOption'
 import { IRestaurant } from '../../models/Restaurant'
+import { IRestaurantStore } from '../../models/RestaurantStore'
+import { IGoogleGeocodingApiResponse } from '../../models/GoogleApi'
+import { IGeolocation } from '../../models/Geolocation'
 
 function filterRestaurants({
   currentZipMeta,
@@ -89,17 +92,17 @@ function getRandomPositiveInt(max: number): number {
 
 export function toggleModal(): Function {
   return (dispatch: Function, getState: Function): void => {
-    const { modalIsOpen }: any = getState().restaurant
+    const { modalIsOpen }: IRestaurantStore = getState().restaurant
     dispatch(setModal(!modalIsOpen))
   }
 }
 
 function handleOptionUpdate(option: IRestaurantOption): Function {
   return (dispatch: Function, getState: Function): void => {
-    const { options }: any = getState().restaurant
+    const { options }: IRestaurantStore = getState().restaurant
 
     // update current options
-    const updatedOptions = options.map((o: any) => {
+    const updatedOptions = options.map((o: IRestaurantOption) => {
       return (o.name === option.name) ? option : o
     })
     dispatch(setOptions(updatedOptions))
@@ -109,7 +112,7 @@ function handleOptionUpdate(option: IRestaurantOption): Function {
 
 function handleFilterUpdate(): Function {
   return (dispatch: Function, getState: Function): void => {
-    const { currentZipMeta, options, restaurants, restaurantIds }: any = getState().restaurant
+    const { currentZipMeta, options, restaurants, restaurantIds }: IRestaurantStore = getState().restaurant
     const updatedFiltered = filterRestaurants({
       currentZipMeta,
       options,
@@ -140,10 +143,10 @@ export function toggleOption(option: IRestaurantOption): Function {
 
 export function nextRestaurant(): Function {
   return (dispatch: Function, getState: Function): void => {
-    const { filteredIds, viewed, viewIndex }: any = getState().restaurant
+    const { filteredIds, viewed, viewIndex }: IRestaurantStore = getState().restaurant
     let index = 0
     const viewedLength = viewed.length
-    const newViewIndex = viewIndex + 1
+    let newViewIndex = (viewIndex) ? viewIndex - 1 : 0
     if (newViewIndex < viewedLength) {
       // navigate through viewed restaurant history
       dispatch(setCurrentRestaurant(viewed[newViewIndex]))
@@ -171,8 +174,8 @@ export function nextRestaurant(): Function {
 
 export function prevRestaurant(): Function {
   return (dispatch: Function, getState: Function): void => {
-    const { viewed, viewIndex }: any = getState().restaurant
-    let newViewIndex = viewIndex - 1
+    const { viewed, viewIndex }: IRestaurantStore = getState().restaurant
+    let newViewIndex = (viewIndex) ? viewIndex - 1 : 0
     if (newViewIndex >= 0) {
       dispatch(setCurrentRestaurant(viewed[newViewIndex]))
       dispatch(setViewedRestaurants(null, newViewIndex))
@@ -238,7 +241,7 @@ export function fetchRestaurants(): Function {
           const { restaurants, categories } = normalized.entities
           const { restaurants: restaurantIds } = normalized.result
 
-          const { currentZipMeta, options }: any = getState().restaurant
+          const { currentZipMeta, options }: IRestaurantStore = getState().restaurant
           const filteredIds = filterRestaurants({
             currentZipMeta,
             options,
@@ -291,19 +294,22 @@ export function getZipsNear(zip: number) {
           dispatch(setCurrentZipMeta(postalCodes))
           localStorage.setItem('currentZipMeta', JSON.stringify(postalCodes))
 
-          // update geolocation filter options
-          const { options }: any = getState().restaurant
-          const nearbyOption = options.find((o: IRestaurantOption) => 'nearby' === o.name)
-          nearbyOption.value = true
-          nearbyOption.disabled = false
+          // update geolocation filter options and filter restaurants
+          const { options }: IRestaurantStore = getState().restaurant
+          const nearbyOption: any = options.find((o: IRestaurantOption) => 'nearby' === o.name)
+          if (nearbyOption) {
+            nearbyOption.value = true
+            nearbyOption.disabled = false
+            dispatch(handleOptionUpdate(nearbyOption))
+          }
 
-          const nearbyMaxMilesOption = options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)
-          nearbyMaxMilesOption.rendered = true
-          nearbyMaxMilesOption.disabled = false
+          const nearbyMaxMilesOption: any = options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)
+          if (nearbyMaxMilesOption) {
+            nearbyMaxMilesOption.rendered = true
+            nearbyMaxMilesOption.disabled = false
+            dispatch(handleOptionUpdate(nearbyMaxMilesOption))
+          }
 
-          // ...and filter restaurants
-          dispatch(handleOptionUpdate(nearbyOption))
-          dispatch(handleOptionUpdate(nearbyMaxMilesOption))
           dispatch(handleFilterUpdate())
         } else {
           throw new Error('Error retrieving nearby zips')
@@ -320,7 +326,7 @@ export function getZipsNear(zip: number) {
 
 export function getZipFromLatLon({ lat, lon }: { lat: number, lon: number}): Function {
   return (dispatch: Function): void => {
-    let geolocation: any = {}
+    let geolocation: IGeolocation = {}
     if (IS_GOOGLE_MAPS_ENABLED) {
       console.warn('Google Maps API lookup is enabled')
       const googleMapsEndpoint = `${GOOGLE_MAPS_API_ENDPOINT}?latlng=${lat},${lon}&key=${GOOGLE_MAPS_API_KEY}`
@@ -339,8 +345,8 @@ export function getZipFromLatLon({ lat, lon }: { lat: number, lon: number}): Fun
         )
         .then((json) => {
           if (!json.error_message && json.results.length) {
-            const addressComponents = json.results[0].address_components
-            const zip: string = addressComponents.find((ac: any) => ac.types.includes('postal_code')).short_name
+            const addressComponents: any[] = json.results[0].address_components
+            const zip: string = addressComponents.find((ac: IGoogleGeocodingApiResponse) => ac.types.includes('postal_code')).short_name
             geolocation = {
               lat,
               lon,

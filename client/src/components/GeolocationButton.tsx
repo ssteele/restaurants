@@ -8,6 +8,7 @@ import {
   getZipFromLatLon,
 } from '../store/thunks/restaurant'
 import '../css/GeolocationButton.css'
+import { IGeolocation } from '../models/Geolocation'
 
 export class GeolocationButton extends React.Component {
   static propTypes = {
@@ -21,7 +22,7 @@ export class GeolocationButton extends React.Component {
     })
   }
 
-  public getGeolocation = async (geolocation: any) => {
+  public getGeolocation = async (geolocation: IGeolocation) => {
     let isCoolOffPeriod = false
     if (geolocation.timestamp) {
       const secondsSinceLastFetch = Math.floor((Date.now() - geolocation.timestamp) / 1000)
@@ -42,16 +43,14 @@ export class GeolocationButton extends React.Component {
       dispatch(fetchGeolocation())
       const position: any = await this.getCoordinates()
       dispatch(getZipFromLatLon({
-        lat: position.coords.latitude,
-        lon: position.coords.longitude,
+        lat: position?.coords?.latitude,
+        lon: position?.coords?.longitude,
       }))
     }
   }
 
   public render() {
-    const {
-      geolocation,
-    }: any = this.props
+    const { geolocation }: any = this.props
 
     return (
       <section

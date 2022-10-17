@@ -1,5 +1,5 @@
 export interface IGeolocation {
-  isGeolocating: boolean
+  isGeolocating?: boolean
   lat?: number
   lon?: number
   timestamp?: number
