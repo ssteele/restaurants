@@ -1,5 +1,6 @@
 import 'babel-polyfill'
 import React from 'react'
+import ReactDOM from "react-dom/client";
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import {
@@ -29,11 +30,12 @@ const store = createStore(
 
 const rootElement = document.getElementById('root')
 
-render(
+// const rootElement = document.getElementById('root')
+const rootElement = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+rootElement.render(
   <Provider store={store}>
     <Base />
   </Provider>,
-  rootElement
 )
 
 // If you want your app to work offline and load faster, you can change
