@@ -11,14 +11,14 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { Base } from './components/Base'
 import * as serviceWorker from './serviceWorker'
-import { restaurantApp } from './store/reducers/restaurant'
+import { rootReducer } from './store/reducers/restaurant'
 import './css/index.css'
 
 const composeEnhancer = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const loggerMiddleware = createLogger()
 
 const store = createStore(
-  restaurantApp,
+  rootReducer,
   composeEnhancer(
     applyMiddleware(
       thunkMiddleware, // lets us dispatch() functions
