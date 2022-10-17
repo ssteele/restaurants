@@ -28,7 +28,6 @@ const store = createStore(
   )
 )
 
-const rootElement = document.getElementById('root')
 
 // const rootElement = document.getElementById('root')
 const rootElement = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
