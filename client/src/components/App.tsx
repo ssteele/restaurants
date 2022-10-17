@@ -55,7 +55,7 @@ class App extends React.Component<IRestaurant> {
   }
 
   public componentDidMount() {
-    const { dispatch }: any = this.props                            // @todo: type me
+    const { dispatch }: any = this.props
     dispatch(setReduxFromLocalStore())
     dispatch(fetchRestaurants())
   }

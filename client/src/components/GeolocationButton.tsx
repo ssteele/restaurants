@@ -9,6 +9,7 @@ import {
 } from '../store/thunks/restaurant'
 import '../css/GeolocationButton.css'
 import { IGeolocation } from '../models/Geolocation'
+import { IBrowserNavigatorApiResponse } from '../models/BrowserApi'
 
 export class GeolocationButton extends React.Component {
   static propTypes = {
@@ -16,7 +17,7 @@ export class GeolocationButton extends React.Component {
     geolocation: PropTypes.object,
   }
 
-  public getCoordinates = async () => {
+  public getCoordinates = async (): Promise<any> => {
     return new Promise(function(resolve, reject) {
       navigator.geolocation.getCurrentPosition(resolve, reject)
     })
@@ -41,7 +42,7 @@ export class GeolocationButton extends React.Component {
     } else {
       const { dispatch }: any = this.props
       dispatch(fetchGeolocation())
-      const position: any = await this.getCoordinates()
+      const position: IBrowserNavigatorApiResponse = await this.getCoordinates()
       dispatch(getZipFromLatLon({
         lat: position?.coords?.latitude,
         lon: position?.coords?.longitude,

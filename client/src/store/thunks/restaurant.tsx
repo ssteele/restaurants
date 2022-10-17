@@ -346,7 +346,7 @@ export function getZipFromLatLon({ lat, lon }: { lat: number, lon: number}): Fun
         .then((json) => {
           if (!json.error_message && json.results.length) {
             const addressComponents: any[] = json.results[0].address_components
-            const zip: string = addressComponents.find((ac: IGoogleGeocodingApiResponse) => ac.types.includes('postal_code')).short_name
+            const zip: string = addressComponents.find((ac: IGoogleGeocodingApiResponse) => ac?.types?.includes('postal_code'))?.short_name
             geolocation = {
               lat,
               lon,
