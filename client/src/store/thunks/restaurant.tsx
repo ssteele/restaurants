@@ -24,7 +24,7 @@ import {
   GOOGLE_MAPS_API_KEY,
   IS_GOOGLE_MAPS_ENABLED,
 } from '../../constants'
-import { AppThunk } from '../../models/AppThunk'
+import { AppThunkAction, AppThunkDispatch } from '../../models/AppThunk'
 import { IGeolocation } from '../../models/Geolocation'
 import { IGoogleGeocodingApiResponse } from '../../models/GoogleApi'
 import { IRestaurant } from '../../models/Restaurant'
@@ -91,15 +91,15 @@ const getRandomPositiveInt = (max: number): number => {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
-export const toggleModal: AppThunk = () => {
-  return (dispatch: Function, getState: Function): void => {
+export const toggleModal: AppThunkAction = () => {
+  return (dispatch: AppThunkDispatch, getState: Function): void => {
     const { modalIsOpen }: IRestaurantStore = getState().restaurant
     dispatch(setModal(!modalIsOpen))
   }
 }
 
-const handleOptionUpdate: AppThunk = (option: IRestaurantOption) => {
-  return (dispatch: Function, getState: Function): void => {
+const handleOptionUpdate: AppThunkAction = (option: IRestaurantOption) => {
+  return (dispatch: AppThunkDispatch, getState: Function): void => {
     const { options }: IRestaurantStore = getState().restaurant
 
     // update current options
@@ -111,8 +111,8 @@ const handleOptionUpdate: AppThunk = (option: IRestaurantOption) => {
   }
 }
 
-const handleFilterUpdate: AppThunk = () => {
-  return (dispatch: Function, getState: Function): void => {
+const handleFilterUpdate: AppThunkAction = () => {
+  return (dispatch: AppThunkDispatch, getState: Function): void => {
     const { currentZipMeta, options, restaurants, restaurantIds }: IRestaurantStore = getState().restaurant
     const updatedFiltered = filterRestaurants({
       currentZipMeta,
@@ -126,24 +126,24 @@ const handleFilterUpdate: AppThunk = () => {
   }
 }
 
-export const selectOption: AppThunk = (option: IRestaurantOption, value: any) => {
-  return (dispatch: Function): void => {
+export const selectOption: AppThunkAction = (option: IRestaurantOption, value: any) => {
+  return (dispatch: AppThunkDispatch): void => {
     option.value = value
     dispatch(handleOptionUpdate(option))
     dispatch(handleFilterUpdate())
   }
 }
 
-export const toggleOption: AppThunk = (option: IRestaurantOption) => {
-  return (dispatch: Function): void => {
+export const toggleOption: AppThunkAction = (option: IRestaurantOption) => {
+  return (dispatch: AppThunkDispatch): void => {
     option.value = !option.value
     dispatch(handleOptionUpdate(option))
     dispatch(handleFilterUpdate())
   }
 }
 
-export const nextRestaurant: AppThunk = () => {
-  return (dispatch: Function, getState: Function): void => {
+export const nextRestaurant: AppThunkAction = () => {
+  return (dispatch: AppThunkDispatch, getState: Function): void => {
     const { filteredIds, viewed, viewIndex }: IRestaurantStore = getState().restaurant
     let index = 0
     const viewedLength = viewed.length
@@ -173,8 +173,8 @@ export const nextRestaurant: AppThunk = () => {
   }
 }
 
-export const prevRestaurant: AppThunk = () => {
-  return (dispatch: Function, getState: Function): void => {
+export const prevRestaurant: AppThunkAction = () => {
+  return (dispatch: AppThunkDispatch, getState: Function): void => {
     const { viewed, viewIndex }: IRestaurantStore = getState().restaurant
     let newViewIndex = (viewIndex) ? viewIndex - 1 : 0
     if (newViewIndex >= 0) {
@@ -188,8 +188,8 @@ export const prevRestaurant: AppThunk = () => {
   }
 }
 
-export const fetchRestaurants: AppThunk = () => {
-  return (dispatch: Function, getState: Function): void => {
+export const fetchRestaurants: AppThunkAction = () => {
+  return (dispatch: AppThunkDispatch, getState: Function): void => {
     dispatch(getRestaurants())
 
     const endpoint = `${API_BASE_URL}/city/`
@@ -266,14 +266,14 @@ export const fetchRestaurants: AppThunk = () => {
   }
 }
 
-export const fetchGeolocation: AppThunk = () => {
-  return (dispatch: Function): void => {
+export const fetchGeolocation: AppThunkAction = () => {
+  return (dispatch: AppThunkDispatch): void => {
     dispatch(getGeolocation())
   }
 }
 
-export const getZipsNear: AppThunk = (zip: number) => {
-  return (dispatch: Function, getState: Function): void => {
+export const getZipsNear: AppThunkAction = (zip: number) => {
+  return (dispatch: AppThunkDispatch, getState: Function): void => {
     const endpoint = `${API_BASE_URL}/zip/?zip=${zip}`
     fetch(endpoint)
       .then(
@@ -325,8 +325,8 @@ export const getZipsNear: AppThunk = (zip: number) => {
   }
 }
 
-export const getZipFromLatLon: AppThunk = ({ lat, lon }: { lat: number, lon: number}) => {
-  return (dispatch: Function): void => {
+export const getZipFromLatLon: AppThunkAction = ({ lat, lon }: { lat: number, lon: number}) => {
+  return (dispatch: AppThunkDispatch): void => {
     let geolocation: IGeolocation = {}
     if (IS_GOOGLE_MAPS_ENABLED) {
       console.warn('Google Maps API lookup is enabled')
@@ -387,8 +387,8 @@ export const getZipFromLatLon: AppThunk = ({ lat, lon }: { lat: number, lon: num
   }
 }
 
-export const setReduxFromLocalStore: AppThunk = () => {
-  return (dispatch: Function): void => {
+export const setReduxFromLocalStore: AppThunkAction = () => {
+  return (dispatch: AppThunkDispatch): void => {
     const localStoreItems = [
       {
         name: 'geolocation',
