@@ -1,9 +1,10 @@
+import { ICategory } from './Category'
 import { IGeolocation } from './Geolocation'
 import { IRestaurant } from './Restaurant'
 import { IRestaurantOption } from './RestaurantOption'
 
 export interface IRestaurantStore {
-  categories: any                     // @todo
+  categories: ICategory[]
   current: number | null
   currentZipMeta: any[]
   error: any
