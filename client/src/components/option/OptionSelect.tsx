@@ -23,7 +23,7 @@ export class OptionSelect extends React.Component {
             value={option.value}
             onChange={(e) => selectOption(option, e)}
           >
-            {!!option.values && option.values.map(({id, name}: any, i: number) => {
+            {!!option.values && option.values.map(({ id, name }: { id: string, name: string }, i: number) => {
               return (
                 <option value={id} key={i}>{name}</option>
               )

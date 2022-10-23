@@ -38,7 +38,7 @@ export class OptionsModal extends React.Component {
 
   public selectMultiOptions = (option: IRestaurantOption, e: any) => {
     const { dispatch }: any = this.props
-    const valueArray = Array.from(e.target.selectedOptions, (option: any) => option.value)
+    const valueArray = Array.from(e.target.selectedOptions, (option: IRestaurantOption) => option.value)
     dispatch(selectOption(option, valueArray))
   }
 

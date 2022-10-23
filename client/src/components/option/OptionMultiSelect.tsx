@@ -24,7 +24,7 @@ export class OptionMultiSelect extends React.Component {
             onChange={(e) => selectOption(option, e)}
             multiple
           >
-            {!!option.values && option.values.map(({id, name}: any, i: number) => {
+            {!!option.values && option.values.map(({ id, name }: { id: string, name: string }, i: number) => {
               return (
                 <option value={id} key={i}>{name}</option>
               )

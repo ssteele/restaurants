@@ -293,14 +293,14 @@ export const getZipsNear: AppThunkAction = (zip: number) => {
 
           // update geolocation filter options and filter restaurants
           const { options }: IRestaurantStore = getState().restaurant
-          const nearbyOption: any = options.find((o: IRestaurantOption) => 'nearby' === o.name)
+          const nearbyOption: IRestaurantOption | undefined = options.find((o: IRestaurantOption) => 'nearby' === o.name)
           if (nearbyOption) {
             nearbyOption.value = true
             nearbyOption.disabled = false
             dispatch(handleOptionUpdate(nearbyOption))
           }
 
-          const nearbyMaxMilesOption: any = options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)
+          const nearbyMaxMilesOption: IRestaurantOption | undefined = options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)
           if (nearbyMaxMilesOption) {
             nearbyMaxMilesOption.rendered = true
             nearbyMaxMilesOption.disabled = false
