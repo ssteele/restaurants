@@ -19,7 +19,7 @@ import {
 } from '../../constants'
 import { IRestaurantStore } from '../../models/RestaurantStore'
 
-function restaurant(
+export const restaurant = (
   state: IRestaurantStore = {
     isLoading: false,
     options: [
@@ -57,15 +57,15 @@ function restaurant(
     modalIsOpen: false,
     error: {},
   },
-  action: any                                                       // @todo: type me
-) {
+  action: any
+): IRestaurantStore => {
   switch (action.type) {
     case GET_RESTAURANTS:
       return {
         ...state,
         ...{
           isLoading: true,
-          restaurants: state.restaurants || {},
+          restaurants: state.restaurants || null,
           restaurantIds: state.restaurantIds || [],
           filteredIds: state.filteredIds || [],
           filteredCount: state.filteredIds.length,
