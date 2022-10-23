@@ -68,10 +68,6 @@ const filterRestaurants = ({
             res = true
           }
           break
-        case 'location':
-          const { value: zips } = option
-          res = zips.filter((z: string) => restaurants[id]['zips'].includes(parseInt(z))).length
-          break
         case 'kids':
           res = !!restaurants[id][option.name].length
           break
