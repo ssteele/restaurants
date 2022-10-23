@@ -21,28 +21,28 @@ export class OptionsModal extends React.Component {
     options: PropTypes.array.isRequired,
   }
 
-  public toggleModal = () => {
+  public toggleModal = (): void => {
     const { dispatch }: any = this.props
     dispatch(toggleModal())
   }
 
-  public toggleOption = (option: IRestaurantOption) => {
+  public toggleOption = (option: IRestaurantOption): void => {
     const { dispatch }: any = this.props
     dispatch(toggleOption(option))
   }
 
-  public selectOption = (option: IRestaurantOption, e: any) => {
+  public selectOption = (option: IRestaurantOption, e: any): void => {
     const { dispatch }: any = this.props
     dispatch(selectOption(option, e.target.value))
   }
 
-  public selectMultiOptions = (option: IRestaurantOption, e: any) => {
+  public selectMultiOptions = (option: IRestaurantOption, e: any): void => {
     const { dispatch }: any = this.props
     const valueArray = Array.from(e.target.selectedOptions, (option: IRestaurantOption) => option.value)
     dispatch(selectOption(option, valueArray))
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const {
       filteredCount,
       modalIsOpen,

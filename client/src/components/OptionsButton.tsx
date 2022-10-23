@@ -10,12 +10,12 @@ export class OptionsButton extends React.Component {
     dispatch: PropTypes.func.isRequired,
   }
 
-  public toggleModal = () => {
+  public toggleModal = (): void => {
     const { dispatch }: any = this.props
     dispatch(toggleModal())
   }
 
-  public render() {
+  public render(): React.ReactNode {
     return (
       <section
         className="options-modal-open splash"

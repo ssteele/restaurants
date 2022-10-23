@@ -7,7 +7,7 @@ export class OptionSelect extends React.Component {
     selectOption: PropTypes.func.isRequired,
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const { option, selectOption }: any = this.props
 
     return !!option && option.rendered && (

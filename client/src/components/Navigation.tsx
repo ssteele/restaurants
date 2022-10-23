@@ -12,17 +12,17 @@ export class Navigation extends React.Component {
     filteredCount: PropTypes.number.isRequired,
   }
 
-  public next = () => {
+  public next = (): void => {
     const { dispatch }: any = this.props
     dispatch(nextRestaurant())
   }
 
-  public back = () => {
+  public back = (): void => {
     const { dispatch }: any = this.props
     dispatch(prevRestaurant())
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const {
       filteredCount,
     }: any = this.props

@@ -54,23 +54,23 @@ class App extends React.Component<IRestaurant> {
     restaurants: PropTypes.object,
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     const { dispatch }: any = this.props
     dispatch(setReduxFromLocalStore())
     dispatch(fetchRestaurants())
   }
 
-  public next = () => {
+  public next = (): void => {
     const { dispatch }: any = this.props
     dispatch(nextRestaurant())
   }
 
-  public back = () => {
+  public back = (): void => {
     const { dispatch }: any = this.props
     dispatch(prevRestaurant())
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const {
       current,
       dispatch,

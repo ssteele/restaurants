@@ -23,7 +23,7 @@ export class GeolocationButton extends React.Component {
     })
   }
 
-  public getGeolocation = async (geolocation: IGeolocation) => {
+  public getGeolocation = async (geolocation: IGeolocation): Promise<void> => {
     let isCoolOffPeriod = false
     if (geolocation.timestamp) {
       const secondsSinceLastFetch = Math.floor((Date.now() - geolocation.timestamp) / 1000)
@@ -50,7 +50,7 @@ export class GeolocationButton extends React.Component {
     }
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const { geolocation }: any = this.props
 
     return (

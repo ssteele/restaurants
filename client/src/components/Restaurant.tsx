@@ -10,7 +10,7 @@ export class Restaurant extends React.Component {
     restaurants: PropTypes.object,
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const {
       current,
       error,

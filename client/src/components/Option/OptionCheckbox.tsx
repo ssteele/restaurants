@@ -8,7 +8,7 @@ export class OptionCheckbox extends React.Component {
     toggleOption: PropTypes.func.isRequired,
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const { option, toggleOption }: any = this.props
 
     return !!option && option.rendered && (
