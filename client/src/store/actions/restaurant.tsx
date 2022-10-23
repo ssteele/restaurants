@@ -14,13 +14,13 @@ export const RESET_VIEWED_RESTAURANTS = 'RESET_VIEWED_RESTAURANTS'
 export const SET_MODAL = 'SET_MODAL'
 export const SET_ERROR = 'SET_ERROR'
 
-export function getRestaurants() {
+export const getRestaurants = () => {
   return {
     type: GET_RESTAURANTS,
   }
 }
 
-export function setRestaurants(restaurant: any) {
+export const setRestaurants = (restaurant: any): any => {
   const { restaurants, restaurantIds, categories, filteredIds } = restaurant
   return {
     type: SET_RESTAURANTS,
@@ -31,48 +31,48 @@ export function setRestaurants(restaurant: any) {
   }
 }
 
-export function getGeolocation(): any {
+export const getGeolocation = (): { type: string } => {
   return {
     type: GET_GEOLOCATION,
   }
 }
 
-export function setGeolocation(geolocation: IGeolocation): any {
+export const setGeolocation = (geolocation: IGeolocation): { type: string, geolocation: IGeolocation } => {
   return {
     type: SET_GEOLOCATION,
     geolocation,
   }
 }
 
-export function setCurrentZipMeta(currentZipMeta: any[]): any {     // @todo: type me
+export const setCurrentZipMeta = (currentZipMeta: unknown[]): { type: string, currentZipMeta: unknown} => {     // @todo: type me
   return {
     type: SET_CURRENT_ZIP_META,
     currentZipMeta,
   }
 }
 
-export function setOptions(options: IRestaurantOption[]): any {
+export const setOptions = (options: IRestaurantOption[]): { type: string, options: IRestaurantOption[]} => {
   return {
     type: SET_OPTIONS,
     options,
   }
 }
 
-export function setFiltered(filteredIds: number[]): any {
+export const setFiltered = (filteredIds: number[]): { type: string, filteredIds: number[]} => {
   return {
     type: SET_FILTERED,
     filteredIds,
   }
 }
 
-export function setCurrentRestaurant(restaurantId: number): any {
+export const setCurrentRestaurant = (restaurantId: number): { type: string, current: number} => {
   return {
     type: SET_CURRENT_RESTAURANT,
     current: restaurantId,
   }
 }
 
-export function setViewedRestaurants(restaurantId: number | null, viewIndex: number): any {
+export const setViewedRestaurants = (restaurantId: number | null, viewIndex: number): { type: string, viewed: number | null, viewIndex: number} => {
   return {
     type: SET_VIEWED_RESTAURANTS,
     viewed: restaurantId,
@@ -80,20 +80,20 @@ export function setViewedRestaurants(restaurantId: number | null, viewIndex: num
   }
 }
 
-export function resetViewedRestaurants(): any {
+export const resetViewedRestaurants = (): { type: string } => {
   return {
     type: RESET_VIEWED_RESTAURANTS,
   }
 }
 
-export function setModal(isOpen: boolean): any {
+export const setModal = (isOpen: boolean): { type: string, isOpen: boolean} => {
   return {
     type: SET_MODAL,
     isOpen,
   }
 }
 
-export function setError(error: any): any {
+export const setError = (error: any): { type: string, error: any} => {
   return {
     type: SET_ERROR,
     error,
