@@ -4,6 +4,6 @@ export interface IRestaurantOption {
   name: string
   rendered: boolean,
   type: string
-  value: any,
-  values?: any[],
+  value: number | string | boolean | object,
+  values?: number[] | string[] | boolean[] | object[],
 }
