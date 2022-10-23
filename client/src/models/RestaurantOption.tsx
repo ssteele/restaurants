@@ -4,6 +4,6 @@ export interface IRestaurantOption {
   name: string
   rendered: boolean,
   type: string
-  value: any,                         // @todo?
-  values?: any[],                     // @todo?
+  value: any,
+  values?: any[],
 }

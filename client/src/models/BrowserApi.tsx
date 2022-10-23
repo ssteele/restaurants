@@ -1,6 +1,6 @@
 export interface IBrowserNavigatorApiResponseCoords {
-  latitude: any
-  longitude: any
+  latitude: number
+  longitude: number
 }
 
 export interface IBrowserNavigatorApiResponse {
