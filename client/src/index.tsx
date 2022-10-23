@@ -1,6 +1,6 @@
 import 'babel-polyfill'
 import React from 'react'
-import ReactDOM from "react-dom/client";
+import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import {
   compose,
@@ -28,7 +28,7 @@ const store = createStore(
 )
 
 
-const rootElement = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const rootElement = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 rootElement.render(
   <Provider store={store}>
     <Base />
