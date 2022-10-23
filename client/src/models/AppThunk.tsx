@@ -1,6 +1,6 @@
-import { Action, ActionCreator } from "redux";
-import { ThunkAction, ThunkDispatch } from "redux-thunk";
-import { IRestaurantStore } from "./RestaurantStore";
+import { Action, ActionCreator } from 'redux'
+import { ThunkAction, ThunkDispatch } from 'redux-thunk'
+import { IRestaurantStore } from './RestaurantStore'
 
 export type AppThunkAction = ActionCreator<
   ThunkAction<
@@ -9,10 +9,10 @@ export type AppThunkAction = ActionCreator<
     null,
     Action<string>
   >
->;
+>
 
 export type AppThunkDispatch = ThunkDispatch<
   IRestaurantStore,
   null,
   Action
->;
+>
