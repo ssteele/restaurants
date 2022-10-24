@@ -18,7 +18,7 @@ export class GeolocationButton extends React.Component {
   }
 
   public getCoordinates = async (): Promise<IBrowserNavigatorApiResponse> => {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject)
     })
   }
