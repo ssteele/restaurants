@@ -11,8 +11,6 @@ import { OptionCheckbox } from './option/OptionCheckbox'
 import { OptionSelect } from './option/OptionSelect'
 import '../css/OptionsModal.css'
 
-Modal.setAppElement('#root')
-
 export class OptionsModal extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
