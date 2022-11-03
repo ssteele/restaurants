@@ -142,22 +142,23 @@ export const nextRestaurant: AppThunkAction = () => {
   return (dispatch: AppThunkDispatch, getState: Function): void => {
     const { filteredIds, viewed, viewIndex }: IRestaurantStore = getState().restaurant
     let index = 0
+
     const viewedLength = viewed.length
-    let newViewIndex = (viewIndex) ? viewIndex - 1 : 0
+    let newViewIndex = (viewIndex) ? viewIndex + 1 : 1
     if (newViewIndex < viewedLength) {
-      // navigate through viewed restaurant history
+      // navigate forward through viewed restaurant history
       dispatch(setCurrentRestaurant(viewed[newViewIndex]))
       dispatch(setViewedRestaurants(null, newViewIndex))
       return
     }
 
     if (!(filteredIds.length > viewedLength)) {
-      // cycle back to start of viewed restaurant list
+      // cycle to start of viewed restaurant list
       dispatch(setCurrentRestaurant(viewed[0]))
       dispatch(setViewedRestaurants(null, 0))
       return
     } else {
-      // go to next restaurant
+      // go to next (unviewed) restaurant
       const remainingRestaurantIds = filteredIds.filter((r: number) => !viewed.includes(r))
       const randomIndex = getRandomPositiveInt(remainingRestaurantIds.length)
       const randomRestaurantId = remainingRestaurantIds[randomIndex]
