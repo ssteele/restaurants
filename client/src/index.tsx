@@ -22,8 +22,8 @@ const store = createStore(
   rootReducer,
   composeEnhancer(
     applyMiddleware(
-      thunkMiddleware, // lets us dispatch() functions
-      loggerMiddleware // middleware that logs actions
+      thunkMiddleware,                                              // lets us dispatch() functions
+      loggerMiddleware,                                             // middleware that logs actions
     )
   )
 )
