@@ -56,16 +56,18 @@ const mapRestaurantStateToProps = (
     restaurants,
   }
 }
-const ConnectedApp = connect(mapRestaurantStateToProps)(App as any)
+export const ConnectedApp = connect(mapRestaurantStateToProps)(App as any)
 
-const rootElement = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
-rootElement.render(
-  <Provider store={store}>
-    <ConnectedApp />
-  </Provider>,
-)
+const root = document.getElementById('root') || document.createElement('div')
+ReactDOM
+  .createRoot(root as HTMLElement)
+  .render(
+    <Provider store={store}>
+      <ConnectedApp />
+    </Provider>,
+  )
 
-Modal.setAppElement('#root')
+Modal.setAppElement(root)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -21,7 +21,15 @@ import { IRestaurantStore } from '../../models/RestaurantStore'
 
 export const restaurant = (
   state: IRestaurantStore = {
+    categories: [],
+    current: null,
+    currentZipMeta: [],
+    error: {},
+    filteredCount: 0,
+    filteredIds: [],
+    geolocation: { isGeolocating: false },
     isLoading: false,
+    modalIsOpen: false,
     options: [
       {name: 'nearby', description: 'Only near me', type: 'checkbox', value: false, rendered: true, disabled: true},
       {
@@ -44,18 +52,10 @@ export const restaurant = (
       {name: 'playarea', description: 'Only with play area', type: 'checkbox', value: false, rendered: true, disabled: false},
       {name: 'playground', description: 'Only with playground', type: 'checkbox', value: false, rendered: true, disabled: false},
     ],
-    restaurants: null,
     restaurantIds: [],
-    categories: [],
-    geolocation: { isGeolocating: false },
-    currentZipMeta: [],
-    filteredIds: [],
-    filteredCount: 0,
-    current: null,
+    restaurants: null,
     viewed: [],
     viewIndex: null,
-    modalIsOpen: false,
-    error: {},
   },
   action: any
 ): IRestaurantStore => {
