@@ -9,7 +9,7 @@ import { restaurant } from '../store/initial/restaurant'
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
-describe('', () => {
+describe('App component', () => {
   let store
   let testRenderer: any
 
@@ -25,7 +25,7 @@ describe('', () => {
     );
   })
 
-  it('renders without crashing', () => {
+  it('connects and renders with initial store', () => {
     expect(testRenderer.toJSON()).toMatchSnapshot();
   })
 })
