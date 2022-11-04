@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { GeolocationButton } from './GeolocationButton'
 import { Navigation } from './Navigation'
@@ -7,7 +6,6 @@ import { OptionsButton } from './OptionsButton'
 import { OptionsModal } from './OptionsModal'
 import { Restaurant } from './Restaurant'
 import { IRestaurant } from '../models/Restaurant'
-import { IRestaurantStore } from '../models/RestaurantStore'
 import {
   fetchRestaurants,
   nextRestaurant,
@@ -15,33 +13,7 @@ import {
   setReduxFromLocalStore,
 } from '../store/thunks/restaurant'
 
-const mapStateToProps = (
-  { restaurant }: { restaurant: IRestaurantStore },
-) => {
-  const {
-    current,
-    error,
-    filteredCount,
-    geolocation,
-    isLoading,
-    modalIsOpen,
-    options,
-    restaurants,
-  } = restaurant
-
-  return {
-    current,
-    error,
-    filteredCount,
-    geolocation,
-    isLoading,
-    modalIsOpen,
-    options,
-    restaurants,
-  }
-}
-
-class App extends React.Component<IRestaurant> {
+export class App extends React.Component<IRestaurant> {
   static propTypes = {
     current: PropTypes.number,
     dispatch: PropTypes.func.isRequired,
@@ -84,7 +56,7 @@ class App extends React.Component<IRestaurant> {
     }: any = this.props
 
     return (
-      <section>
+      <main>
         <OptionsModal
           dispatch={dispatch}
           filteredCount={filteredCount}
@@ -112,9 +84,7 @@ class App extends React.Component<IRestaurant> {
           dispatch={dispatch}
           filteredCount={filteredCount}
         ></Navigation>
-      </section>
+      </main>
     )
   }
 }
-
-export default connect(mapStateToProps)(App as any)
