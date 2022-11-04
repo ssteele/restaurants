@@ -6,7 +6,7 @@ import { DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE, MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS 
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-const restaurantStore = {
+const restaurant = {
   categories: [],
   current: null,
   currentZipMeta: [],
@@ -53,7 +53,7 @@ describe('', () => {
 
   beforeEach(() => {
     store = mockStore({
-      restaurant: restaurantStore,
+      restaurant,
     })
 
     testRenderer = TestRenderer.create(
