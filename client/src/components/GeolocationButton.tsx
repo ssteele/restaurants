@@ -32,7 +32,9 @@ export class GeolocationButton extends React.Component {
       }
     }
     if (geolocation.isGeolocating) {
-      console.warn('Geolocating now - please wait')
+      if ('test' !== process.env.NODE_ENV) {
+        console.warn('Geolocating now - please wait')
+      }
       return
     } else if (isCoolOffPeriod) {
       console.warn('Geolocation cool down - too soon since the last request')

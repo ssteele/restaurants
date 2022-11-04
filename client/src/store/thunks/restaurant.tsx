@@ -64,7 +64,9 @@ const filterRestaurants = ({
               }
             }
           } else {
-            console.warn('Location services are unavailable')
+            if ('test' !== process.env.NODE_ENV) {
+              console.warn('Location services are unavailable')
+            }
             res = true
           }
           break
