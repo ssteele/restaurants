@@ -17,7 +17,7 @@ export class Navigation extends React.Component {
     dispatch(nextRestaurant())
   }
 
-  public back = (): void => {
+  public prev = (): void => {
     const { dispatch }: any = this.props
     dispatch(prevRestaurant())
   }
@@ -29,10 +29,10 @@ export class Navigation extends React.Component {
 
     return (
       <nav>
-        <span className="back">
+        <span className="prev">
           <button
             className="button secondary"
-            onClick={this.back}
+            onClick={this.prev}
             disabled={filteredCount < 2}
           >Back</button>
         </span>
