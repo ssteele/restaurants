@@ -5,6 +5,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { ConnectedApp } from '../index';
 import { restaurant } from '../store/initial/restaurant'
+import { App } from './App';
 import { GeolocationButton } from './GeolocationButton';
 import { OptionsButton } from './OptionsButton';
 import { OptionsModal } from './OptionsModal';
@@ -31,6 +32,7 @@ describe('App component', () => {
   })
 
   it('properly renders the expected page', () => {
+    expect(() => testInstance.findByType(App)).toBeTruthy()
     expect(testRenderer.toJSON()).toMatchSnapshot()
   })
 
