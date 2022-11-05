@@ -44,3 +44,27 @@ describe('Navigate component', () => {
     expect(nextRestaurantSpy).toHaveBeenCalledTimes(1)
   })
 })
+
+describe('Navigate component when there are no restaurants', () => {
+  let testRenderer: any
+  let testInstance: any
+  const dispatch: any = jest.fn()
+  const filteredCount = 0
+  const prevRestaurantSpy = jest.spyOn(thunks, 'prevRestaurant')
+  const nextRestaurantSpy = jest.spyOn(thunks, 'nextRestaurant')
+
+  beforeEach(() => {
+    testRenderer = TestRenderer.create(
+      <Navigation
+        dispatch={dispatch}
+        filteredCount={filteredCount}
+      ></Navigation>
+    )
+    testInstance = testRenderer.root;
+  })
+
+  it('properly renders restaurant navigation', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByType(Navigation)).not.toThrow(Error)
+  })
+})
