@@ -34,11 +34,13 @@ describe('App component', () => {
   })
 
   it('properly renders the expected page', () => {
+    expect.assertions(2)
     expect(() => testInstance.findByType(App)).not.toThrow(Error)
     expect(testRenderer.toJSON()).toMatchSnapshot()
   })
 
   it('properly loads the options modal', () => {
+    expect.assertions(3)
     expect(() => testInstance.findByType(OptionsModal)).not.toThrow(Error)
     const optionsModal = testInstance.findByType(OptionsModal)
     expect(optionsModal.props.modalIsOpen).toBe(false)
@@ -46,16 +48,19 @@ describe('App component', () => {
   })
 
   it('properly loads the geolocation button', () => {
+    expect.assertions(2)
     expect(() => testInstance.findByType(GeolocationButton)).not.toThrow(Error)
     const geolocationButton = testInstance.findByType(GeolocationButton)
     expect(geolocationButton.props.geolocation.isGeolocating).toBe(false);
   })
 
   it('properly loads the options button', () => {
+    expect.assertions(1)
     expect(() => testInstance.findByType(OptionsButton)).not.toThrow(Error)
   })
 
   it('properly loads the restaurant section', () => {
+    expect.assertions(5)
     expect(() => testInstance.findByType(Restaurant)).not.toThrow(Error)
     const restaurantSection = testInstance.findByType(Restaurant)
     expect(restaurantSection.props.current).toBe(null);
@@ -68,5 +73,6 @@ describe('App component', () => {
     expect(() => testInstance.findByType(Navigation)).not.toThrow(Error)
     const navigation = testInstance.findByType(Navigation)
     expect(navigation.props.filteredCount).toBe(0);
+    expect.assertions(2)
   })
 })
