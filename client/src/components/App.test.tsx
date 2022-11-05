@@ -5,6 +5,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { ConnectedApp } from '../index';
 import { restaurant } from '../store/initial/restaurant'
+import { GeolocationButton } from './GeolocationButton';
 import { OptionsModal } from './OptionsModal';
 
 const middlewares = [thunk]
@@ -33,7 +34,13 @@ describe('App component', () => {
   })
 
   it('properly loads the options modal', () => {
-    expect(testInstance.findByType(OptionsModal).props.modalIsOpen).toBe(false);
-    expect(testInstance.findByType(OptionsModal).props.filteredCount).toBe(0);
+    const optionsModal = testInstance.findByType(OptionsModal)
+    expect(optionsModal.props.modalIsOpen).toBe(false)
+    expect(optionsModal.props.filteredCount).toBe(0)
+  })
+
+  it('properly loads the geolocation button', () => {
+    const geolocationButton = testInstance.findByType(GeolocationButton)
+    expect(geolocationButton.props.geolocation.isGeolocating).toBe(false);
   })
 })
