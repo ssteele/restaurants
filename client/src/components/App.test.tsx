@@ -7,6 +7,7 @@ import { ConnectedApp } from '../index';
 import { restaurant } from '../store/initial/restaurant'
 import { App } from './App';
 import { GeolocationButton } from './GeolocationButton';
+import { Navigation } from './Navigation';
 import { OptionsButton } from './OptionsButton';
 import { OptionsModal } from './OptionsModal';
 import { Restaurant } from './Restaurant';
@@ -61,5 +62,11 @@ describe('App component', () => {
     expect(restaurantSection.props.error).toEqual({});
     expect(restaurantSection.props.isLoading).toBe(false);
     expect(restaurantSection.props.restaurants).toBe(null);
+  })
+
+  it('properly loads restaurant navigation', () => {
+    expect(() => testInstance.findByType(Navigation)).not.toThrow(Error)
+    const navigation = testInstance.findByType(Navigation)
+    expect(navigation.props.filteredCount).toBe(0);
   })
 })
