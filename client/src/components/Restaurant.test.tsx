@@ -24,12 +24,12 @@ describe('Restaurant component', () => {
     testInstance = testRenderer.root;
   })
 
-  it('properly renders the restaurant component', () => {
+  it('properly renders restaurant component', () => {
     expect.assertions(1)
     expect(() => testInstance.findByType(Restaurant)).not.toThrow(Error)
   })
 
-  it('properly renders the restaurant name with menu link', () => {
+  it('properly renders restaurant link', () => {
     expect.assertions(3)
     expect(() => testInstance.findByProps({'data-id': 'restaurant-link'})).not.toThrow(Error)
     const restaurantLink = testInstance.findByProps({'data-id': 'restaurant-link'})
@@ -37,7 +37,7 @@ describe('Restaurant component', () => {
     expect(restaurantLink.props.children).toBe(restaurantInstances[current].name)
   })
 
-  it('properly renders the restaurant sub name', () => {
+  it('properly renders restaurant sub name', () => {
     expect.assertions(2)
     expect(() => testInstance.findByProps({'data-id': 'restaurant-sub-name'})).not.toThrow(Error)
     const restaurantSubName = testInstance.findByProps({'data-id': 'restaurant-sub-name'})
@@ -77,9 +77,29 @@ describe('Restaurant component with no restaurants', () => {
     testInstance = testRenderer.root;
   })
 
+  it('properly renders restaurant component', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByType(Restaurant)).not.toThrow(Error)
+  })
+
   it('does not render restaurant link', () => {
     expect.assertions(1)
     expect(() => testInstance.findByProps({'data-id': 'restaurant-link'})).toThrow(Error)
+  })
+
+  it('does not render restaurant sub name', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByProps({'data-id': 'restaurant-sub-name'})).toThrow(Error)
+  })
+
+  it('does not render kids items', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByProps({'data-id': 'restaurant-kids-text'})).toThrow(Error)
+  })
+
+  it('does not show error message', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByProps({'data-id': 'restaurant-error-message'})).toThrow(Error)
   })
 })
 
@@ -103,8 +123,28 @@ describe('Restaurant component with no restaurant selected', () => {
     testInstance = testRenderer.root;
   })
 
+  it('does not render restaurant component', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByType(Restaurant)).not.toThrow(Error)
+  })
+
   it('does not render restaurant link', () => {
     expect.assertions(1)
     expect(() => testInstance.findByProps({'data-id': 'restaurant-link'})).toThrow(Error)
+  })
+
+  it('does not render restaurant sub name', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByProps({'data-id': 'restaurant-sub-name'})).toThrow(Error)
+  })
+
+  it('does not render kids items', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByProps({'data-id': 'restaurant-kids-text'})).toThrow(Error)
+  })
+
+  it('does not show error message', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByProps({'data-id': 'restaurant-error-message'})).toThrow(Error)
   })
 })
