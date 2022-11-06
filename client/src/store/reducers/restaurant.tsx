@@ -16,7 +16,7 @@ import {
 import { restaurantStore as initialRestaurantState } from '../initial/restaurantStore'
 import { IRestaurantStore } from '../../models/RestaurantStore'
 
-export const restaurant = (
+export const restaurantStore = (
   state: IRestaurantStore = initialRestaurantState,
   action: any
 ): IRestaurantStore => {
@@ -148,5 +148,5 @@ export const restaurant = (
 }
 
 export const rootReducer = combineReducers({
-  restaurant,
+  restaurantStore,
 })
