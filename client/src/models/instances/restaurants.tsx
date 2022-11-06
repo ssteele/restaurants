@@ -1,6 +1,6 @@
 import { IRestaurant } from '../Restaurant';
 
-export const restaurantInstances: {[key: number]: IRestaurant} = {
+export const restaurantInstances: {[id: number]: IRestaurant} = {
   1: {
     id: 1,
     name: 'Name 1',

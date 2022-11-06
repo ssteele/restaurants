@@ -44,7 +44,7 @@ export const setGeolocation = (geolocation: IGeolocation): { type: string, geolo
   }
 }
 
-export const setCurrentZipMeta = (currentZipMeta: unknown[]): { type: string, currentZipMeta: unknown} => {     // @todo: type me
+export const setCurrentZipMeta = (currentZipMeta: unknown[]): { type: string, currentZipMeta: unknown} => {
   return {
     type: SET_CURRENT_ZIP_META,
     currentZipMeta,

@@ -30,6 +30,7 @@ import { IGoogleGeocodingApiResponse } from '../../models/GoogleApi'
 import { IRestaurant } from '../../models/Restaurant'
 import { IRestaurantOption } from '../../models/RestaurantOption'
 import { IRestaurantStore } from '../../models/RestaurantStore'
+import { ICategory } from '../../models/Category'
 
 const filterRestaurants = ({
   currentZipMeta,
@@ -238,8 +239,9 @@ export const fetchRestaurants: AppThunkAction = () => {
             {restaurants: [restaurantSchema]},
           )
 
-          const { restaurants, categories } = normalized.entities
-          const { restaurants: restaurantIds } = normalized.result
+          const restaurants: {[id: number]: IRestaurant} = normalized.entities.restaurants || {}
+          const categories: {[id: number]: ICategory} = normalized.entities.categories || {}
+          const restaurantIds: number[] = normalized.result.restaurants
 
           const { currentZipMeta, options }: IRestaurantStore = getState().restaurantStore
           const filteredIds = filterRestaurants({
