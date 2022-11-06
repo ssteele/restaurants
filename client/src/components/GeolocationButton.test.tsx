@@ -32,6 +32,11 @@ describe('Geolocation component with no set location', () => {
     const geolocationTrigger = testInstance.findByProps({'data-id': 'geolocation-trigger'})
     expect(geolocationTrigger.props.className).toBe('geolocation-trigger');
   })
+
+  it('does not render current zip', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByProps({'data-id': 'geolocation-zip'})).toThrow(Error)
+  })
 })
 
 // describe('Geolocation component with no restaurants', () => {

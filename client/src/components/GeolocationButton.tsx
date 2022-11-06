@@ -79,7 +79,10 @@ export class GeolocationButton extends React.Component {
         </span>
 
         {geolocation.zip && (
-          <span className="subtle geolocation-zip">{geolocation.zip}</span>
+          <span
+            className="subtle geolocation-zip"
+            data-id="geolocation-zip"
+          >{geolocation.zip}</span>
         )}
       </section>
     )
