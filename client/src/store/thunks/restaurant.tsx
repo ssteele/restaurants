@@ -91,14 +91,14 @@ const getRandomPositiveInt = (max: number): number => {
 
 export const toggleModal: AppThunkAction = () => {
   return (dispatch: AppThunkDispatch, getState: Function): void => {
-    const { modalIsOpen }: IRestaurantStore = getState().restaurant
+    const { modalIsOpen }: IRestaurantStore = getState().restaurantStore
     dispatch(setModal(!modalIsOpen))
   }
 }
 
 const handleOptionUpdate: AppThunkAction = (option: IRestaurantOption) => {
   return (dispatch: AppThunkDispatch, getState: Function): void => {
-    const { options }: IRestaurantStore = getState().restaurant
+    const { options }: IRestaurantStore = getState().restaurantStore
 
     // update current options
     const updatedOptions = options.map((o: IRestaurantOption) => {
@@ -111,7 +111,7 @@ const handleOptionUpdate: AppThunkAction = (option: IRestaurantOption) => {
 
 const handleFilterUpdate: AppThunkAction = () => {
   return (dispatch: AppThunkDispatch, getState: Function): void => {
-    const { currentZipMeta, options, restaurants, restaurantIds }: IRestaurantStore = getState().restaurant
+    const { currentZipMeta, options, restaurants, restaurantIds }: IRestaurantStore = getState().restaurantStore
     const updatedFiltered = filterRestaurants({
       currentZipMeta,
       options,
@@ -142,7 +142,7 @@ export const toggleOption: AppThunkAction = (option: IRestaurantOption) => {
 
 export const nextRestaurant: AppThunkAction = () => {
   return (dispatch: AppThunkDispatch, getState: Function): void => {
-    const { filteredIds, viewed, viewIndex }: IRestaurantStore = getState().restaurant
+    const { filteredIds, viewed, viewIndex }: IRestaurantStore = getState().restaurantStore
     let index = 0
 
     const viewedLength = viewed.length
@@ -174,7 +174,7 @@ export const nextRestaurant: AppThunkAction = () => {
 
 export const prevRestaurant: AppThunkAction = () => {
   return (dispatch: AppThunkDispatch, getState: Function): void => {
-    const { viewed, viewIndex }: IRestaurantStore = getState().restaurant
+    const { viewed, viewIndex }: IRestaurantStore = getState().restaurantStore
     let newViewIndex = (viewIndex) ? viewIndex - 1 : 0
     if (newViewIndex >= 0) {
       dispatch(setCurrentRestaurant(viewed[newViewIndex]))
@@ -241,7 +241,7 @@ export const fetchRestaurants: AppThunkAction = () => {
           const { restaurants, categories } = normalized.entities
           const { restaurants: restaurantIds } = normalized.result
 
-          const { currentZipMeta, options }: IRestaurantStore = getState().restaurant
+          const { currentZipMeta, options }: IRestaurantStore = getState().restaurantStore
           const filteredIds = filterRestaurants({
             currentZipMeta,
             options,
@@ -295,7 +295,7 @@ export const getZipsNear: AppThunkAction = (zip: number) => {
           localStorage.setItem('currentZipMeta', JSON.stringify(postalCodes))
 
           // update geolocation filter options and filter restaurants
-          const { options }: IRestaurantStore = getState().restaurant
+          const { options }: IRestaurantStore = getState().restaurantStore
           const nearbyOption: IRestaurantOption | undefined = options.find((o: IRestaurantOption) => 'nearby' === o.name)
           if (nearbyOption) {
             nearbyOption.value = true

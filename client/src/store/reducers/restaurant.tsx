@@ -13,7 +13,7 @@ import {
   SET_MODAL,
   SET_ERROR,
 } from '../actions/restaurant'
-import { restaurant as initialRestaurantState } from '../initial/restaurant'
+import { restaurantStore as initialRestaurantState } from '../initial/restaurantStore'
 import { IRestaurantStore } from '../../models/RestaurantStore'
 
 export const restaurant = (

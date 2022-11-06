@@ -4,7 +4,7 @@ import TestRenderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { ConnectedApp } from '../index';
-import { restaurant } from '../store/initial/restaurant'
+import { restaurantStore } from '../store/initial/restaurantStore'
 import { App } from './App';
 import { GeolocationButton } from './GeolocationButton';
 import { Navigation } from './Navigation';
@@ -22,7 +22,7 @@ describe('App component', () => {
 
   beforeEach(() => {
     store = mockStore({
-      restaurant,
+      restaurantStore,
     })
 
     testRenderer = TestRenderer.create(

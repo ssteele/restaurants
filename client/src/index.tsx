@@ -32,7 +32,7 @@ const store = createStore(
 )
 
 const mapRestaurantStateToProps = (
-  { restaurant }: { restaurant: IRestaurantStore },
+  { restaurantStore }: { restaurantStore: IRestaurantStore },
 ) => {
   const {
     current,
@@ -43,7 +43,7 @@ const mapRestaurantStateToProps = (
     modalIsOpen,
     options,
     restaurants,
-  } = restaurant
+  } = restaurantStore
 
   return {
     current,
