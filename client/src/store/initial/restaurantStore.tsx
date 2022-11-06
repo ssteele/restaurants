@@ -4,7 +4,7 @@ MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS,
 } from '../../constants'
 import { IRestaurantStore } from '../../models/RestaurantStore'
 
-export const restaurant: IRestaurantStore = {
+export const restaurantStore: IRestaurantStore = {
   categories: [],
   current: null,
   currentZipMeta: [],
