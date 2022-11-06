@@ -72,9 +72,7 @@ export class GeolocationButton extends React.Component {
         data-id="geolocation-trigger"
         onClick={() => this.getGeolocation(geolocation)}
       >
-        <span
-          className="splash"
-        >
+        <span className="splash">
           <i className={`fa fa-compass fa-lg ${geolocation.isGeolocating ? 'fa-spin' : ''}`}></i>
         </span>
 
