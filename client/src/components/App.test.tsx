@@ -62,11 +62,11 @@ describe('App component', () => {
   it('properly loads the restaurant section', () => {
     expect.assertions(5)
     expect(() => testInstance.findByType(Restaurant)).not.toThrow(Error)
-    const restaurantSection = testInstance.findByType(Restaurant)
-    expect(restaurantSection.props.current).toBe(null);
-    expect(restaurantSection.props.error).toEqual({});
-    expect(restaurantSection.props.isLoading).toBe(false);
-    expect(restaurantSection.props.restaurants).toBe(null);
+    const restaurantComponent = testInstance.findByType(Restaurant)
+    expect(restaurantComponent.props.current).toBe(null);
+    expect(restaurantComponent.props.error).toEqual({});
+    expect(restaurantComponent.props.isLoading).toBe(false);
+    expect(restaurantComponent.props.restaurants).toBe(null);
   })
 
   it('properly loads restaurant navigation', () => {

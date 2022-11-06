@@ -7,10 +7,10 @@ import { Restaurant } from './Restaurant';
 describe('Restaurant component', () => {
   let testRenderer: any
   let testInstance: any
-  const current: number = 0
+  const current: number = 1
   const error: object = {}
   const isLoading: boolean = false
-  const restaurants: {[key: number]: IRestaurant} = restaurantInstances
+  const restaurants: {[id: number]: IRestaurant} = restaurantInstances
 
   beforeEach(() => {
     testRenderer = TestRenderer.create(
@@ -27,5 +27,13 @@ describe('Restaurant component', () => {
   it('properly renders the restaurant component', () => {
     expect.assertions(1)
     expect(() => testInstance.findByType(Restaurant)).not.toThrow(Error)
+  })
+
+  it('properly renders the restaurant name with menu link', () => {
+    expect.assertions(3)
+    expect(() => testInstance.findByType('a')).not.toThrow(Error)
+    const restaurantLink = testInstance.findByType('a')
+    expect(restaurantLink.props.href).toBe(restaurantInstances[current].menu)
+    expect(restaurantLink.props.children).toBe(restaurantInstances[current].name)
   })
 })
