@@ -50,6 +50,11 @@ describe('Restaurant component', () => {
     const restaurantKids = testInstance.findByProps({'data-id': 'restaurant-kids-text'})
     expect(restaurantKids.props.children).toBe('Kids 1, Kids 2')
   })
+
+  it('does not show error message', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByProps({'data-id': 'restaurant-error-message'})).toThrow(Error)
+  })
 })
 
 describe('Restaurant component with no restaurants', () => {

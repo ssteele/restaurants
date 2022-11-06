@@ -53,7 +53,10 @@ export class Restaurant extends React.Component {
 
             {error.message &&
               <section>
-                <span className="error">{error.message}</span>
+                <span
+                  className="error"
+                  data-id="restaurant-error-message"
+                >{error.message}</span>
               </section>
             }
           </section>
