@@ -32,6 +32,7 @@ export class Navigation extends React.Component {
         <span className="prev">
           <button
             className="button secondary"
+            data-id="nav-back-restaurant"
             onClick={this.prev}
             disabled={filteredCount < 2}
           >Back</button>
@@ -40,6 +41,7 @@ export class Navigation extends React.Component {
         <span className="next">
           <button
             className="button"
+            data-id="nav-next-restaurant"
             onClick={this.next}
             disabled={filteredCount < 2}
           >Next</button>

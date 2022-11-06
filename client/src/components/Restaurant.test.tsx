@@ -36,6 +36,7 @@ describe('Restaurant component', () => {
     expect(restaurantLink.props.href).toBe(restaurantInstances[current].menu)
     expect(restaurantLink.props.children).toBe(restaurantInstances[current].name)
   })
+
 describe('Restaurant component with no restaurants', () => {
   let testRenderer: any
   let testInstance: any
@@ -56,9 +57,9 @@ describe('Restaurant component with no restaurants', () => {
     testInstance = testRenderer.root;
   })
 
-  it('does not render a restaurant name or menu link', () => {
+  it('does not render restaurant link', () => {
     expect.assertions(1)
-    expect(() => testInstance.findByType('a')).toThrow(Error)
+    expect(() => testInstance.findByProps({'data-id': 'restaurant-link'})).toThrow(Error)
   })
 })
 
@@ -82,8 +83,8 @@ describe('Restaurant component with no restaurant selected', () => {
     testInstance = testRenderer.root;
   })
 
-  it('does not render a restaurant name or menu link', () => {
+  it('does not render restaurant link', () => {
     expect.assertions(1)
-    expect(() => testInstance.findByType('a')).toThrow(Error)
+    expect(() => testInstance.findByProps({'data-id': 'restaurant-link'})).toThrow(Error)
   })
 })

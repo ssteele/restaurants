@@ -28,7 +28,7 @@ describe('Navigate component', () => {
 
   it('navigates to previous restaurant', () => {
     expect.assertions(4)
-    const backButton = testInstance.findAllByType('button')[0]
+    const backButton = testInstance.findByProps({'data-id': 'nav-back-restaurant'})
     expect(backButton.props.disabled).toBe(false);
     backButton.props.onClick()
     expect(dispatch).toHaveBeenCalledTimes(1)
@@ -38,7 +38,7 @@ describe('Navigate component', () => {
 
   it('navigates to next restaurant', () => {
     expect.assertions(4)
-    const nextButton = testInstance.findAllByType('button')[1]
+    const nextButton = testInstance.findByProps({'data-id': 'nav-next-restaurant'})
     expect(nextButton.props.disabled).toBe(false);
     nextButton.props.onClick()
     expect(dispatch).toHaveBeenCalledTimes(1)
@@ -70,13 +70,13 @@ describe('Navigate component with no restaurants', () => {
 
   it('navigates to previous restaurant', () => {
     expect.assertions(1)
-    const backButton = testInstance.findAllByType('button')[0]
+    const backButton = testInstance.findByProps({'data-id': 'nav-back-restaurant'})
     expect(backButton.props.disabled).toBe(true);
   })
 
   it('navigates to next restaurant', () => {
     expect.assertions(1)
-    const nextButton = testInstance.findAllByType('button')[1]
+    const nextButton = testInstance.findByProps({'data-id': 'nav-next-restaurant'})
     expect(nextButton.props.disabled).toBe(true);
   })
 })
@@ -104,13 +104,13 @@ describe('Navigate component with only 1 restaurant', () => {
 
   it('navigates to previous restaurant', () => {
     expect.assertions(1)
-    const backButton = testInstance.findAllByType('button')[0]
+    const backButton = testInstance.findByProps({'data-id': 'nav-back-restaurant'})
     expect(backButton.props.disabled).toBe(true);
   })
 
   it('navigates to next restaurant', () => {
     expect.assertions(1)
-    const nextButton = testInstance.findAllByType('button')[1]
+    const nextButton = testInstance.findByProps({'data-id': 'nav-next-restaurant'})
     expect(nextButton.props.disabled).toBe(true);
   })
 })
