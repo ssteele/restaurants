@@ -45,7 +45,9 @@ export class Restaurant extends React.Component {
             {restaurants[current]?.kids?.length > 0 &&
               <section className="restaurant-kids">
                 <i className="fa fa-child fa-fw"></i>
-                {restaurants[current]?.kids?.join(', ')}
+                <span data-id="restaurant-kids-text">
+                  {restaurants[current]?.kids?.join(', ')}
+                </span>
               </section>
             }
 
