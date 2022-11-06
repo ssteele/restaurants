@@ -35,7 +35,10 @@ export class Restaurant extends React.Component {
 
             {restaurants[current]?.sub_name &&
               <section>
-                <span className="restaurant-sub-name">{restaurants[current]?.sub_name}</span>
+                <span
+                  className="restaurant-sub-name"
+                  data-id="restaurant-sub-name"
+                >{restaurants[current]?.sub_name}</span>
               </section>
             }
 

@@ -37,6 +37,14 @@ describe('Restaurant component', () => {
     expect(restaurantLink.props.children).toBe(restaurantInstances[current].name)
   })
 
+  it('properly renders the restaurant sub name', () => {
+    expect.assertions(2)
+    expect(() => testInstance.findByProps({'data-id': 'restaurant-sub-name'})).not.toThrow(Error)
+    const restaurantSubName = testInstance.findByProps({'data-id': 'restaurant-sub-name'})
+    expect(restaurantSubName.props.children).toBe(restaurantInstances[current].sub_name)
+  })
+})
+
 describe('Restaurant component with no restaurants', () => {
   let testRenderer: any
   let testInstance: any
