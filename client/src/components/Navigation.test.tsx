@@ -27,8 +27,9 @@ describe('Navigate component', () => {
   })
 
   it('navigates to previous restaurant', () => {
-    expect.assertions(3)
+    expect.assertions(4)
     const backButton = testInstance.findAllByType('button')[0]
+    expect(backButton.props.disabled).toBe(false);
     backButton.props.onClick()
     expect(dispatch).toHaveBeenCalledTimes(1)
     expect(prevRestaurantSpy).toHaveBeenCalledTimes(1)
@@ -36,8 +37,9 @@ describe('Navigate component', () => {
   })
 
   it('navigates to next restaurant', () => {
-    expect.assertions(3)
+    expect.assertions(4)
     const nextButton = testInstance.findAllByType('button')[1]
+    expect(nextButton.props.disabled).toBe(false);
     nextButton.props.onClick()
     expect(dispatch).toHaveBeenCalledTimes(1)
     expect(prevRestaurantSpy).toHaveBeenCalledTimes(0)
@@ -45,13 +47,11 @@ describe('Navigate component', () => {
   })
 })
 
-describe('Navigate component when there are no restaurants', () => {
+describe('Navigate component without restaurants', () => {
   let testRenderer: any
   let testInstance: any
   const dispatch: any = jest.fn()
   const filteredCount = 0
-  const prevRestaurantSpy = jest.spyOn(thunks, 'prevRestaurant')
-  const nextRestaurantSpy = jest.spyOn(thunks, 'nextRestaurant')
 
   beforeEach(() => {
     testRenderer = TestRenderer.create(
@@ -66,5 +66,17 @@ describe('Navigate component when there are no restaurants', () => {
   it('properly renders restaurant navigation', () => {
     expect.assertions(1)
     expect(() => testInstance.findByType(Navigation)).not.toThrow(Error)
+  })
+
+  it('navigates to previous restaurant', () => {
+    expect.assertions(1)
+    const backButton = testInstance.findAllByType('button')[0]
+    expect(backButton.props.disabled).toBe(true);
+  })
+
+  it('navigates to next restaurant', () => {
+    expect.assertions(1)
+    const nextButton = testInstance.findAllByType('button')[1]
+    expect(nextButton.props.disabled).toBe(true);
   })
 })
