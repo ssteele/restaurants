@@ -34,9 +34,8 @@ describe('App component', () => {
   })
 
   it('properly renders the expected page', () => {
-    expect.assertions(2)
+    expect.assertions(1)
     expect(() => testInstance.findByType(App)).not.toThrow(Error)
-    expect(testRenderer.toJSON()).toMatchSnapshot()
   })
 
   it('properly loads the options modal', () => {
