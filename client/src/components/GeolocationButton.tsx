@@ -52,16 +52,24 @@ export class GeolocationButton extends React.Component {
     }
   }
 
+  private geolocationTriggerClasses = (geolocation: IGeolocation): string => {
+    let classes = ['geolocation-trigger']
+    if (geolocation.zip) {
+      classes = [...classes, 'inset']
+      if (!geolocation.isGeolocating) {
+        classes = [...classes, 'flash']
+      }
+    }
+    return classes.join(' ')
+  }
+
   public render(): React.ReactNode {
     const { geolocation }: any = this.props
 
     return (
       <section
-        className={`
-          geolocation-trigger
-          ${geolocation.zip ? 'inset' : ''}
-          ${geolocation.zip && !geolocation.isGeolocating ? 'flash' : ''}
-        `}
+        className={this.geolocationTriggerClasses(geolocation)}
+        data-id="geolocation-trigger"
         onClick={() => this.getGeolocation(geolocation)}
       >
         <span

@@ -4,7 +4,7 @@ import { IGeolocation } from '../models/Geolocation';
 import * as thunks from '../store/thunks/restaurant'
 import { GeolocationButton } from './GeolocationButton';
 
-describe('Geolocation component', () => {
+describe('Geolocation component with no set location', () => {
   let testRenderer: any
   let testInstance: any
   const dispatch: any = jest.fn()
@@ -27,15 +27,11 @@ describe('Geolocation component', () => {
     expect(() => testInstance.findByType(GeolocationButton)).not.toThrow(Error)
   })
 
-  // it('navigates to previous restaurant', () => {
-  //   expect.assertions(4)
-  //   const backButton = testInstance.findByProps({'data-id': 'nav-back-restaurant'})
-  //   expect(backButton.props.disabled).toBe(false);
-  //   backButton.props.onClick()
-  //   expect(dispatch).toHaveBeenCalledTimes(1)
-  //   expect(fetchGeolocationSpy).toHaveBeenCalledTimes(1)
-  //   expect(getZipFromLatLonSpy).toHaveBeenCalledTimes(0)
-  // })
+  it('renders proper classes', () => {
+    expect.assertions(1)
+    const geolocationTrigger = testInstance.findByProps({'data-id': 'geolocation-trigger'})
+    expect(geolocationTrigger.props.className).toBe('geolocation-trigger');
+  })
 })
 
 // describe('Geolocation component with no restaurants', () => {
