@@ -36,4 +36,54 @@ describe('Restaurant component', () => {
     expect(restaurantLink.props.href).toBe(restaurantInstances[current].menu)
     expect(restaurantLink.props.children).toBe(restaurantInstances[current].name)
   })
+describe('Restaurant component with no restaurants', () => {
+  let testRenderer: any
+  let testInstance: any
+  const current: number = 1
+  const error: object = {}
+  const isLoading: boolean = false
+  const restaurants: {[id: number]: IRestaurant} = {}
+
+  beforeEach(() => {
+    testRenderer = TestRenderer.create(
+      <Restaurant
+        current={current}
+        error={error}
+        isLoading={isLoading}
+        restaurants={restaurants}
+      ></Restaurant>
+    )
+    testInstance = testRenderer.root;
+  })
+
+  it('does not render a restaurant name or menu link', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByType('a')).toThrow(Error)
+  })
+})
+
+describe('Restaurant component with no restaurant selected', () => {
+  let testRenderer: any
+  let testInstance: any
+  const current: number = 0
+  const error: object = {}
+  const isLoading: boolean = false
+  const restaurants: {[id: number]: IRestaurant} = restaurantInstances
+
+  beforeEach(() => {
+    testRenderer = TestRenderer.create(
+      <Restaurant
+        current={current}
+        error={error}
+        isLoading={isLoading}
+        restaurants={restaurants}
+      ></Restaurant>
+    )
+    testInstance = testRenderer.root;
+  })
+
+  it('does not render a restaurant name or menu link', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByType('a')).toThrow(Error)
+  })
 })

@@ -7,7 +7,7 @@ describe('OptionsButton component', () => {
   let testRenderer: any
   let testInstance: any
   const dispatch: any = jest.fn()
-  const toggleModalSpy = jest.spyOn(thunks, 'toggleModal')
+  const toggleModalSpy: any = jest.spyOn(thunks, 'toggleModal')
 
   beforeEach(() => {
     testRenderer = TestRenderer.create(

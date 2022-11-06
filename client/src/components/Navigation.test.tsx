@@ -7,7 +7,7 @@ describe('Navigate component', () => {
   let testRenderer: any
   let testInstance: any
   const dispatch: any = jest.fn()
-  const filteredCount = 3
+  const filteredCount: number = 3
   const prevRestaurantSpy = jest.spyOn(thunks, 'prevRestaurant')
   const nextRestaurantSpy = jest.spyOn(thunks, 'nextRestaurant')
 
@@ -51,7 +51,7 @@ describe('Navigate component with no restaurants', () => {
   let testRenderer: any
   let testInstance: any
   const dispatch: any = jest.fn()
-  const filteredCount = 0
+  const filteredCount: number = 0
 
   beforeEach(() => {
     testRenderer = TestRenderer.create(
@@ -85,7 +85,7 @@ describe('Navigate component with only 1 restaurant', () => {
   let testRenderer: any
   let testInstance: any
   const dispatch: any = jest.fn()
-  const filteredCount = 1
+  const filteredCount: number = 1
 
   beforeEach(() => {
     testRenderer = TestRenderer.create(

@@ -22,26 +22,26 @@ export class Restaurant extends React.Component {
       <section>
         {current && (
           <section className="restaurant">
-            {restaurants[current].name &&
+            {restaurants[current]?.name &&
               <section className="restaurant-name">
                 <a
-                  href={restaurants[current].menu}
+                  href={restaurants[current]?.menu}
                   target="_blank"
                   rel="noopener noreferrer"
-                >{restaurants[current].name}</a>
+                >{restaurants[current]?.name}</a>
               </section>
             }
 
-            {restaurants[current].sub_name &&
+            {restaurants[current]?.sub_name &&
               <section>
-                <span className="restaurant-sub-name">{restaurants[current].sub_name}</span>
+                <span className="restaurant-sub-name">{restaurants[current]?.sub_name}</span>
               </section>
             }
 
-            {restaurants[current].kids.length > 0 &&
+            {restaurants[current]?.kids?.length > 0 &&
               <section className="restaurant-kids">
                 <i className="fa fa-child fa-fw"></i>
-                {restaurants[current].kids.join(', ')}
+                {restaurants[current]?.kids?.join(', ')}
               </section>
             }
 
