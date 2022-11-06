@@ -5,12 +5,15 @@ export interface IRestaurant {
   id: number
   indoor: boolean
   keto: boolean
-  kids: []
+  kids: string[]
   local: boolean
   menu: string
   name: string
   organic: boolean
   outdoor: boolean
+  playarea: boolean
+  playground: boolean
+  price: number
   site: string
   sub_name?: string
   vegan: boolean
