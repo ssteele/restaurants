@@ -62,9 +62,12 @@ export class Restaurant extends React.Component {
           </section>
         )}
 
-        {!current && (
+        {(!current || !restaurants.length) && (
           <section className="restaurant">
-            <span className="restaurant-name subtle">
+            <span
+              className="restaurant-name subtle"
+              data-id="no-restaurants"
+            >
               {isLoading ? 'Loading...' : 'Nope :('}
             </span>
           </section>
