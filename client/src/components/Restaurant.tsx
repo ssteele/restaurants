@@ -25,9 +25,10 @@ export class Restaurant extends React.Component {
             {restaurants[current]?.name &&
               <section className="restaurant-name">
                 <a
+                  data-id="restaurant-link"
                   href={restaurants[current]?.menu}
-                  target="_blank"
                   rel="noopener noreferrer"
+                  target="_blank"
                 >{restaurants[current]?.name}</a>
               </section>
             }

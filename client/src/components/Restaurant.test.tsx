@@ -31,8 +31,8 @@ describe('Restaurant component', () => {
 
   it('properly renders the restaurant name with menu link', () => {
     expect.assertions(3)
-    expect(() => testInstance.findByType('a')).not.toThrow(Error)
-    const restaurantLink = testInstance.findByType('a')
+    expect(() => testInstance.findByProps({'data-id': 'restaurant-link'})).not.toThrow(Error)
+    const restaurantLink = testInstance.findByProps({'data-id': 'restaurant-link'})
     expect(restaurantLink.props.href).toBe(restaurantInstances[current].menu)
     expect(restaurantLink.props.children).toBe(restaurantInstances[current].name)
   })
