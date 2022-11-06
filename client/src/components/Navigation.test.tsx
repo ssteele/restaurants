@@ -47,11 +47,45 @@ describe('Navigate component', () => {
   })
 })
 
-describe('Navigate component without restaurants', () => {
+describe('Navigate component with no restaurants', () => {
   let testRenderer: any
   let testInstance: any
   const dispatch: any = jest.fn()
   const filteredCount = 0
+
+  beforeEach(() => {
+    testRenderer = TestRenderer.create(
+      <Navigation
+        dispatch={dispatch}
+        filteredCount={filteredCount}
+      ></Navigation>
+    )
+    testInstance = testRenderer.root;
+  })
+
+  it('properly renders restaurant navigation', () => {
+    expect.assertions(1)
+    expect(() => testInstance.findByType(Navigation)).not.toThrow(Error)
+  })
+
+  it('navigates to previous restaurant', () => {
+    expect.assertions(1)
+    const backButton = testInstance.findAllByType('button')[0]
+    expect(backButton.props.disabled).toBe(true);
+  })
+
+  it('navigates to next restaurant', () => {
+    expect.assertions(1)
+    const nextButton = testInstance.findAllByType('button')[1]
+    expect(nextButton.props.disabled).toBe(true);
+  })
+})
+
+describe('Navigate component with only 1 restaurant', () => {
+  let testRenderer: any
+  let testInstance: any
+  const dispatch: any = jest.fn()
+  const filteredCount = 1
 
   beforeEach(() => {
     testRenderer = TestRenderer.create(
