@@ -7,6 +7,7 @@ import {
   fetchGeolocation,
   getZipFromLatLon,
 } from '../store/thunks/restaurant'
+import { getCoordinates } from '../utils/getCoordinates'
 import '../css/GeolocationButton.css'
 import { IGeolocation } from '../models/Geolocation'
 import { IBrowserNavigatorApiResponse } from '../models/BrowserApi'
@@ -15,12 +16,6 @@ export class GeolocationButton extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     geolocation: PropTypes.object,
-  }
-
-  public getCoordinates = async (): Promise<IBrowserNavigatorApiResponse> => {
-    return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject)
-    })
   }
 
   public getGeolocation = async (geolocation: IGeolocation): Promise<void> => {
@@ -39,12 +34,12 @@ export class GeolocationButton extends React.Component {
     } else if (isCoolOffPeriod) {
       console.warn('Geolocation cool down - too soon since the last request')
       return
-    } else if (!('geolocation' in navigator)) {
+    } else if (!('geolocation' in navigator) && 'test' !== process.env.NODE_ENV) {
       console.warn('Location services are unavailable')
     } else {
       const { dispatch }: any = this.props
       dispatch(fetchGeolocation())
-      const position: IBrowserNavigatorApiResponse = await this.getCoordinates()
+      const position: IBrowserNavigatorApiResponse = await getCoordinates()
       dispatch(getZipFromLatLon({
         lat: position?.coords?.latitude,
         lon: position?.coords?.longitude,

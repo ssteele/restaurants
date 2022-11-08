@@ -3,6 +3,7 @@ import TestRenderer from 'react-test-renderer';
 import { IGeolocation } from '../models/Geolocation';
 import * as thunks from '../store/thunks/restaurant'
 import { GeolocationButton } from './GeolocationButton';
+import * as getCoordinatesModule from '../utils/getCoordinates'
 
 describe('Geolocation component with no set location', () => {
   let testRenderer: any
@@ -10,6 +11,7 @@ describe('Geolocation component with no set location', () => {
   const dispatch: any = jest.fn()
   const geolocation: IGeolocation = {isGeolocating: false}
   const fetchGeolocationSpy = jest.spyOn(thunks, 'fetchGeolocation')
+  const getCoordinates = jest.spyOn(getCoordinatesModule, 'getCoordinates')
   const getZipFromLatLonSpy = jest.spyOn(thunks, 'getZipFromLatLon')
 
   beforeEach(() => {
@@ -36,6 +38,16 @@ describe('Geolocation component with no set location', () => {
   it('does not render current zip', () => {
     expect.assertions(1)
     expect(() => testInstance.findByProps({'data-id': 'geolocation-zip'})).toThrow(Error)
+  })
+
+  it('geolocates on click', async () => {
+    expect.assertions(4)
+    const geolocationTrigger = testInstance.findByProps({'data-id': 'geolocation-trigger'})
+    geolocationTrigger.props.onClick()
+    expect(dispatch).toHaveBeenCalledTimes(1)
+    expect(fetchGeolocationSpy).toHaveBeenCalledTimes(1)
+    await expect(getCoordinates).toHaveBeenCalledTimes(1)
+    expect(getZipFromLatLonSpy).toHaveBeenCalledTimes(1)
   })
 })
 
