@@ -1,10 +1,10 @@
 import React from 'react'
 import TestRenderer from 'react-test-renderer';
-import { GeolocationButton } from './GeolocationButton';
 import { GOOGLE_MAPS_COOL_OFF_SECONDS } from '../constants'
 import { IGeolocation } from '../models/Geolocation';
 import * as thunks from '../store/thunks/restaurant'
 import * as getCoordinatesModule from '../utils/getCoordinates'
+import { GeolocationButton } from './GeolocationButton';
 
 describe('Geolocation component with no location', () => {
   let testRenderer: any

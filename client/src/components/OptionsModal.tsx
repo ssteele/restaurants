@@ -58,7 +58,10 @@ export class OptionsModal extends React.Component {
           <section className="options-modal-bar">
             <span>{filteredCount} total restaurants</span>
 
-            <button onClick={this.toggleModal}>
+            <button
+              data-id="options-modal-close"
+              onClick={this.toggleModal}
+            >
               <i className="fa fa-times fa-lg options-modal-close splash"></i>
             </button>
           </section>

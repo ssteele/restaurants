@@ -24,8 +24,10 @@ describe('OptionsButton component', () => {
   })
 
   it('toggles the modal on click', () => {
-    expect.assertions(2)
-    testInstance.findByProps({'data-id': 'options-modal-button'}).props.onClick()
+    expect.assertions(3)
+    expect(() => testInstance.findByProps({'data-id': 'options-modal-open'})).not.toThrow(Error)
+    const openModalButton = testInstance.findByProps({'data-id': 'options-modal-open'})
+    openModalButton.props.onClick()
     expect(dispatch).toHaveBeenCalledTimes(1)
     expect(toggleModalSpy).toHaveBeenCalledTimes(1)
   })

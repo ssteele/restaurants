@@ -17,7 +17,7 @@ export class OptionsButton extends React.Component {
     return (
       <section
         className="options-modal-open splash"
-        data-id="options-modal-button"
+        data-id="options-modal-open"
         onClick={this.toggleModal}
       >
         <i className="fa fa-bars fa-lg"></i>
