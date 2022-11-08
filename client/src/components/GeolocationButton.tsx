@@ -1,8 +1,6 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import {
-  GOOGLE_MAPS_COOL_OFF_SECONDS,
-} from '../constants'
+import { GOOGLE_MAPS_COOL_OFF_SECONDS } from '../constants'
 import {
   fetchGeolocation,
   getZipFromLatLon,
@@ -27,9 +25,7 @@ export class GeolocationButton extends React.Component {
       }
     }
     if (geolocation.isGeolocating) {
-      if ('test' !== process.env.NODE_ENV) {
-        console.warn('Geolocating now - please wait')
-      }
+      console.warn('Geolocating now - please wait')
       return
     } else if (isCoolOffPeriod) {
       console.warn('Geolocation cool down - too soon since the last request')
