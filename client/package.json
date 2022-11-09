@@ -1,9 +1,9 @@
 {
   "name": "shs-restaurant-selector",
   "author": "steven.harville.steele@gmail.com",
-  "description": "Filter local restaurants and choose as they randomly render",
+  "description": "Random restaurant picker with filters",
   "version": "1.0.0",
-  "license": "ISC",
+  "license": "BSD-3-Clause",
   "main": "src/index.tsx",
   "keywords": [
     "restaurant",
