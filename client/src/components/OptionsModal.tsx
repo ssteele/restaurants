@@ -7,8 +7,8 @@ import {
   toggleOption,
 } from '../store/thunks/restaurant'
 import { IRestaurantOption } from '../models/RestaurantOption'
-import { OptionCheckbox } from './option/OptionCheckbox'
-import { OptionSelect } from './option/OptionSelect'
+import { OptionCheckbox } from './Option/OptionCheckbox'
+import { OptionSelect } from './Option/OptionSelect'
 import '../css/OptionsModal.css'
 
 export class OptionsModal extends React.Component {
