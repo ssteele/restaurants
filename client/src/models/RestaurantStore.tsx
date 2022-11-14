@@ -5,6 +5,7 @@ import { IRestaurantOption } from './RestaurantOption'
 
 export interface IRestaurantStore {
   categories: ICategory[]
+  city: string
   current: number | null
   currentZipMeta: unknown[]
   error: any

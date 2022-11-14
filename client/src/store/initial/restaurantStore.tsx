@@ -1,11 +1,13 @@
 import {
-DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE,
-MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS,
+  DEFAULT_CITY,
+  DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE,
+  MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS,
 } from '../../constants'
 import { IRestaurantStore } from '../../models/RestaurantStore'
 
 export const restaurantStore: IRestaurantStore = {
   categories: [],
+  city: DEFAULT_CITY,
   current: null,
   currentZipMeta: [],
   error: {},

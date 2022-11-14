@@ -192,7 +192,8 @@ export const fetchRestaurants: AppThunkAction = () => {
   return (dispatch: AppThunkDispatch, getState: Function): void => {
     dispatch(getRestaurants())
 
-    const endpoint = `${API_BASE_URL}/city/`
+    const { city }: IRestaurantStore = getState().restaurantStore
+    const endpoint = `${API_BASE_URL}/city/?city=${city}`
     fetch(endpoint)
       .then(
         response => {
