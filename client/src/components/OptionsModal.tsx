@@ -2,11 +2,13 @@ import * as React from 'react'
 import Modal from 'react-modal'
 import PropTypes from 'prop-types'
 import {
+  selectCity,
   selectOption,
   toggleModal,
   toggleOption,
 } from '../store/thunks/restaurant'
 import { IRestaurantOption } from '../models/RestaurantOption'
+import { CitySelect } from './Option/CitySelect'
 import { OptionCheckbox } from './Option/OptionCheckbox'
 import { OptionSelect } from './Option/OptionSelect'
 import '../css/OptionsModal.css'
@@ -38,6 +40,11 @@ export class OptionsModal extends React.Component {
     const { dispatch }: any = this.props
     const valueArray = Array.from(e.target.selectedOptions, (option: IRestaurantOption) => option.value)
     dispatch(selectOption(option, valueArray))
+  }
+
+  public selectCity = (option: IRestaurantOption, e: any): void => {
+    const { dispatch }: any = this.props
+    dispatch(selectCity(option, e.target.value))
   }
 
   public render(): React.ReactNode {
@@ -80,6 +87,12 @@ export class OptionsModal extends React.Component {
                     <OptionSelect
                       option={option}
                       selectOption={this.selectOption}
+                    />
+                  )}
+                  {'city' === option.type && (
+                    <CitySelect
+                      option={option}
+                      selectCity={this.selectCity}
                     />
                   )}
                 </section>

@@ -3,11 +3,16 @@ import {
   DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE,
   MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS,
 } from '../../constants'
+import { ICity } from '../../models/City'
 import { IRestaurantStore } from '../../models/RestaurantStore'
+
+const cities: ICity[] = [
+  {id: 'austin', name: 'Austin, TX'},
+  {id: 'edmond', name: 'Edmond, OK'},
+]
 
 export const restaurantStore: IRestaurantStore = {
   categories: [],
-  city: DEFAULT_CITY,
   current: null,
   currentZipMeta: [],
   error: {},
@@ -20,7 +25,7 @@ export const restaurantStore: IRestaurantStore = {
     {name: 'nearby', description: 'Only near me', type: 'checkbox', value: false, rendered: true, disabled: true},
     {
       name: 'nearbyMaxMiles',
-      description: '... how close?',
+      description: '...how close?',
       type: 'select',
       value: DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE,
       values: MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS,
@@ -37,6 +42,7 @@ export const restaurantStore: IRestaurantStore = {
     {name: 'outdoor', description: 'Only outdoor seating', type: 'checkbox', value: false, rendered: true, disabled: false},
     {name: 'playarea', description: 'Only with play area', type: 'checkbox', value: false, rendered: true, disabled: false},
     {name: 'playground', description: 'Only with playground', type: 'checkbox', value: false, rendered: true, disabled: false},
+    {name: 'city', description: 'City', type: 'city', value: DEFAULT_CITY, values: cities, rendered: true, disabled: false},
   ],
   restaurantIds: [],
   restaurants: null,

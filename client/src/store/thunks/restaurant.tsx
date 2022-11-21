@@ -77,6 +77,9 @@ const filterRestaurants = ({
         case 'meat':
           res = !restaurants[id]['vegan'] && !restaurants[id]['vegetarian']
           break
+        case 'city':
+          res = true
+          break
         default: 
           res = !!restaurants[id][option.name]
           break
@@ -122,6 +125,17 @@ const handleFilterUpdate: AppThunkAction = () => {
     dispatch(setFiltered(updatedFiltered))
     dispatch(resetViewedRestaurants())
     dispatch(nextRestaurant())
+  }
+}
+
+export const selectCity: AppThunkAction = (option: IRestaurantOption, value: any) => {
+  return (dispatch: AppThunkDispatch): void => {
+    if (option.value !== value) {
+      option.value = value
+      dispatch(handleOptionUpdate(option))
+      dispatch(fetchRestaurants())
+      dispatch(handleFilterUpdate())
+    }
   }
 }
 
@@ -192,7 +206,7 @@ export const fetchRestaurants: AppThunkAction = () => {
   return (dispatch: AppThunkDispatch, getState: Function): void => {
     dispatch(getRestaurants())
 
-    const { city }: IRestaurantStore = getState().restaurantStore
+    const { value: city }: IRestaurantOption = getState().restaurantStore.options.find((o: IRestaurantOption) => 'city' === o.name)
     const endpoint = `${API_BASE_URL}/city/?city=${city}`
     fetch(endpoint)
       .then(
