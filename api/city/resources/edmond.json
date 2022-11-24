@@ -120,5 +120,25 @@
         "kids": [],
         "enabled": 1,
         "deleted": 0
+    },
+    {
+        "id": 7,
+        "name": "Marco's Pizza",
+        "sub_name": "Multiple Locations",
+        "categories": ["Pizza"],
+        "site": "https://www.marcos.com/",
+        "menu": "https://www.marcos.com/menu/",
+        "organic": false,
+        "local": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": false,
+        "indoor": null,
+        "outdoor": null,
+        "price": 2,
+        "zips": [73012, 73013, 73034],
+        "kids": [],
+        "enabled": 1,
+        "deleted": 0
     }
 ]
