@@ -40,8 +40,8 @@
         "kids": ["roasted sweets and beets", "peanut butter apple sandwich"],
         "playground": false,
         "playarea": false,
-        "enabled": true,
-        "deleted": false
+        "enabled": false,
+        "deleted": true
     },
     {
         "id": 3,
@@ -244,10 +244,10 @@
     {
         "id": 12,
         "name": "Cenote",
-        "sub_name": "Multiple Locations",
+        "sub_name": "East Cesar Chavez",
         "categories": ["Coffee & Tea", "Tacos", "American (New)"],
         "site": "http://cenoteaustin.com",
-        "menu": "http://cenoteaustin.com/food/windsor-park/weekday/",
+        "menu": "https://cenoteaustin.com/food/east-austin/weekday/",
         "organic": true,
         "local": true,
         "vegetarian": false,
@@ -414,8 +414,8 @@
         "kids": ["burger"],
         "playground": false,
         "playarea": false,
-        "enabled": true,
-        "deleted": false
+        "enabled": false,
+        "deleted": true
     },
     {
         "id": 20,
