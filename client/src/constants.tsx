@@ -10,6 +10,7 @@ export const API_BASE_URL: string = apiBaseUrls[apiEnv]
 export const DEFAULT_CITY: string = 'austin'
 export const DEFAULT_ZIP: number = 78753
 export const DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE: number = 5
+// @todo: get lat/lon from phone gps and remove google everything
 export const GOOGLE_MAPS_COOL_OFF_SECONDS: number = 300
 export const GOOGLE_MAPS_API_ENDPOINT: string = 'https://maps.googleapis.com/maps/api/geocode/json'
 export const GOOGLE_MAPS_API_KEY: string | undefined = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
