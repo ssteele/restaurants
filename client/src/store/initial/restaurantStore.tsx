@@ -1,7 +1,7 @@
 import {
   DEFAULT_CITY,
-  DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE,
-  MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS,
+  DEFAULT_MAX_NEARBY_MI_DISTANCE,
+  MAX_NEARBY_MI_DISTANCE_OPTIONS,
 } from '../../constants'
 import { ICity } from '../../models/City'
 import { IRestaurantStore } from '../../models/RestaurantStore'
@@ -28,8 +28,8 @@ export const restaurantStore: IRestaurantStore = {
       name: 'nearbyMaxMiles',
       description: '...how close?',
       type: 'select',
-      value: DEFAULT_MAX_NEARBY_ZIP_MI_DISTANCE,
-      values: MAX_NEARBY_ZIP_MI_DISTANCE_OPTIONS,
+      value: DEFAULT_MAX_NEARBY_MI_DISTANCE,
+      values: MAX_NEARBY_MI_DISTANCE_OPTIONS,
       rendered: false,
       disabled: true,
     },
