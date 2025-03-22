@@ -1,9 +1,9 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import { GOOGLE_MAPS_COOL_OFF_SECONDS } from '../constants'
+import { LOCATION_REQUEST_COOL_OFF_SECONDS } from '../constants'
 import {
   fetchGeolocation,
-  getZipFromLatLon,
+  setCurrentLocation,
 } from '../store/thunks/restaurant'
 import { getCoordinates } from '../utils/getCoordinates'
 import '../css/GeolocationButton.css'
@@ -16,11 +16,15 @@ export class GeolocationButton extends React.Component {
     geolocation: PropTypes.object,
   }
 
+  public renderLatLon(geolocation: IGeolocation): string {
+    return `${geolocation?.lat?.toFixed(3)}, ${geolocation?.lon?.toFixed(3)}`
+  }
+
   public getGeolocation = async (geolocation: IGeolocation): Promise<void> => {
     let isCoolOffPeriod = false
     if (geolocation.timestamp) {
       const secondsSinceLastFetch = Math.floor((Date.now() - geolocation.timestamp) / 1000)
-      if (secondsSinceLastFetch < GOOGLE_MAPS_COOL_OFF_SECONDS) {
+      if (secondsSinceLastFetch < LOCATION_REQUEST_COOL_OFF_SECONDS) {
         isCoolOffPeriod = true
       }
     }
@@ -36,7 +40,8 @@ export class GeolocationButton extends React.Component {
       const { dispatch }: any = this.props
       dispatch(fetchGeolocation())
       const position: IBrowserNavigatorApiResponse = await getCoordinates()
-      dispatch(getZipFromLatLon({
+
+      dispatch(setCurrentLocation({
         lat: position?.coords?.latitude,
         lon: position?.coords?.longitude,
       }))
@@ -45,7 +50,7 @@ export class GeolocationButton extends React.Component {
 
   private geolocationTriggerClasses = (geolocation: IGeolocation): string => {
     let classes = ['geolocation-trigger']
-    if (geolocation.zip) {
+    if (geolocation?.lat && geolocation?.lon) {
       classes = [...classes, 'inset']
       if (!geolocation.isGeolocating) {
         classes = [...classes, 'flash']
@@ -67,11 +72,11 @@ export class GeolocationButton extends React.Component {
           <i className={`fa fa-compass fa-lg ${geolocation.isGeolocating ? 'fa-spin' : ''}`}></i>
         </span>
 
-        {geolocation.zip && (
+        {geolocation.lat && geolocation.lon && (
           <span
             className="subtle geolocation-zip"
             data-id="geolocation-zip"
-          >{geolocation.zip}</span>
+          >{this.renderLatLon(geolocation)}</span>
         )}
       </section>
     )

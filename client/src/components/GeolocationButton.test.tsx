@@ -1,6 +1,6 @@
 import React from 'react'
 import TestRenderer from 'react-test-renderer';
-import { GOOGLE_MAPS_COOL_OFF_SECONDS } from '../constants'
+import { LOCATION_REQUEST_COOL_OFF_SECONDS } from '../constants'
 import { IGeolocation } from '../models/Geolocation';
 import * as thunks from '../store/thunks/restaurant'
 import * as getCoordinatesModule from '../utils/getCoordinates'
@@ -107,7 +107,7 @@ describe('Geolocation component with location during cooldown', () => {
   const geolocation: IGeolocation = {
     lat: 30.2642,
     lon: -97.7617,
-    timestamp: Date.now() - (1000 * GOOGLE_MAPS_COOL_OFF_SECONDS / 2),
+    timestamp: Date.now() - (1000 * LOCATION_REQUEST_COOL_OFF_SECONDS / 2),
     zip: 78704,
     isGeolocating: false,
   }
@@ -163,7 +163,7 @@ describe('Geolocation component with location following cooldown', () => {
   const geolocation: IGeolocation = {
     lat: 30.2642,
     lon: -97.7617,
-    timestamp: Date.now() - (1000 * GOOGLE_MAPS_COOL_OFF_SECONDS * 2),
+    timestamp: Date.now() - (1000 * LOCATION_REQUEST_COOL_OFF_SECONDS * 2),
     zip: 78704,
     isGeolocating: false,
   }
