@@ -13,7 +13,7 @@ describe('Geolocation component with no location', () => {
   const geolocation: IGeolocation = {isGeolocating: false}
   const fetchGeolocationSpy = jest.spyOn(thunks, 'fetchGeolocation')
   const getCoordinates = jest.spyOn(getCoordinatesModule, 'getCoordinates')
-  const getZipFromLatLonSpy = jest.spyOn(thunks, 'getZipFromLatLon')
+  const setCurrentLocationSpy = jest.spyOn(thunks, 'setCurrentLocation')
 
   beforeEach(() => {
     testRenderer = TestRenderer.create(
@@ -48,7 +48,7 @@ describe('Geolocation component with no location', () => {
     expect(dispatch).toHaveBeenCalledTimes(1)
     expect(fetchGeolocationSpy).toHaveBeenCalledTimes(1)
     await expect(getCoordinates).toHaveBeenCalledTimes(1)
-    expect(getZipFromLatLonSpy).toHaveBeenCalledTimes(1)
+    expect(setCurrentLocationSpy).toHaveBeenCalledTimes(1)
   })
 })
 
@@ -59,7 +59,7 @@ describe('Geolocation component that is currently geolocating', () => {
   const geolocation: IGeolocation = {isGeolocating: true}
   const fetchGeolocationSpy = jest.spyOn(thunks, 'fetchGeolocation')
   const getCoordinates = jest.spyOn(getCoordinatesModule, 'getCoordinates')
-  const getZipFromLatLonSpy = jest.spyOn(thunks, 'getZipFromLatLon')
+  const setCurrentLocationSpy = jest.spyOn(thunks, 'setCurrentLocation')
   const consoleWarnSpy = jest.spyOn(console, 'warn');
 
   beforeEach(() => {
@@ -96,7 +96,7 @@ describe('Geolocation component that is currently geolocating', () => {
     expect(dispatch).toHaveBeenCalledTimes(0)
     expect(fetchGeolocationSpy).toHaveBeenCalledTimes(0)
     await expect(getCoordinates).toHaveBeenCalledTimes(0)
-    expect(getZipFromLatLonSpy).toHaveBeenCalledTimes(0)
+    expect(setCurrentLocationSpy).toHaveBeenCalledTimes(0)
   })
 })
 
@@ -113,7 +113,7 @@ describe('Geolocation component with location during cooldown', () => {
   }
   const fetchGeolocationSpy = jest.spyOn(thunks, 'fetchGeolocation')
   const getCoordinates = jest.spyOn(getCoordinatesModule, 'getCoordinates')
-  const getZipFromLatLonSpy = jest.spyOn(thunks, 'getZipFromLatLon')
+  const setCurrentLocationSpy = jest.spyOn(thunks, 'setCurrentLocation')
   const consoleWarnSpy = jest.spyOn(console, 'warn');
 
   beforeEach(() => {
@@ -152,7 +152,7 @@ describe('Geolocation component with location during cooldown', () => {
     expect(dispatch).toHaveBeenCalledTimes(0)
     expect(fetchGeolocationSpy).toHaveBeenCalledTimes(0)
     await expect(getCoordinates).toHaveBeenCalledTimes(0)
-    expect(getZipFromLatLonSpy).toHaveBeenCalledTimes(0)
+    expect(setCurrentLocationSpy).toHaveBeenCalledTimes(0)
   })
 })
 
@@ -169,7 +169,7 @@ describe('Geolocation component with location following cooldown', () => {
   }
   const fetchGeolocationSpy = jest.spyOn(thunks, 'fetchGeolocation')
   const getCoordinates = jest.spyOn(getCoordinatesModule, 'getCoordinates')
-  const getZipFromLatLonSpy = jest.spyOn(thunks, 'getZipFromLatLon')
+  const setCurrentLocationSpy = jest.spyOn(thunks, 'setCurrentLocation')
 
   beforeEach(() => {
     testRenderer = TestRenderer.create(
@@ -206,6 +206,6 @@ describe('Geolocation component with location following cooldown', () => {
     expect(dispatch).toHaveBeenCalledTimes(1)
     expect(fetchGeolocationSpy).toHaveBeenCalledTimes(1)
     await expect(getCoordinates).toHaveBeenCalledTimes(1)
-    expect(getZipFromLatLonSpy).toHaveBeenCalledTimes(1)
+    expect(setCurrentLocationSpy).toHaveBeenCalledTimes(1)
   })
 })
