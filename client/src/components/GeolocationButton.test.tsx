@@ -128,6 +128,7 @@ describe('Geolocation component with location during cooldown', () => {
   const fetchGeolocationSpy = jest.spyOn(thunks, 'fetchGeolocation')
   const getCoordinates = jest.spyOn(getCoordinatesModule, 'getCoordinates')
   const setCurrentLocationSpy = jest.spyOn(thunks, 'setCurrentLocation')
+  const cancelGeolocationSpy = jest.spyOn(thunks, 'cancelGeolocation')
   const consoleWarnSpy = jest.spyOn(console, 'warn');
 
   beforeEach(() => {
@@ -159,14 +160,15 @@ describe('Geolocation component with location during cooldown', () => {
   })
 
   it('does not dispatch another geolocation event', async () => {
-    expect.assertions(5)
+    expect.assertions(6)
     const geolocationTrigger = testInstance.findByProps({'data-id': 'geolocation-trigger'})
     geolocationTrigger.props.onClick()
     expect(consoleWarnSpy).toHaveBeenCalledWith('Geolocation cool down - too soon since the last request')
-    expect(dispatch).toHaveBeenCalledTimes(0)
-    expect(fetchGeolocationSpy).toHaveBeenCalledTimes(0)
-    await expect(getCoordinates).toHaveBeenCalledTimes(0)
+    expect(dispatch).toHaveBeenCalledTimes(2)
+    expect(fetchGeolocationSpy).toHaveBeenCalledTimes(1)
+    expect(getCoordinates).toHaveBeenCalledTimes(0)
     expect(setCurrentLocationSpy).toHaveBeenCalledTimes(0)
+    expect(cancelGeolocationSpy).toHaveBeenCalledTimes(1)
   })
 })
 
