@@ -16,8 +16,8 @@ describe('Geolocation component with no location', () => {
   const dispatch: any = jest.fn()
   const geolocation: IGeolocation = {
     isGeolocating: false,
-    lat: DEFAULT_LAT,
-    lon: DEFAULT_LON,
+    lat: 0,
+    lon: 0,
   }
   const fetchGeolocationSpy = jest.spyOn(thunks, 'fetchGeolocation')
   const getCoordinates = jest.spyOn(getCoordinatesModule, 'getCoordinates')
@@ -66,8 +66,8 @@ describe('Geolocation component that is currently geolocating', () => {
   const dispatch: any = jest.fn()
   const geolocation: IGeolocation = {
     isGeolocating: false,
-    lat: DEFAULT_LAT,
-    lon: DEFAULT_LON,
+    lat: 0,
+    lon: 0,
   }
   const fetchGeolocationSpy = jest.spyOn(thunks, 'fetchGeolocation')
   const getCoordinates = jest.spyOn(getCoordinatesModule, 'getCoordinates')
@@ -101,14 +101,16 @@ describe('Geolocation component that is currently geolocating', () => {
   })
 
   it('does not dispatch another geolocation event', async () => {
-    expect.assertions(5)
+    expect.assertions(6)
+    geolocation.isGeolocating = true
     const geolocationTrigger = testInstance.findByProps({'data-id': 'geolocation-trigger'})
     geolocationTrigger.props.onClick()
     expect(consoleWarnSpy).toHaveBeenCalledWith('Geolocating now - please wait')
-    expect(dispatch).toHaveBeenCalledTimes(0)
-    expect(fetchGeolocationSpy).toHaveBeenCalledTimes(0)
+    expect(dispatch).toHaveBeenCalledTimes(2)
+    expect(fetchGeolocationSpy).toHaveBeenCalledTimes(1)
     await expect(getCoordinates).toHaveBeenCalledTimes(0)
     expect(setCurrentLocationSpy).toHaveBeenCalledTimes(0)
+    expect(cancelGeolocationSpy).toHaveBeenCalledTimes(1)
   })
 })
 
@@ -117,8 +119,8 @@ describe('Geolocation component with location during cooldown', () => {
   let testInstance: any
   const dispatch: any = jest.fn()
   const geolocation: IGeolocation = {
-    lat: 30.2642,
-    lon: -97.7617,
+    lat: DEFAULT_LAT,
+    lon: DEFAULT_LON,
     timestamp: Date.now() - (1000 * LOCATION_REQUEST_COOL_OFF_SECONDS / 2),
     isGeolocating: false,
   }

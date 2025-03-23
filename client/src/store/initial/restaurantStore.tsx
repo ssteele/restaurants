@@ -1,7 +1,5 @@
 import {
   DEFAULT_CITY,
-  DEFAULT_LAT,
-  DEFAULT_LON,
   DEFAULT_MAX_NEARBY_MI_DISTANCE,
   MAX_NEARBY_MI_DISTANCE_OPTIONS,
 } from '@/constants'
@@ -22,8 +20,8 @@ export const restaurantStore: IRestaurantStore = {
   filteredIds: [],
   geolocation: {
     isGeolocating: false,
-    lat: DEFAULT_LAT,
-    lon: DEFAULT_LON,
+    lat: 0,
+    lon: 0,
   },
   isLoading: false,
   modalIsOpen: false,
