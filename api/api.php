@@ -1,7 +1,6 @@
 <?php
 
 define('DEFAULT_CITY', 'austin');
-define('DEFAULT_ZIP', '78751');
 
 $isLocal = false !== strpos($_SERVER['HTTP_HOST'], 'shs');
 if ($isLocal) {
