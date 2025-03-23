@@ -1,4 +1,4 @@
-import { IRestaurant } from '../Restaurant';
+import { IRestaurant } from '@/models/Restaurant';
 
 export const restaurantInstances: {[id: number]: IRestaurant} = {
   1: {
@@ -16,6 +16,7 @@ export const restaurantInstances: {[id: number]: IRestaurant} = {
     indoor: true,
     outdoor: true,
     price: 1,
+    coords: [{'lat': 30.246460, 'lon': -97.756767}],
     zips: [78701],
     kids: ['Kids 1', 'Kids 2'],
     playground: true,
@@ -38,6 +39,7 @@ export const restaurantInstances: {[id: number]: IRestaurant} = {
     indoor: true,
     outdoor: true,
     price: 2,
+    coords: [{'lat': 30.263244, 'lon': -97.743418}],
     zips: [78702],
     kids: ['Kids 2', 'Kids 3'],
     playground: true,
@@ -60,6 +62,7 @@ export const restaurantInstances: {[id: number]: IRestaurant} = {
     indoor: true,
     outdoor: true,
     price: 3,
+    coords: [{'lat': 30.260500, 'lon': -97.733948}],
     zips: [78703],
     kids: ['Kids 3', 'Kids 4'],
     playground: true,

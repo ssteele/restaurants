@@ -1,20 +1,20 @@
 import { combineReducers } from 'redux'
+import { IRestaurantStore } from '@/models/RestaurantStore'
 import {
   GET_RESTAURANTS,
   SET_RESTAURANTS,
   GET_GEOLOCATION,
   SET_GEOLOCATION,
-  SET_CURRENT_ZIP_META,
   SET_OPTIONS,
   SET_FILTERED,
   SET_CURRENT_RESTAURANT,
   SET_VIEWED_RESTAURANTS,
+  RESET_GEOLOCATION,
   RESET_VIEWED_RESTAURANTS,
   SET_MODAL,
   SET_ERROR,
-} from '../actions/restaurant'
-import { restaurantStore as initialRestaurantState } from '../initial/restaurantStore'
-import { IRestaurantStore } from '../../models/RestaurantStore'
+} from '@/store/actions/restaurant'
+import { restaurantStore as initialRestaurantState } from '@/store/initial/restaurantStore'
 
 export const restaurantStore = (
   state: IRestaurantStore = initialRestaurantState,
@@ -75,11 +75,16 @@ export const restaurantStore = (
         }
       }
 
-    case SET_CURRENT_ZIP_META:
+    case RESET_GEOLOCATION:
       return {
         ...state,
         ...{
-          currentZipMeta: action.currentZipMeta,
+          geolocation: {
+            ...state.geolocation,
+            ...{
+              isGeolocating: false,
+            }
+          }
         }
       }
 

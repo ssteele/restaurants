@@ -3,14 +3,14 @@ import { Provider } from 'react-redux'
 import TestRenderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import { ConnectedApp } from '../index';
-import { restaurantStore } from '../store/initial/restaurantStore'
-import { App } from './App';
-import { GeolocationButton } from './GeolocationButton';
-import { Navigation } from './Navigation';
-import { OptionsButton } from './OptionsButton';
-import { OptionsModal } from './OptionsModal';
-import { Restaurant } from './Restaurant';
+import { App } from '@/components/App';
+import { GeolocationButton } from '@/components/GeolocationButton';
+import { Navigation } from '@/components/Navigation';
+import { OptionsButton } from '@/components/OptionsButton';
+import { OptionsModal } from '@/components/OptionsModal';
+import { Restaurant } from '@/components/Restaurant';
+import { ConnectedApp } from '@/index';
+import { restaurantStore } from '@/store/initial/restaurantStore'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)

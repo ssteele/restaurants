@@ -1,6 +1,6 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import '../css/Restaurant.css'
+import '@/css/Restaurant.css'
 
 export class Restaurant extends React.Component {
   static propTypes = {

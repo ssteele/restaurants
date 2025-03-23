@@ -3,12 +3,20 @@ import {
   normalize,
   schema,
 } from 'normalizr'
+import { API_BASE_URL } from '@/constants'
+import { AppThunkAction, AppThunkDispatch } from '@/models/AppThunk'
+import { ICategory } from '@/models/Category'
+import { IGeolocation } from '@/models/Geolocation'
+import { ILatLon } from '@/models/LatLon'
+import { IRestaurant } from '@/models/Restaurant'
+import { IRestaurantOption } from '@/models/RestaurantOption'
+import { IRestaurantStore } from '@/models/RestaurantStore'
 import {
   getRestaurants,
   getGeolocation,
+  resetGeolocation,
   resetViewedRestaurants,
   setCurrentRestaurant,
-  setCurrentZipMeta,
   setError,
   setFiltered,
   setGeolocation,
@@ -16,24 +24,11 @@ import {
   setOptions,
   setRestaurants,
   setViewedRestaurants,
-} from '../actions/restaurant'
-import {
-  API_BASE_URL,
-  DEFAULT_ZIP,
-  GOOGLE_MAPS_API_ENDPOINT,
-  GOOGLE_MAPS_API_KEY,
-  IS_GOOGLE_MAPS_ENABLED,
-} from '../../constants'
-import { AppThunkAction, AppThunkDispatch } from '../../models/AppThunk'
-import { IGeolocation } from '../../models/Geolocation'
-import { IGoogleGeocodingApiResponse } from '../../models/GoogleApi'
-import { IRestaurant } from '../../models/Restaurant'
-import { IRestaurantOption } from '../../models/RestaurantOption'
-import { IRestaurantStore } from '../../models/RestaurantStore'
-import { ICategory } from '../../models/Category'
+} from '@/store/actions/restaurant'
+import { calculateDistance } from '@/utils/getCoordinates'
 
 const filterRestaurants = ({
-  currentZipMeta,
+  geolocation,
   options,
   restaurantIds,
   restaurants,
@@ -50,40 +45,40 @@ const filterRestaurants = ({
         case 'nearbyMaxMiles':
           if ('geolocation' in navigator) {
             const nearbyOption = options.find((o: IRestaurantOption) => 'nearby' === o.name)
-            if (!currentZipMeta.length || !nearbyOption.value) {
+            if (!geolocation.lat || !geolocation.lon || !nearbyOption.value) {
               res = true
             } else {
-              // calculate nearby zips
               const nearbyMaxMilesOption = options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)
-              const nearbyMaxKm = 1.609344 * nearbyMaxMilesOption.value
-              const zipsNearby = currentZipMeta
-                .filter(({ distance }: { distance: string }) => parseFloat(distance) <= nearbyMaxKm)
-                .map(({ postalCode }: { postalCode: string }) => parseInt(postalCode))
-
-              if (zipsNearby.length) {
-                res = restaurants[id]['zips'].filter((x: number) => zipsNearby.includes(x)).length
-              }
+              const nearbyMaxMiles = nearbyMaxMilesOption.value
+              
+              const restaurant = restaurants[id]
+              res = restaurant['coords'].find((coords: ILatLon) => {
+                const distance = calculateDistance(geolocation, coords)
+                return distance <= nearbyMaxMiles
+              })
             }
           } else {
-            if ('test' !== process.env.NODE_ENV) {
-              console.warn('Location services are unavailable')
-            }
             res = true
           }
           break
+
         case 'kids':
           res = !!restaurants[id][option.name].length
           break
+
         case 'meat':
           res = !restaurants[id]['vegan'] && !restaurants[id]['vegetarian']
           break
+
         case 'city':
           res = true
           break
+
         default: 
           res = !!restaurants[id][option.name]
           break
       }
+
       return res
     })
   })
@@ -115,9 +110,9 @@ const handleOptionUpdate: AppThunkAction = (option: IRestaurantOption) => {
 
 const handleFilterUpdate: AppThunkAction = () => {
   return (dispatch: AppThunkDispatch, getState: Function): void => {
-    const { currentZipMeta, options, restaurants, restaurantIds }: IRestaurantStore = getState().restaurantStore
+    const { geolocation, options, restaurants, restaurantIds }: IRestaurantStore = getState().restaurantStore
     const updatedFiltered = filterRestaurants({
-      currentZipMeta,
+      geolocation,
       options,
       restaurants,
       restaurantIds,
@@ -225,10 +220,8 @@ export const fetchRestaurants: AppThunkAction = () => {
         if (json) {
           // define normalizr schemas
           const categorySchema = new schema.Entity('categories', {})
-          const zipSchema = new schema.Entity('zips', {})
           const restaurantSchema = new schema.Entity('restaurants', {
             categories: [categorySchema],
-            zips: [zipSchema],
           })
 
           // transform the payload for normalizr
@@ -258,9 +251,9 @@ export const fetchRestaurants: AppThunkAction = () => {
           const categories: {[id: number]: ICategory} = normalized.entities.categories || {}
           const restaurantIds: number[] = normalized.result.restaurants
 
-          const { currentZipMeta, options }: IRestaurantStore = getState().restaurantStore
+          const { geolocation, options }: IRestaurantStore = getState().restaurantStore
           const filteredIds = filterRestaurants({
-            currentZipMeta,
+            geolocation,
             options,
             restaurants,
             restaurantIds,
@@ -288,117 +281,47 @@ export const fetchGeolocation: AppThunkAction = () => {
   }
 }
 
-export const getZipsNear: AppThunkAction = (zip: number) => {
-  return (dispatch: AppThunkDispatch, getState: Function): void => {
-    const endpoint = `${API_BASE_URL}/zip/?zip=${zip}`
-    fetch(endpoint)
-      .then(
-        response => {
-          if (response.ok) {
-            return response.json()
-          }
-          throw new Error('Error retrieving nearby zips')
-        },
-        error => {
-          dispatch(setError(error))
-          throw new Error(error)
-        },
-      )
-      .then((json) => {
-        if (json) {
-          // save current zip proximities
-          const { postalCodes } = json
-          dispatch(setCurrentZipMeta(postalCodes))
-          localStorage.setItem('currentZipMeta', JSON.stringify(postalCodes))
-
-          // update geolocation filter options and filter restaurants
-          const { options }: IRestaurantStore = getState().restaurantStore
-          const nearbyOption: IRestaurantOption | undefined = options.find((o: IRestaurantOption) => 'nearby' === o.name)
-          if (nearbyOption) {
-            nearbyOption.value = true
-            nearbyOption.disabled = false
-            dispatch(handleOptionUpdate(nearbyOption))
-          }
-
-          const nearbyMaxMilesOption: IRestaurantOption | undefined = options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)
-          if (nearbyMaxMilesOption) {
-            nearbyMaxMilesOption.rendered = true
-            nearbyMaxMilesOption.disabled = false
-            dispatch(handleOptionUpdate(nearbyMaxMilesOption))
-          }
-
-          dispatch(handleFilterUpdate())
-        } else {
-          throw new Error('Error retrieving nearby zips')
-        }
-      })
-      .catch(error => {
-        console.error(error)
-        const geolocation = {isGeolocating: false}
-        dispatch(setGeolocation(geolocation))
-        localStorage.setItem('geolocation', JSON.stringify(geolocation))
-      })
+export const cancelGeolocation: AppThunkAction = () => {
+  return (dispatch: AppThunkDispatch): void => {
+    dispatch(resetGeolocation())
   }
 }
 
-export const getZipFromLatLon: AppThunkAction = ({ lat, lon }: { lat: number, lon: number}) => {
+export const updateGeolocationFilters: AppThunkAction = () => {
+  return (dispatch: AppThunkDispatch, getState: Function): void => {
+    // update geolocation filter options (triggers filterRestaurants)
+    const { options }: IRestaurantStore = getState().restaurantStore
+    const nearbyOption: IRestaurantOption | undefined = options.find((o: IRestaurantOption) => 'nearby' === o.name)
+    if (nearbyOption) {
+      nearbyOption.value = true
+      nearbyOption.disabled = false
+      dispatch(handleOptionUpdate(nearbyOption))
+    }
+
+    const nearbyMaxMilesOption: IRestaurantOption | undefined = options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)
+    if (nearbyMaxMilesOption) {
+      nearbyMaxMilesOption.rendered = true
+      nearbyMaxMilesOption.disabled = false
+      dispatch(handleOptionUpdate(nearbyMaxMilesOption))
+    }
+
+    dispatch(handleFilterUpdate())
+  }
+}
+
+export const setCurrentLocation: AppThunkAction = ({ lat, lon }: { lat: number, lon: number}) => {
   return (dispatch: AppThunkDispatch): void => {
-    let geolocation: IGeolocation = {}
-    if (IS_GOOGLE_MAPS_ENABLED) {
-      console.warn('Google Maps API lookup is enabled')
-      const googleMapsEndpoint = `${GOOGLE_MAPS_API_ENDPOINT}?latlng=${lat},${lon}&key=${GOOGLE_MAPS_API_KEY}`
-      fetch(googleMapsEndpoint)
-        .then(
-          response => {
-            if (response.ok) {
-              return response.json()
-            }
-            throw new Error('Google API - Error getting zip from lat/lon')
-          },
-          error => {
-            dispatch(setError(error))
-            throw new Error(error)
-          },
-        )
-        .then((json) => {
-          if (!json.error_message && json.results.length) {
-            const addressComponents: any[] = json.results[0].address_components
-            const zip: string = addressComponents.find((ac: IGoogleGeocodingApiResponse) => ac?.types?.includes('postal_code'))?.short_name
-            geolocation = {
-              lat,
-              lon,
-              timestamp: Date.now(),
-              zip: parseInt(zip),
-            }
-            dispatch(setGeolocation(geolocation))
-            localStorage.setItem('geolocation', JSON.stringify(geolocation))
+    const geolocation: IGeolocation = {
+      isGeolocating: false,
+      lat,
+      lon,
+      timestamp: Date.now(),
+    }
+    dispatch(setGeolocation(geolocation))
+    localStorage.setItem('geolocation', JSON.stringify(geolocation))
 
-            if (geolocation.zip) {
-              dispatch(getZipsNear(geolocation.zip))
-            }
-          } else {
-            throw new Error(`Google API - Error getting zip from lat/lon: ${json.error_message}`)
-          }
-        })
-        .catch(error => {
-          console.error(error)
-          geolocation = {isGeolocating: false}
-          dispatch(setGeolocation(geolocation))
-          localStorage.setItem('geolocation', JSON.stringify(geolocation))
-        })
-    } else {
-      geolocation = {
-        lat,
-        lon,
-        timestamp: Date.now(),
-        zip: DEFAULT_ZIP,
-      }
-      dispatch(setGeolocation(geolocation))
-      localStorage.setItem('geolocation', JSON.stringify(geolocation))
-
-      if (geolocation.zip) {
-        dispatch(getZipsNear(geolocation.zip))
-      }
+    if (geolocation.lat && geolocation.lon) {
+      dispatch(updateGeolocationFilters(geolocation))
     }
   }
 }
@@ -409,10 +332,6 @@ export const setReduxFromLocalStore: AppThunkAction = () => {
       {
         name: 'geolocation',
         setter: setGeolocation,
-      },
-      {
-        name: 'currentZipMeta',
-        setter: setCurrentZipMeta,
       },
       {
         name: 'options',

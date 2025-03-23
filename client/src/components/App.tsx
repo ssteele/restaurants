@@ -1,17 +1,17 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import { GeolocationButton } from './GeolocationButton'
-import { Navigation } from './Navigation'
-import { OptionsButton } from './OptionsButton'
-import { OptionsModal } from './OptionsModal'
-import { Restaurant } from './Restaurant'
-import { IRestaurant } from '../models/Restaurant'
+import { GeolocationButton } from '@/components/GeolocationButton'
+import { Navigation } from '@/components/Navigation'
+import { OptionsButton } from '@/components/OptionsButton'
+import { OptionsModal } from '@/components/OptionsModal'
+import { Restaurant } from '@/components/Restaurant'
+import { IRestaurant } from '@/models/Restaurant'
 import {
   fetchRestaurants,
   nextRestaurant,
   prevRestaurant,
   setReduxFromLocalStore,
-} from '../store/thunks/restaurant'
+} from '@/store/thunks/restaurant'
 
 export class App extends React.Component<IRestaurant> {
   static propTypes = {

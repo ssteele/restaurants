@@ -1,5 +1,8 @@
+import { ILatLon } from "./LatLon"
+
 export interface IRestaurant {
   categories: string[]
+  coords: ILatLon[]
   deleted: boolean
   enabled: boolean
   id: number

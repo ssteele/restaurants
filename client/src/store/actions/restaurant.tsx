@@ -1,15 +1,15 @@
-import { IGeolocation } from "../../models/Geolocation"
-import { IRestaurantOption } from "../../models/RestaurantOption"
+import { IGeolocation } from "@/models/Geolocation"
+import { IRestaurantOption } from "@/models/RestaurantOption"
 
 export const GET_RESTAURANTS = 'GET_RESTAURANTS'
 export const SET_RESTAURANTS = 'SET_RESTAURANTS'
 export const GET_GEOLOCATION = 'GET_GEOLOCATION'
 export const SET_GEOLOCATION = 'SET_GEOLOCATION'
-export const SET_CURRENT_ZIP_META = 'SET_CURRENT_ZIP_META'
 export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CURRENT_RESTAURANT = 'SET_CURRENT_RESTAURANT'
 export const SET_VIEWED_RESTAURANTS = 'SET_VIEWED_RESTAURANTS'
+export const RESET_GEOLOCATION = 'RESET_GEOLOCATION'
 export const RESET_VIEWED_RESTAURANTS = 'RESET_VIEWED_RESTAURANTS'
 export const SET_MODAL = 'SET_MODAL'
 export const SET_ERROR = 'SET_ERROR'
@@ -44,10 +44,9 @@ export const setGeolocation = (geolocation: IGeolocation): { type: string, geolo
   }
 }
 
-export const setCurrentZipMeta = (currentZipMeta: unknown[]): { type: string, currentZipMeta: unknown} => {
+export const resetGeolocation = (): { type: string } => {
   return {
-    type: SET_CURRENT_ZIP_META,
-    currentZipMeta,
+    type: RESET_GEOLOCATION,
   }
 }
 
