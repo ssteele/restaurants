@@ -1,7 +1,7 @@
 import React from 'react'
 import TestRenderer from 'react-test-renderer';
-import * as thunks from '@/store/thunks/restaurant'
 import { OptionsButton } from '@/components/OptionsButton';
+import * as thunks from '@/store/thunks/restaurant'
 
 describe('OptionsButton component', () => {
   let testRenderer: any

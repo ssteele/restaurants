@@ -1,8 +1,8 @@
 import React from 'react'
 import TestRenderer from 'react-test-renderer';
+import { Restaurant } from '@/components/Restaurant';
 import { restaurantInstances } from '@/models/instances/restaurants';
 import { IRestaurant } from '@/models/Restaurant';
-import { Restaurant } from '@/components/Restaurant';
 
 describe('Restaurant component', () => {
   let testRenderer: any

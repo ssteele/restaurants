@@ -11,8 +11,8 @@ import {
   Dispatch,
   Middleware
 } from 'redux'
-import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
+import thunkMiddleware from 'redux-thunk'
 import { App } from '@/components/App'
 import { IRestaurantStore } from '@/models/RestaurantStore'
 import * as serviceWorker from '@/serviceWorker'

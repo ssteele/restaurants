@@ -1,7 +1,7 @@
 import React from 'react'
 import TestRenderer from 'react-test-renderer';
-import * as thunks from '@/store/thunks/restaurant'
 import { Navigation } from '@/components/Navigation';
+import * as thunks from '@/store/thunks/restaurant'
 
 describe('Navigate component', () => {
   let testRenderer: any
