@@ -4,6 +4,7 @@ import { LOCATION_REQUEST_COOL_OFF_SECONDS } from '@/constants'
 import { IGeolocation } from '@/models/Geolocation'
 import { IBrowserNavigatorApiResponse } from '@/models/BrowserApi'
 import {
+  cancelGeolocation,
   fetchGeolocation,
   setCurrentLocation,
 } from '@/store/thunks/restaurant'
@@ -21,6 +22,9 @@ export class GeolocationButton extends React.Component {
   }
 
   public getGeolocation = async (geolocation: IGeolocation): Promise<void> => {
+    const { dispatch }: any = this.props
+    dispatch(fetchGeolocation())
+
     let isCoolOffPeriod = false
     if (geolocation.timestamp) {
       const secondsSinceLastFetch = Math.floor((Date.now() - geolocation.timestamp) / 1000)
@@ -28,24 +32,32 @@ export class GeolocationButton extends React.Component {
         isCoolOffPeriod = true
       }
     }
+
     if (geolocation.isGeolocating) {
       console.warn('Geolocating now - please wait')
-      return
     } else if (isCoolOffPeriod) {
       console.warn('Geolocation cool down - too soon since the last request')
-      return
     } else if (!('geolocation' in navigator) && 'test' !== process.env.NODE_ENV) {
       console.warn('Location services are unavailable')
     } else {
-      const { dispatch }: any = this.props
-      dispatch(fetchGeolocation())
       const position: IBrowserNavigatorApiResponse = await getCoordinates()
 
       dispatch(setCurrentLocation({
         lat: position?.coords?.latitude,
         lon: position?.coords?.longitude,
       }))
+
+      return
     }
+
+    dispatch(cancelGeolocation())
+  }
+
+  private isRecentGeolocation = (geolocation: IGeolocation): boolean => {
+    if (!geolocation || !geolocation.timestamp) {
+      return false
+    }
+    return (Date.now() - geolocation.timestamp) < (LOCATION_REQUEST_COOL_OFF_SECONDS * 1000)
   }
 
   private geolocationTriggerClasses = (geolocation: IGeolocation): string => {

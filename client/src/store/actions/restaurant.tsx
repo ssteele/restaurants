@@ -9,6 +9,7 @@ export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CURRENT_RESTAURANT = 'SET_CURRENT_RESTAURANT'
 export const SET_VIEWED_RESTAURANTS = 'SET_VIEWED_RESTAURANTS'
+export const RESET_GEOLOCATION = 'RESET_GEOLOCATION'
 export const RESET_VIEWED_RESTAURANTS = 'RESET_VIEWED_RESTAURANTS'
 export const SET_MODAL = 'SET_MODAL'
 export const SET_ERROR = 'SET_ERROR'
@@ -40,6 +41,12 @@ export const setGeolocation = (geolocation: IGeolocation): { type: string, geolo
   return {
     type: SET_GEOLOCATION,
     geolocation,
+  }
+}
+
+export const resetGeolocation = (): { type: string } => {
+  return {
+    type: RESET_GEOLOCATION,
   }
 }
 

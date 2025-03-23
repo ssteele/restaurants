@@ -14,6 +14,7 @@ import { IRestaurantStore } from '@/models/RestaurantStore'
 import {
   getRestaurants,
   getGeolocation,
+  resetGeolocation,
   resetViewedRestaurants,
   setCurrentRestaurant,
   setError,
@@ -277,6 +278,12 @@ export const fetchRestaurants: AppThunkAction = () => {
 export const fetchGeolocation: AppThunkAction = () => {
   return (dispatch: AppThunkDispatch): void => {
     dispatch(getGeolocation())
+  }
+}
+
+export const cancelGeolocation: AppThunkAction = () => {
+  return (dispatch: AppThunkDispatch): void => {
+    dispatch(resetGeolocation())
   }
 }
 

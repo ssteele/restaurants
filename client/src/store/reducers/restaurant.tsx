@@ -9,6 +9,7 @@ import {
   SET_FILTERED,
   SET_CURRENT_RESTAURANT,
   SET_VIEWED_RESTAURANTS,
+  RESET_GEOLOCATION,
   RESET_VIEWED_RESTAURANTS,
   SET_MODAL,
   SET_ERROR,
@@ -67,6 +68,19 @@ export const restaurantStore = (
         ...{
           geolocation: {
             ...action.geolocation,
+            ...{
+              isGeolocating: false,
+            }
+          }
+        }
+      }
+
+    case RESET_GEOLOCATION:
+      return {
+        ...state,
+        ...{
+          geolocation: {
+            ...state.geolocation,
             ...{
               isGeolocating: false,
             }
