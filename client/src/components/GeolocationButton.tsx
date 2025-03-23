@@ -74,8 +74,8 @@ export class GeolocationButton extends React.Component {
 
         {geolocation.lat && geolocation.lon && (
           <span
-            className="subtle geolocation-zip"
-            data-id="geolocation-zip"
+            className="subtle geolocation-latlon"
+            data-id="geolocation-latlon"
           >{this.renderLatLon(geolocation)}</span>
         )}
       </section>

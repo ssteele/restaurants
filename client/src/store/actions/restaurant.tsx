@@ -5,7 +5,6 @@ export const GET_RESTAURANTS = 'GET_RESTAURANTS'
 export const SET_RESTAURANTS = 'SET_RESTAURANTS'
 export const GET_GEOLOCATION = 'GET_GEOLOCATION'
 export const SET_GEOLOCATION = 'SET_GEOLOCATION'
-export const SET_CURRENT_ZIP_META = 'SET_CURRENT_ZIP_META'
 export const SET_OPTIONS = 'SET_OPTIONS'
 export const SET_FILTERED = 'SET_FILTERED'
 export const SET_CURRENT_RESTAURANT = 'SET_CURRENT_RESTAURANT'
@@ -41,13 +40,6 @@ export const setGeolocation = (geolocation: IGeolocation): { type: string, geolo
   return {
     type: SET_GEOLOCATION,
     geolocation,
-  }
-}
-
-export const setCurrentZipMeta = (currentZipMeta: unknown[]): { type: string, currentZipMeta: unknown} => {
-  return {
-    type: SET_CURRENT_ZIP_META,
-    currentZipMeta,
   }
 }
 

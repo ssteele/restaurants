@@ -304,8 +304,8 @@ export const updateGeolocationFilters: AppThunkAction = () => {
 
 export const setCurrentLocation: AppThunkAction = ({ lat, lon }: { lat: number, lon: number}) => {
   return (dispatch: AppThunkDispatch): void => {
-    let geolocation: IGeolocation = {}
-    geolocation = {
+    const geolocation: IGeolocation = {
+      isGeolocating: false,
       lat,
       lon,
       timestamp: Date.now(),

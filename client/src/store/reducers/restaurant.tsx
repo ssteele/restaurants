@@ -4,7 +4,6 @@ import {
   SET_RESTAURANTS,
   GET_GEOLOCATION,
   SET_GEOLOCATION,
-  SET_CURRENT_ZIP_META,
   SET_OPTIONS,
   SET_FILTERED,
   SET_CURRENT_RESTAURANT,
@@ -72,14 +71,6 @@ export const restaurantStore = (
               isGeolocating: false,
             }
           }
-        }
-      }
-
-    case SET_CURRENT_ZIP_META:
-      return {
-        ...state,
-        ...{
-          currentZipMeta: action.currentZipMeta,
         }
       }
 
