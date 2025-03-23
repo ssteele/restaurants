@@ -4,9 +4,9 @@ import {
   DEFAULT_LON,
   DEFAULT_MAX_NEARBY_MI_DISTANCE,
   MAX_NEARBY_MI_DISTANCE_OPTIONS,
-} from '../../constants'
-import { ICity } from '../../models/City'
-import { IRestaurantStore } from '../../models/RestaurantStore'
+} from '@/constants'
+import { ICity } from '@/models/City'
+import { IRestaurantStore } from '@/models/RestaurantStore'
 
 const cities: ICity[] = [
   {id: 'austin', name: 'Austin, TX'},

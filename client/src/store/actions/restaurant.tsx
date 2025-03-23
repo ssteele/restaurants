@@ -1,5 +1,5 @@
-import { IGeolocation } from "../../models/Geolocation"
-import { IRestaurantOption } from "../../models/RestaurantOption"
+import { IGeolocation } from "@/models/Geolocation"
+import { IRestaurantOption } from "@/models/RestaurantOption"
 
 export const GET_RESTAURANTS = 'GET_RESTAURANTS'
 export const SET_RESTAURANTS = 'SET_RESTAURANTS'

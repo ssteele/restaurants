@@ -13,13 +13,13 @@ import {
 } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import { App } from './components/App'
-import { IRestaurantStore } from './models/RestaurantStore'
-import * as serviceWorker from './serviceWorker'
-import { rootReducer } from './store/reducers/restaurant'
+import { App } from '@/components/App'
+import { IRestaurantStore } from '@/models/RestaurantStore'
+import * as serviceWorker from '@/serviceWorker'
+import { rootReducer } from '@/store/reducers/restaurant'
 import '../node_modules/foundation-sites/dist/css/foundation.min.css'
 import '../node_modules/font-awesome/css/font-awesome.min.css'
-import './css/index.css'
+import '@/css/index.css'
 
 const composeEnhancer = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const loggerMiddleware = createLogger() as Middleware<{}, any, Dispatch<AnyAction>>;

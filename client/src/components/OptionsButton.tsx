@@ -1,7 +1,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import { toggleModal } from '../store/thunks/restaurant'
-import '../css/OptionsButton.css'
+import { toggleModal } from '@/store/thunks/restaurant'
+import '@/css/OptionsButton.css'
 
 export class OptionsButton extends React.Component {
   static propTypes = {

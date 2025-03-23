@@ -15,16 +15,16 @@ import {
   setOptions,
   setRestaurants,
   setViewedRestaurants,
-} from '../actions/restaurant'
-import { API_BASE_URL } from '../../constants'
-import { AppThunkAction, AppThunkDispatch } from '../../models/AppThunk'
-import { IGeolocation } from '../../models/Geolocation'
-import { ILatLon } from '../../models/LatLon'
-import { IRestaurant } from '../../models/Restaurant'
-import { IRestaurantOption } from '../../models/RestaurantOption'
-import { IRestaurantStore } from '../../models/RestaurantStore'
-import { ICategory } from '../../models/Category'
-import { calculateDistance } from '../../utils/getCoordinates'
+} from '@/store/actions/restaurant'
+import { API_BASE_URL } from '@/constants'
+import { AppThunkAction, AppThunkDispatch } from '@/models/AppThunk'
+import { IGeolocation } from '@/models/Geolocation'
+import { ILatLon } from '@/models/LatLon'
+import { IRestaurant } from '@/models/Restaurant'
+import { IRestaurantOption } from '@/models/RestaurantOption'
+import { IRestaurantStore } from '@/models/RestaurantStore'
+import { ICategory } from '@/models/Category'
+import { calculateDistance } from '@/utils/getCoordinates'
 
 const filterRestaurants = ({
   geolocation,

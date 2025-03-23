@@ -1,14 +1,14 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import { LOCATION_REQUEST_COOL_OFF_SECONDS } from '../constants'
+import { LOCATION_REQUEST_COOL_OFF_SECONDS } from '@/constants'
 import {
   fetchGeolocation,
   setCurrentLocation,
-} from '../store/thunks/restaurant'
-import { getCoordinates } from '../utils/getCoordinates'
-import '../css/GeolocationButton.css'
-import { IGeolocation } from '../models/Geolocation'
-import { IBrowserNavigatorApiResponse } from '../models/BrowserApi'
+} from '@/store/thunks/restaurant'
+import { getCoordinates } from '@/utils/getCoordinates'
+import '@/css/GeolocationButton.css'
+import { IGeolocation } from '@/models/Geolocation'
+import { IBrowserNavigatorApiResponse } from '@/models/BrowserApi'
 
 export class GeolocationButton extends React.Component {
   static propTypes = {

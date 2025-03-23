@@ -1,4 +1,4 @@
-import { IRestaurant } from '../Restaurant';
+import { IRestaurant } from '@/models/Restaurant';
 
 export const restaurantInstances: {[id: number]: IRestaurant} = {
   1: {

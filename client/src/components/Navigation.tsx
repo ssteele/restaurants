@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import {
   nextRestaurant,
   prevRestaurant,
-} from '../store/thunks/restaurant'
-import '../css/Navigation.css'
+} from '@/store/thunks/restaurant'
+import '@/css/Navigation.css'
 
 export class Navigation extends React.Component {
   static propTypes = {

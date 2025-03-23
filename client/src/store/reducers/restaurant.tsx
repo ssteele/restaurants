@@ -11,9 +11,9 @@ import {
   RESET_VIEWED_RESTAURANTS,
   SET_MODAL,
   SET_ERROR,
-} from '../actions/restaurant'
-import { restaurantStore as initialRestaurantState } from '../initial/restaurantStore'
-import { IRestaurantStore } from '../../models/RestaurantStore'
+} from '@/store/actions/restaurant'
+import { restaurantStore as initialRestaurantState } from '@/store/initial/restaurantStore'
+import { IRestaurantStore } from '@/models/RestaurantStore'
 
 export const restaurantStore = (
   state: IRestaurantStore = initialRestaurantState,

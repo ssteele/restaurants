@@ -6,12 +6,12 @@ import {
   selectOption,
   toggleModal,
   toggleOption,
-} from '../store/thunks/restaurant'
-import { IRestaurantOption } from '../models/RestaurantOption'
-import { CitySelect } from './Option/CitySelect'
-import { OptionCheckbox } from './Option/OptionCheckbox'
-import { OptionSelect } from './Option/OptionSelect'
-import '../css/OptionsModal.css'
+} from '@/store/thunks/restaurant'
+import { IRestaurantOption } from '@/models/RestaurantOption'
+import { CitySelect } from '@/components/Option/CitySelect'
+import { OptionCheckbox } from '@/components/Option/OptionCheckbox'
+import { OptionSelect } from '@/components/Option/OptionSelect'
+import '@/css/OptionsModal.css'
 
 export class OptionsModal extends React.Component {
   static propTypes = {

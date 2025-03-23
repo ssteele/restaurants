@@ -4,11 +4,11 @@ import {
   DEFAULT_LAT,
   DEFAULT_LON,
   LOCATION_REQUEST_COOL_OFF_SECONDS,
-} from '../constants'
-import { IGeolocation } from '../models/Geolocation';
-import * as thunks from '../store/thunks/restaurant'
-import * as getCoordinatesModule from '../utils/getCoordinates'
-import { GeolocationButton } from './GeolocationButton';
+} from '@/constants'
+import { IGeolocation } from '@/models/Geolocation';
+import * as thunks from '@/store/thunks/restaurant'
+import * as getCoordinatesModule from '@/utils/getCoordinates'
+import { GeolocationButton } from '@/components/GeolocationButton';
 
 describe('Geolocation component with no location', () => {
   let testRenderer: any

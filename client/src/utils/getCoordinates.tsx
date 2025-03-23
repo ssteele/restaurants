@@ -1,5 +1,5 @@
-import { IBrowserNavigatorApiResponse } from '../models/BrowserApi'
-import { ILatLon } from '../models/LatLon'
+import { IBrowserNavigatorApiResponse } from '@/models/BrowserApi'
+import { ILatLon } from '@/models/LatLon'
 
 export const EARTH_RADIUS = 3958.7564 // in miles
 
