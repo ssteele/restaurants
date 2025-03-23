@@ -9,7 +9,7 @@ import { IRestaurantStore } from '../../models/RestaurantStore'
 const cities: ICity[] = [
   {id: 'austin', name: 'Austin, TX'},
   {id: 'edmond', name: 'Edmond, OK'},
-  {id: 'test', name: 'Test'}, // @todo: remove test city
+  // {id: 'test', name: 'Test'},
 ]
 
 export const restaurantStore: IRestaurantStore = {
