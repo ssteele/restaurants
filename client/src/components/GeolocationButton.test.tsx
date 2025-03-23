@@ -151,11 +151,11 @@ describe('Geolocation component with location during cooldown', () => {
     expect(geolocationTrigger.props.className).toBe('geolocation-trigger inset flash');
   })
 
-  it('properly renders current latlot', () => {
+  it('properly renders current latlon', () => {
     expect.assertions(2)
-    expect(() => testInstance.findByProps({'data-id': 'geolocation-latlot'})).not.toThrow(Error)
-    const currentLatLon = testInstance.findByProps({'data-id': 'geolocation-latlot'})
-    expect(currentLatLon.props.children).toBe(78704)
+    expect(() => testInstance.findByProps({'data-id': 'geolocation-latlon'})).not.toThrow(Error)
+    const currentLatLon = testInstance.findByProps({'data-id': 'geolocation-latlon'})
+    expect(currentLatLon.props.children).toBe('30.309, -97.720')
   })
 
   it('does not dispatch another geolocation event', async () => {
