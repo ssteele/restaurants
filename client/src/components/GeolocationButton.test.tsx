@@ -204,7 +204,7 @@ describe('Geolocation component with location following cooldown', () => {
   it('renders proper classes', () => {
     expect.assertions(1)
     const geolocationTrigger = testInstance.findByProps({'data-id': 'geolocation-trigger'})
-    expect(geolocationTrigger.props.className).toBe('geolocation-trigger inset flash');
+    expect(geolocationTrigger.props.className).toBe('geolocation-trigger inset');
   })
 
   it('properly renders current latlon', () => {
