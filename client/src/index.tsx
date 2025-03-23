@@ -6,7 +6,10 @@ import { connect, Provider } from 'react-redux'
 import {
   compose,
   createStore,
-  applyMiddleware
+  applyMiddleware,
+  AnyAction,
+  Dispatch,
+  Middleware
 } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
@@ -19,7 +22,7 @@ import '../node_modules/font-awesome/css/font-awesome.min.css'
 import './css/index.css'
 
 const composeEnhancer = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const loggerMiddleware = createLogger()
+const loggerMiddleware = createLogger() as Middleware<{}, any, Dispatch<AnyAction>>;
 
 const store = createStore(
   rootReducer,
