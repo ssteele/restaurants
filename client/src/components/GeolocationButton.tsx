@@ -62,9 +62,9 @@ export class GeolocationButton extends React.Component {
 
   private geolocationTriggerClasses = (geolocation: IGeolocation): string => {
     let classes = ['geolocation-trigger']
-    if (geolocation?.lat && geolocation?.lon) {
+    if (!!geolocation?.lat && !!geolocation?.lon) {
       classes = [...classes, 'inset']
-      if (!geolocation.isGeolocating) {
+      if (!geolocation.isGeolocating && this.isRecentGeolocation(geolocation)) {
         classes = [...classes, 'flash']
       }
     }
@@ -84,7 +84,7 @@ export class GeolocationButton extends React.Component {
           <i className={`fa fa-compass fa-lg ${geolocation.isGeolocating ? 'fa-spin' : ''}`}></i>
         </span>
 
-        {geolocation.lat && geolocation.lon && (
+        {!!geolocation?.lat && !!geolocation?.lon && (
           <span
             className="subtle geolocation-latlon"
             data-id="geolocation-latlon"
