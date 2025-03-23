@@ -72,6 +72,7 @@ describe('Geolocation component that is currently geolocating', () => {
   const fetchGeolocationSpy = jest.spyOn(thunks, 'fetchGeolocation')
   const getCoordinates = jest.spyOn(getCoordinatesModule, 'getCoordinates')
   const setCurrentLocationSpy = jest.spyOn(thunks, 'setCurrentLocation')
+  const cancelGeolocationSpy = jest.spyOn(thunks, 'cancelGeolocation')
   const consoleWarnSpy = jest.spyOn(console, 'warn');
 
   beforeEach(() => {
