@@ -109,7 +109,7 @@ describe('Geolocation component that is currently geolocating', () => {
     expect(consoleWarnSpy).toHaveBeenCalledWith('Geolocating now - please wait')
     expect(dispatch).toHaveBeenCalledTimes(2)
     expect(fetchGeolocationSpy).toHaveBeenCalledTimes(1)
-    await expect(getCoordinates).toHaveBeenCalledTimes(0)
+    expect(getCoordinates).toHaveBeenCalledTimes(0)
     expect(setCurrentLocationSpy).toHaveBeenCalledTimes(0)
     expect(cancelGeolocationSpy).toHaveBeenCalledTimes(1)
   })
