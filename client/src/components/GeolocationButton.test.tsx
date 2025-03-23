@@ -177,8 +177,8 @@ describe('Geolocation component with location following cooldown', () => {
   let testInstance: any
   const dispatch: any = jest.fn()
   const geolocation: IGeolocation = {
-    lat: 30.2642,
-    lon: -97.7617,
+    lat: DEFAULT_LAT,
+    lon: DEFAULT_LON,
     timestamp: Date.now() - (1000 * LOCATION_REQUEST_COOL_OFF_SECONDS * 2),
     isGeolocating: false,
   }
@@ -211,7 +211,7 @@ describe('Geolocation component with location following cooldown', () => {
     expect.assertions(2)
     expect(() => testInstance.findByProps({'data-id': 'geolocation-latlon'})).not.toThrow(Error)
     const currentLatLon = testInstance.findByProps({'data-id': 'geolocation-latlon'})
-    expect(currentLatLon.props.children).toBe(78704)
+    expect(currentLatLon.props.children).toBe('30.309, -97.720')
   })
 
   it('geolocates on click', async () => {
