@@ -25,7 +25,7 @@ export class MapLink extends React.Component {
     if (nearbySelection) {
       nearbyMaxMilesSelection = Number(options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)?.value)
     }
-    const zoom: number = mapNearbyMilesToZoom[nearbyMaxMilesSelection]
+    const zoom: number = mapNearbyMilesToZoom[nearbyMaxMilesSelection] || 14
 
     return new URL(`${GOOGLE_MAP_AUSTIN_BASE_URL}&ll=${lat},${lon}&z=${zoom}`).toString()
   }
