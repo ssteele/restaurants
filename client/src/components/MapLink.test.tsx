@@ -8,7 +8,10 @@ import {
 } from '@/constants'
 import { IGeolocation } from '@/models/Geolocation'
 
-describe('MapLink component with no location', () => {
+describe('MapLink component with only near me toggled off', () => {
+})
+
+describe('MapLink component with no location and no options', () => {
   let testRenderer: any
   let testInstance: any
   const geolocation: IGeolocation = {
@@ -16,10 +19,11 @@ describe('MapLink component with no location', () => {
     lat: 0,
     lon: 0,
   }
-  const options: any[] = [
-    { name: 'nearby', value: true },
-    { name: 'nearbyMaxMiles', value: '5' }
-  ]
+  const options: any[] = []
+  // const options: any[] = [
+  //   { name: 'nearby', value: true },
+  //   { name: 'nearbyMaxMiles', value: '5' }
+  // ]
   const navigateToLinkSpy = jest.spyOn(MapLink.prototype, 'navigateToLink').mockImplementation(() => {})
 
   beforeEach(() => {
@@ -41,7 +45,7 @@ describe('MapLink component with no location', () => {
     const mapLink = testInstance.findByProps({ 'data-id': 'map-link' })
     expect(() => mapLink).not.toThrow(Error)
     mapLink.props.onClick()
-    expect(navigateToLinkSpy).toHaveBeenCalledWith(`${GOOGLE_MAP_AUSTIN_BASE_URL}&ll=${DEFAULT_LAT},${DEFAULT_LON}&z=13`)
+    expect(navigateToLinkSpy).toHaveBeenCalledWith(`${GOOGLE_MAP_AUSTIN_BASE_URL}&ll=${DEFAULT_LAT},${DEFAULT_LON}&z=14`)
   })
 })
 
