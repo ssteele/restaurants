@@ -1,6 +1,10 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import { GOOGLE_MAP_AUSTIN_BASE_URL } from '@/constants';
+import {
+  DEFAULT_LAT,
+  DEFAULT_LON,
+} from '@/constants'
+import { GOOGLE_MAP_AUSTIN_BASE_URL } from '@/constants'
 import { IRestaurantOption } from '@/models/RestaurantOption'
 import '@/css/MapLink.css'
 
@@ -12,18 +16,29 @@ export class MapLink extends React.Component {
     options: PropTypes.array.isRequired,
   }
 
-  public openMapLink(): void {
+  public get mapLink(): string {
     const { geolocation, options }: any = this.props
-    const { lat, lon } = geolocation
-    const nearbyMaxMilesSelection = Number(options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)?.value)
+    const lat = geolocation?.lat || DEFAULT_LAT
+    const lon = geolocation?.lon || DEFAULT_LON
+    const nearbySelection = !!options.find((o: IRestaurantOption) => 'nearby' === o.name)?.value
+    let nearbyMaxMilesSelection: number = 3
+    if (nearbySelection) {
+      nearbyMaxMilesSelection = Number(options.find((o: IRestaurantOption) => 'nearbyMaxMiles' === o.name)?.value)
+    }
     const zoom: number = mapNearbyMilesToZoom[nearbyMaxMilesSelection]
 
-    const mapUrl = new URL(`${GOOGLE_MAP_AUSTIN_BASE_URL}&ll=${lat},${lon}&z=${zoom}`)
-    window.open(mapUrl.href)
+    return new URL(`${GOOGLE_MAP_AUSTIN_BASE_URL}&ll=${lat},${lon}&z=${zoom}`).toString()
+  }
+
+  public navigateToLink(link: string): void {
+    window.open(link)
+  }
+
+  public openMapLink(): void {
+    this.navigateToLink(this.mapLink)
   }
 
   public render(): React.ReactNode {
-
     return (
       <section
         className="map-link"
