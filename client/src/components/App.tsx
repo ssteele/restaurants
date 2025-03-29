@@ -1,6 +1,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import { GeolocationButton } from '@/components/GeolocationButton'
+import { MapLink } from '@/components/MapLink'
 import { Navigation } from '@/components/Navigation'
 import { OptionsButton } from '@/components/OptionsButton'
 import { OptionsModal } from '@/components/OptionsModal'
@@ -63,6 +64,11 @@ export class App extends React.Component<IRestaurant> {
           modalIsOpen={modalIsOpen}
           options={options}
         ></OptionsModal>
+
+        <MapLink
+          geolocation={geolocation}
+          options={options}
+        ></MapLink>
 
         <GeolocationButton
           dispatch={dispatch}

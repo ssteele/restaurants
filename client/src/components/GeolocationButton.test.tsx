@@ -1,12 +1,12 @@
 import React from 'react'
-import TestRenderer from 'react-test-renderer';
-import { GeolocationButton } from '@/components/GeolocationButton';
+import TestRenderer from 'react-test-renderer'
+import { GeolocationButton } from '@/components/GeolocationButton'
 import {
   DEFAULT_LAT,
   DEFAULT_LON,
   LOCATION_REQUEST_COOL_OFF_SECONDS,
 } from '@/constants'
-import { IGeolocation } from '@/models/Geolocation';
+import { IGeolocation } from '@/models/Geolocation'
 import * as thunks from '@/store/thunks/restaurant'
 import * as getCoordinatesModule from '@/utils/getCoordinates'
 
@@ -30,7 +30,7 @@ describe('Geolocation component with no location', () => {
         geolocation={geolocation}
       ></GeolocationButton>
     )
-    testInstance = testRenderer.root;
+    testInstance = testRenderer.root
   })
 
   it('properly renders geolocation button', () => {
@@ -41,7 +41,7 @@ describe('Geolocation component with no location', () => {
   it('renders proper classes', () => {
     expect.assertions(1)
     const geolocationTrigger = testInstance.findByProps({'data-id': 'geolocation-trigger'})
-    expect(geolocationTrigger.props.className).toBe('geolocation-trigger');
+    expect(geolocationTrigger.props.className).toBe('geolocation-trigger')
   })
 
   it('does not render current latlon', () => {
@@ -73,7 +73,7 @@ describe('Geolocation component that is currently geolocating', () => {
   const getCoordinates = jest.spyOn(getCoordinatesModule, 'getCoordinates')
   const setCurrentLocationSpy = jest.spyOn(thunks, 'setCurrentLocation')
   const cancelGeolocationSpy = jest.spyOn(thunks, 'cancelGeolocation')
-  const consoleWarnSpy = jest.spyOn(console, 'warn');
+  const consoleWarnSpy = jest.spyOn(console, 'warn')
 
   beforeEach(() => {
     testRenderer = TestRenderer.create(
@@ -82,7 +82,7 @@ describe('Geolocation component that is currently geolocating', () => {
         geolocation={geolocation}
       ></GeolocationButton>
     )
-    testInstance = testRenderer.root;
+    testInstance = testRenderer.root
   })
 
   it('properly renders geolocation button', () => {
@@ -93,7 +93,7 @@ describe('Geolocation component that is currently geolocating', () => {
   it('renders proper classes', () => {
     expect.assertions(1)
     const geolocationTrigger = testInstance.findByProps({'data-id': 'geolocation-trigger'})
-    expect(geolocationTrigger.props.className).toBe('geolocation-trigger');
+    expect(geolocationTrigger.props.className).toBe('geolocation-trigger')
   })
 
   it('does not render current latlon', () => {
@@ -129,7 +129,7 @@ describe('Geolocation component with location during cooldown', () => {
   const getCoordinates = jest.spyOn(getCoordinatesModule, 'getCoordinates')
   const setCurrentLocationSpy = jest.spyOn(thunks, 'setCurrentLocation')
   const cancelGeolocationSpy = jest.spyOn(thunks, 'cancelGeolocation')
-  const consoleWarnSpy = jest.spyOn(console, 'warn');
+  const consoleWarnSpy = jest.spyOn(console, 'warn')
 
   beforeEach(() => {
     testRenderer = TestRenderer.create(
@@ -138,7 +138,7 @@ describe('Geolocation component with location during cooldown', () => {
         geolocation={geolocation}
       ></GeolocationButton>
     )
-    testInstance = testRenderer.root;
+    testInstance = testRenderer.root
   })
 
   it('properly renders geolocation button', () => {
@@ -149,7 +149,7 @@ describe('Geolocation component with location during cooldown', () => {
   it('renders proper classes', () => {
     expect.assertions(1)
     const geolocationTrigger = testInstance.findByProps({'data-id': 'geolocation-trigger'})
-    expect(geolocationTrigger.props.className).toBe('geolocation-trigger inset flash');
+    expect(geolocationTrigger.props.className).toBe('geolocation-trigger inset flash')
   })
 
   it('properly renders current latlon', () => {
@@ -193,7 +193,7 @@ describe('Geolocation component with location following cooldown', () => {
         geolocation={geolocation}
       ></GeolocationButton>
     )
-    testInstance = testRenderer.root;
+    testInstance = testRenderer.root
   })
 
   it('properly renders geolocation button', () => {
@@ -204,7 +204,7 @@ describe('Geolocation component with location following cooldown', () => {
   it('renders proper classes', () => {
     expect.assertions(1)
     const geolocationTrigger = testInstance.findByProps({'data-id': 'geolocation-trigger'})
-    expect(geolocationTrigger.props.className).toBe('geolocation-trigger inset');
+    expect(geolocationTrigger.props.className).toBe('geolocation-trigger inset')
   })
 
   it('properly renders current latlon', () => {

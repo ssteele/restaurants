@@ -11,6 +11,7 @@ export const DEFAULT_CITY: string = 'austin'
 export const DEFAULT_LAT: number = 30.309239
 export const DEFAULT_LON: number = -97.719562
 export const DEFAULT_MAX_NEARBY_MI_DISTANCE: number = 5
+export const GOOGLE_MAP_AUSTIN_BASE_URL: string = 'https://www.google.com/maps/d/viewer?mid=1wnOCYkQU5pr8MXCErvjZ4PkSTKBCXIU'
 export const LOCATION_REQUEST_COOL_OFF_SECONDS: number = 10
 export const MAX_NEARBY_MI_DISTANCE_OPTIONS: { id: number, name: string }[] = [
   {id: 1, name: '1 mile'},
